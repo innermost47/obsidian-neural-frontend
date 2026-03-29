@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="js/config.js"></script>
+    <script>
+      // Inject dynamic meta tags as early as possible
+      (function () {
+        var cfg = window.APP_CONFIG || {};
+        var siteName = cfg.SITE_NAME || "OBSIDIAN Neural";
+        var siteUrl = cfg.SITE_URL || "";
+        var contactEmail = cfg.COMPANY_EMAIL || "";
+        var supportEmail = cfg.SUPPORT_EMAIL || contactEmail;
+        var githubIssuesUrl = cfg.GITHUB_ISSUES_URL || cfg.GITHUB_URL || "";
+        var screenshotUrl = cfg.SITE_URL
+          ? cfg.SITE_URL + "/assets/images/screenshot.png"
+          : "";
+        var twitterHandle = cfg.TWITTER_HANDLE || "";
+        var pageUrl = siteUrl + "/contact.html";
+        var pageTitle =
+          "Contact " + siteName + " — Support, Partnerships & Feature Requests";
+        var pageDesc =
+          "Contact the " +
+          siteName +
+          " team for technical support, billing questions, bug reports, feature requests, or partnership opportunities. Response within 24-48 hours. Email: " +
+          supportEmail;
+
+        document.title = pageTitle;
+
+        function setMeta(name, content, prop) {
+          if (!content) return;
+          var el = document.createElement("meta");
+          if (prop) {
+            el.setAttribute("property", name);
+          } else {
+            el.setAttribute("name", name);
+          }
+          el.setAttribute("content", content);
+          document.head.appendChild(el);
+        }
+
+        function setLink(rel, href) {
+          if (!href) return;
+          var el = document.createElement("link");
+          el.setAttribute("rel", rel);
+          el.setAttribute("href", href);
+          document.head.appendChild(el);
+        }
+
+        setMeta("description", pageDesc);
+        setMeta(
+          "keywords",
+          siteName +
+            " contact, AI VST plugin support, " +
+            siteName +
+            " help, contact, VST plugin bug report, AI music plugin partnership",
+        );
+        setMeta("author", cfg.PUBLICATION_DIRECTOR || cfg.COMPANY_NAME || "");
+        setMeta("robots", "index, follow");
+        setLink("canonical", pageUrl);
+
+        // Open Graph
+        setMeta("og:type", "website", true);
+        setMeta("og:site_name", siteName, true);
+        setMeta("og:locale", "en_US", true);
+        setMeta("og:url", pageUrl, true);
+        setMeta(
+          "og:title",
+          "Contact " + siteName + " — Support & Partnerships",
+          true,
+        );
+        setMeta(
+          "og:description",
+          "Technical support, billing, feature requests, bug reports, partnerships. We respond within 24-48 hours on business days.",
+          true,
+        );
+        setMeta("og:image", screenshotUrl, true);
+        setMeta("og:image:width", "1200", true);
+        setMeta("og:image:height", "630", true);
+        setMeta("og:image:alt", siteName + " AI music VST plugin", true);
+
+        // Twitter Card
+        setMeta("twitter:card", "summary_large_image");
+        if (twitterHandle) setMeta("twitter:site", "@" + twitterHandle);
+        setMeta("twitter:url", pageUrl);
+        setMeta(
+          "twitter:title",
+          "Contact " + siteName + " — Support & Partnerships",
+        );
+        setMeta(
+          "twitter:description",
+          "Get help with technical support, billing, or partnerships. Response within 24-48 hours.",
+        );
+        setMeta("twitter:image", screenshotUrl);
+        setMeta("twitter:image:alt", siteName + " AI music VST plugin");
+      })();
+    </script>
+
+    <link rel="icon" type="image/x-icon" href="assets/images/logo.ico" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- Structured Data (JSON-LD) — injected dynamically after config is loaded -->
+    <script id="json-ld-placeholder" type="application/ld+json">
+      []
+    </script>
+    <script>
+      (function () {
+        var cfg = window.APP_CONFIG || {};
+        var siteName = cfg.SITE_NAME || "OBSIDIAN Neural";
+        var siteUrl = cfg.SITE_URL || "";
+        var supportEmail = cfg.SUPPORT_EMAIL || cfg.COMPANY_EMAIL || "";
+        var githubIssuesUrl = cfg.GITHUB_ISSUES_URL || "";
+        var githubUrl = cfg.GITHUB_URL || "";
+        var pageUrl = siteUrl + "/contact.html";
+        var docsUrl = cfg.DOCS_URL || siteUrl + "/documentation.html";
+
+        var jsonLd = [
+          {
+            "@context": "https://schema.org",
+            "@type": "ContactPage",
+            name: "Contact " + siteName,
+            url: pageUrl,
+            description:
+              "Contact the " +
+              siteName +
+              " team for technical support, billing, bug reports, feature requests, or partnership opportunities.",
+            breadcrumb: {
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  name: "Home",
+                  item: siteUrl + "/",
+                },
+                {
+                  "@type": "ListItem",
+                  position: 2,
+                  name: "Contact",
+                  item: pageUrl,
+                },
+              ],
+            },
+            mainEntity: {
+              "@type": "Organization",
+              name: siteName,
+              url: siteUrl,
+              email: supportEmail,
+              sameAs: githubUrl ? [githubUrl] : [],
+              contactPoint: [
+                {
+                  "@type": "ContactPoint",
+                  contactType: "customer support",
+                  email: supportEmail,
+                  availableLanguage: ["English", "French"],
+                  hoursAvailable: {
+                    "@type": "OpeningHoursSpecification",
+                    dayOfWeek: [
+                      "Monday",
+                      "Tuesday",
+                      "Wednesday",
+                      "Thursday",
+                      "Friday",
+                    ],
+                    description: "Response within 24-48 hours on business days",
+                  },
+                },
+                {
+                  "@type": "ContactPoint",
+                  contactType: "technical support",
+                  url: githubIssuesUrl,
+                  description: "Bug reports and technical issues via GitHub",
+                },
+              ],
+            },
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: [
+              {
+                "@type": "Question",
+                name: "How do I contact " + siteName + " support?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text:
+                    "Send a message via the contact form on this page or email " +
+                    supportEmail +
+                    " directly. We respond within 24-48 hours on business days.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Where do I report a bug in " + siteName + "?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text:
+                    "Bug reports can be submitted via the contact form (select 'Report a Bug') or directly on GitHub Issues at " +
+                    githubIssuesUrl +
+                    ".",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Does " + siteName + " accept partnership proposals?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text:
+                    "Yes. Use the contact form and select 'Partnership' as the subject, or email " +
+                    supportEmail +
+                    ". " +
+                    siteName +
+                    " has already attracted interest from major artists and music technology press worldwide.",
+                },
+              },
+              {
+                "@type": "Question",
+                name:
+                  "How long does it take to get a response from " +
+                  siteName +
+                  "?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "We typically respond within 24 to 48 hours on business days.",
+                },
+              },
+            ],
+          },
+        ];
+
+        var el = document.getElementById("json-ld-placeholder");
+        if (el) el.textContent = JSON.stringify(jsonLd, null, 2);
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="nav-container"></div>
+
+    <div class="pricing-header text-center mt-5">
+      <div class="pricing-icon mb-4">
+        <i class="fas fa-envelope fa-3x text-light"></i>
+      </div>
+      <h1 class="display-4 fw-bold mb-3">Contact Us</h1>
+      <p class="lead">
+        Questions? Feedback? Partnership opportunities? We're here to help!
+      </p>
+    </div>
+
+    <div class="container py-5">
+      <div class="row">
+        <div class="col-lg-8 mb-4">
+          <div class="contact-card">
+            <div id="alert-container"></div>
+
+            <h2 class="mb-4">
+              <i class="fas fa-paper-plane me-2 text-danger"></i>Send us a
+              Message
+            </h2>
+
+            <form id="contactForm">
+              <!-- Honeypot anti-spam fields -->
+              <input
+                type="text"
+                name="website"
+                class="honeypot-field"
+                tabindex="-1"
+                autocomplete="off"
+              />
+              <input
+                type="email"
+                name="email_confirm"
+                class="honeypot-field"
+                tabindex="-1"
+                autocomplete="off"
+              />
+              <div class="hp-field">
+                <label for="phone">Phone (leave blank)</label>
+                <input
+                  type="text"
+                  id="phone"
+                  name="phone"
+                  tabindex="-1"
+                  autocomplete="off"
+                />
+              </div>
+
+              <input type="hidden" name="timestamp" id="timestamp" value="" />
+
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="name" class="form-label">
+                    <i class="fas fa-user me-2"></i>Full Name *
+                  </label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    name="name"
+                    required
+                    maxlength="100"
+                    placeholder="John Doe"
+                  />
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <label for="email" class="form-label">
+                    <i class="fas fa-envelope me-2"></i>Email *
+                  </label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    name="email"
+                    required
+                    maxlength="100"
+                    placeholder="john@example.com"
+                  />
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="subject" class="form-label">
+                  <i class="fas fa-tag me-2"></i>Subject *
+                </label>
+                <select
+                  class="form-select"
+                  id="subject"
+                  name="subject"
+                  required
+                >
+                  <option value="">Select a subject...</option>
+                  <option value="support">Technical Support</option>
+                  <option value="billing">Billing / Subscription</option>
+                  <option value="feature">Feature Request</option>
+                  <option value="bug">Report a Bug</option>
+                  <option value="partnership">Partnership</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+
+              <div class="mb-4">
+                <label for="message" class="form-label">
+                  <i class="fas fa-comment-dots me-2"></i>Message *
+                </label>
+                <textarea
+                  class="form-control"
+                  id="message"
+                  name="message"
+                  rows="6"
+                  required
+                  maxlength="2000"
+                  placeholder="Describe your request in detail..."
+                ></textarea>
+                <small class="text-muted">
+                  <span id="charCount">0</span> / 2000 characters
+                </small>
+              </div>
+
+              <div class="mb-3">
+                <div class="form-check">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="consent"
+                    name="consent"
+                    required
+                  />
+                  <label class="form-check-label" for="consent">
+                    I agree that my data will be used to process my request *
+                  </label>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-submit" id="submitBtn">
+                <i class="fas fa-paper-plane me-2"></i>
+                <span id="btnText">Send Message</span>
+                <span
+                  id="btnSpinner"
+                  class="spinner-border spinner-border-sm ms-2"
+                  style="display: none"
+                ></span>
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="contact-card">
+            <h4 class="mb-4">
+              <i class="fas fa-info-circle me-2 text-danger"></i>Information
+            </h4>
+
+            <div class="info-box">
+              <h5><i class="fas fa-clock me-2"></i>Response Time</h5>
+              <p class="mb-0">
+                We typically respond within 24-48 hours on business days.
+              </p>
+            </div>
+
+            <div class="contact-info" id="contact-info-email">
+              <i class="fas fa-envelope"></i>
+              <div>
+                <strong>Email</strong>
+                <p class="mb-0">
+                  <a id="contact-email-link" href="#">—</a>
+                </p>
+              </div>
+            </div>
+
+            <div class="contact-info" id="contact-info-github">
+              <i class="fab fa-github"></i>
+              <div>
+                <strong>GitHub</strong>
+                <p class="mb-0">
+                  <a
+                    id="contact-github-link"
+                    href="#"
+                    target="_blank"
+                    rel="noopener"
+                    >—</a
+                  >
+                </p>
+              </div>
+            </div>
+
+            <div class="contact-info">
+              <i class="fas fa-book"></i>
+              <div>
+                <strong>Documentation</strong>
+                <p class="mb-0">
+                  <a
+                    id="contact-docs-link"
+                    href="#"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    View Documentation
+                  </a>
+                </p>
+              </div>
+            </div>
+
+            <div class="contact-info" id="contact-info-bugs">
+              <i class="fas fa-bug"></i>
+              <div>
+                <strong>Bug Reports</strong>
+                <p class="mb-0">
+                  <a
+                    id="contact-issues-link"
+                    href="#"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    GitHub Issues
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="footer-container"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/contact.js"></script>
+    <script src="js/cookie-consent.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/promo-popup.js"></script>
+
+    <script>
+      (function () {
+        var cfg = window.APP_CONFIG || {};
+
+        var supportEmail = cfg.SUPPORT_EMAIL || cfg.COMPANY_EMAIL || "";
+        var githubUrl = cfg.GITHUB_URL || "";
+        var githubIssuesUrl = cfg.GITHUB_ISSUES_URL || githubUrl + "/issues";
+        var docsUrl =
+          cfg.DOCS_URL ||
+          (cfg.SITE_URL
+            ? cfg.SITE_URL + "/documentation.html?page=getting-started"
+            : "#");
+
+        var githubLabel = githubUrl
+          ? githubUrl.replace(/^https?:\/\/github\.com\//, "")
+          : githubUrl;
+
+        var emailLink = document.getElementById("contact-email-link");
+        if (emailLink && supportEmail) {
+          emailLink.href = "mailto:" + supportEmail;
+          emailLink.textContent = supportEmail;
+        }
+
+        var githubLink = document.getElementById("contact-github-link");
+        if (githubLink) {
+          if (githubUrl) {
+            githubLink.href = githubUrl;
+            githubLink.textContent = githubLabel || githubUrl;
+          } else {
+            document.getElementById("contact-info-github").style.display =
+              "none";
+          }
+        }
+
+        var docsLink = document.getElementById("contact-docs-link");
+        if (docsLink && docsUrl) {
+          docsLink.href = docsUrl;
+        }
+
+        var issuesLink = document.getElementById("contact-issues-link");
+        if (issuesLink) {
+          if (githubIssuesUrl) {
+            issuesLink.href = githubIssuesUrl;
+          } else {
+            document.getElementById("contact-info-bugs").style.display = "none";
+          }
+        }
+      })();
+    </script>
+  </body>
+</html>

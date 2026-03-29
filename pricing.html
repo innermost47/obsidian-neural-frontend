@@ -1,0 +1,1062 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="js/config.js"></script>
+    <script>
+      (function () {
+        var cfg = window.APP_CONFIG || {};
+        var siteName = cfg.SITE_NAME || "OBSIDIAN Neural";
+        var siteUrl = cfg.SITE_URL || "";
+        var pluginName = cfg.PLUGIN_NAME || siteName;
+        var authorName = cfg.PUBLICATION_DIRECTOR || cfg.COMPANY_NAME || "";
+        var authorAlias = cfg.AUTHOR_ALIAS || "";
+        var twitterHandle = cfg.TWITTER_HANDLE || "";
+        var screenshotUrl = siteUrl
+          ? siteUrl + "/assets/images/screenshot.png"
+          : "";
+        var pageUrl = siteUrl + "/pricing.html";
+        var sym = cfg.GIFT_CURRENCY_SYMBOL || "€";
+        var pBase = cfg.PLAN_PRICE_BASE || "5.99";
+        var pStarter = cfg.GIFT_PRICE_STARTER || "14.99";
+        var pPro = cfg.GIFT_PRICE_PRO || "29.99";
+        var currency = cfg.GIFT_CURRENCY || "EUR";
+
+        window._pricingCfg = {
+          siteName,
+          siteUrl,
+          pluginName,
+          authorName,
+          authorAlias,
+          pageUrl,
+          screenshotUrl,
+          sym,
+          pBase,
+          pStarter,
+          pPro,
+          currency,
+        };
+
+        var pageTitle =
+          "Pricing — " +
+          pluginName +
+          " | Free Trial + Plans from " +
+          sym +
+          pBase +
+          "/month";
+        var pageDesc =
+          pluginName +
+          " pricing: Free (10 samples), Base " +
+          sym +
+          pBase +
+          "/mo (200 samples), " +
+          "Starter " +
+          sym +
+          pStarter +
+          "/mo (500 samples), Pro " +
+          sym +
+          pPro +
+          "/mo (1500 samples). " +
+          "7-day free trial on all plans, no credit card required. AI music generation VST3 directly in your DAW.";
+
+        document.title = pageTitle;
+
+        function setMeta(name, content, prop) {
+          if (!content) return;
+          var el = document.createElement("meta");
+          el.setAttribute(prop ? "property" : "name", name);
+          el.setAttribute("content", content);
+          document.head.appendChild(el);
+        }
+        function setLink(rel, href) {
+          if (!href) return;
+          var el = document.createElement("link");
+          el.setAttribute("rel", rel);
+          el.setAttribute("href", href);
+          document.head.appendChild(el);
+        }
+
+        setMeta("description", pageDesc);
+        setMeta(
+          "keywords",
+          pluginName +
+            " pricing, AI VST plugin price, AI music generation subscription, VST plugin free trial, " +
+            "Stable Audio VST price, AI DAW plugin cost" +
+            (authorAlias ? ", " + authorAlias + " pricing" : "") +
+            ", real-time AI music VST",
+        );
+        setMeta(
+          "author",
+          authorAlias
+            ? authorAlias + (authorName ? " - " + authorName : "")
+            : authorName,
+        );
+        setMeta("robots", "index, follow");
+        setLink("canonical", pageUrl);
+
+        setMeta("og:type", "website", true);
+        setMeta("og:site_name", siteName, true);
+        setMeta("og:locale", "en_US", true);
+        setMeta("og:url", pageUrl, true);
+        setMeta(
+          "og:title",
+          "Pricing — " +
+            pluginName +
+            " | 7-Day Free Trial, Plans from " +
+            sym +
+            pBase +
+            "/mo",
+          true,
+        );
+        setMeta(
+          "og:description",
+          "Start free (10 samples) or choose Base " +
+            sym +
+            pBase +
+            ", Starter " +
+            sym +
+            pStarter +
+            ", Pro " +
+            sym +
+            pPro +
+            "/month. 7-day trial on all plans, no credit card. AI music generation directly in your DAW.",
+          true,
+        );
+        setMeta("og:image", screenshotUrl, true);
+        setMeta("og:image:width", "1200", true);
+        setMeta("og:image:height", "630", true);
+        setMeta("og:image:alt", pluginName + " VST plugin pricing plans", true);
+
+        setMeta("twitter:card", "summary_large_image");
+        if (twitterHandle) setMeta("twitter:site", "@" + twitterHandle);
+        setMeta("twitter:url", pageUrl);
+        setMeta(
+          "twitter:title",
+          "Pricing — " +
+            pluginName +
+            " | Free Trial + Plans from " +
+            sym +
+            pBase +
+            "/mo",
+        );
+        setMeta(
+          "twitter:description",
+          "Free plan (10 samples) + paid plans from " +
+            sym +
+            pBase +
+            "/mo. 7-day trial, no credit card. AI music VST3 plugin.",
+        );
+        setMeta("twitter:image", screenshotUrl);
+      })();
+    </script>
+
+    <link rel="icon" type="image/x-icon" href="assets/images/logo.ico" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- Schema.org JSON-LD — dynamic -->
+    <script id="json-ld-placeholder" type="application/ld+json">
+      []
+    </script>
+    <script>
+      (function () {
+        var g = window._pricingCfg || {};
+        var siteName = g.siteName || "OBSIDIAN Neural";
+        var siteUrl = g.siteUrl || "";
+        var pluginName = g.pluginName || siteName;
+        var pageUrl = g.pageUrl || "";
+        var sym = g.sym || "€";
+        var pBase = g.pBase || "5.99";
+        var pStarter = g.pStarter || "14.99";
+        var pPro = g.pPro || "29.99";
+        var currency = g.currency || "EUR";
+        var registerUrl = siteUrl + "/register.html";
+
+        var jsonLd = [
+          {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            name: pluginName + " — Pricing",
+            url: pageUrl,
+            description:
+              "Pricing plans for " +
+              pluginName +
+              " AI music generation VST plugin. Free plan available, paid plans from " +
+              sym +
+              pBase +
+              "/month with 7-day free trial.",
+            isPartOf: { "@type": "WebSite", name: siteName, url: siteUrl },
+            breadcrumb: {
+              "@type": "BreadcrumbList",
+              itemListElement: [
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  name: "Home",
+                  item: siteUrl + "/",
+                },
+                {
+                  "@type": "ListItem",
+                  position: 2,
+                  name: "Pricing",
+                  item: pageUrl,
+                },
+              ],
+            },
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            name: pluginName,
+            url: siteUrl,
+            applicationCategory: "MultimediaApplication",
+            operatingSystem: "Windows, macOS, Linux",
+            offers: [
+              {
+                "@type": "Offer",
+                name: "Free",
+                description:
+                  "10 credits — 10 AI-generated 30-second audio samples. No time limit.",
+                price: "0",
+                priceCurrency: currency,
+                url: registerUrl,
+                availability: "https://schema.org/InStock",
+              },
+              {
+                "@type": "Offer",
+                name: "Base",
+                description:
+                  "200 credits per month. Includes 7-day free trial with 100 trial credits. No credit card required to start.",
+                price: pBase,
+                priceCurrency: currency,
+                billingIncrement: "P1M",
+                url: registerUrl,
+                availability: "https://schema.org/InStock",
+                hasMerchantReturnPolicy: {
+                  "@type": "MerchantReturnPolicy",
+                  returnPolicyCategory:
+                    "https://schema.org/MerchantReturnFiniteReturnWindow",
+                  merchantReturnDays: 7,
+                },
+              },
+              {
+                "@type": "Offer",
+                name: "Starter",
+                description:
+                  "500 credits per month. Includes 7-day free trial with 100 trial credits. No credit card required to start.",
+                price: pStarter,
+                priceCurrency: currency,
+                billingIncrement: "P1M",
+                url: registerUrl,
+                availability: "https://schema.org/InStock",
+              },
+              {
+                "@type": "Offer",
+                name: "Pro",
+                description:
+                  "1500 credits per month. Includes 7-day free trial with 100 trial credits. No credit card required to start.",
+                price: pPro,
+                priceCurrency: currency,
+                billingIncrement: "P1M",
+                url: registerUrl,
+                availability: "https://schema.org/InStock",
+              },
+            ],
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: [
+              {
+                "@type": "Question",
+                name: "How does the 7-day free trial work?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Every plan includes a 7-day free trial with 100 trial credits. No credit card required to start. If you don't add payment details, your subscription automatically cancels after the trial — zero risk. After the trial, you get the full monthly credits (200 on Base, 500 on Starter, 1500 on Pro).",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Do credits roll over each month?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "No. Credits reset each month on your billing date. Unused credits do not carry over to the following month.",
+                },
+              },
+              {
+                "@type": "Question",
+                name:
+                  "Can I cancel my " + pluginName + " subscription anytime?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Yes. You can cancel from your dashboard at any time. You keep access until the end of your current billing period.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "What payment methods does " + pluginName + " accept?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text:
+                    pluginName +
+                    " accepts all major credit cards through Stripe, a secure and industry-standard payment processor.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Can I change my " + pluginName + " plan?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Yes. You can upgrade your plan at any time and the change takes effect immediately. Downgrades take effect at the start of the next billing cycle.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "How much does each AI generation cost in credits?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Every generation costs exactly 1 credit, regardless of the method used. This applies to both text prompt generation (using Gemini 2.5 Flash + Stable Audio) and draw-to-audio generation (using Gemini 2.5 Flash Vision + Stable Audio).",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "What AI models does " + pluginName + " use?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text:
+                    pluginName +
+                    " uses a stack of three AI models: Gemini 2.5 Flash as the LLM Brain (prompt optimization and context memory), Gemini 2.5 Flash Vision for the draw-to-audio feature (visual-to-sonic interpretation), and Stable Audio for high-quality 30-second stereo audio generation.",
+                },
+              },
+            ],
+          },
+        ];
+
+        var el = document.getElementById("json-ld-placeholder");
+        if (el) el.textContent = JSON.stringify(jsonLd, null, 2);
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="nav-container"></div>
+    <main class="container py-5">
+      <!-- Header -->
+      <div class="pricing-header text-center mb-5">
+        <div class="pricing-icon mb-4">
+          <i class="fas fa-coins fa-3x text-light"></i>
+        </div>
+        <h1 class="display-4 fw-bold mb-3">Pricing</h1>
+        <p class="lead">Generate 30-second AI samples directly in your DAW.</p>
+        <div class="alert alert-success d-inline-block mt-3 px-4 py-3">
+          <i class="fas fa-gift me-2"></i>
+          <strong>7-Day FREE Trial on All Plans!</strong><br />
+          <small
+            >Try any plan risk-free for 7 days — no credit card required</small
+          >
+        </div>
+      </div>
+
+      <!-- Pricing Cards -->
+      <div class="row g-4 mb-5 justify-content-center">
+        <!-- Free -->
+        <div class="col-lg-3 col-md-6">
+          <div class="pricing-card-modern h-100">
+            <div class="pricing-badge badge-free">
+              <i class="fas fa-gift me-1"></i>Free
+            </div>
+            <div class="pricing-icon-small mb-3">
+              <i class="fas fa-flask fa-2x"></i>
+            </div>
+            <h2 class="h3 fw-bold mb-3">Free</h2>
+            <div class="pricing-price-modern mb-3">
+              <span class="price"><span id="price-free-display">0€</span></span>
+            </div>
+            <p class="mb-4">Try it out</p>
+            <ul class="pricing-features-modern mb-4">
+              <li>
+                <i class="fas fa-check-circle text-success me-2"></i>10 credits
+              </li>
+              <li>
+                <i class="fas fa-check-circle text-success me-2"></i>10 samples
+              </li>
+            </ul>
+            <a
+              href="register.html"
+              class="btn btn-outline-primary w-100 py-3 fw-bold mt-auto"
+              >Get Started</a
+            >
+          </div>
+        </div>
+
+        <!-- Base -->
+        <div class="col-lg-3 col-md-6">
+          <div class="pricing-card-modern h-100">
+            <div class="pricing-badge badge-starter">
+              <i class="fas fa-rocket me-1"></i>Base
+            </div>
+            <div class="pricing-icon-small mb-3">
+              <i class="fas fa-seedling fa-2x"></i>
+            </div>
+            <h2 class="h3 fw-bold mb-3">Base</h2>
+            <div class="pricing-price-modern mb-3">
+              <span class="price" id="price-base-display">€5.99</span>
+              <span class="period">/month</span>
+            </div>
+            <ul class="list-unstyled text-muted small mb-4">
+              <li>
+                <i class="fas fa-gift text-success me-2"></i
+                ><strong>7 days FREE</strong>
+              </li>
+              <li>
+                <i class="fas fa-check text-success me-2"></i>100 trial credits
+              </li>
+              <li>
+                <i class="fas fa-check text-success me-2"></i>Then
+                <span id="price-base-then2">€5.99</span>/month (200 credits)
+              </li>
+              <li>
+                <i class="fas fa-times-circle text-danger me-2"></i>Cancel
+                anytime
+              </li>
+            </ul>
+            <ul class="pricing-features-modern mb-4">
+              <li>
+                <i class="fas fa-check-circle text-success me-2"></i>200 credits
+                per month
+              </li>
+              <li>
+                <i class="fas fa-check-circle text-success me-2"></i>200 samples
+              </li>
+            </ul>
+            <a
+              href="register.html"
+              class="btn btn-gradient-blue w-100 py-3 fw-bold mt-auto"
+              >Start Free Trial</a
+            >
+          </div>
+        </div>
+
+        <!-- Starter (recommended) -->
+        <div class="col-lg-3 col-md-6">
+          <div
+            class="pricing-card-modern pricing-card-pro h-100"
+            style="transform: scale(1.05); z-index: 10"
+          >
+            <div class="pricing-badge badge-popular">
+              <i class="fas fa-star me-1"></i>Recommended
+            </div>
+            <div class="pricing-icon-small mb-3">
+              <i class="fas fa-music fa-2x"></i>
+            </div>
+            <h2 class="h3 fw-bold mb-3 text-light">Starter</h2>
+            <div class="pricing-price-modern mb-3">
+              <span class="price text-light" id="price-starter-display"
+                >€14.99</span
+              >
+              <span class="period text-light">/month</span>
+            </div>
+            <ul class="list-unstyled text-light small mb-4">
+              <li>
+                <i class="fas fa-gift text-light me-2"></i
+                ><strong>7 days FREE</strong>
+              </li>
+              <li>
+                <i class="fas fa-check text-light me-2"></i>100 trial credits
+              </li>
+              <li>
+                <i class="fas fa-check text-light me-2"></i>Then
+                <span id="price-starter-then2">€14.99</span>/month (500 credits)
+              </li>
+              <li>
+                <i class="fas fa-times-circle text-light me-2"></i>Cancel
+                anytime
+              </li>
+            </ul>
+            <ul class="pricing-features-modern mb-4">
+              <li>
+                <i class="fas fa-check-circle text-light me-2"></i>500 credits
+                per month
+              </li>
+              <li>
+                <i class="fas fa-check-circle text-light me-2"></i>500 samples
+              </li>
+            </ul>
+            <a
+              href="register.html"
+              class="btn btn-light w-100 py-3 fw-bold mt-auto"
+              >Start Free Trial</a
+            >
+          </div>
+        </div>
+
+        <!-- Pro -->
+        <div class="col-lg-3 col-md-6">
+          <div class="pricing-card-modern h-100">
+            <div class="pricing-badge badge-studio">
+              <i class="fas fa-bolt me-1"></i>Pro
+            </div>
+            <div class="pricing-icon-small mb-3">
+              <i class="fas fa-fire fa-2x"></i>
+            </div>
+            <h2 class="h3 fw-bold mb-3">Pro</h2>
+            <div class="pricing-price-modern mb-3">
+              <span class="price" id="price-pro-display">€29.99</span>
+              <span class="period">/month</span>
+            </div>
+            <ul class="list-unstyled text-muted small mb-4">
+              <li>
+                <i class="fas fa-gift text-success me-2"></i
+                ><strong>7 days FREE</strong>
+              </li>
+              <li>
+                <i class="fas fa-check text-success me-2"></i>100 trial credits
+              </li>
+              <li>
+                <i class="fas fa-check text-success me-2"></i>Then
+                <span id="price-pro-then2">€29.99</span>/month (1500 credits)
+              </li>
+              <li>
+                <i class="fas fa-times-circle text-danger me-2"></i>Cancel
+                anytime
+              </li>
+            </ul>
+            <ul class="pricing-features-modern mb-4">
+              <li>
+                <i class="fas fa-check-circle text-success me-2"></i>1500
+                credits per month
+              </li>
+              <li>
+                <i class="fas fa-check-circle text-success me-2"></i>1500
+                samples
+              </li>
+            </ul>
+            <a
+              href="register.html"
+              class="btn btn-gradient-blue w-100 py-3 fw-bold mt-auto"
+              >Start 7-Day Trial</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- Free Trial Explanation -->
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-10">
+          <div
+            class="alert"
+            style="
+              background: linear-gradient(
+                135deg,
+                rgba(34, 197, 94, 0.1) 0%,
+                rgba(22, 163, 74, 0.05) 100%
+              );
+              border: 2px solid rgba(34, 197, 94, 0.3);
+              border-radius: 1rem;
+            "
+          >
+            <div class="row align-items-center">
+              <div class="col-md-2 text-center mb-3 mb-md-0">
+                <i class="fas fa-gift fa-4x" style="color: #22c55e"></i>
+              </div>
+              <div class="col-md-10">
+                <h4 class="fw-bold mb-3">
+                  <i class="fas fa-sparkles me-2" style="color: #22c55e"></i>How
+                  the 7-Day Free Trial Works
+                </h4>
+                <ul class="mb-0">
+                  <li class="mb-2">
+                    <strong>7 Days FREE:</strong> Get trial access to your
+                    chosen plan for one week
+                  </li>
+                  <li class="mb-2">
+                    <strong>Trial Credits:</strong> 100 credits on all plans
+                    during trial
+                  </li>
+                  <li class="mb-2">
+                    <strong>No Credit Card Required:</strong> Start your trial
+                    without entering payment details
+                  </li>
+                  <li class="mb-2">
+                    <strong>Zero Risk:</strong> If you don't add a payment
+                    method, your subscription cancels automatically after 7 days
+                  </li>
+                  <li class="mb-0">
+                    <strong>Your Choice:</strong> Add payment to continue with
+                    full monthly credits, or let it expire — no strings attached
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gift Cards Section -->
+      <section
+        class="py-5 my-5"
+        style="
+          background: linear-gradient(
+            135deg,
+            rgba(14, 165, 233, 0.1) 0%,
+            rgba(14, 165, 233, 0.05) 100%
+          );
+          border-radius: 1.5rem;
+          border: 2px dashed #0ea5e9;
+        "
+      >
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-6 text-center text-lg-start mb-4 mb-lg-0">
+              <div class="d-inline-block mb-3">
+                <div
+                  class="icon-circle bg-gradient-blue"
+                  style="width: 80px; height: 80px"
+                >
+                  <i class="fas fa-gift fa-2x"></i>
+                </div>
+              </div>
+              <h2 class="h3 fw-bold mb-3">Give the Gift of AI Music</h2>
+              <p class="lead mb-3">
+                Looking for the perfect gift for a music producer or live
+                performer?
+              </p>
+              <p class="text-secondary mb-0">
+                Purchase gift cards for 1, 3, or 6 months on any plan. They
+                receive instant access with a unique code — no commitment after
+                the gift period ends.
+              </p>
+            </div>
+            <div class="col-lg-6">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <div class="use-case-card p-4 rounded-4 text-center h-100">
+                    <i class="fas fa-heart fa-2x text-danger mb-3"></i>
+                    <h5 class="fw-bold mb-2">Perfect for Musicians</h5>
+                    <p class="small mb-0 text-secondary">
+                      Ideal for producers, DJs, and live performers
+                    </p>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="use-case-card p-4 rounded-4 text-center h-100">
+                    <i
+                      class="fas fa-calendar-check fa-2x text-success mb-3"
+                    ></i>
+                    <h5 class="fw-bold mb-2">Flexible Duration</h5>
+                    <p class="small mb-0 text-secondary">
+                      Choose 1, 3, or 6 months on any plan
+                    </p>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="use-case-card p-4 rounded-4 text-center h-100">
+                    <i class="fas fa-envelope fa-2x text-primary mb-3"></i>
+                    <h5 class="fw-bold mb-2">Instant Delivery</h5>
+                    <p class="small mb-0 text-secondary">
+                      Gift code sent via email immediately
+                    </p>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="use-case-card p-4 rounded-4 text-center h-100">
+                    <i class="fas fa-smile fa-2x text-warning mb-3"></i>
+                    <h5 class="fw-bold mb-2">No Auto-Renewal</h5>
+                    <p class="small mb-0 text-secondary">
+                      They decide if they want to continue
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="text-center mt-4">
+                <a
+                  href="gift.html"
+                  class="btn btn-lg px-5 py-3 fw-bold"
+                  style="
+                    background: linear-gradient(
+                      135deg,
+                      #0ea5e9 0%,
+                      #0284c7 100%
+                    );
+                    color: white;
+                    border: none;
+                  "
+                >
+                  <i class="fas fa-shopping-bag me-2"></i>Shop Gift Cards
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Credit Usage -->
+      <section class="credit-usage-section">
+        <div class="text-center mb-5">
+          <h2 class="h3 fw-bold mb-3">
+            <i class="fas fa-info-circle me-2 text-success"></i>How It Works
+          </h2>
+          <p>Each generation uses credits based on AI models</p>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-lg-10">
+            <div class="table-responsive">
+              <table class="table-modern">
+                <thead>
+                  <tr>
+                    <th style="min-width: 180px">
+                      <i class="fas fa-cog me-2"></i>Generation Type
+                    </th>
+                    <th style="min-width: 200px">
+                      <i class="fas fa-brain me-2"></i>AI Models Used
+                    </th>
+                    <th style="min-width: 100px">
+                      <i class="fas fa-coins me-2"></i>Credits
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <div class="table-icon bg-gradient-blue me-3">
+                          <i class="fas fa-keyboard"></i>
+                        </div>
+                        <div>
+                          <strong>Text Prompt</strong><br /><small
+                            class="text-secondary"
+                            >Type your prompt directly</small
+                          >
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="d-flex flex-column gap-1">
+                        <span class="badge bg-secondary"
+                          ><i class="fas fa-brain me-1"></i>Gemini 2.5 Flash
+                          (LLM)</span
+                        ><span class="badge" style="background: #b8605c"
+                          ><i class="fas fa-music me-1"></i>Stable Audio</span
+                        >
+                      </div>
+                    </td>
+                    <td><span class="credit-badge">1 credit</span></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <div class="table-icon bg-gradient-purple me-3">
+                          <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <div>
+                          <strong>Drawing to Audio</strong><br /><small
+                            class="text-secondary"
+                            >Paint musical ideas visually</small
+                          >
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="d-flex flex-column gap-1">
+                        <span class="badge bg-secondary"
+                          ><i class="fas fa-eye me-1"></i>Gemini 2.5 Flash
+                          (Vision)</span
+                        ><span class="badge" style="background: #b8605c"
+                          ><i class="fas fa-music me-1"></i>Stable Audio</span
+                        >
+                      </div>
+                    </td>
+                    <td><span class="credit-badge">1 credit</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="row justify-content-center mt-5">
+          <div class="col-lg-10">
+            <div
+              class="alert"
+              style="
+                background: rgba(184, 96, 92, 0.1);
+                border: 1px solid rgba(184, 96, 92, 0.3);
+                border-left: 4px solid #b8605c;
+              "
+            >
+              <h5 class="fw-bold mb-3">
+                <i class="fas fa-info-circle me-2" style="color: #b8605c"></i>AI
+                Models Stack
+              </h5>
+              <div class="row g-3">
+                <div class="col-md-4">
+                  <div
+                    class="p-3"
+                    style="background: white; border-radius: 8px"
+                  >
+                    <h6 class="fw-bold mb-2">
+                      <i class="fas fa-brain me-2" style="color: #4a4a4a"></i
+                      >LLM Brain
+                    </h6>
+                    <p class="mb-0 small text-secondary">
+                      <strong>Gemini 2.5 Flash</strong><br />Optimizes prompts,
+                      understands context, maintains conversation history
+                    </p>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div
+                    class="p-3"
+                    style="background: white; border-radius: 8px"
+                  >
+                    <h6 class="fw-bold mb-2">
+                      <i class="fas fa-eye me-2"></i>Vision Model
+                    </h6>
+                    <p class="mb-0 small text-secondary">
+                      <strong>Gemini 2.5 Flash</strong><br />Analyzes drawings,
+                      translates visual patterns into sonic descriptions
+                    </p>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div
+                    class="p-3"
+                    style="background: white; border-radius: 8px"
+                  >
+                    <h6 class="fw-bold mb-2">
+                      <i class="fas fa-music me-2"></i>Audio Engine
+                    </h6>
+                    <p class="mb-0 small text-secondary">
+                      <strong>Stable Audio</strong><br />Generates high-quality
+                      30-second audio samples in ~10 seconds
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row justify-content-center mt-4">
+          <div class="col-lg-10">
+            <div
+              class="text-center p-4"
+              style="background: #f5f5f5; border-radius: 12px"
+            >
+              <p class="mb-0">
+                <i class="fas fa-check-circle me-2"></i
+                ><strong>Simple Pricing:</strong> 1 credit = 1 generation,
+                regardless of which models are used.<br /><small
+                  class="text-secondary"
+                  >Text prompts and drawings both cost 1 credit per
+                  generation.</small
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="faq-section mt-5">
+        <div class="text-center mb-5">
+          <h2 class="h3 fw-bold mb-3">
+            <i class="fas fa-question-circle me-2 text-success"></i>FAQ
+          </h2>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="accordion-custom" id="faqAccordion">
+              <div class="accordion-item-custom">
+                <button
+                  class="accordion-button-custom"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faq0"
+                >
+                  <i class="fas fa-gift me-3 text-success"></i
+                  ><span>How does the 7-day free trial work?</span
+                  ><i class="fas fa-chevron-down ms-auto"></i>
+                </button>
+                <div
+                  id="faq0"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#faqAccordion"
+                >
+                  <div class="accordion-body-custom">
+                    Every plan includes a 7-day free trial with limited credits
+                    (50-150 depending on plan). No credit card required to
+                    start. If you don't add payment details, your subscription
+                    automatically cancels after the trial — zero risk! After
+                    trial, you get the full monthly credits (200-1500).
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item-custom">
+                <button
+                  class="accordion-button-custom"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faq1"
+                >
+                  <i class="fas fa-sync-alt me-3 text-primary"></i
+                  ><span>Do credits roll over?</span
+                  ><i class="fas fa-chevron-down ms-auto"></i>
+                </button>
+                <div
+                  id="faq1"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#faqAccordion"
+                >
+                  <div class="accordion-body-custom">
+                    No. Credits reset each month on your billing date.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item-custom">
+                <button
+                  class="accordion-button-custom"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faq2"
+                >
+                  <i class="fas fa-times-circle me-3 text-danger"></i
+                  ><span>Can I cancel anytime?</span
+                  ><i class="fas fa-chevron-down ms-auto"></i>
+                </button>
+                <div
+                  id="faq2"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#faqAccordion"
+                >
+                  <div class="accordion-body-custom">
+                    Yes. Cancel from your dashboard anytime. You keep access
+                    until the end of your billing period.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item-custom">
+                <button
+                  class="accordion-button-custom"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faq3"
+                >
+                  <i class="fab fa-cc-stripe me-3 text-success"></i
+                  ><span>Payment methods?</span
+                  ><i class="fas fa-chevron-down ms-auto"></i>
+                </button>
+                <div
+                  id="faq3"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#faqAccordion"
+                >
+                  <div class="accordion-body-custom">
+                    We accept all major credit cards through Stripe.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item-custom">
+                <button
+                  class="accordion-button-custom"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faq4"
+                >
+                  <i class="fas fa-exchange-alt me-3 text-warning"></i
+                  ><span>Can I change plans?</span
+                  ><i class="fas fa-chevron-down ms-auto"></i>
+                </button>
+                <div
+                  id="faq4"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#faqAccordion"
+                >
+                  <div class="accordion-body-custom">
+                    Yes. Upgrade anytime (takes effect immediately). Downgrades
+                    take effect next billing cycle.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item-custom">
+                <button
+                  class="accordion-button-custom"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faq5"
+                >
+                  <i class="fab fa-github text-success me-3"></i
+                  ><span>Support?</span
+                  ><i class="fas fa-chevron-down ms-auto"></i>
+                </button>
+                <div
+                  id="faq5"
+                  class="accordion-collapse collapse"
+                  data-bs-parent="#faqAccordion"
+                >
+                  <div class="accordion-body-custom">
+                    Open an issue on
+                    <a
+                      id="faq-github-link"
+                      href="#"
+                      target="_blank"
+                      class="text-primary"
+                      >GitHub</a
+                    >. Community-driven support.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/cookie-consent.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/promo-popup.js"></script>
+
+    <!-- Hydrate prices & links -->
+    <script>
+      (function () {
+        var cfg = window.APP_CONFIG || {};
+        var sym = cfg.GIFT_CURRENCY_SYMBOL || "€";
+        var pBase = cfg.PLAN_PRICE_BASE || "5.99";
+        var pStarter = cfg.GIFT_PRICE_STARTER || "14.99";
+        var pPro = cfg.GIFT_PRICE_PRO || "29.99";
+        var githubUrl = cfg.GITHUB_URL || "#";
+
+        function setTxt(id, val) {
+          var el = document.getElementById(id);
+          if (el) el.textContent = val;
+        }
+
+        setTxt("price-free-display", "0" + sym);
+        setTxt("price-base-display", sym + pBase);
+        setTxt("price-base-then2", sym + pBase);
+        setTxt("price-starter-display", sym + pStarter);
+        setTxt("price-starter-then2", sym + pStarter);
+        setTxt("price-pro-display", sym + pPro);
+        setTxt("price-pro-then2", sym + pPro);
+
+        var ghLink = document.getElementById("faq-github-link");
+        if (ghLink && githubUrl !== "#") ghLink.href = githubUrl;
+      })();
+    </script>
+  </body>
+</html>

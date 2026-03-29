@@ -1,0 +1,45 @@
+<nav
+  class="navbar navbar-expand-lg navbar-light bg-light shadow-sm sticky-top py-3"
+  style="
+    background: linear-gradient(90deg, #fafafa 0%, #f5f5f5 50%, #ffffff 100%);
+  "
+>
+  <div class="container-fluid">
+    <a
+      class="navbar-brand fw-bold"
+      href="index.html"
+      style="
+        font-family: &quot;Courier New&quot;, Courier, monospace;
+        color: #9d514d;
+        font-weight: bolder;
+      "
+    >
+      <img src="assets/images/logo.png" alt="logo" class="logo" />
+      <span id="nav-site-name">NEURAL SOUND ENGINE</span>
+    </a>
+    <button
+      class="navbar-toggler d-lg-none"
+      type="button"
+      id="navbarToggler"
+      aria-label="Toggle navigation"
+      style="border: none; background: none"
+    >
+      <span style="color: #b8605c; font-size: 1.5rem"
+        ><i class="fas fa-bars"></i
+      ></span>
+    </button>
+    <div id="nav-buttons" class="d-none d-lg-flex align-items-baseline"></div>
+  </div>
+  <div id="mobile-menu" class="mobile-menu d-lg-none" style="display: none">
+    <div id="mobile-nav-buttons"></div>
+  </div>
+</nav>
+
+<script>
+  (function () {
+    var cfg = window.APP_CONFIG || {};
+    var pluginName = cfg.PLUGIN_NAME || cfg.SITE_NAME || "NEURAL SOUND ENGINE";
+    var el = document.getElementById("nav-site-name");
+    if (el) el.textContent = pluginName.toUpperCase();
+  })();
+</script>

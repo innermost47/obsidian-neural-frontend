@@ -1,0 +1,3022 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="js/config.js"></script>
+    <script>
+      (function () {
+        var cfg = window.APP_CONFIG || {};
+        var siteName = cfg.SITE_NAME || "OBSIDIAN Neural";
+        document.title = "Dashboard - " + siteName;
+        var robots = document.createElement("meta");
+        robots.name = "robots";
+        robots.content = "noindex, nofollow";
+        document.head.appendChild(robots);
+      })();
+    </script>
+
+    <link rel="icon" type="image/x-icon" href="assets/images/logo.ico" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- TinyMCE — key from config -->
+    <script
+      id="tinymce-script"
+      referrerpolicy="origin"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      document.getElementById("tinymce-script").src =
+        "https://cdn.tiny.cloud/1/" +
+        (window.APP_CONFIG.TINYMCE_API_KEY || "") +
+        "/tinymce/8/tinymce.min.js";
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+      window.gtagSendEvent = function (planName, planPrice) {
+        return new Promise(function (resolve) {
+          if (typeof gtag === "function") {
+            gtag("event", "conversion_event_purchase", {
+              transaction_id: "T_" + new Date().getTime(),
+              value: planPrice,
+              currency: "EUR",
+              items: [{ item_name: planName, price: planPrice, quantity: 1 }],
+              event_callback: function () {
+                resolve();
+              },
+            });
+            setTimeout(function () {
+              resolve();
+            }, 400);
+          } else {
+            resolve();
+          }
+        });
+      };
+
+      window.trackClick = function (eventName, label) {
+        return new Promise(function (resolve) {
+          if (typeof gtag === "function") {
+            gtag("event", eventName, {
+              event_category: "Engagement",
+              event_label: label,
+              event_callback: resolve,
+            });
+            setTimeout(resolve, 500);
+          } else {
+            resolve();
+          }
+        });
+      };
+
+      window.showSection = function (sectionId) {
+        var newUrl =
+          window.location.protocol +
+          "//" +
+          window.location.host +
+          window.location.pathname +
+          "?section=" +
+          sectionId;
+        window.history.pushState({ path: newUrl }, "", newUrl);
+        document.querySelectorAll(".section-content").forEach(function (s) {
+          s.classList.remove("active");
+        });
+        var target = document.getElementById("section-" + sectionId);
+        if (target) target.classList.add("active");
+        document.querySelectorAll(".nav-link").forEach(function (l) {
+          l.classList.remove("active");
+          if (l.getAttribute("data-section") === sectionId)
+            l.classList.add("active");
+        });
+        window.scrollTo(0, 0);
+      };
+    </script>
+
+    <style>
+      body {
+        margin: 0;
+        overflow-x: hidden;
+        background: var(--color-bg-deep);
+      }
+      .dashboard-wrapper {
+        display: flex;
+        min-height: 100vh;
+      }
+      .sidebar {
+        width: 280px;
+        background: linear-gradient(180deg, #1a1a1a 0%, #2d2d2d 100%);
+        height: 100vh;
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 1102;
+        overflow-y: auto;
+        transition: transform 0.3s ease;
+        box-shadow: 4px 0 24px rgba(0, 0, 0, 0.12);
+      }
+      .sidebar-header {
+        padding: 2rem 1.5rem;
+        border-bottom: 1px solid rgba(184, 96, 92, 0.2);
+      }
+      .sidebar-brand {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        color: white;
+        text-decoration: none;
+        font-size: 1.5rem;
+        font-weight: 700;
+        transition: all 0.3s ease;
+      }
+      .sidebar-brand:hover {
+        transform: translateX(5px);
+      }
+      .sidebar-brand i {
+        font-size: 2rem;
+        color: var(--color-primary);
+      }
+      .sidebar-nav {
+        padding: 1.5rem 0;
+      }
+      .nav-section {
+        margin-bottom: 2rem;
+      }
+      .nav-section-title {
+        padding: 0 1.5rem;
+        margin-bottom: 0.75rem;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: rgba(255, 255, 255, 0.4);
+      }
+      .nav-item {
+        margin: 0.25rem 1rem;
+      }
+      .nav-link {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 1.25rem;
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+        font-weight: 500;
+        position: relative;
+      }
+      .nav-link:hover {
+        background: rgba(184, 96, 92, 0.1);
+        color: white;
+        transform: translateX(5px);
+      }
+      .nav-link.active {
+        background: var(--gradient-primary);
+        color: white;
+        box-shadow: 0 4px 12px rgba(184, 96, 92, 0.4);
+      }
+      .nav-link i {
+        font-size: 1.25rem;
+        width: 24px;
+        text-align: center;
+      }
+      .main-content {
+        margin-left: 280px;
+        flex: 1;
+        width: 100%;
+        min-height: 100vh;
+        background: var(--color-bg-deep);
+      }
+      .content-header {
+        background: white;
+        border-bottom: 1px solid var(--color-inactive);
+        padding: 2rem 3rem;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      }
+      .content-header h1 {
+        margin: 0;
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--color-text-primary);
+      }
+      .content-header p {
+        margin: 0.5rem 0 0 0;
+        color: var(--color-text-secondary);
+      }
+      .content-body {
+        padding: 3rem;
+      }
+      .mobile-toggle {
+        display: none;
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        z-index: 1100;
+        background: white;
+        border: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 12px;
+        color: var(--color-text-primary);
+        font-size: 1.25rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      .mobile-toggle:hover {
+        transform: scale(1.05);
+      }
+      .mobile-toggle:active {
+        transform: scale(0.95);
+      }
+      .sidebar-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 1101;
+        backdrop-filter: blur(4px);
+      }
+      .sidebar-user {
+        padding: 1.5rem;
+        border-top: 1px solid rgba(184, 96, 92, 0.2);
+        margin-top: auto;
+      }
+      .user-info {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        background: rgba(184, 96, 92, 0.1);
+        border-radius: 12px;
+        transition: all 0.3s ease;
+      }
+      .user-info:hover {
+        background: rgba(184, 96, 92, 0.2);
+      }
+      .user-avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: var(--gradient-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.25rem;
+        font-weight: 700;
+      }
+      .user-details {
+        flex: 1;
+      }
+      .user-name {
+        font-weight: 600;
+        color: white;
+        margin: 0;
+        font-size: 0.75rem;
+      }
+      .user-email {
+        font-size: 0.5rem;
+        color: rgba(255, 255, 255, 0.6);
+        margin: 0;
+      }
+      .section-content {
+        display: none;
+      }
+      .section-content.active {
+        display: block;
+        animation: fadeInUp 0.4s ease;
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .alert-sticky {
+        position: sticky;
+        top: 100px;
+        z-index: 50;
+        margin-bottom: 2rem;
+      }
+      .stat-card-enhanced {
+        background: white;
+        border: 1px solid var(--color-inactive);
+        border-radius: 16px;
+        padding: 2rem;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      .stat-card-enhanced::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: var(--gradient-primary);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      .stat-card-enhanced:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 24px rgba(184, 96, 92, 0.15);
+        border-color: var(--color-primary);
+      }
+      .stat-card-enhanced:hover::before {
+        opacity: 1;
+      }
+      .btn-logout {
+        background: rgba(184, 96, 92, 0.1);
+        border: 1px solid rgba(184, 96, 92, 0.3);
+        color: var(--color-primary);
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+      }
+      .btn-logout:hover {
+        background: var(--gradient-primary);
+        color: white;
+        border-color: transparent;
+        transform: translateY(-2px);
+      }
+      .sidebar .nav-link,
+      .sidebar .nav-link:visited {
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .sidebar .nav-link:hover {
+        color: white;
+      }
+      .sidebar .nav-link.active {
+        color: white;
+      }
+      @media (max-width: 992px) {
+        .sidebar {
+          transform: translateX(-100%);
+        }
+        .sidebar.active {
+          transform: translateX(0);
+        }
+        .sidebar-overlay.active {
+          display: block;
+        }
+        .main-content {
+          margin-left: 0;
+        }
+        .mobile-toggle {
+          display: block;
+        }
+        .content-body {
+          padding: 2rem 1.5rem;
+        }
+        .user-email {
+          font-size: 0.5rem;
+        }
+        .user-name {
+          font-size: 0.75rem;
+        }
+      }
+      @media (max-width: 576px) {
+        .sidebar {
+          width: 100%;
+        }
+        .content-header h1 {
+          font-size: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <button class="mobile-toggle" onclick="toggleSidebar()">
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+    <div class="dashboard-wrapper">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <a href="index.html" class="sidebar-brand">
+            <img
+              src="assets/images/logo.png"
+              alt="logo"
+              class="logo-dashboard"
+            />
+            <span
+              id="sidebar-plugin-name"
+              style="
+                font-family: &quot;Courier New&quot;, Courier, monospace;
+                color: white;
+                font-size: 1.3rem;
+                font-weight: bolder;
+              "
+              >NEURAL SOUND ENGINE</span
+            >
+          </a>
+        </div>
+
+        <nav class="sidebar-nav">
+          <div class="nav-section">
+            <div class="nav-section-title">Menu</div>
+            <div class="nav-item">
+              <a href="#" class="nav-link active" data-section="overview"
+                ><i class="fas fa-th-large"></i><span>Overview</span></a
+              >
+            </div>
+            <div class="nav-item">
+              <a
+                href="#"
+                class="nav-link"
+                data-section="subscription"
+                onclick="
+                  trackClick(
+                    'select_content',
+                    'Sidebar Subscription Link',
+                  ).then(() => showSection('subscription'))
+                "
+                ><i class="fas fa-crown"></i><span>Subscription</span></a
+              >
+            </div>
+            <div class="nav-item">
+              <a href="#" class="nav-link" data-section="usage"
+                ><i class="fas fa-chart-bar"></i
+                ><span>Usage &amp; Credits</span></a
+              >
+            </div>
+            <div class="nav-item">
+              <a href="#" class="nav-link" data-section="gift"
+                ><i class="fas fa-gift"></i><span>Gift Cards</span></a
+              >
+            </div>
+          </div>
+
+          <div class="nav-section">
+            <div class="nav-section-title">Settings</div>
+            <div class="nav-item">
+              <a href="#" class="nav-link" data-section="api"
+                ><i class="fas fa-key"></i><span>API Configuration</span></a
+              >
+            </div>
+            <div class="nav-item">
+              <a href="#" class="nav-link" data-section="security"
+                ><i class="fas fa-shield-alt"></i><span>Security</span></a
+              >
+            </div>
+            <div class="nav-item">
+              <a href="#" class="nav-link" data-section="preferences"
+                ><i class="fas fa-cog"></i><span>Preferences</span></a
+              >
+            </div>
+          </div>
+
+          <div class="nav-section">
+            <div class="nav-section-title">Resources</div>
+            <div class="nav-item">
+              <a
+                id="nav-docs"
+                href="/documentation.html?page=getting-started"
+                target="_blank"
+                class="nav-link"
+                ><i class="fas fa-book"></i><span>Documentation</span></a
+              >
+            </div>
+            <div class="nav-item">
+              <a id="nav-download" href="#" class="nav-link" target="_blank"
+                ><i class="fas fa-download"></i><span>Download Plugin</span></a
+              >
+            </div>
+            <div class="nav-item">
+              <a id="nav-support" href="#" class="nav-link" target="_blank"
+                ><i class="fas fa-life-ring"></i><span>Support</span></a
+              >
+            </div>
+          </div>
+
+          <div
+            class="nav-section"
+            id="provider-nav-section"
+            style="display: none"
+          >
+            <div class="nav-section-title">Provider</div>
+            <div class="nav-item">
+              <a href="#" class="nav-link" data-section="provider-stats"
+                ><i class="fas fa-server"></i><span>My Provider</span></a
+              >
+            </div>
+          </div>
+
+          <div class="nav-section" id="admin-nav-section" style="display: none">
+            <div class="nav-section-title">Admin</div>
+            <div class="nav-item">
+              <a href="#" class="nav-link" data-section="admin"
+                ><i class="fas fa-users-cog"></i><span>Admin Panel</span></a
+              >
+            </div>
+            <div class="nav-item">
+              <a href="#" class="nav-link" data-section="email-broadcast"
+                ><i class="fas fa-envelope"></i><span>Email Broadcast</span></a
+              >
+            </div>
+            <div class="nav-item">
+              <a href="#" class="nav-link" data-section="email-logs"
+                ><i class="fas fa-envelope-open-text"></i
+                ><span>Email Logs</span></a
+              >
+            </div>
+            <div class="nav-item">
+              <a href="#" class="nav-link" data-section="analytics"
+                ><i class="fas fa-chart-line"></i><span>Analytics</span></a
+              >
+            </div>
+            <div class="nav-item">
+              <a href="#" class="nav-link" data-section="providers"
+                ><i class="fas fa-server"></i><span>GPU Providers</span></a
+              >
+            </div>
+          </div>
+
+          <div class="nav-section">
+            <div class="nav-section-title">Account</div>
+            <div class="nav-item">
+              <a href="#" class="nav-link" data-section="danger"
+                ><i class="fas fa-exclamation-triangle"></i
+                ><span>Danger Zone</span></a
+              >
+            </div>
+          </div>
+        </nav>
+
+        <div class="sidebar-user">
+          <div class="user-info">
+            <div class="user-avatar" id="user-avatar-initial">U</div>
+            <div class="user-details">
+              <p class="user-name" id="user-name">Loading...</p>
+              <p class="user-email" id="user-email">Loading...</p>
+            </div>
+          </div>
+          <div class="mt-3">
+            <button class="btn-logout w-100" onclick="logout()">
+              <i class="fas fa-sign-out-alt me-2"></i>Logout
+            </button>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <!-- Gift Section -->
+        <section id="section-gift" class="section-content">
+          <div class="content-header">
+            <h1><i class="fas fa-gift me-3"></i>Gift Cards</h1>
+            <p>Give the perfect gift to music producers and live performers.</p>
+          </div>
+          <div class="content-body">
+            <div class="row justify-content-center">
+              <div class="col-lg-8">
+                <div class="dashboard-card text-center">
+                  <div class="mb-4">
+                    <div
+                      class="icon-circle bg-gradient-blue mx-auto mb-4"
+                      style="width: 100px; height: 100px"
+                    >
+                      <i class="fas fa-gift fa-3x"></i>
+                    </div>
+                    <h2 class="h3 fw-bold mb-3">Give the Gift of AI Music</h2>
+                    <p class="lead mb-4">
+                      Purchase gift subscriptions for any plan. Perfect for
+                      birthdays, holidays, or showing appreciation.
+                    </p>
+                  </div>
+                  <div class="row g-3 mb-4">
+                    <div class="col-md-4">
+                      <div class="p-3 bg-light rounded">
+                        <i
+                          class="fas fa-calendar-check fa-2x text-primary mb-2"
+                        ></i>
+                        <h6 class="fw-bold mb-1">Flexible Duration</h6>
+                        <small class="text-muted">1, 3, or 6 months</small>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="p-3 bg-light rounded">
+                        <i class="fas fa-envelope fa-2x text-primary mb-2"></i>
+                        <h6 class="fw-bold mb-1">Instant Delivery</h6>
+                        <small class="text-muted">Sent via email</small>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="p-3 bg-light rounded">
+                        <i class="fas fa-smile fa-2x text-primary mb-2"></i>
+                        <h6 class="fw-bold mb-1">No Auto-Renewal</h6>
+                        <small class="text-muted">They decide next</small>
+                      </div>
+                    </div>
+                  </div>
+                  <a
+                    href="gift.html"
+                    class="btn btn-gradient-primary btn-lg px-5 py-3 fw-bold"
+                    ><i class="fas fa-shopping-bag me-2"></i>Shop Gift Cards</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Overview Section -->
+        <section id="section-overview" class="section-content active">
+          <div class="content-header">
+            <h1><i class="fas fa-th-large me-3"></i>Dashboard Overview</h1>
+            <p>Welcome back! Here's your account summary.</p>
+          </div>
+          <div class="content-body">
+            <div id="email-verification-card" class="d-none mb-4">
+              <div class="dashboard-card">
+                <div class="d-flex align-items-start">
+                  <div class="me-3">
+                    <div class="card-icon">
+                      <i class="fas fa-exclamation-triangle fa-2x"></i>
+                    </div>
+                  </div>
+                  <div class="flex-grow-1">
+                    <h5 class="fw-bold mb-2 text-danger">
+                      <i class="fas fa-envelope me-2"></i>Email Verification
+                      Required
+                    </h5>
+                    <p class="mb-3 text-muted">
+                      <strong>Your account is restricted.</strong> You must
+                      verify your email address to access all features:
+                    </p>
+                    <ul class="mb-3 text-muted">
+                      <li>Generate audio with the VST plugin</li>
+                      <li>Purchase or upgrade subscriptions</li>
+                      <li>Access premium features</li>
+                    </ul>
+                    <div class="d-flex gap-2 flex-wrap">
+                      <button
+                        class="btn btn-warning fw-bold btn-sm"
+                        onclick="resendVerificationEmail()"
+                      >
+                        <i class="fas fa-paper-plane me-2"></i>Resend
+                        Verification Email
+                      </button>
+                      <button
+                        class="btn btn-outline-secondary btn-sm"
+                        onclick="window.location.reload()"
+                      >
+                        <i class="fas fa-sync me-2"></i>I've Verified - Refresh
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row g-4 mb-4">
+              <div class="col-md-4">
+                <div class="stat-card-enhanced">
+                  <div class="d-flex align-items-center mb-3">
+                    <div class="card-icon me-3">
+                      <i class="fas fa-crown fa-2x"></i>
+                    </div>
+                    <div><h6 class="card-label mb-0">Subscription</h6></div>
+                  </div>
+                  <h2 class="card-value mb-2" id="subscription-tier">
+                    Loading...
+                  </h2>
+                  <span class="status-badge" id="subscription-status">-</span>
+                  <div id="subscription-actions" class="mt-3"></div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="stat-card-enhanced">
+                  <div class="d-flex align-items-center mb-3">
+                    <div class="card-icon me-3">
+                      <i class="fas fa-bolt fa-2x"></i>
+                    </div>
+                    <div>
+                      <h6 class="card-label mb-0">Credits Remaining</h6>
+                    </div>
+                  </div>
+                  <h2 class="card-value mb-2" id="credits-remaining">-</h2>
+                  <div class="progress-bar-custom mb-2">
+                    <div
+                      class="progress-fill"
+                      id="credits-progress"
+                      style="width: 0%"
+                    ></div>
+                  </div>
+                  <small class="text-muted"
+                    ><span id="credits-used">-</span> /
+                    <span id="credits-total">-</span> used</small
+                  >
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="stat-card-enhanced">
+                  <div class="d-flex align-items-center mb-3">
+                    <div class="card-icon me-3">
+                      <i class="fas fa-download fa-2x"></i>
+                    </div>
+                    <div><h6 class="card-label mb-0">Plugin</h6></div>
+                  </div>
+                  <p class="mb-3">Download the latest version</p>
+                  <a
+                    id="dl-windows"
+                    href="#"
+                    target="_blank"
+                    rel="noopener"
+                    class="btn btn-gradient-primary btn-sm mb-2 w-100"
+                    onclick="
+                      event.preventDefault();
+                      trackClick(
+                        'file_download',
+                        'Dashboard VST Download Windows',
+                      ).then(() => window.open(this.href, '_blank'));
+                    "
+                  >
+                    <i class="fab fa-windows me-2"></i>Windows — VST3
+                  </a>
+                  <a
+                    id="dl-macos-vst3"
+                    href="#"
+                    target="_blank"
+                    rel="noopener"
+                    class="btn btn-gradient-primary btn-sm mb-2 w-100"
+                    onclick="
+                      event.preventDefault();
+                      trackClick(
+                        'file_download',
+                        'Dashboard VST Download macOS VST3',
+                      ).then(() => window.open(this.href, '_blank'));
+                    "
+                  >
+                    <i class="fab fa-apple me-2"></i>macOS — VST3
+                  </a>
+                  <a
+                    id="dl-macos-au"
+                    href="#"
+                    target="_blank"
+                    rel="noopener"
+                    class="btn btn-gradient-primary btn-sm mb-2 w-100"
+                    onclick="
+                      event.preventDefault();
+                      trackClick(
+                        'file_download',
+                        'Dashboard VST Download macOS AU',
+                      ).then(() => window.open(this.href, '_blank'));
+                    "
+                  >
+                    <i class="fab fa-apple me-2"></i>macOS — AU
+                  </a>
+                  <a
+                    id="dl-linux"
+                    href="#"
+                    target="_blank"
+                    rel="noopener"
+                    class="btn btn-gradient-primary btn-sm mb-2 w-100"
+                    onclick="
+                      event.preventDefault();
+                      trackClick(
+                        'file_download',
+                        'Dashboard VST Download Linux',
+                      ).then(() => window.open(this.href, '_blank'));
+                    "
+                  >
+                    <i class="fab fa-linux me-2"></i>Linux — VST3
+                  </a>
+                  <button
+                    class="btn btn-outline-primary btn-sm w-100"
+                    onclick="
+                      trackClick(
+                        'select_content',
+                        'Overview to API Config Button',
+                      ).then(() => showSection('api'))
+                    "
+                  >
+                    <i class="fas fa-key me-2"></i>Get your API key &amp; server
+                    URL
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="quick-actions-card">
+              <h3 class="h5 fw-bold mb-4">
+                <i class="fas fa-rocket me-2 text-primary"></i>Quick Actions
+              </h3>
+              <div class="row g-3">
+                <div class="col-md-3">
+                  <a
+                    id="qa-docs"
+                    href="/documentation.html?page=getting-started"
+                    target="_blank"
+                    class="action-button"
+                  >
+                    <i class="fas fa-book fa-2x mb-2"></i>
+                    <h4 class="h6 mb-1">Documentation</h4>
+                    <p class="small mb-0 text-muted">
+                      Learn how to use the plugin
+                    </p>
+                  </a>
+                </div>
+                <div class="col-md-3">
+                  <a
+                    id="qa-support"
+                    href="#"
+                    target="_blank"
+                    class="action-button"
+                  >
+                    <i class="fas fa-life-ring fa-2x mb-2"></i>
+                    <h4 class="h6 mb-1">Get Support</h4>
+                    <p class="small mb-0 text-muted">
+                      Report issues or ask questions
+                    </p>
+                  </a>
+                </div>
+                <div class="col-md-3">
+                  <a
+                    id="qa-community"
+                    href="#"
+                    target="_blank"
+                    class="action-button"
+                  >
+                    <i class="fab fa-github fa-2x mb-2"></i>
+                    <h4 class="h6 mb-1">Join Community</h4>
+                    <p class="small mb-0 text-muted">
+                      Connect with other users
+                    </p>
+                  </a>
+                </div>
+                <div class="col-md-3">
+                  <a
+                    href="#"
+                    onclick="
+                      trackClick(
+                        'select_content',
+                        'Quick Action API Config',
+                      ).then(() => showSection('api'));
+                      return false;
+                    "
+                    class="action-button"
+                  >
+                    <i class="fas fa-key fa-2x mb-2"></i>
+                    <h4 class="h6 mb-1">API Configuration</h4>
+                    <p class="small mb-0 text-muted">
+                      Get your API key &amp; server URL
+                    </p>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Subscription Section -->
+        <section id="section-subscription" class="section-content">
+          <div class="content-header">
+            <h1><i class="fas fa-crown me-3"></i>Subscription Management</h1>
+            <p>Manage your subscription and upgrade your plan.</p>
+          </div>
+          <div class="content-body">
+            <div id="pricing-section" class="d-none">
+              <div
+                class="alert"
+                style="
+                  background: linear-gradient(
+                    135deg,
+                    rgba(34, 197, 94, 0.1) 0%,
+                    rgba(22, 163, 74, 0.05) 100%
+                  );
+                  border: 2px solid rgba(34, 197, 94, 0.3);
+                  border-radius: 1rem;
+                "
+              >
+                <div class="text-center">
+                  <i class="fas fa-gift fa-3x mb-3" style="color: #22c55e"></i>
+                  <h4 class="fw-bold mb-2">
+                    🎁 7-Day FREE Trial on All Plans!
+                  </h4>
+                  <p class="mb-0">
+                    Try any plan risk-free for 7 days — cancel anytime, no
+                    credit card required to start
+                  </p>
+                </div>
+              </div>
+              <div class="row g-4">
+                <div class="col-md-4">
+                  <div class="pricing-card">
+                    <div class="pricing-header bg-gradient-blue text-light">
+                      <i class="fas fa-seedling fa-2x mb-2"></i>
+                      <h3 class="h4 fw-bold">Base</h3>
+                    </div>
+                    <div class="pricing-body">
+                      <div class="pricing-price">
+                        <span class="price" id="sub-price-base">€5.99</span
+                        ><span class="period">/month</span>
+                      </div>
+                      <ul class="list-unstyled text-muted small mb-4">
+                        <li>
+                          <i class="fas fa-gift text-success me-2"></i
+                          ><strong>7 days FREE</strong>
+                        </li>
+                        <li>
+                          <i class="fas fa-check text-success me-2"></i>100
+                          trial credits
+                        </li>
+                        <li>
+                          <i class="fas fa-check text-success me-2"></i>Then
+                          <span id="sub-price-base2">€5.99</span>/month (200
+                          credits)
+                        </li>
+                        <li>
+                          <i class="fas fa-times-circle text-danger me-2"></i
+                          >Cancel anytime
+                        </li>
+                      </ul>
+                      <ul class="pricing-features">
+                        <li>
+                          <i class="fas fa-check text-success me-2"></i>200
+                          credits per month
+                        </li>
+                        <li>
+                          <i class="fas fa-check text-success me-2"></i>200
+                          samples
+                        </li>
+                      </ul>
+                      <button
+                        class="btn btn-success w-100 mt-auto"
+                        onclick="
+                          gtagSendEvent(
+                            'Base',
+                            parseFloat(window._prices.base),
+                          ).then(() => subscribe('base'))
+                        "
+                      >
+                        Start 7-Day Trial
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="pricing-card pricing-card-popular">
+                    <div class="popular-badge">
+                      <i class="fas fa-star me-1"></i>Recommended
+                    </div>
+                    <div class="pricing-header bg-gradient-purple text-light">
+                      <i class="fas fa-music fa-2x mb-2"></i>
+                      <h3 class="h4 fw-bold">Starter</h3>
+                    </div>
+                    <div class="pricing-body">
+                      <div class="pricing-price">
+                        <span
+                          class="price-promo text-light"
+                          id="sub-price-starter"
+                          >€14.99</span
+                        ><span class="period text-light">/month</span>
+                      </div>
+                      <ul class="list-unstyled text-light small mb-4">
+                        <li>
+                          <i class="fas fa-gift text-light me-2"></i
+                          ><strong>7 days FREE</strong>
+                        </li>
+                        <li>
+                          <i class="fas fa-check text-light me-2"></i>100 trial
+                          credits
+                        </li>
+                        <li>
+                          <i class="fas fa-check text-light me-2"></i>Then
+                          <span id="sub-price-starter2">€14.99</span>/month (500
+                          credits)
+                        </li>
+                        <li>
+                          <i class="fas fa-times-circle text-light me-2"></i
+                          >Cancel anytime
+                        </li>
+                      </ul>
+                      <ul class="pricing-features">
+                        <li>
+                          <i class="fas fa-check text-light me-2"></i>500
+                          credits per month
+                        </li>
+                        <li>
+                          <i class="fas fa-check text-light me-2"></i>500
+                          samples
+                        </li>
+                      </ul>
+                      <button
+                        class="btn btn-light w-100 mt-auto fw-bold"
+                        onclick="
+                          gtagSendEvent(
+                            'Starter',
+                            parseFloat(window._prices.starter),
+                          ).then(() => subscribe('starter'))
+                        "
+                      >
+                        Start 7-Day Trial
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="pricing-card">
+                    <div class="pricing-header bg-gradient-green text-light">
+                      <i class="fas fa-bolt fa-2x mb-2"></i>
+                      <h3 class="h4 fw-bold">Pro</h3>
+                    </div>
+                    <div class="pricing-body">
+                      <div class="pricing-price">
+                        <span class="price" id="sub-price-pro">€29.99</span
+                        ><span class="period">/month</span>
+                      </div>
+                      <ul class="list-unstyled text-muted small mb-4">
+                        <li>
+                          <i class="fas fa-gift text-success me-2"></i
+                          ><strong>7 days FREE</strong>
+                        </li>
+                        <li>
+                          <i class="fas fa-check text-success me-2"></i>100
+                          trial credits
+                        </li>
+                        <li>
+                          <i class="fas fa-check text-success me-2"></i>Then
+                          <span id="sub-price-pro2">€29.99</span>/month (1500
+                          credits)
+                        </li>
+                        <li>
+                          <i class="fas fa-times-circle text-danger me-2"></i
+                          >Cancel anytime
+                        </li>
+                      </ul>
+                      <ul class="pricing-features">
+                        <li>
+                          <i class="fas fa-check text-success me-2"></i>1500
+                          credits per month
+                        </li>
+                        <li>
+                          <i class="fas fa-check text-success me-2"></i>1500
+                          samples
+                        </li>
+                      </ul>
+                      <button
+                        class="btn btn-success w-100 mt-auto"
+                        onclick="
+                          gtagSendEvent(
+                            'Pro',
+                            parseFloat(window._prices.pro),
+                          ).then(() => subscribe('pro'))
+                        "
+                      >
+                        Start 7-Day Trial
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="current-subscription-info" class="d-none">
+              <div class="dashboard-card mb-4">
+                <div class="d-flex align-items-start">
+                  <div class="me-3">
+                    <div class="card-icon">
+                      <i class="fas fa-crown fa-2x"></i>
+                    </div>
+                  </div>
+                  <div class="flex-grow-1">
+                    <h5 class="fw-bold mb-3">
+                      <i class="fas fa-check-circle text-success me-2"></i
+                      >Active Subscription
+                    </h5>
+                    <div class="row g-3 mb-4">
+                      <div class="col-md-4">
+                        <div class="p-3 bg-light rounded">
+                          <small class="text-muted d-block mb-1"
+                            >Current Plan</small
+                          >
+                          <h4 class="mb-0 text-primary" id="current-plan-name">
+                            -
+                          </h4>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="p-3 bg-light rounded">
+                          <small class="text-muted d-block mb-1">Status</small>
+                          <div id="current-plan-status">-</div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="p-3 bg-light rounded">
+                          <small class="text-muted d-block mb-1"
+                            >Monthly Credits</small
+                          >
+                          <h4 class="mb-0" id="current-plan-credits">-</h4>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="d-flex gap-2 flex-wrap">
+                      <button
+                        class="btn btn-gradient-primary"
+                        onclick="manageSubscription()"
+                      >
+                        <i class="fas fa-cog me-2"></i>Manage Subscription
+                      </button>
+                      <button
+                        class="btn btn-outline-secondary"
+                        onclick="viewBillingHistory()"
+                      >
+                        <i class="fas fa-history me-2"></i>Billing History
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="upgrade-options" class="d-none">
+                <h5 class="fw-bold mb-3">
+                  <i class="fas fa-arrow-up me-2 text-primary"></i>Upgrade Your
+                  Plan
+                </h5>
+                <div class="row g-4" id="upgrade-plans-container"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Usage Section -->
+        <section id="section-usage" class="section-content">
+          <div class="content-header">
+            <h1><i class="fas fa-chart-bar me-3"></i>Usage &amp; Credits</h1>
+            <p>Track your credit usage and understand the cost structure.</p>
+          </div>
+          <div class="content-body">
+            <div class="row g-4 mb-5">
+              <div class="col-md-4">
+                <div class="stat-card-enhanced">
+                  <div class="d-flex align-items-center mb-3">
+                    <div class="card-icon me-3">
+                      <i class="fas fa-coins fa-2x"></i>
+                    </div>
+                    <div><h6 class="card-label mb-0">Total Credits</h6></div>
+                  </div>
+                  <h2 class="card-value mb-0" id="credits-total-usage">-</h2>
+                  <small class="text-muted">Credits allocated this month</small>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="stat-card-enhanced">
+                  <div class="d-flex align-items-center mb-3">
+                    <div class="card-icon me-3">
+                      <i class="fas fa-bolt fa-2x"></i>
+                    </div>
+                    <div><h6 class="card-label mb-0">Credits Used</h6></div>
+                  </div>
+                  <h2 class="card-value mb-0" id="credits-used-usage">-</h2>
+                  <small class="text-muted">Credits consumed so far</small>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="stat-card-enhanced">
+                  <div class="d-flex align-items-center mb-3">
+                    <div class="card-icon me-3">
+                      <i class="fas fa-battery-three-quarters fa-2x"></i>
+                    </div>
+                    <div>
+                      <h6 class="card-label mb-0">Credits Remaining</h6>
+                    </div>
+                  </div>
+                  <h2 class="card-value mb-2" id="credits-remaining-usage">
+                    -
+                  </h2>
+                  <div class="progress-bar-custom mb-2">
+                    <div
+                      class="progress-fill"
+                      id="credits-progress-usage"
+                      style="width: 0%"
+                    ></div>
+                  </div>
+                  <small class="text-muted">Available for use</small>
+                </div>
+              </div>
+            </div>
+            <div class="dashboard-card mb-4">
+              <h3 class="h5 fw-bold mb-4">
+                <i class="fas fa-info-circle me-2 text-primary"></i>How Credits
+                Work
+              </h3>
+              <p class="text-muted mb-4">
+                Each generation uses credits based on AI models. Simple pricing:
+                1 credit = 1 generation.
+              </p>
+              <div class="table-responsive">
+                <table class="table-modern">
+                  <thead>
+                    <tr>
+                      <th style="min-width: 180px">
+                        <i class="fas fa-cog me-2"></i>Generation Type
+                      </th>
+                      <th style="min-width: 200px">
+                        <i class="fas fa-brain me-2"></i>AI Models Used
+                      </th>
+                      <th style="min-width: 100px">
+                        <i class="fas fa-coins me-2"></i>Credits
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="d-flex align-items-center">
+                          <div class="table-icon bg-gradient-blue me-3">
+                            <i class="fas fa-keyboard"></i>
+                          </div>
+                          <div>
+                            <strong>Text Prompt</strong><br /><small
+                              class="text-secondary"
+                              >Type your prompt directly</small
+                            >
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="d-flex flex-column gap-1">
+                          <span class="badge bg-secondary"
+                            ><i class="fas fa-brain me-1"></i>Gemini 2.5 Flash
+                            (LLM)</span
+                          ><span class="badge" style="background: #b8605c"
+                            ><i class="fas fa-music me-1"></i>Stable Audio</span
+                          >
+                        </div>
+                      </td>
+                      <td><span class="credit-badge">1 credit</span></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="d-flex align-items-center">
+                          <div class="table-icon bg-gradient-purple me-3">
+                            <i class="fas fa-paint-brush"></i>
+                          </div>
+                          <div>
+                            <strong>Drawing to Audio</strong><br /><small
+                              class="text-secondary"
+                              >Paint musical ideas visually</small
+                            >
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="d-flex flex-column gap-1">
+                          <span class="badge bg-secondary"
+                            ><i class="fas fa-eye me-1"></i>Gemini 2.5 Flash
+                            (Vision)</span
+                          ><span class="badge" style="background: #b8605c"
+                            ><i class="fas fa-music me-1"></i>Stable Audio</span
+                          >
+                        </div>
+                      </td>
+                      <td><span class="credit-badge">1 credit</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="dashboard-card">
+              <h3 class="h5 fw-bold mb-4">
+                <i class="fas fa-layer-group me-2 text-primary"></i>AI Models
+                Stack
+              </h3>
+              <div class="row g-3">
+                <div class="col-md-4">
+                  <div
+                    class="p-3"
+                    style="
+                      background: var(--color-bg-mid);
+                      border-radius: 12px;
+                      border: 1px solid var(--color-inactive);
+                    "
+                  >
+                    <h6 class="fw-bold mb-2">
+                      <i
+                        class="fas fa-brain me-2"
+                        style="color: var(--color-primary)"
+                      ></i
+                      >LLM Brain
+                    </h6>
+                    <p class="mb-0 small text-secondary">
+                      <strong>Gemini 2.5 Flash</strong><br />Optimizes prompts,
+                      understands context, maintains conversation history
+                    </p>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div
+                    class="p-3"
+                    style="
+                      background: var(--color-bg-mid);
+                      border-radius: 12px;
+                      border: 1px solid var(--color-inactive);
+                    "
+                  >
+                    <h6 class="fw-bold mb-2">
+                      <i
+                        class="fas fa-eye me-2"
+                        style="color: var(--color-primary)"
+                      ></i
+                      >Vision Model
+                    </h6>
+                    <p class="mb-0 small text-secondary">
+                      <strong>Gemini 2.5 Flash</strong><br />Analyzes drawings,
+                      translates visual patterns into sonic descriptions
+                    </p>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div
+                    class="p-3"
+                    style="
+                      background: var(--color-bg-mid);
+                      border-radius: 12px;
+                      border: 1px solid var(--color-inactive);
+                    "
+                  >
+                    <h6 class="fw-bold mb-2">
+                      <i
+                        class="fas fa-music me-2"
+                        style="color: var(--color-primary)"
+                      ></i
+                      >Audio Engine
+                    </h6>
+                    <p class="mb-0 small text-secondary">
+                      <strong>Stable Audio</strong><br />Generates high-quality
+                      30-second audio samples in ~10 seconds
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- API Section -->
+        <section id="section-api" class="section-content">
+          <div class="content-header">
+            <h1><i class="fas fa-key me-3"></i>API Configuration</h1>
+            <p>Manage your API key and server settings.</p>
+          </div>
+          <div class="content-body">
+            <div class="row g-4">
+              <div class="col-lg-6">
+                <div class="dashboard-card">
+                  <h3 class="h5 fw-bold mb-4">
+                    <i class="fas fa-key me-2 text-primary"></i>API Key
+                  </h3>
+                  <div class="api-key-container">
+                    <code class="api-key-display" id="api-key"
+                      >••••••••••••••••</code
+                    >
+                    <div class="api-key-actions mt-3">
+                      <button
+                        class="btn btn-sm btn-success"
+                        onclick="toggleApiKey()"
+                      >
+                        <i class="fas fa-eye me-1"></i
+                        ><span id="toggle-text">Show</span>
+                      </button>
+                      <button
+                        class="btn btn-sm btn-outline-secondary"
+                        onclick="copyApiKey()"
+                      >
+                        <i class="fas fa-copy me-1"></i>Copy
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="dashboard-card">
+                  <h3 class="h5 fw-bold mb-4">
+                    <i class="fas fa-server me-2 text-primary"></i>Server URL
+                  </h3>
+                  <code class="text-secondary d-block mb-3" id="server-url"
+                    >—</code
+                  >
+                  <button
+                    class="btn btn-sm btn-outline-secondary"
+                    onclick="copyServerUrl(event)"
+                  >
+                    <i class="fas fa-copy me-1"></i>Copy URL
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="alert alert-info mt-4">
+              <h5 class="fw-bold mb-2">
+                <i class="fas fa-info-circle me-2"></i>Configuration
+                Instructions
+              </h5>
+              <ol class="mb-0">
+                <li>Copy your API key and Server URL</li>
+                <li>Open your VST plugin in your DAW</li>
+                <li>Navigate to the settings panel</li>
+                <li>
+                  Paste the API key and Server URL in the appropriate fields
+                </li>
+              </ol>
+            </div>
+          </div>
+        </section>
+
+        <!-- Provider Stats Section -->
+        <section id="section-provider-stats" class="section-content">
+          <div class="content-header">
+            <h1><i class="fas fa-server me-3"></i>My Provider Dashboard</h1>
+            <p>
+              Your node's performance and your share of the network revenue.
+            </p>
+          </div>
+          <div class="content-body">
+            <div class="dashboard-card mb-4" id="provider-status-card">
+              <div
+                class="d-flex align-items-center justify-content-between flex-wrap gap-3"
+              >
+                <div class="d-flex align-items-center gap-3">
+                  <div class="card-icon">
+                    <i class="fas fa-server fa-lg"></i>
+                  </div>
+                  <div>
+                    <div class="fw-bold fs-5" id="provider-name">—</div>
+                    <div class="text-muted small">
+                      Last seen: <span id="provider-last-seen">—</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                  <span id="provider-status-badge" class="badge bg-secondary"
+                    >Loading...</span
+                  >
+                  <div class="text-end">
+                    <div class="fw-bold text-primary" id="provider-uptime">
+                      —%
+                    </div>
+                    <div class="text-muted small">uptime score</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row g-3 mb-4">
+              <div class="col-md-3 col-sm-6">
+                <div class="dashboard-card text-center h-100">
+                  <div class="card-icon mx-auto mb-2">
+                    <i class="fas fa-microchip"></i>
+                  </div>
+                  <div class="card-label">My jobs this month</div>
+                  <div class="card-value text-primary" id="stat-my-jobs-month">
+                    —
+                  </div>
+                  <div class="text-muted small" id="stat-my-jobs-total">
+                    — total
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6">
+                <div class="dashboard-card text-center h-100">
+                  <div class="card-icon mx-auto mb-2">
+                    <i class="fas fa-globe"></i>
+                  </div>
+                  <div class="card-label">Network generations</div>
+                  <div
+                    class="card-value text-primary"
+                    id="stat-global-generations"
+                  >
+                    —
+                  </div>
+                  <div class="text-muted small">this month</div>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6">
+                <div class="dashboard-card text-center h-100">
+                  <div class="card-icon mx-auto mb-2">
+                    <i class="fas fa-server"></i>
+                  </div>
+                  <div class="card-label">Active providers</div>
+                  <div
+                    class="card-value text-primary"
+                    id="stat-active-providers"
+                  >
+                    —
+                  </div>
+                  <div class="text-muted small">on the network</div>
+                </div>
+              </div>
+              <div class="col-md-3 col-sm-6">
+                <div class="dashboard-card text-center h-100">
+                  <div class="card-icon mx-auto mb-2">
+                    <i class="fas fa-users"></i>
+                  </div>
+                  <div class="card-label">Paying users</div>
+                  <div class="card-value text-primary" id="stat-paying-users">
+                    —
+                  </div>
+                  <div class="text-muted small">active subscribers</div>
+                </div>
+              </div>
+            </div>
+            <div class="row g-3 mb-4">
+              <div class="col-md-6">
+                <div class="dashboard-card h-100">
+                  <h3 class="h5 fw-bold mb-4">
+                    <i class="fas fa-euro-sign me-2 text-primary"></i>Revenue
+                    estimate — current month
+                  </h3>
+                  <div class="d-flex flex-column gap-3">
+                    <div
+                      class="d-flex justify-content-between align-items-center p-3 rounded"
+                      style="background: var(--color-bg-mid)"
+                    >
+                      <div>
+                        <div class="fw-bold">Platform revenue</div>
+                        <div class="text-muted small">Total subscriptions</div>
+                      </div>
+                      <div class="fw-bold fs-5" id="rev-platform">—</div>
+                    </div>
+                    <div
+                      class="d-flex justify-content-between align-items-center p-3 rounded"
+                      style="background: var(--color-bg-mid)"
+                    >
+                      <div>
+                        <div class="fw-bold">
+                          Providers pool
+                          <span class="badge bg-success ms-1">85%</span>
+                        </div>
+                        <div class="text-muted small">
+                          Split equally among active providers
+                        </div>
+                      </div>
+                      <div class="fw-bold fs-5" id="rev-pool">—</div>
+                    </div>
+                    <div
+                      class="d-flex justify-content-between align-items-center p-3 rounded border"
+                      style="border-color: var(--color-primary) !important"
+                    >
+                      <div>
+                        <div class="fw-bold text-primary">
+                          Your estimated share
+                        </div>
+                        <div class="text-muted small">
+                          If you stay active all month
+                        </div>
+                      </div>
+                      <div class="fw-bold fs-4 text-primary" id="rev-my-share">
+                        —
+                      </div>
+                    </div>
+                  </div>
+                  <p class="text-muted small mt-3 mb-0">
+                    <i class="fas fa-info-circle me-1"></i>Estimate based on
+                    current subscribers. Final amount depends on uptime
+                    eligibility (≥60%).
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="dashboard-card h-100">
+                  <h3 class="h5 fw-bold mb-4">
+                    <i class="fas fa-users me-2 text-primary"></i>Users by plan
+                  </h3>
+                  <div
+                    class="d-flex flex-column gap-2"
+                    id="users-by-tier"
+                  ></div>
+                  <hr />
+                  <div
+                    class="d-flex justify-content-between align-items-center mt-3"
+                  >
+                    <span class="text-muted small">Public financial report</span
+                    ><a
+                      href="#"
+                      id="finances-link"
+                      target="_blank"
+                      class="btn btn-sm btn-outline-secondary"
+                      ><i class="fas fa-external-link-alt me-1"></i
+                      >finances.json</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="dashboard-card mb-4">
+              <div
+                class="d-flex justify-content-between align-items-center mb-4"
+              >
+                <h3 class="h5 fw-bold mb-0">
+                  <i class="fas fa-history me-2 text-primary"></i>Revenue
+                  history
+                </h3>
+                <button
+                  class="btn btn-sm btn-outline-secondary"
+                  onclick="loadFinancesHistory()"
+                >
+                  <i class="fas fa-sync me-1"></i>Refresh
+                </button>
+              </div>
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>Period</th>
+                      <th>Platform revenue</th>
+                      <th>Providers pool (85%)</th>
+                      <th>Active providers</th>
+                      <th>Share per provider</th>
+                    </tr>
+                  </thead>
+                  <tbody id="finances-history-tbody">
+                    <tr>
+                      <td colspan="5" class="text-center py-4">
+                        <div
+                          class="spinner-border text-primary"
+                          role="status"
+                        ></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div
+              class="alert border"
+              style="
+                border-color: var(--color-primary) !important;
+                background: rgba(184, 96, 92, 0.05);
+              "
+            >
+              <div class="d-flex align-items-start gap-3">
+                <i class="fas fa-shield-alt text-primary mt-1"></i>
+                <div>
+                  <div class="fw-bold">
+                    Eligibility to receive your monthly share
+                  </div>
+                  <div class="text-muted small mt-1">
+                    You must have an uptime score ≥ 60% (random pings) and at
+                    least 1 billable job processed during the month. Revenue is
+                    split equally among all eligible providers. Payouts via
+                    Stripe Connect.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Security Section -->
+        <section id="section-security" class="section-content">
+          <div class="content-header">
+            <h1><i class="fas fa-shield-alt me-3"></i>Security Settings</h1>
+            <p>
+              Enhance your account security with 2FA and email verification.
+            </p>
+          </div>
+          <div class="content-body">
+            <div class="row g-4">
+              <div class="col-lg-4">
+                <div class="dashboard-card">
+                  <div class="card-icon mb-3">
+                    <i class="fas fa-mobile-alt fa-2x"></i>
+                  </div>
+                  <h3 class="h5 fw-bold mb-2">Two-Factor Authentication</h3>
+                  <p class="text-muted mb-3">
+                    Add an extra layer of security to your account
+                  </p>
+                  <div class="mb-3">
+                    <span class="badge" id="2fa-status-badge">Loading...</span>
+                  </div>
+                  <button
+                    class="btn btn-sm btn-outline-primary"
+                    id="2fa-toggle-btn"
+                    onclick="toggle2FA()"
+                  >
+                    <i class="fas fa-cog me-1"></i
+                    ><span id="2fa-btn-text">Setup</span>
+                  </button>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="dashboard-card">
+                  <div class="card-icon mb-3">
+                    <i class="fas fa-envelope fa-2x"></i>
+                  </div>
+                  <h3 class="h5 fw-bold mb-2">Email Verification</h3>
+                  <p class="text-muted mb-3">Verify your email address</p>
+                  <div class="mb-3">
+                    <span class="badge" id="email-status-badge"
+                      >Loading...</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Preferences Section -->
+        <section id="section-preferences" class="section-content">
+          <div class="content-header">
+            <h1><i class="fas fa-cog me-3"></i>Preferences</h1>
+            <p>Customize your account preferences and notifications.</p>
+          </div>
+          <div class="content-body">
+            <div class="dashboard-card">
+              <h3 class="h5 fw-bold mb-4">
+                <i class="fas fa-bell me-2 text-primary"></i>Email Preferences
+              </h3>
+              <div class="form-check form-switch">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="newsUpdatesToggle"
+                  onchange="updateEmailPreferences()"
+                /><label class="form-check-label" for="newsUpdatesToggle"
+                  >Receive product news and updates</label
+                >
+              </div>
+              <small class="text-muted d-block mt-2"
+                >Stay informed about new features and improvements</small
+              >
+            </div>
+          </div>
+        </section>
+
+        <!-- Danger Zone -->
+        <section id="section-danger" class="section-content">
+          <div class="content-header">
+            <h1><i class="fas fa-exclamation-triangle me-3"></i>Danger Zone</h1>
+            <p>Irreversible and destructive actions.</p>
+          </div>
+          <div class="content-body">
+            <div class="dashboard-card">
+              <div class="d-flex align-items-center mb-3">
+                <div
+                  class="card-icon me-3"
+                  style="background: rgba(184, 96, 92, 0.1)"
+                >
+                  <i
+                    class="fas fa-exclamation-triangle fa-2x"
+                    style="color: var(--color-primary)"
+                  ></i>
+                </div>
+                <div>
+                  <h3
+                    class="h5 fw-bold mb-0"
+                    style="color: var(--color-primary)"
+                  >
+                    Delete Account
+                  </h3>
+                </div>
+              </div>
+              <h6 class="card-title">Permanently delete your account</h6>
+              <p class="text-muted mb-3">
+                Once you delete your account, there is no going back. This
+                action will:
+              </p>
+              <ul class="text-muted mb-4">
+                <li>Permanently delete all your data</li>
+                <li>Cancel all active subscriptions</li>
+                <li>Revoke your API access</li>
+                <li>Delete all your generated content</li>
+              </ul>
+              <button
+                type="button"
+                class="btn btn-success"
+                data-bs-toggle="modal"
+                data-bs-target="#deleteAccountModal"
+              >
+                <i class="fas fa-trash-alt me-2"></i>Delete My Account
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Admin Section -->
+        <section id="section-admin" class="section-content">
+          <div class="content-header">
+            <h1><i class="fas fa-shield-alt me-3"></i>Admin Dashboard</h1>
+            <p>Manage users, view statistics, and system settings.</p>
+          </div>
+          <div class="content-body">
+            <div class="row g-4 mb-4">
+              <div class="col-md-3">
+                <div class="stat-card-enhanced">
+                  <div class="d-flex align-items-center mb-3">
+                    <div class="card-icon me-3">
+                      <i class="fas fa-users fa-2x"></i>
+                    </div>
+                    <div><h6 class="card-label mb-0">Total Users</h6></div>
+                  </div>
+                  <h2 class="card-value mb-0" id="stat-total-users">-</h2>
+                  <small class="text-muted">Registered accounts</small>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="stat-card-enhanced">
+                  <div class="d-flex align-items-center mb-3">
+                    <div class="card-icon me-3">
+                      <i class="fas fa-user-check fa-2x"></i>
+                    </div>
+                    <div><h6 class="card-label mb-0">Verified Users</h6></div>
+                  </div>
+                  <h2 class="card-value mb-0" id="stat-verified">-</h2>
+                  <small class="text-muted">Email verified</small>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="stat-card-enhanced">
+                  <div class="d-flex align-items-center mb-3">
+                    <div class="card-icon me-3">
+                      <i class="fas fa-crown fa-2x"></i>
+                    </div>
+                    <div><h6 class="card-label mb-0">Paid Users</h6></div>
+                  </div>
+                  <h2 class="card-value mb-0" id="stat-paid">-</h2>
+                  <small class="text-muted">Active subscriptions</small>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="stat-card-enhanced">
+                  <div class="d-flex align-items-center mb-3">
+                    <div class="card-icon me-3">
+                      <i class="fas fa-bolt fa-2x"></i>
+                    </div>
+                    <div><h6 class="card-label mb-0">Generations</h6></div>
+                  </div>
+                  <h2 class="card-value mb-0" id="stat-generations">-</h2>
+                  <small class="text-muted">Total audio generated</small>
+                </div>
+              </div>
+            </div>
+            <div class="dashboard-card">
+              <div
+                class="d-flex justify-content-between align-items-center mb-4"
+              >
+                <h3 class="h5 fw-bold mb-0">
+                  <i class="fas fa-users me-2 text-primary"></i>All Users (<span
+                    id="user-count"
+                    >0</span
+                  >)
+                </h3>
+                <div style="max-width: 400px; flex: 1; margin-left: 2rem">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="searchInput"
+                    placeholder="Search by email..."
+                  />
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Email</th>
+                      <th>Tier</th>
+                      <th>Status</th>
+                      <th>Credits</th>
+                      <th>Generations</th>
+                      <th>Accept News</th>
+                      <th>Created</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="usersTableBody">
+                    <tr>
+                      <td colspan="9" class="text-center py-4">
+                        <div class="spinner-border text-primary" role="status">
+                          <span class="visually-hidden">Loading...</span>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Email Broadcast, Analytics, Providers, Email Logs sections are identical in structure — no identifiable values -->
+        <section id="section-email-broadcast" class="section-content">
+          <div class="content-header">
+            <h1><i class="fas fa-envelope me-3"></i>Email Broadcast</h1>
+            <p>Send newsletters to users who accepted news updates.</p>
+          </div>
+          <div class="content-body">
+            <div class="row g-4 mb-4">
+              <div class="col-md-4">
+                <div class="stat-card-enhanced">
+                  <div class="d-flex align-items-center mb-3">
+                    <div class="card-icon me-3">
+                      <i class="fas fa-users fa-2x"></i>
+                    </div>
+                    <div><h6 class="card-label mb-0">Recipients</h6></div>
+                  </div>
+                  <h2 class="card-value mb-0" id="broadcast-recipients-count">
+                    -
+                  </h2>
+                  <small class="text-muted">Users accepting news</small>
+                </div>
+              </div>
+            </div>
+            <div class="dashboard-card mb-4">
+              <h3 class="h5 fw-bold mb-4">
+                <i class="fas fa-edit me-2 text-primary"></i>Compose Email
+              </h3>
+              <form id="broadcast-form">
+                <div class="mb-3">
+                  <label for="email-subject" class="form-label fw-bold"
+                    >Subject *</label
+                  ><input
+                    type="text"
+                    class="form-control"
+                    id="email-subject"
+                    placeholder="Newsletter subject..."
+                    required
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="email-body" class="form-label fw-bold"
+                    >Message *</label
+                  ><textarea id="email-body" name="email-body"></textarea
+                  ><small class="text-muted"
+                    >Write your message using the rich text editor above.</small
+                  >
+                </div>
+                <div class="d-flex gap-2">
+                  <button
+                    type="button"
+                    class="btn btn-outline-primary"
+                    onclick="previewEmail()"
+                  >
+                    <i class="fas fa-eye me-2"></i>Preview</button
+                  ><button type="submit" class="btn btn-gradient-primary">
+                    <i class="fas fa-paper-plane me-2"></i>Send to All
+                    Recipients
+                  </button>
+                </div>
+              </form>
+            </div>
+            <div class="dashboard-card">
+              <div
+                class="d-flex justify-content-between align-items-center mb-4"
+              >
+                <h3 class="h5 fw-bold mb-0">
+                  <i class="fas fa-history me-2 text-primary"></i>Email History
+                </h3>
+                <button
+                  class="btn btn-sm btn-outline-secondary"
+                  onclick="loadEmailHistory()"
+                >
+                  <i class="fas fa-sync me-1"></i>Refresh
+                </button>
+              </div>
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Subject</th>
+                      <th>Recipients</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="email-history-tbody">
+                    <tr>
+                      <td colspan="5" class="text-center py-4">
+                        <div class="spinner-border text-primary" role="status">
+                          <span class="visually-hidden">Loading...</span>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="section-analytics" class="section-content">
+          <div class="content-header">
+            <h1><i class="fas fa-chart-line me-3"></i>Website Analytics</h1>
+            <p>Google Analytics data for the last 30 days.</p>
+          </div>
+          <div class="content-body">
+            <div class="mb-4">
+              <div class="btn-group" role="group">
+                <button
+                  type="button"
+                  class="btn btn-outline-primary"
+                  onclick="loadAnalytics(7)"
+                >
+                  7 Days</button
+                ><button
+                  type="button"
+                  class="btn btn-outline-primary active"
+                  onclick="loadAnalytics(30)"
+                >
+                  30 Days</button
+                ><button
+                  type="button"
+                  class="btn btn-outline-primary"
+                  onclick="loadAnalytics(90)"
+                >
+                  90 Days</button
+                ><button
+                  type="button"
+                  class="btn btn-outline-primary"
+                  onclick="loadAnalytics(365)"
+                >
+                  1 Year</button
+                ><button
+                  type="button"
+                  class="btn btn-outline-primary"
+                  onclick="loadAnalytics(9999)"
+                >
+                  All Time
+                </button>
+              </div>
+            </div>
+            <div class="row g-4 mb-4">
+              <div class="col-md-3">
+                <div class="stat-card-enhanced">
+                  <div class="d-flex align-items-center mb-3">
+                    <div class="card-icon me-3">
+                      <i class="fas fa-users fa-2x"></i>
+                    </div>
+                    <div><h6 class="card-label mb-0">Active Users</h6></div>
+                  </div>
+                  <h2 class="card-value mb-0" id="analytics-active-users">-</h2>
+                  <small class="text-muted">Visitors in period</small>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="stat-card-enhanced">
+                  <div class="d-flex align-items-center mb-3">
+                    <div class="card-icon me-3">
+                      <i class="fas fa-user-plus fa-2x"></i>
+                    </div>
+                    <div><h6 class="card-label mb-0">New Users</h6></div>
+                  </div>
+                  <h2 class="card-value mb-0" id="analytics-new-users">-</h2>
+                  <small class="text-muted">First-time visitors</small>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="stat-card-enhanced">
+                  <div class="d-flex align-items-center mb-3">
+                    <div class="card-icon me-3">
+                      <i class="fas fa-eye fa-2x"></i>
+                    </div>
+                    <div><h6 class="card-label mb-0">Page Views</h6></div>
+                  </div>
+                  <h2 class="card-value mb-0" id="analytics-page-views">-</h2>
+                  <small class="text-muted">Total views</small>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="stat-card-enhanced">
+                  <div class="d-flex align-items-center mb-3">
+                    <div class="card-icon me-3">
+                      <i class="fas fa-clock fa-2x"></i>
+                    </div>
+                    <div><h6 class="card-label mb-0">Avg. Session</h6></div>
+                  </div>
+                  <h2 class="card-value mb-0" id="analytics-avg-session">-</h2>
+                  <small class="text-muted">Duration in seconds</small>
+                </div>
+              </div>
+            </div>
+            <!-- Charts and tables — no identifiable values, kept as-is -->
+            <div class="dashboard-card mb-4">
+              <h3 class="h5 fw-bold mb-4">
+                <i class="fas fa-chart-area me-2 text-primary"></i>Daily Traffic
+              </h3>
+              <canvas id="analytics-daily-chart" height="80"></canvas>
+            </div>
+            <div class="row g-4 mb-4">
+              <div class="col-lg-6">
+                <div class="dashboard-card">
+                  <h3 class="h5 fw-bold mb-4">
+                    <i class="fas fa-file-alt me-2 text-primary"></i>Top Pages
+                  </h3>
+                  <div class="table-responsive">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>Page</th>
+                          <th>Views</th>
+                          <th>Avg. Time (s)</th>
+                        </tr>
+                      </thead>
+                      <tbody id="analytics-top-pages">
+                        <tr>
+                          <td colspan="3" class="text-center py-4">
+                            <div
+                              class="spinner-border text-primary"
+                              role="status"
+                            ></div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="dashboard-card">
+                  <h3 class="h5 fw-bold mb-4">
+                    <i class="fas fa-share-alt me-2 text-primary"></i>Traffic
+                    Sources
+                  </h3>
+                  <div class="table-responsive">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>Source</th>
+                          <th>Sessions</th>
+                          <th>New Users</th>
+                        </tr>
+                      </thead>
+                      <tbody id="analytics-traffic-sources">
+                        <tr>
+                          <td colspan="3" class="text-center py-4">
+                            <div
+                              class="spinner-border text-primary"
+                              role="status"
+                            ></div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row g-4 mb-4">
+              <div class="col-lg-6">
+                <div class="dashboard-card">
+                  <h3 class="h5 fw-bold mb-4">
+                    <i class="fas fa-globe-americas me-2 text-primary"></i
+                    >Visitors Map
+                  </h3>
+                  <div
+                    id="analytics-world-map"
+                    style="height: 400px; border-radius: 8px; overflow: hidden"
+                  ></div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="dashboard-card">
+                  <h3 class="h5 fw-bold mb-4">
+                    <i class="fas fa-globe me-2 text-primary"></i>Top Countries
+                  </h3>
+                  <div class="table-responsive">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>Country</th>
+                          <th>Users</th>
+                          <th>Sessions</th>
+                        </tr>
+                      </thead>
+                      <tbody id="analytics-countries">
+                        <tr>
+                          <td colspan="3" class="text-center py-4">
+                            <div
+                              class="spinner-border text-primary"
+                              role="status"
+                            ></div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="dashboard-card mb-4">
+                <h3 class="h5 fw-bold mb-4">
+                  <i class="fas fa-share-alt me-2 text-primary"></i>Social Media
+                  Traffic
+                </h3>
+                <div class="row g-3" id="analytics-social-media">
+                  <div class="col-12 text-center py-4">
+                    <div
+                      class="spinner-border text-primary"
+                      role="status"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row g-4 mb-4">
+              <div class="col-lg-8">
+                <div class="dashboard-card">
+                  <h3 class="h5 fw-bold mb-4">
+                    <i class="fas fa-filter me-2 text-primary"></i>Conversion
+                    Funnel
+                  </h3>
+                  <div id="analytics-funnel-container">
+                    <div class="text-center py-4">
+                      <div
+                        class="spinner-border text-primary"
+                        role="status"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="dashboard-card">
+                  <h3 class="h5 fw-bold mb-4">
+                    <i class="fas fa-chart-pie me-2 text-primary"></i>Conversion
+                    Summary
+                  </h3>
+                  <div id="analytics-funnel-summary">
+                    <div class="text-center py-4">
+                      <div
+                        class="spinner-border text-primary"
+                        role="status"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="dashboard-card mb-4">
+              <h3 class="h5 fw-bold mb-4">
+                <i class="fas fa-route me-2 text-primary"></i>User Journeys
+                &amp; Insights
+              </h3>
+              <div class="row g-3" id="analytics-paths">
+                <div class="col-12 text-center py-4">
+                  <div class="spinner-border text-primary" role="status"></div>
+                </div>
+              </div>
+            </div>
+            <div class="dashboard-card">
+              <h3 class="h5 fw-bold mb-4">
+                <i class="fas fa-mobile-alt me-2 text-primary"></i>Device
+                Breakdown
+              </h3>
+              <div class="row g-3" id="analytics-devices">
+                <div class="col-12 text-center py-4">
+                  <div class="spinner-border text-primary" role="status"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="section-providers" class="section-content">
+          <div class="content-header">
+            <h1><i class="fas fa-server me-3"></i>GPU Providers</h1>
+            <p>Manage the distributed inference network.</p>
+          </div>
+          <div class="content-body">
+            <div class="dashboard-card mb-4">
+              <h3 class="h5 fw-bold mb-4">
+                <i class="fas fa-plus me-2 text-primary"></i>Add Provider
+              </h3>
+              <div class="row g-3">
+                <div class="col-md-4">
+                  <label class="form-label fw-bold">Name</label
+                  ><input
+                    type="text"
+                    class="form-control"
+                    id="provider-name-input"
+                    placeholder="Paul — RTX 3070"
+                  />
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label fw-bold">URL</label
+                  ><input
+                    type="text"
+                    class="form-control"
+                    id="provider-url"
+                    placeholder="http://192.168.1.42:8001"
+                  />
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label fw-bold"
+                    >Stripe Account ID
+                    <small class="text-muted">(optional)</small></label
+                  ><input
+                    type="text"
+                    class="form-control"
+                    id="provider-stripe"
+                    placeholder="acct_xxxxxxxxxxxxx"
+                  />
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label fw-bold"
+                    >Linked User
+                    <small class="text-muted">(optional)</small></label
+                  ><select class="form-select" id="provider-user-id">
+                    <option value="">— No user linked —</option>
+                  </select>
+                  <div class="form-text">
+                    Links to user account to use their email for notifications.
+                  </div>
+                </div>
+              </div>
+              <button
+                class="btn btn-gradient-primary mt-3"
+                onclick="addProvider()"
+              >
+                <i class="fas fa-plus me-2"></i>Add Provider
+              </button>
+            </div>
+            <div id="provider-api-key-alert" class="d-none mb-4">
+              <div class="alert alert-warning border-warning">
+                <h5 class="fw-bold">
+                  <i class="fas fa-exclamation-triangle me-2"></i>Save this API
+                  key now — it will never be shown again
+                </h5>
+                <code
+                  id="provider-api-key-display"
+                  class="fs-6 d-block my-2"
+                ></code
+                ><button
+                  class="btn btn-sm btn-warning"
+                  onclick="copyProviderApiKey()"
+                >
+                  <i class="fas fa-copy me-1"></i>Copy Key
+                </button>
+              </div>
+            </div>
+            <div class="dashboard-card">
+              <div
+                class="d-flex justify-content-between align-items-center mb-4"
+              >
+                <h3 class="h5 fw-bold mb-0">
+                  <i class="fas fa-list me-2 text-primary"></i>Providers (<span
+                    id="providers-count"
+                    >0</span
+                  >)
+                </h3>
+                <button
+                  class="btn btn-sm btn-outline-secondary"
+                  onclick="loadProviders()"
+                >
+                  <i class="fas fa-sync me-1"></i>Refresh
+                </button>
+              </div>
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th>URL</th>
+                      <th>Status</th>
+                      <th>Jobs</th>
+                      <th>Uptime</th>
+                      <th>Last seen</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="providers-tbody">
+                    <tr>
+                      <td colspan="9" class="text-center py-4">
+                        <div
+                          class="spinner-border text-primary"
+                          role="status"
+                        ></div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="section-email-logs" class="section-content">
+          <div class="content-header">
+            <h1><i class="fas fa-envelope-open-text me-3"></i>Email Logs</h1>
+            <p>View, filter, and retry failed emails sent by the system.</p>
+          </div>
+          <div class="content-body">
+            <div class="row g-4 mb-4">
+              <div class="col-md-3">
+                <div class="stat-card-enhanced">
+                  <div class="d-flex align-items-center mb-3">
+                    <div class="card-icon me-3">
+                      <i class="fas fa-envelope fa-2x"></i>
+                    </div>
+                    <div><h6 class="card-label mb-0">Total Emails</h6></div>
+                  </div>
+                  <h2 class="card-value mb-0" id="email-stats-total">-</h2>
+                  <small class="text-muted">Last 30 days</small>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="stat-card-enhanced">
+                  <div class="d-flex align-items-center mb-3">
+                    <div class="card-icon me-3">
+                      <i class="fas fa-check-circle fa-2x text-success"></i>
+                    </div>
+                    <div><h6 class="card-label mb-0">Sent</h6></div>
+                  </div>
+                  <h2
+                    class="card-value mb-0 text-success"
+                    id="email-stats-sent"
+                  >
+                    -
+                  </h2>
+                  <small class="text-muted"
+                    >Success rate: <span id="email-stats-rate">-</span>%</small
+                  >
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="stat-card-enhanced">
+                  <div class="d-flex align-items-center mb-3">
+                    <div class="card-icon me-3">
+                      <i
+                        class="fas fa-exclamation-circle fa-2x text-danger"
+                      ></i>
+                    </div>
+                    <div><h6 class="card-label mb-0">Failed</h6></div>
+                  </div>
+                  <h2
+                    class="card-value mb-0 text-danger"
+                    id="email-stats-failed"
+                  >
+                    -
+                  </h2>
+                  <small class="text-muted">Need attention</small>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="stat-card-enhanced">
+                  <div class="d-flex align-items-center mb-3">
+                    <div class="card-icon me-3">
+                      <i class="fas fa-clock fa-2x text-warning"></i>
+                    </div>
+                    <div><h6 class="card-label mb-0">Pending</h6></div>
+                  </div>
+                  <h2
+                    class="card-value mb-0 text-warning"
+                    id="email-stats-pending"
+                  >
+                    -
+                  </h2>
+                  <small class="text-muted">In queue</small>
+                </div>
+              </div>
+            </div>
+            <div class="dashboard-card mb-4">
+              <div class="row g-3 align-items-end">
+                <div class="col-md-3">
+                  <label class="form-label fw-bold">Status</label
+                  ><select class="form-select" id="email-filter-status">
+                    <option value="">All Status</option>
+                    <option value="sent">Sent</option>
+                    <option value="failed">Failed</option>
+                    <option value="pending">Pending</option>
+                    <option value="retrying">Retrying</option>
+                  </select>
+                </div>
+                <div class="col-md-3">
+                  <label class="form-label fw-bold">Type</label
+                  ><select class="form-select" id="email-filter-type">
+                    <option value="">All Types</option>
+                    <option value="welcome">Welcome</option>
+                    <option value="verification">Verification</option>
+                    <option value="password_reset">Password Reset</option>
+                    <option value="subscription_confirmation">
+                      Subscription Confirmed
+                    </option>
+                    <option value="subscription_cancelled">
+                      Subscription Cancelled
+                    </option>
+                    <option value="gift_notification">Gift Notification</option>
+                    <option value="expiration_warning">
+                      Expiration Warning
+                    </option>
+                    <option value="day2_promo">Day 2 Promo</option>
+                    <option value="day7_promo">Day 7 Promo</option>
+                    <option value="no_generation_help">
+                      No Generation Help
+                    </option>
+                  </select>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label fw-bold">Search</label
+                  ><input
+                    type="text"
+                    class="form-control"
+                    id="email-filter-search"
+                    placeholder="Search by email or subject..."
+                  />
+                </div>
+                <div class="col-md-2">
+                  <button
+                    class="btn btn-gradient-primary w-100"
+                    onclick="loadEmailLogs()"
+                  >
+                    <i class="fas fa-search me-2"></i>Filter
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="dashboard-card">
+              <div
+                class="d-flex justify-content-between align-items-center mb-4"
+              >
+                <h3 class="h5 fw-bold mb-0">
+                  <i class="fas fa-list me-2 text-primary"></i>Email Logs
+                </h3>
+                <div class="d-flex gap-2">
+                  <button
+                    class="btn btn-sm btn-outline-danger"
+                    onclick="retryFailedEmails()"
+                    id="retry-failed-btn"
+                  >
+                    <i class="fas fa-redo me-1"></i>Retry Failed</button
+                  ><button
+                    class="btn btn-sm btn-outline-secondary"
+                    onclick="loadEmailLogs()"
+                  >
+                    <i class="fas fa-sync me-1"></i>Refresh
+                  </button>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>
+                        <input
+                          type="checkbox"
+                          id="select-all-emails"
+                          onchange="toggleAllEmails(this)"
+                        />
+                      </th>
+                      <th>ID</th>
+                      <th>Recipient</th>
+                      <th>Subject</th>
+                      <th>Type</th>
+                      <th>Status</th>
+                      <th>Retries</th>
+                      <th>Created</th>
+                      <th>Sent</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="email-logs-tbody">
+                    <tr>
+                      <td colspan="10" class="text-center py-4">
+                        <div class="spinner-border text-primary" role="status">
+                          <span class="visually-hidden">Loading...</span>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div
+                class="d-flex justify-content-between align-items-center mt-3"
+              >
+                <div class="text-muted">
+                  <span id="email-logs-info">Showing 0 of 0 emails</span>
+                </div>
+                <nav>
+                  <ul class="pagination mb-0" id="email-logs-pagination"></ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- Modals — no identifiable values -->
+    <div class="modal fade" id="deleteAccountModal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header bg-danger-override text-white">
+            <h5 class="modal-title">
+              <i class="fas fa-exclamation-triangle me-2"></i>Confirm Account
+              Deletion
+            </h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="alert alert-danger mb-3">
+              <strong>Warning:</strong> This action cannot be undone!
+            </div>
+            <p>Are you absolutely sure you want to delete your account?</p>
+            <div
+              id="oauthWarning"
+              class="alert alert-info mb-3"
+              style="display: none"
+            >
+              <i class="fab fa-google me-2"></i><strong>Note:</strong> Your
+              account is linked to Google. Deleting it here won't affect your
+              Google account.
+            </div>
+            <div class="form-group mb-3">
+              <label for="confirmEmail" class="form-label"
+                >Please type your email to confirm:</label
+              ><input
+                type="email"
+                class="form-control"
+                id="confirmEmail"
+                placeholder="your@email.com"
+                autocomplete="off"
+              /><small class="text-muted" id="userEmailHint"></small>
+            </div>
+            <div class="form-check mb-3">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="confirmUnderstand"
+              /><label
+                class="form-check-label text-danger"
+                for="confirmUnderstand"
+                >I understand that this action is permanent and cannot be
+                reversed</label
+              >
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancel</button
+            ><button
+              type="button"
+              class="btn btn-success"
+              id="confirmDeleteBtn"
+              disabled
+            >
+              <i class="fas fa-trash-alt me-2"></i>Yes, Delete My Account
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="deleteFeedbackModal"
+      tabindex="-1"
+      data-bs-backdrop="static"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header" id="feedbackModalHeader">
+            <h5 class="modal-title" id="deleteFeedbackModalLabel">
+              <i class="fas fa-check-circle me-2"></i>Account Deleted
+            </h5>
+          </div>
+          <div class="modal-body" id="feedbackModalBody">
+            Your account has been permanently deleted.
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-primary"
+              id="feedbackModalBtn"
+              onclick="window.location.href = 'index.html'"
+            >
+              Go to Home
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="emailLogDetailModal" tabindex="-1">
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">
+              <i class="fas fa-envelope-open-text me-2"></i>Email Details
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body" id="emailLogDetailBody">
+            <div class="text-center py-4">
+              <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="2fa-modal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">
+              <i class="fas fa-mobile-alt me-2"></i
+              ><span id="modal-title">Setup Two-Factor Authentication</span>
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div id="setup-2fa-content">
+              <div class="text-center mb-4">
+                <p class="mb-3">
+                  Scan this QR code with your authenticator app:
+                </p>
+                <div id="qr-code-container" class="mb-3">
+                  <img
+                    id="qr-code-img"
+                    src=""
+                    alt="QR Code"
+                    class="img-fluid"
+                    style="max-width: 250px"
+                  />
+                </div>
+                <p class="small text-muted">Or enter this code manually:</p>
+                <code
+                  id="manual-code"
+                  class="p-2 bg-light rounded d-block"
+                ></code>
+              </div>
+              <div class="mb-3">
+                <label class="form-label fw-semibold"
+                  >Enter 6-digit code to verify:</label
+                ><input
+                  type="text"
+                  class="form-control-modern text-center"
+                  id="verify-code"
+                  placeholder="000000"
+                  maxlength="6"
+                  pattern="[0-9]{6}"
+                />
+              </div>
+              <div class="alert-custom alert-warning mb-3">
+                <i class="fas fa-exclamation-triangle me-2"></i
+                ><strong>Save your backup codes!</strong> You'll receive them
+                after verification.
+              </div>
+              <button
+                class="btn btn-gradient-primary w-100"
+                onclick="verifySetup2FA()"
+              >
+                <i class="fas fa-check me-2"></i>Verify &amp; Enable 2FA
+              </button>
+            </div>
+            <div id="backup-codes-content" class="d-none">
+              <div class="alert-custom alert-success mb-3">
+                <i class="fas fa-check-circle me-2"></i>2FA enabled
+                successfully!
+              </div>
+              <p class="fw-bold">Save these backup codes in a safe place:</p>
+              <div class="bg-light p-3 rounded mb-3">
+                <code id="backup-codes-list"></code>
+              </div>
+              <div class="alert-custom alert-warning mb-3">
+                <i class="fas fa-exclamation-triangle me-2"></i>These codes can
+                be used if you lose access to your authenticator app.
+              </div>
+              <button
+                class="btn btn-success w-100"
+                onclick="downloadBackupCodes()"
+              >
+                <i class="fas fa-download me-2"></i>Download Backup Codes
+              </button>
+            </div>
+            <div id="disable-2fa-content" class="d-none">
+              <div class="alert-custom alert-warning mb-3">
+                <i class="fas fa-exclamation-triangle me-2"></i
+                ><strong>Warning:</strong> Disabling 2FA will make your account
+                less secure.
+              </div>
+              <div class="mb-3">
+                <label class="form-label fw-semibold"
+                  >Enter 6-digit code to confirm:</label
+                ><input
+                  type="text"
+                  class="form-control-modern text-center"
+                  id="disable-code"
+                  placeholder="000000"
+                  maxlength="6"
+                  pattern="[0-9]{6}"
+                />
+              </div>
+              <button
+                class="btn btn-danger w-100"
+                onclick="confirmDisable2FA()"
+              >
+                <i class="fas fa-times me-2"></i>Disable 2FA
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="userDetailModal" tabindex="-1">
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">
+              <i class="fas fa-user-circle me-2"></i>User Details
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body" id="userDetailBody">
+            <div class="text-center py-4">
+              <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/2fa.js"></script>
+    <script src="js/cookie-consent.js"></script>
+    <script src="js/email-logs.js"></script>
+    <script src="js/email-broadcast.js"></script>
+    <script src="js/analytics.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/promo-popup.js"></script>
+
+    <!-- Hydrate all dynamic values from APP_CONFIG -->
+    <script>
+      (function () {
+        var cfg = window.APP_CONFIG || {};
+        var pluginName = cfg.PLUGIN_NAME || cfg.SITE_NAME || "OBSIDIAN Neural";
+        var githubUrl = cfg.GITHUB_URL || "#";
+        var githubIssues =
+          cfg.GITHUB_ISSUES_URL ||
+          (githubUrl !== "#" ? githubUrl + "/issues" : "#");
+        var githubDiscuss =
+          githubUrl !== "#" ? githubUrl + "/discussions" : "#";
+        var docsUrl =
+          cfg.DOCS_URL || "/documentation.html?page=getting-started";
+        var sym = cfg.GIFT_CURRENCY_SYMBOL || "€";
+        var pBase = cfg.PLAN_PRICE_BASE || "5.99";
+        var pStarter = cfg.GIFT_PRICE_STARTER || "14.99";
+        var pPro = cfg.GIFT_PRICE_PRO || "29.99";
+        var apiUrl = cfg.API_URL || "";
+
+        // Expose prices for gtagSendEvent calls
+        window._prices = { base: pBase, starter: pStarter, pro: pPro };
+
+        function setText(id, val) {
+          var el = document.getElementById(id);
+          if (el) el.textContent = val;
+        }
+        function setHref(id, url) {
+          var el = document.getElementById(id);
+          if (el && url !== "#") el.href = url;
+        }
+
+        // Sidebar plugin name
+        setText("sidebar-plugin-name", pluginName.toUpperCase());
+
+        // Sidebar nav links
+        setHref(
+          "nav-download",
+          githubUrl !== "#" ? githubUrl + "/releases/latest" : "#",
+        );
+        setHref("nav-support", githubIssues);
+
+        // Download buttons — explicit filenames from config, fallback to auto-constructed
+        var releasesBase =
+          githubUrl !== "#" ? githubUrl + "/releases/latest/download/" : "";
+        function dlUrl(cfgKey, fallbackFilename) {
+          if (cfg[cfgKey]) return releasesBase + cfg[cfgKey];
+          return releasesBase ? releasesBase + fallbackFilename : "#";
+        }
+        setHref(
+          "dl-windows",
+          dlUrl(
+            "DOWNLOAD_WIN",
+            pluginName.replace(/ /g, "-") + "-Windows-VST3.zip",
+          ),
+        );
+        setHref(
+          "dl-macos-vst3",
+          dlUrl(
+            "DOWNLOAD_MAC_VST3",
+            pluginName.replace(/ /g, "-") + "-macOS-VST3.zip",
+          ),
+        );
+        setHref(
+          "dl-macos-au",
+          dlUrl(
+            "DOWNLOAD_MAC_AU",
+            pluginName.replace(/ /g, "-") + "-macOS-AU.zip",
+          ),
+        );
+        setHref(
+          "dl-linux",
+          dlUrl(
+            "DOWNLOAD_LINUX",
+            pluginName.replace(/ /g, "-") + "-Linux-VST3.tar.gz",
+          ),
+        );
+
+        // Quick action links
+        setHref("qa-docs", docsUrl);
+        setHref("qa-support", githubIssues);
+        setHref("qa-community", githubDiscuss);
+
+        // Server URL in API section
+        if (apiUrl) {
+          var serverEl = document.getElementById("server-url");
+          if (serverEl) serverEl.textContent = apiUrl;
+        }
+
+        // Subscription plan prices
+        setText("sub-price-base", sym + pBase);
+        setText("sub-price-base2", sym + pBase);
+        setText("sub-price-starter", sym + pStarter);
+        setText("sub-price-starter2", sym + pStarter);
+        setText("sub-price-pro", sym + pPro);
+        setText("sub-price-pro2", sym + pPro);
+      })();
+    </script>
+  </body>
+</html>

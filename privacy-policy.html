@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="js/config.js"></script>
+    <script>
+      (function () {
+        var cfg = window.APP_CONFIG || {};
+        var siteName = cfg.SITE_NAME || "OBSIDIAN Neural";
+        document.title = "Privacy Policy - " + siteName;
+        var desc = document.createElement("meta");
+        desc.name = "description";
+        desc.content =
+          siteName +
+          " Privacy Policy - How we collect, use, and protect your data.";
+        document.head.appendChild(desc);
+        var robots = document.createElement("meta");
+        robots.name = "robots";
+        robots.content = "noindex, follow";
+        document.head.appendChild(robots);
+      })();
+    </script>
+
+    <link rel="icon" type="image/x-icon" href="assets/images/logo.ico" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div id="nav-container"></div>
+
+    <main class="container py-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-9">
+          <!-- Header -->
+          <div class="legal-header mb-5 text-center">
+            <div class="legal-icon mb-4">
+              <i class="fas fa-shield-alt fa-4x"></i>
+            </div>
+            <h1 class="display-5 fw-bold mb-3">Privacy Policy</h1>
+            <p class="fs-5">
+              <i class="far fa-calendar-alt me-2"></i>Last updated:
+              <span id="legal-last-updated">—</span>
+            </p>
+          </div>
+
+          <!-- Section 1 -->
+          <section class="legal-section">
+            <div class="section-icon"><i class="fas fa-database"></i></div>
+            <h2 class="h3 fw-bold mb-4">1. Information We Collect</h2>
+            <p class="lead mb-4">
+              We collect information you provide directly to us:
+            </p>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="info-card">
+                  <i class="fas fa-user fa-2x text-primary mb-3"></i>
+                  <h3 class="h6 fw-bold">Account Information</h3>
+                  <p class="small mb-0">Email address, password (encrypted)</p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="info-card">
+                  <i class="fas fa-credit-card fa-2x text-success mb-3"></i>
+                  <h3 class="h6 fw-bold">Payment Information</h3>
+                  <p class="small mb-0">
+                    Processed securely through Stripe (we don't store payment
+                    details)
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="info-card">
+                  <i class="fas fa-chart-line fa-2x text-warning mb-3"></i>
+                  <h3 class="h6 fw-bold">Usage Data</h3>
+                  <p class="small mb-0">
+                    API calls, credits consumed, generation history
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="info-card">
+                  <i class="fas fa-laptop fa-2x text-danger mb-3"></i>
+                  <h3 class="h6 fw-bold">Technical Data</h3>
+                  <p class="small mb-0">
+                    IP address, browser type, device information
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 2 -->
+          <section class="legal-section">
+            <div class="section-icon"><i class="fas fa-cogs"></i></div>
+            <h2 class="h3 fw-bold mb-4">2. How We Use Your Information</h2>
+            <div class="usage-list">
+              <div class="usage-item">
+                <i class="fas fa-check-circle text-success me-3"></i
+                ><span>Providing and maintaining our services</span>
+              </div>
+              <div class="usage-item">
+                <i class="fas fa-check-circle text-success me-3"></i
+                ><span>Processing payments and managing subscriptions</span>
+              </div>
+              <div class="usage-item">
+                <i class="fas fa-check-circle text-success me-3"></i
+                ><span>Sending important service updates</span>
+              </div>
+              <div class="usage-item">
+                <i class="fas fa-check-circle text-success me-3"></i
+                ><span>Improving our AI models and services</span>
+              </div>
+              <div class="usage-item">
+                <i class="fas fa-check-circle text-success me-3"></i
+                ><span>Detecting and preventing fraud</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 2.1 -->
+          <section class="legal-section">
+            <div class="section-icon"><i class="fas fa-paper-plane"></i></div>
+            <h2 class="h3 fw-bold mb-4">2.1 Email Communications</h2>
+            <div class="email-policy">
+              <p class="mb-3">
+                If you have opted in to receive communications, we may use your
+                email address to send you:
+              </p>
+              <div class="usage-list">
+                <div class="usage-item">
+                  <i class="fas fa-bell text-primary me-3"></i
+                  ><span>Product updates and new feature announcements</span>
+                </div>
+                <div class="usage-item">
+                  <i class="fas fa-rocket text-success me-3"></i
+                  ><span id="email-tips-label"
+                    >Tips for getting the most out of the plugin</span
+                  >
+                </div>
+                <div class="usage-item">
+                  <i class="fas fa-newspaper text-info me-3"></i
+                  ><span>Occasional newsletters about AI audio generation</span>
+                </div>
+              </div>
+              <div class="alert-custom alert-danger mt-4">
+                <i class="fas fa-check-circle me-2"></i>
+                <strong>You control your preferences:</strong> You can opt out
+                of marketing emails at any time through your account settings or
+                by clicking the unsubscribe link in any email. Service-critical
+                emails (password resets, billing notifications) cannot be opted
+                out of while you maintain an account.
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 3 -->
+          <section class="legal-section">
+            <div class="section-icon"><i class="fas fa-share-alt"></i></div>
+            <h2 class="h3 fw-bold mb-4">3. Data Sharing</h2>
+            <p class="mb-4">We share your information only with:</p>
+            <div class="sharing-cards">
+              <div class="sharing-card">
+                <div class="d-flex align-items-start">
+                  <i
+                    class="fas fa-plug fa-2x text-primary me-3 flex-shrink-0"
+                  ></i>
+                  <div>
+                    <h3 class="h6 fw-bold mb-2">Service Providers</h3>
+                    <p class="small mb-0">
+                      Stripe (payments), fal.ai (AI processing)
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="sharing-card">
+                <div class="d-flex align-items-start">
+                  <i
+                    class="fas fa-gavel fa-2x text-warning me-3 flex-shrink-0"
+                  ></i>
+                  <div>
+                    <h3 class="h6 fw-bold mb-2">Legal Requirements</h3>
+                    <p class="small mb-0">
+                      When required by law or to protect our rights
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="alert-custom alert-info mt-4">
+              <i class="fas fa-info-circle me-2"></i>
+              <strong
+                >We never sell your personal information to third
+                parties.</strong
+              >
+            </div>
+          </section>
+
+          <!-- Section 4 -->
+          <section class="legal-section">
+            <div class="section-icon"><i class="fas fa-music"></i></div>
+            <h2 class="h3 fw-bold mb-4">4. Audio Content</h2>
+            <div class="alert-custom alert-warning">
+              <i class="fas fa-exclamation-triangle me-2"></i>
+              <div>
+                <strong>Important:</strong> Audio generated through our service
+                is processed by third-party AI providers (fal.ai). While we
+                don't store your generated audio permanently, these providers
+                may temporarily cache it for processing. Your audio prompts may
+                be used to improve AI models.
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 5 -->
+          <section class="legal-section">
+            <div class="section-icon"><i class="fas fa-cookie-bite"></i></div>
+            <h2 class="h3 fw-bold mb-4">5. Cookies and Tracking</h2>
+            <p class="mb-3">We use essential cookies for:</p>
+            <div class="usage-list mb-4">
+              <div class="usage-item">
+                <i class="fas fa-key text-primary me-3"></i
+                ><span>Authentication (JWT tokens stored in localStorage)</span>
+              </div>
+              <div class="usage-item">
+                <i class="fas fa-clock text-success me-3"></i
+                ><span>Session management</span>
+              </div>
+              <div class="usage-item">
+                <i class="fas fa-shield-alt text-warning me-3"></i
+                ><span>Security features</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 6 -->
+          <section class="legal-section">
+            <div class="section-icon">
+              <i class="fas fa-hourglass-half"></i>
+            </div>
+            <h2 class="h3 fw-bold mb-4">6. Data Retention</h2>
+            <div class="retention-grid">
+              <div class="retention-item">
+                <div class="retention-icon bg-gradient-blue">
+                  <i class="fas fa-user"></i>
+                </div>
+                <h3 class="h6 fw-bold mt-3">Account Data</h3>
+                <p class="small">Retained while your account is active</p>
+              </div>
+              <div class="retention-item">
+                <div class="retention-icon bg-gradient-purple">
+                  <i class="fas fa-history"></i>
+                </div>
+                <h3 class="h6 fw-bold mt-3">Generation History</h3>
+                <p class="small">90 days</p>
+              </div>
+              <div class="retention-item">
+                <div class="retention-icon bg-gradient-green">
+                  <i class="fas fa-receipt"></i>
+                </div>
+                <h3 class="h6 fw-bold mt-3">Payment Records</h3>
+                <p class="small">7 years (legal requirement)</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 7 -->
+          <section class="legal-section">
+            <div class="section-icon"><i class="fas fa-user-shield"></i></div>
+            <h2 class="h3 fw-bold mb-4">7. Your Rights (GDPR)</h2>
+            <p class="mb-4">You have the right to:</p>
+            <div class="rights-grid">
+              <div class="right-item">
+                <i class="fas fa-eye text-primary"></i
+                ><span>Access your personal data</span>
+              </div>
+              <div class="right-item">
+                <i class="fas fa-edit text-success"></i
+                ><span>Correct inaccurate data</span>
+              </div>
+              <div class="right-item">
+                <i class="fas fa-trash text-danger"></i
+                ><span>Request deletion of your data</span>
+              </div>
+              <div class="right-item">
+                <i class="fas fa-download text-warning"></i
+                ><span>Export your data</span>
+              </div>
+              <div class="right-item">
+                <i class="fas fa-ban text-info"></i
+                ><span>Object to data processing</span>
+              </div>
+            </div>
+            <p class="mt-4">
+              Contact us at
+              <a id="privacy-email-gdpr" href="#" class="text-success">—</a> to
+              exercise these rights.
+            </p>
+          </section>
+
+          <!-- Section 8 -->
+          <section class="legal-section">
+            <div class="section-icon"><i class="fas fa-lock"></i></div>
+            <h2 class="h3 fw-bold mb-4">8. Security</h2>
+            <p class="mb-4">
+              We implement industry-standard security measures:
+            </p>
+            <div class="security-features">
+              <div class="security-feature">
+                <i class="fas fa-shield-alt"></i
+                ><span>Encrypted data transmission (HTTPS)</span>
+              </div>
+              <div class="security-feature">
+                <i class="fas fa-key"></i
+                ><span>Encrypted password storage (bcrypt)</span>
+              </div>
+              <div class="security-feature">
+                <i class="fas fa-random"></i
+                ><span>Secure API key generation</span>
+              </div>
+              <div class="security-feature">
+                <i class="fas fa-search"></i
+                ><span>Regular security audits</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 9 -->
+          <section class="legal-section">
+            <div class="section-icon"><i class="fas fa-child"></i></div>
+            <h2 class="h3 fw-bold mb-4">9. Children's Privacy</h2>
+            <div class="alert-custom alert-info">
+              <i class="fas fa-info-circle me-2"></i>
+              Our service is not intended for users under 16. We don't knowingly
+              collect data from children.
+            </div>
+          </section>
+
+          <!-- Contact CTA -->
+          <section class="legal-section">
+            <div class="contact-cta">
+              <div class="row align-items-center">
+                <div class="col-lg-8">
+                  <h3 class="h4 fw-bold mb-2">Questions about your privacy?</h3>
+                  <p class="text-white-50 mb-0">
+                    We're committed to transparency and protecting your data
+                  </p>
+                </div>
+                <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+                  <a
+                    id="privacy-email-cta"
+                    href="#"
+                    class="btn btn-light btn-lg px-4"
+                  >
+                    <i class="fas fa-envelope me-2"></i>Contact Us
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/cookie-consent.js"></script>
+    <script src="js/components.js"></script>
+
+    <!-- Hydrate dynamic values -->
+    <script>
+      (function () {
+        var cfg = window.APP_CONFIG || {};
+        var pluginName = cfg.PLUGIN_NAME || cfg.SITE_NAME || "Obsidian Neural";
+        var privacyEmail =
+          cfg.PRIVACY_EMAIL || cfg.SUPPORT_EMAIL || cfg.COMPANY_EMAIL || "";
+        var lastUpdated = cfg.LEGAL_LAST_UPDATED || "";
+
+        // Last updated date
+        var dateEl = document.getElementById("legal-last-updated");
+        if (dateEl) dateEl.textContent = lastUpdated || "—";
+
+        // Email links
+        function setEmail(id, email) {
+          var el = document.getElementById(id);
+          if (!el) return;
+          if (email) {
+            el.href = "mailto:" + email;
+            el.textContent = email;
+          } else {
+            el.href = "contact.html";
+            el.textContent = "contact form";
+          }
+        }
+        setEmail("privacy-email-gdpr", privacyEmail);
+
+        var ctaBtn = document.getElementById("privacy-email-cta");
+        if (ctaBtn)
+          ctaBtn.href = privacyEmail
+            ? "mailto:" + privacyEmail
+            : "contact.html";
+
+        // "Tips" label with plugin name
+        var tipsLabel = document.getElementById("email-tips-label");
+        if (tipsLabel)
+          tipsLabel.textContent =
+            "Tips for getting the most out of " + pluginName;
+      })();
+    </script>
+  </body>
+</html>

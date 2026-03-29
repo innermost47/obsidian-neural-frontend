@@ -1,0 +1,7 @@
+js/config.js
+robots.txt
+sitemap.xml
+assets/images/*
+!assets/images/.gitkeep
+assets/videos/*
+!assets/videos/.gitkeep

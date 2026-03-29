@@ -1,0 +1,2459 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="js/config.js"></script>
+    <script>
+      (function () {
+        var cfg = window.APP_CONFIG || {};
+        var siteName = cfg.SITE_NAME || "OBSIDIAN Neural";
+        var siteUrl = cfg.SITE_URL || "";
+        var pluginName = cfg.PLUGIN_NAME || siteName;
+        var pluginFormats = cfg.PLUGIN_FORMATS || "VST3/AU";
+        var authorName = cfg.PUBLICATION_DIRECTOR || cfg.COMPANY_NAME || "";
+        var authorAlias = cfg.AUTHOR_ALIAS || "";
+        var twitterHandle = cfg.TWITTER_HANDLE || "";
+        var conferenceTag = cfg.CONFERENCE_TAG || "AES AIMLA 2025";
+        var screenshotUrl = siteUrl
+          ? siteUrl + "/assets/images/screenshot.png"
+          : "";
+        var githubUrl = cfg.GITHUB_URL || "";
+        var priceStarter = cfg.GIFT_PRICE_STARTER || "14.99";
+        var pricePro = cfg.GIFT_PRICE_PRO || "29.99";
+        var currency = cfg.GIFT_CURRENCY || "EUR";
+        var currencySymbol = cfg.GIFT_CURRENCY_SYMBOL || "€";
+
+        // Expose for JSON-LD block
+        window._idxCfg = {
+          siteName,
+          siteUrl,
+          pluginName,
+          pluginFormats,
+          authorName,
+          authorAlias,
+          twitterHandle,
+          conferenceTag,
+          screenshotUrl,
+          githubUrl,
+          priceStarter,
+          pricePro,
+          currency,
+          currencySymbol,
+        };
+
+        var pageTitle =
+          pluginName +
+          " — Real-Time AI Music Generation " +
+          pluginFormats +
+          " Plugin" +
+          (authorAlias ? " | " + authorAlias : "");
+        var pageDesc =
+          "First " +
+          pluginFormats +
+          " plugin for real-time AI stereo music generation in live performance. " +
+          "Generate 30-second samples in ~20 seconds, 8-track sampler, MIDI control, BPM sync." +
+          (conferenceTag ? " Featured at " + conferenceTag + "." : "");
+
+        document.title = pageTitle;
+
+        function setMeta(name, content, prop) {
+          if (!content) return;
+          var el = document.createElement("meta");
+          el.setAttribute(prop ? "property" : "name", name);
+          el.setAttribute("content", content);
+          document.head.appendChild(el);
+        }
+        function setLink(rel, href) {
+          if (!href) return;
+          var el = document.createElement("link");
+          el.setAttribute("rel", rel);
+          el.setAttribute("href", href);
+          document.head.appendChild(el);
+        }
+
+        setMeta("description", pageDesc);
+        setMeta(
+          "keywords",
+          "AI VST plugin, real-time music generation, AI music VST3, live performance AI audio, " +
+            "Stable Audio VST, LLM music generation, AI DAW plugin, " +
+            pluginName +
+            (authorAlias ? ", " + authorAlias : "") +
+            ", sketch to audio, draw to audio VST",
+        );
+        setMeta(
+          "author",
+          authorAlias
+            ? authorAlias + (authorName ? " - " + authorName : "")
+            : authorName,
+        );
+        setMeta("robots", "index, follow");
+        setLink("canonical", siteUrl + "/");
+
+        setMeta("og:type", "website", true);
+        setMeta("og:site_name", siteName, true);
+        setMeta("og:locale", "en_US", true);
+        setMeta("og:url", siteUrl + "/", true);
+        setMeta(
+          "og:title",
+          pluginName + " — Real-Time AI Music Generation VST",
+          true,
+        );
+        setMeta(
+          "og:description",
+          "First VST for real-time AI music generation. 8-track sampler, LLM brain, draw-to-audio, live performance ready." +
+            (conferenceTag ? " Presented at " + conferenceTag + "." : ""),
+          true,
+        );
+        setMeta("og:image", screenshotUrl, true);
+        setMeta("og:image:width", "1200", true);
+        setMeta("og:image:height", "630", true);
+        setMeta(
+          "og:image:alt",
+          pluginName + " VST3 plugin interface — 8-track AI sampler",
+          true,
+        );
+
+        setMeta("twitter:card", "summary_large_image");
+        if (twitterHandle) setMeta("twitter:site", "@" + twitterHandle);
+        setMeta("twitter:url", siteUrl + "/");
+        setMeta("twitter:title", pluginName + " — Real-Time AI Music VST");
+        setMeta(
+          "twitter:description",
+          "First VST for real-time AI music generation. Live performance ready. Open source.",
+        );
+        setMeta("twitter:image", screenshotUrl);
+        setMeta("twitter:image:alt", pluginName + " VST plugin interface");
+      })();
+    </script>
+
+    <link rel="icon" type="image/x-icon" href="assets/images/logo.ico" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- Schema.org JSON-LD — fully dynamic -->
+    <script id="json-ld-placeholder" type="application/ld+json">
+      []
+    </script>
+    <script>
+      (function () {
+        var g = window._idxCfg || {};
+        var siteName = g.siteName || "OBSIDIAN Neural";
+        var siteUrl = g.siteUrl || "";
+        var pluginName = g.pluginName || siteName;
+        var authorName = g.authorName || "";
+        var authorAlias = g.authorAlias || "";
+        var conferenceTag = g.conferenceTag || "";
+        var screenshotUrl = g.screenshotUrl || "";
+        var githubUrl = g.githubUrl || "";
+        var priceStarter = g.priceStarter || "14.99";
+        var pricePro = g.pricePro || "29.99";
+        var currency = g.currency || "EUR";
+        var currencySymbol = g.currencySymbol || "€";
+
+        // ARG admin URL — new optional config var
+        var argUrl =
+          (window.APP_CONFIG && window.APP_CONFIG.ARG_ADMIN_URL) || "";
+        var controllerUrl =
+          (window.APP_CONFIG && window.APP_CONFIG.CONTROLLER_GITHUB_URL) || "";
+        var beatcrafterUrl =
+          (window.APP_CONFIG && window.APP_CONFIG.BEATCRAFTER_GITHUB_URL) || "";
+        var kvraudioUrl =
+          (window.APP_CONFIG && window.APP_CONFIG.KVRAUDIO_URL) || "";
+        var paperUrl = (window.APP_CONFIG && window.APP_CONFIG.PAPER_URL) || "";
+
+        // YouTube video IDs — new optional config vars
+        var videoIdDnB =
+          (window.APP_CONFIG && window.APP_CONFIG.VIDEO_ID_DNB) || "";
+        var videoIdAimla =
+          (window.APP_CONFIG && window.APP_CONFIG.VIDEO_ID_AIMLA) || "";
+        var videoIdDraw =
+          (window.APP_CONFIG && window.APP_CONFIG.VIDEO_ID_DRAW) || "";
+
+        var authorGithub = githubUrl
+          ? githubUrl.replace(/\/[^/]+$/, "") // strip repo slug → profile URL
+          : undefined;
+
+        var jsonLd = [
+          {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: siteName,
+            url: siteUrl,
+            description:
+              "First " +
+              ((window.APP_CONFIG && window.APP_CONFIG.PLUGIN_FORMATS) ||
+                "VST3/AU") +
+              " plugin for real-time AI music generation in live performance",
+            potentialAction: {
+              "@type": "SearchAction",
+              target: {
+                "@type": "EntryPoint",
+                urlTemplate:
+                  siteUrl + "/documentation.html?q={search_term_string}",
+              },
+              "query-input": "required name=search_term_string",
+            },
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            name: pluginName,
+            alternateName: pluginName + " Sound Engine",
+            applicationCategory: "MultimediaApplication",
+            applicationSubCategory: "Audio Plugin",
+            operatingSystem: "Windows, macOS, Linux",
+            softwareVersion: "latest",
+            license: "https://www.mozilla.org/en-US/MPL/2.0/",
+            creator: {
+              "@type": "Person",
+              name: authorName,
+              alternateName: authorAlias || undefined,
+              url: authorGithub,
+            },
+            offers: [
+              {
+                "@type": "Offer",
+                name: "Free",
+                price: "0",
+                priceCurrency: currency,
+                description: "10 free credits, 10 samples",
+              },
+              {
+                "@type": "Offer",
+                name: "Starter",
+                price: priceStarter,
+                priceCurrency: currency,
+                description: "500 credits/month, full features",
+              },
+              {
+                "@type": "Offer",
+                name: "Pro",
+                price: pricePro,
+                priceCurrency: currency,
+                description: "1500 credits/month, priority generation",
+              },
+            ],
+            url: siteUrl,
+            downloadUrl: githubUrl ? githubUrl + "/releases/latest" : undefined,
+            screenshot: screenshotUrl,
+            featureList: [
+              "Real-time AI stereo music generation",
+              "8-track stereo sampler",
+              "64-step sequencer with 8 sequences per page",
+              "MIDI controller integration and MIDI Learn",
+              "BPM auto-synchronization via Librosa",
+              "Draw-to-audio: sketch-to-sound via vision LLM",
+              "LLM Brain with contextual session memory",
+              "VST3 and AU (Logic Pro) formats",
+              "Multi-output DAW routing",
+              "Quantized sample launch system",
+            ],
+            award: conferenceTag
+              ? conferenceTag + " Late Breaking Demo"
+              : undefined,
+          },
+        ];
+
+        // VideoObject blocks — only add if IDs are configured
+        var videos = [
+          {
+            id: videoIdDnB,
+            name: pluginName + " — Jungle Drum & Bass Live Mix",
+            desc: "Live performance demo: AI-generated samples triggered via MIDI controller in a jungle drum & bass set",
+            date: "2025-01-01",
+          },
+          {
+            id: videoIdAimla,
+            name: pluginName + " — " + conferenceTag + " Live Performance",
+            desc:
+              "Excerpt from the " +
+              conferenceTag +
+              " conference. Live AI music generation with hardware controllers in Bitwig Studio.",
+            date: "2025-09-01",
+          },
+          {
+            id: videoIdDraw,
+            name: pluginName + " — Draw-to-Audio Live Demo",
+            desc: "Raw improvisation showcasing the draw-to-audio workflow: sketch patterns on canvas, AI vision model interprets visuals and generates matching audio loops on the fly.",
+            date: "2025-01-01",
+          },
+        ];
+        videos.forEach(function (v) {
+          if (!v.id) return;
+          jsonLd.push({
+            "@context": "https://schema.org",
+            "@type": "VideoObject",
+            name: v.name,
+            description: v.desc,
+            thumbnailUrl:
+              "https://img.youtube.com/vi/" + v.id + "/maxresdefault.jpg",
+            embedUrl: "https://www.youtube.com/embed/" + v.id,
+            contentUrl: "https://www.youtube.com/watch?v=" + v.id,
+            uploadDate: v.date,
+            publisher: { "@type": "Person", name: authorAlias || authorName },
+          });
+        });
+
+        // FAQPage
+        jsonLd.push({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: [
+            {
+              "@type": "Question",
+              name: "What is " + pluginName + "?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text:
+                  pluginName +
+                  " is the first VST3/AU plugin for real-time AI stereo music generation in live performance. It generates 30-second audio samples in approximately 20 seconds, directly inside your DAW, with 8-track stereo output, MIDI control, and BPM synchronization.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Is " + pluginName + " free?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text:
+                  "Yes. The VST3/AU plugin itself is free and open source (MPL-2.0) on GitHub. A free account gives you 10 credits (10 samples) at no cost and with no credit card required. Paid plans start at " +
+                  currencySymbol +
+                  priceStarter +
+                  "/month for more credits.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Which DAWs and operating systems are supported?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text:
+                  pluginName +
+                  " works on Windows, macOS (Intel + Apple Silicon universal binary), and Linux. It supports VST3 format for all major DAWs, and AU format for Logic Pro and GarageBand.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "What is the Draw-to-Audio feature?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Draw-to-Audio lets you sketch visual patterns on a 512x512 canvas using various tools and colors. A vision LLM analyzes your drawing and translates it into a detailed musical prompt, which is then used to generate audio. Colors map to frequencies (black = bass, red = high energy) and patterns map to rhythms.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "How does " + pluginName + " handle BPM synchronization?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "All generated samples are automatically time-stretched to match your DAW's current BPM using the Librosa algorithm. You can change tempo mid-session without reloading samples or interrupting playback.",
+              },
+            },
+          ],
+        });
+
+        var el = document.getElementById("json-ld-placeholder");
+        if (el) el.textContent = JSON.stringify(jsonLd, null, 2);
+      })();
+    </script>
+
+    <script>
+      window.trackClick = function (eventName, label) {
+        return new Promise(function (resolve) {
+          if (typeof gtag === "function") {
+            gtag("event", eventName, {
+              event_category: "Engagement",
+              event_label: label,
+              event_callback: resolve,
+            });
+            setTimeout(resolve, 500);
+          } else {
+            resolve();
+          }
+        });
+      };
+    </script>
+  </head>
+  <body>
+    <div id="nav-container"></div>
+
+    <header class="hero-gradient py-4">
+      <div class="container py-5">
+        <div class="row justify-content-center text-center">
+          <div class="col-lg-10">
+            <h1 class="display-3 fw-bold mb-4 text-gradient">
+              Real-Time AI Music Generation<br />For Live Performance
+            </h1>
+            <p class="lead mb-4 fs-4">
+              <strong>AI as your creative partner, not your replacement.</strong
+              ><br />
+              Generate music in real-time, keep full control, explore without
+              limits—directly in your DAW.
+            </p>
+            <p class="mb-4 text-secondary fs-5" id="hero-plugin-desc">
+              Whether you're a live performer or discovering music through AI,
+              the plugin transforms the machine into an instrument you
+              control—with 8 MIDI sequences per page ready to trigger.
+            </p>
+            <div class="d-flex justify-content-center gap-3 mb-4 flex-wrap">
+              <a
+                href="register.html"
+                class="btn btn-success btn-lg px-5 py-3 fw-bold shadow-lg"
+                onclick="
+                  event.preventDefault();
+                  trackClick('sign_up', 'Start Free Button').then(
+                    () => (window.location.href = 'register.html'),
+                  );
+                "
+              >
+                <i class="fas fa-rocket me-2"></i>Start Free Trial - 7 Days
+              </a>
+              <a
+                id="btn-download-plugin"
+                href="#"
+                target="_blank"
+                rel="noopener"
+                class="btn btn-outline-secondary btn-lg px-5 py-3 fw-bold"
+                onclick="
+                  event.preventDefault();
+                  trackClick('file_download', 'GitHub VST Download').then(() =>
+                    window.open(this.href, '_blank'),
+                  );
+                "
+              >
+                <i class="fab fa-github me-2"></i>Download Plugin (Free)
+              </a>
+              <a
+                id="btn-controller"
+                href="#"
+                target="_blank"
+                rel="noopener"
+                class="btn btn-outline-secondary btn-lg px-5 py-3 fw-bold"
+                onclick="
+                  event.preventDefault();
+                  trackClick(
+                    'file_download',
+                    'Mobile Controller Download',
+                  ).then(() => window.open(this.href, '_blank'));
+                "
+              >
+                <i class="fas fa-mobile-alt me-2"></i>Mobile Controller
+              </a>
+            </div>
+            <div class="d-flex justify-content-center gap-4 fs-5 flex-wrap">
+              <span
+                ><i class="fas fa-code text-success me-2"></i>Open Source
+                (MPL-2.0)</span
+              >
+              <span
+                ><i class="fas fa-star text-warning me-2"></i
+                ><span id="github-stars">Loading...</span> Stars</span
+              >
+              <span><i class="fas fa-bolt text-danger me-2"></i>Real-Time</span>
+            </div>
+            <div
+              class="badge bg-warning text-dark mt-4 px-3 animate-pulse"
+              id="conference-badge"
+            >
+              <i class="fas fa-award me-2"></i>
+            </div>
+            <!-- ARG terminal widget -->
+            <div class="rag-signal-wrapper mt-4" id="rag-signal">
+              <div class="rag-terminal">
+                <div class="rag-terminal-bar">
+                  <span class="rag-dot rag-dot-red"></span>
+                  <span class="rag-dot rag-dot-yellow"></span>
+                  <span class="rag-dot rag-dot-green"></span>
+                  <span class="rag-terminal-title">obsidian_kernel.log</span>
+                </div>
+                <div class="rag-terminal-body">
+                  <p class="rag-line rag-line-1">
+                    <span class="rag-prompt">$</span
+                    ><span class="rag-cmd">
+                      tail -f /var/log/neural/kernel.log</span
+                    >
+                  </p>
+                  <p class="rag-line rag-line-2 rag-muted">
+                    [INFO] Stable Audio pipeline... OK
+                  </p>
+                  <p class="rag-line rag-line-3 rag-muted">
+                    [INFO] VLM vision bridge... OK
+                  </p>
+                  <p class="rag-line rag-line-4 rag-warn">
+                    [WARN] Unexpected write access detected on
+                    /neural/core/identity
+                  </p>
+                  <p class="rag-line rag-line-5 rag-err">
+                    [ERR&nbsp;] Unknown process writing to stream — signature
+                    unresolved
+                  </p>
+                  <p class="rag-line rag-line-6 rag-highlight">
+                    <span
+                      class="rag-glitch"
+                      data-text="// something is happening."
+                      >// something is happening.</span
+                    >
+                  </p>
+                  <p class="rag-line rag-line-7 rag-blink">
+                    <span class="rag-prompt">$</span>
+                    <span class="rag-cursor">█</span>
+                  </p>
+                </div>
+              </div>
+              <a
+                id="arg-cta-link"
+                href="#"
+                class="rag-cta"
+                target="_blank"
+                rel="noopener"
+              >
+                <span class="rag-cta-icon">⬡</span>
+                <span class="rag-cta-text">Investigate</span>
+                <span class="rag-cta-arrow">→</span>
+              </a>
+            </div>
+            <style>
+              .rag-signal-wrapper {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+                animation: argFadeIn 1.2s ease 0.8s both;
+              }
+              @keyframes argFadeIn {
+                from {
+                  opacity: 0;
+                  transform: translateY(12px);
+                }
+                to {
+                  opacity: 1;
+                  transform: translateY(0);
+                }
+              }
+              .rag-terminal {
+                width: 100%;
+                max-width: 540px;
+                background: rgba(0, 0, 0, 0.82);
+                border: 1px solid rgba(184, 96, 92, 0.35);
+                border-radius: 10px;
+                overflow: hidden;
+                box-shadow:
+                  0 0 0 1px rgba(184, 96, 92, 0.12),
+                  0 0 32px rgba(184, 96, 92, 0.08),
+                  0 8px 40px rgba(0, 0, 0, 0.6);
+                text-align: left;
+                font-family:
+                  "JetBrains Mono", "Fira Code", "Courier New", monospace;
+                font-size: 0.72rem;
+                backdrop-filter: blur(8px);
+              }
+              .rag-terminal-bar {
+                background: rgba(255, 255, 255, 0.04);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+                padding: 0.5rem 0.75rem;
+                display: flex;
+                align-items: center;
+                gap: 0.4rem;
+              }
+              .rag-dot {
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                display: inline-block;
+              }
+              .rag-dot-red {
+                background: #ff5f57;
+              }
+              .rag-dot-yellow {
+                background: #febc2e;
+              }
+              .rag-dot-green {
+                background: #28c840;
+              }
+              .rag-terminal-title {
+                margin-left: auto;
+                color: rgba(255, 255, 255, 0.25);
+                font-size: 0.65rem;
+                letter-spacing: 0.05em;
+              }
+              .rag-terminal-body {
+                padding: 1rem 1.1rem 1.1rem;
+                display: flex;
+                flex-direction: column;
+                gap: 0.25rem;
+              }
+              .rag-line {
+                margin: 0;
+                line-height: 1.6;
+                opacity: 0;
+                animation: argLineIn 0.3s ease forwards;
+              }
+              .rag-line-1 {
+                animation-delay: 1s;
+              }
+              .rag-line-2 {
+                animation-delay: 1.4s;
+              }
+              .rag-line-3 {
+                animation-delay: 1.7s;
+              }
+              .rag-line-4 {
+                animation-delay: 2.1s;
+              }
+              .rag-line-5 {
+                animation-delay: 2.5s;
+              }
+              .rag-line-6 {
+                animation-delay: 3s;
+              }
+              .rag-line-7 {
+                animation-delay: 3.4s;
+              }
+              @keyframes argLineIn {
+                from {
+                  opacity: 0;
+                }
+                to {
+                  opacity: 1;
+                }
+              }
+              .rag-prompt {
+                color: #b8605c;
+              }
+              .rag-cmd {
+                color: rgba(255, 255, 255, 0.6);
+              }
+              .rag-muted {
+                color: rgba(255, 255, 255, 0.3);
+              }
+              .rag-warn {
+                color: #febc2e;
+              }
+              .rag-err {
+                color: #ff5f57;
+              }
+              .rag-highlight {
+                color: rgba(255, 255, 255, 0.85);
+                font-weight: 600;
+              }
+              .rag-blink .rag-cursor {
+                color: #b8605c;
+                animation: argBlink 1s step-end infinite;
+              }
+              @keyframes argBlink {
+                0%,
+                100% {
+                  opacity: 1;
+                }
+                50% {
+                  opacity: 0;
+                }
+              }
+              .rag-glitch {
+                position: relative;
+                display: inline-block;
+              }
+              .rag-glitch::before,
+              .rag-glitch::after {
+                content: attr(data-text);
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                overflow: hidden;
+              }
+              .rag-glitch::before {
+                color: #ff5f57;
+                clip-path: polygon(0 0, 100% 0, 100% 40%, 0 40%);
+                transform: translateX(-2px);
+                animation: argGlitchTop 4s infinite linear 3.2s;
+              }
+              .rag-glitch::after {
+                color: #28c840;
+                clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
+                transform: translateX(2px);
+                animation: argGlitchBot 4s infinite linear 3.2s;
+              }
+              @keyframes argGlitchTop {
+                0%,
+                90%,
+                100% {
+                  transform: translateX(0);
+                  opacity: 0;
+                }
+                91% {
+                  transform: translateX(-3px);
+                  opacity: 0.8;
+                }
+                93% {
+                  transform: translateX(2px);
+                  opacity: 0.6;
+                }
+                95% {
+                  transform: translateX(0);
+                  opacity: 0;
+                }
+              }
+              @keyframes argGlitchBot {
+                0%,
+                90%,
+                100% {
+                  transform: translateX(0);
+                  opacity: 0;
+                }
+                91% {
+                  transform: translateX(3px);
+                  opacity: 0.8;
+                }
+                93% {
+                  transform: translateX(-2px);
+                  opacity: 0.6;
+                }
+                95% {
+                  transform: translateX(0);
+                  opacity: 0;
+                }
+              }
+              .rag-cta {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                padding: 0.45rem 1.1rem;
+                border: 1px solid rgba(184, 96, 92, 0.4);
+                border-radius: 4px;
+                background: rgba(184, 96, 92, 0.06);
+                color: #b8605c;
+                font-family: "JetBrains Mono", "Fira Code", monospace;
+                font-size: 0.72rem;
+                letter-spacing: 0.12em;
+                text-decoration: none;
+                text-transform: uppercase;
+                transition: all 0.25s ease;
+                opacity: 0;
+                animation: argFadeIn 0.6s ease 3.8s forwards;
+              }
+              .rag-cta:hover {
+                color: #b8605c;
+                border-color: rgba(184, 96, 92, 0.8);
+                background: rgba(184, 96, 92, 0.12);
+                box-shadow: 0 0 18px rgba(184, 96, 92, 0.15);
+                text-decoration: none;
+              }
+              .rag-cta-icon {
+                font-size: 0.9rem;
+                opacity: 0.6;
+              }
+              .rag-cta-arrow {
+                transition: transform 0.2s ease;
+              }
+              .rag-cta:hover .rag-cta-arrow {
+                transform: translateX(3px);
+              }
+            </style>
+            <!--
+  ██████╗ ██████╗ ███████╗██╗██████╗ ██╗ █████╗ ███╗   ██╗
+  You noticed. Good.
+  The signal started before the noise.
+  404 is not the end.
+-->
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- VST Screenshot -->
+    <section class="container py-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="position-relative">
+            <div class="glow-effect"></div>
+            <img
+              src="assets/images/screenshot.png"
+              alt="VST3 Interface - 8-track sampler with step sequencer"
+              id="screenshot-img"
+              class="img-fluid shadow-2xl img-thumbnail"
+            />
+          </div>
+          <p class="text-center mt-3 fs-6">
+            <i class="fas fa-layer-group me-2 text-secondary"></i>VST3 + AU
+            (Logic) • 8-track stereo sampler • 64-step sequencer (1-4 measures)
+            • 8 sequences per page • MIDI Learn
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mobile Controller -->
+    <section class="py-5 bg-gradient-dark" id="mobile-controller">
+      <div class="container py-5">
+        <div class="row text-center mb-5">
+          <div class="col">
+            <h2 class="display-5 fw-bold mb-3">
+              <i class="fas fa-mobile-alt text-danger me-2"></i>MIDI Controller
+            </h2>
+            <p class="lead text-secondary">
+              Control the plugin from your mobile device via USB MIDI
+            </p>
+            <div class="badge aimla-badge text-dark mt-2 px-4 py-2">
+              <i class="fas fa-code me-2"></i>Open Source — Flutter
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center mb-5">
+          <div class="col-lg-10">
+            <div class="position-relative">
+              <div class="glow-effect"></div>
+              <img
+                src="assets/images/controller-screenshot.png"
+                alt="Android MIDI Controller — 8 slots, pages, sequencer"
+                class="img-fluid shadow-2xl img-thumbnail"
+              />
+            </div>
+            <p class="text-center mt-3 fs-6">
+              <i class="fas fa-plug me-2 text-secondary"></i>USB MIDI • 8 slots
+              • Pages A/B/C/D • Séquenceur • Feedback bidirectionnel
+            </p>
+          </div>
+        </div>
+        <div class="row g-4">
+          <div class="col-lg-4">
+            <div class="feature-card-icon h-100 p-4 rounded-4 hover-lift">
+              <div class="icon-circle bg-gradient-red mb-3">
+                <i class="fas fa-sliders-h fa-2x"></i>
+              </div>
+              <h3 class="h5 fw-bold mb-3">Full Real-Time Control</h3>
+              <p class="mb-3 text-secondary">
+                Control all 8 tracks simultaneously — play, generate, mute,
+                solo, volume, pan, pitch, fine tuning, beat repeat and page
+                switching, all from your phone.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="feature-card-icon h-100 p-4 rounded-4 hover-lift">
+              <div class="icon-circle bg-gradient-blue mb-3">
+                <i class="fas fa-sync-alt fa-2x"></i>
+              </div>
+              <h3 class="h5 fw-bold mb-3">Bidirectional Feedback</h3>
+              <p class="mb-3 text-secondary">
+                The plugin sends its state back to the app in real time. Page
+                changes, play states, generated values — your phone always
+                reflects what's happening in the DAW.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="feature-card-icon h-100 p-4 rounded-4 hover-lift">
+              <div class="icon-circle bg-gradient-purple mb-3">
+                <i class="fas fa-plug fa-2x"></i>
+              </div>
+              <h3 class="h5 fw-bold mb-3">USB — Zero Latency</h3>
+              <p class="mb-3 text-secondary">
+                Connects via USB OTG directly to your computer. No Bluetooth
+                pairing, no Wi-Fi setup, no latency. Plug in and play.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-5">
+          <div class="col text-center">
+            <a
+              id="btn-controller-2"
+              href="#"
+              target="_blank"
+              rel="noopener"
+              class="btn btn-outline-primary btn-lg px-5 py-3 fw-bold"
+            >
+              <i class="fab fa-github me-2"></i>View on GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonial -->
+    <section class="py-5 testimonial-section overflow-hidden">
+      <div class="container py-5">
+        <div class="row justify-content-center">
+          <div class="col-lg-10 col-xl-9">
+            <div
+              class="testimonial-card rounded-4 p-4 p-md-5 position-relative hover-lift shadow-2xl"
+            >
+              <div class="glow-effect opacity-50"></div>
+              <div class="row align-items-center g-4">
+                <div class="col-md-4 text-center border-md-end border-inactive">
+                  <div class="artist-logo mb-3 mx-auto overflow-hidden">
+                    <img
+                      src="assets/images/moteka.jpg"
+                      alt="Moteka — producer and electronic musician, user testimonial"
+                      style="width: 100%; height: 100%; object-fit: cover"
+                    />
+                  </div>
+                  <h3 class="h4 fw-bold mb-1">Moteka</h3>
+                  <p class="text-accent fw-bold mb-3">Producer</p>
+                  <div class="d-flex justify-content-center gap-2">
+                    <a
+                      href="https://soundcloud.com/moteka"
+                      target="_blank"
+                      class="social-icon sm shadow-sm"
+                      ><i class="fab fa-soundcloud"></i
+                    ></a>
+                    <a
+                      href="https://www.instagram.com/pmoteka/"
+                      target="_blank"
+                      class="social-icon sm shadow-sm"
+                      ><i class="fab fa-instagram"></i
+                    ></a>
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <blockquote class="blockquote testimonial-text">
+                    <p class="fs-5 mb-3">
+                      "I've cycled through almost every AI music tool on the
+                      market, but
+                      <span class="highlight"
+                        >this is the first one that actually feels like a real
+                        production tool</span
+                      >
+                      rather than a novelty. While other AI apps try to replace
+                      the songwriter, it treats AI like a
+                      <span class="highlight"
+                        >powerful, playable instrument</span
+                      >."
+                    </p>
+                    <p class="fs-5 mb-3">
+                      "The
+                      <span class="text-gradient fw-bold"
+                        >8-track MIDI-triggering</span
+                      >
+                      is a total game-changer—having immediate access to eight
+                      distinct loops that I can mix and manipulate individually
+                      makes it feel like a
+                      <span class="highlight">smart sampler</span> rather than a
+                      'black box.'"
+                    </p>
+                    <p class="fs-5 mb-0">
+                      "Because it lives directly in my DAW, there is
+                      <span class="highlight"
+                        >zero latency and zero break in my workflow</span
+                      >; I'm not downloading files or waiting for a browser to
+                      render. It stays perfectly locked to my project's tempo
+                      and vibe, serving as the ultimate
+                      <span class="text-accent fw-bold"
+                        >'intelligent jam partner VST'</span
+                      >
+                      whenever I need to break through a creative block, or
+                      start a new track from scratch."
+                    </p>
+                  </blockquote>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Mixing Demo -->
+    <section class="py-5 bg-gradient-dark">
+      <div class="container py-5">
+        <div class="row text-center mb-5">
+          <div class="col" id="demo">
+            <h2 class="display-5 fw-bold mb-3">
+              <i class="fas fa-play-circle text-danger me-2"></i>Mix AI Samples
+              Live
+            </h2>
+            <p class="lead text-secondary">
+              Jungle drum &amp; bass performance with AI-generated samples
+              triggered via MIDI controller
+            </p>
+            <div class="badge aimla-badge text-dark mt-2 px-4 py-2">
+              <i class="fas fa-drum me-2"></i>Live Performance Demo
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center mb-5">
+          <div class="col-lg-10">
+            <div class="position-relative">
+              <div class="glow-effect"></div>
+              <div
+                class="ratio ratio-16x9 rounded-4 overflow-hidden shadow-2xl"
+              >
+                <div
+                  class="youtube-placeholder"
+                  id="yt-dnb"
+                  data-video-id=""
+                  data-title="Jungle Drum &amp; Bass Live Mix"
+                >
+                  <div
+                    style="
+                      background: rgba(0, 0, 0, 0.9);
+                      color: #fff;
+                      padding: 3rem 2rem;
+                      text-align: center;
+                      display: flex;
+                      flex-direction: column;
+                      align-items: center;
+                      justify-content: center;
+                      height: 100%;
+                    "
+                  >
+                    <i
+                      class="fab fa-youtube"
+                      style="
+                        font-size: 4rem;
+                        color: #f00;
+                        margin-bottom: 1.5rem;
+                      "
+                    ></i>
+                    <h4 style="margin-bottom: 1rem">
+                      Jungle Drum &amp; Bass Live Mix
+                    </h4>
+                    <p
+                      style="
+                        margin-bottom: 1.5rem;
+                        font-size: 0.95rem;
+                        max-width: 400px;
+                      "
+                    >
+                      This YouTube video requires cookies to be displayed.
+                    </p>
+                    <button
+                      class="btn btn-primary btn-lg"
+                      onclick="
+                        localStorage.setItem('cookie_consent', 'accepted');
+                        if (window.enableYouTube) {
+                          window.enableYouTube();
+                        } else {
+                          location.reload();
+                        }
+                      "
+                    >
+                      <i class="fas fa-cookie-bite me-2"></i>Accept Cookies to
+                      Watch
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <div class="feature-card-icon h-100 p-4 rounded-4 hover-lift">
+              <div class="icon-circle bg-gradient-purple mb-3">
+                <i class="fas fa-gamepad fa-2x"></i>
+              </div>
+              <h3 class="h5 fw-bold mb-3">MIDI Controller Integration</h3>
+              <p class="mb-3 text-secondary">
+                Launch AI samples from your controller or UI. All track pages
+                are fully MIDI-learnable for seamless hardware control.
+              </p>
+              <ul class="list-unstyled">
+                <li class="mb-2 d-flex align-items-center">
+                  <i
+                    class="fas fa-check me-2"
+                    style="color: var(--color-primary)"
+                  ></i
+                  >Map any button to trigger samples
+                </li>
+                <li class="mb-2 d-flex align-items-center">
+                  <i
+                    class="fas fa-check me-2"
+                    style="color: var(--color-primary)"
+                  ></i
+                  >Hardware and software triggering
+                </li>
+                <li class="d-flex align-items-center">
+                  <i
+                    class="fas fa-check me-2"
+                    style="color: var(--color-primary)"
+                  ></i
+                  >Live performance ready
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="feature-card-icon h-100 p-4 rounded-4 hover-lift">
+              <div class="icon-circle bg-gradient-blue mb-3">
+                <i class="fas fa-clock fa-2x"></i>
+              </div>
+              <h3 class="h5 fw-bold mb-3">Quantized Launch System</h3>
+              <p class="mb-3 text-secondary">
+                Triggers wait for the current sequence to finish, then launch
+                perfectly synced on the next bar. Zero timing issues.
+              </p>
+              <ul class="list-unstyled">
+                <li class="mb-2 d-flex align-items-center">
+                  <i
+                    class="fas fa-check me-2"
+                    style="color: var(--color-primary)"
+                  ></i
+                  >Beat-synced triggering
+                </li>
+                <li class="mb-2 d-flex align-items-center">
+                  <i
+                    class="fas fa-check me-2"
+                    style="color: var(--color-primary)"
+                  ></i
+                  >No timing issues during performance
+                </li>
+                <li class="d-flex align-items-center">
+                  <i
+                    class="fas fa-check me-2"
+                    style="color: var(--color-primary)"
+                  ></i
+                  >Smooth transitions between samples
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="feature-card-icon h-100 p-4 rounded-4 hover-lift">
+              <div class="icon-circle bg-gradient-red mb-3">
+                <i class="fas fa-bolt fa-2x"></i>
+              </div>
+              <h3 class="h5 fw-bold mb-3">Generate Live During Performance</h3>
+              <p class="mb-3 text-secondary">
+                Not just pre-generated samples! Create fresh material directly
+                during your set. While playing 3 tracks, generate new sounds in
+                the background.
+              </p>
+              <ul class="list-unstyled">
+                <li class="mb-2 d-flex align-items-center">
+                  <i
+                    class="fas fa-check me-2"
+                    style="color: var(--color-primary)"
+                  ></i
+                  >Real-time generation during performance
+                </li>
+                <li class="mb-2 d-flex align-items-center">
+                  <i
+                    class="fas fa-check me-2"
+                    style="color: var(--color-primary)"
+                  ></i
+                  >Background processing (non-blocking)
+                </li>
+                <li class="d-flex align-items-center">
+                  <i
+                    class="fas fa-check me-2"
+                    style="color: var(--color-primary)"
+                  ></i
+                  >Unlimited creative possibilities
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="feature-card-icon h-100 p-4 rounded-4 hover-lift">
+              <div class="icon-circle bg-gradient-green mb-3">
+                <i class="fas fa-sliders-h fa-2x"></i>
+              </div>
+              <h3 class="h5 fw-bold mb-3">8 Stereo Tracks + Multi-Output</h3>
+              <p class="mb-3 text-secondary">
+                Up to 8 simultaneous stereo tracks with individual outputs.
+                Route each track to separate DAW channels for dedicated effects
+                per track.
+              </p>
+              <ul class="list-unstyled">
+                <li class="mb-2 d-flex align-items-center">
+                  <i
+                    class="fas fa-check me-2"
+                    style="color: var(--color-primary)"
+                  ></i
+                  >8 independent stereo tracks
+                </li>
+                <li class="mb-2 d-flex align-items-center">
+                  <i
+                    class="fas fa-check me-2"
+                    style="color: var(--color-primary)"
+                  ></i
+                  >Individual DAW routing
+                </li>
+                <li class="d-flex align-items-center">
+                  <i
+                    class="fas fa-check me-2"
+                    style="color: var(--color-primary)"
+                  ></i
+                  >Per-track effects chains
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="feature-card-icon h-100 p-4 rounded-4 hover-lift">
+              <div class="icon-circle bg-gradient-purple mb-3">
+                <i class="fas fa-th fa-2x"></i>
+              </div>
+              <h3 class="h5 fw-bold mb-3">8 Sequences Per Page</h3>
+              <p class="mb-3 text-secondary">
+                Each page (A/B/C/D) stores 8 independent sequences of up to 64
+                steps. Switch between sequences instantly via MIDI for dynamic
+                pattern variations.
+              </p>
+              <ul class="list-unstyled">
+                <li class="mb-2 d-flex align-items-center">
+                  <i
+                    class="fas fa-check me-2"
+                    style="color: var(--color-primary)"
+                  ></i
+                  >8 sequences × 64 steps per page
+                </li>
+                <li class="mb-2 d-flex align-items-center">
+                  <i
+                    class="fas fa-check me-2"
+                    style="color: var(--color-primary)"
+                  ></i
+                  >MIDI-triggerable sequence switching
+                </li>
+                <li class="d-flex align-items-center">
+                  <i
+                    class="fas fa-check me-2"
+                    style="color: var(--color-primary)"
+                  ></i
+                  >1-4 measures per sequence (adjustable)
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="feature-card-icon p-4 rounded-4 hover-lift">
+              <div class="row align-items-center">
+                <div class="col-md-auto text-center mb-3 mb-md-0">
+                  <div class="icon-circle bg-gradient-orange">
+                    <i class="fas fa-music fa-2x"></i>
+                  </div>
+                </div>
+                <div class="col-md">
+                  <h3 class="h5 fw-bold mb-2">Automatic BPM Synchronization</h3>
+                  <p class="mb-3 text-secondary">
+                    All samples auto-stretch to match your DAW's BPM using
+                    Librosa's time-stretching algorithm. Change tempo
+                    mid-session without breaking flow.
+                  </p>
+                </div>
+              </div>
+              <div class="row g-3 mt-2">
+                <div class="col-md-6">
+                  <div
+                    class="p-3 rounded-3"
+                    style="
+                      background: var(--color-bg-mid);
+                      border: 1px solid var(--color-inactive);
+                    "
+                  >
+                    <i
+                      class="fas fa-wave-square me-2"
+                      style="color: var(--color-primary)"
+                    ></i
+                    ><strong>High-Quality Stretching</strong>
+                    <p class="small mb-0 mt-2 text-secondary">
+                      Librosa algorithm preserves audio quality while adapting
+                      tempo
+                    </p>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div
+                    class="p-3 rounded-3"
+                    style="
+                      background: var(--color-bg-mid);
+                      border: 1px solid var(--color-inactive);
+                    "
+                  >
+                    <i
+                      class="fas fa-tachometer-alt me-2"
+                      style="color: var(--color-primary)"
+                    ></i
+                    ><strong>Seamless Tempo Changes</strong>
+                    <p class="small mb-0 mt-2 text-secondary">
+                      Switch BPM without reloading samples or interrupting
+                      playback
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-5">
+          <div class="col text-center">
+            <div
+              class="alert d-inline-block px-4 py-3 rounded-4"
+              style="
+                background: rgba(184, 96, 92, 0.1);
+                border: 1px solid rgba(184, 96, 92, 0.3);
+                color: var(--color-text-primary);
+              "
+            >
+              <i
+                class="fas fa-info-circle me-2"
+                style="color: var(--color-primary)"
+              ></i>
+              <strong>Demo Showcase:</strong> Jungle mix with pre-generated
+              samples triggered live via MIDI controller. Works with any genre!
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AIMLA Performance -->
+    <section class="py-5 aimla-performance-section">
+      <div class="container py-5">
+        <div class="row text-center mb-5">
+          <div class="col">
+            <h2 class="display-5 fw-bold mb-3">
+              <i class="fas fa-video text-danger me-2"></i
+              ><span id="aimla-title">AIMLA 2025 Live Performance</span>
+            </h2>
+            <p class="lead text-secondary" id="aimla-subtitle">
+              Exclusive excerpt from the Audio Engineering Society conference at
+              Queen Mary University London
+            </p>
+            <div
+              class="badge aimla-badge text-dark mt-2 px-4 py-2"
+              id="aimla-badge-text"
+            >
+              <i class="fas fa-award me-2"></i>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center mb-5">
+          <div class="col-lg-10">
+            <div class="aimla-video-container">
+              <div
+                class="ratio ratio-16x9 rounded-4 overflow-hidden shadow-2xl"
+              >
+                <div
+                  class="youtube-placeholder"
+                  id="yt-aimla"
+                  data-video-id=""
+                  data-title="AIMLA 2025 Live Performance"
+                >
+                  <div
+                    style="
+                      background: rgba(0, 0, 0, 0.9);
+                      color: #fff;
+                      padding: 3rem 2rem;
+                      text-align: center;
+                      display: flex;
+                      flex-direction: column;
+                      align-items: center;
+                      justify-content: center;
+                      height: 100%;
+                    "
+                  >
+                    <i
+                      class="fab fa-youtube"
+                      style="
+                        font-size: 4rem;
+                        color: #f00;
+                        margin-bottom: 1.5rem;
+                      "
+                    ></i>
+                    <h4 style="margin-bottom: 1rem">
+                      AIMLA 2025 Live Performance
+                    </h4>
+                    <p
+                      style="
+                        margin-bottom: 1.5rem;
+                        font-size: 0.95rem;
+                        max-width: 400px;
+                      "
+                    >
+                      This YouTube video requires cookies to be displayed.
+                    </p>
+                    <button
+                      class="btn btn-primary btn-lg"
+                      onclick="
+                        localStorage.setItem('cookie_consent', 'accepted');
+                        if (window.enableYouTube) {
+                          window.enableYouTube();
+                        } else {
+                          location.reload();
+                        }
+                      "
+                    >
+                      <i class="fas fa-cookie-bite me-2"></i>Accept Cookies to
+                      Watch
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p class="text-center mt-4">
+              <span class="location-badge"
+                ><i class="fas fa-map-marker-alt"></i> Queen Mary University
+                London • September 2025</span
+              >
+            </p>
+          </div>
+        </div>
+        <div class="row g-4">
+          <div class="col-lg-4">
+            <div
+              class="feature-card-icon aimla-highlight-card h-100 p-4 rounded-4"
+            >
+              <div class="icon-circle bg-gradient-purple mb-3">
+                <i class="fas fa-sliders-h fa-2x"></i>
+              </div>
+              <h3 class="h5 fw-bold mb-3">Hardware + VST Hybrid Setup</h3>
+              <p class="mb-0 text-secondary">
+                Live performance combining Akai APC20, Korg microKONTROL,
+                Arturia controller, Behringer Pro-1 &amp; TD-3 in Bitwig Studio
+                for seamless hardware/software AI music generation.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div
+              class="feature-card-icon aimla-highlight-card h-100 p-4 rounded-4"
+            >
+              <div class="icon-circle bg-gradient-blue mb-3">
+                <i class="fas fa-university fa-2x"></i>
+              </div>
+              <h3 class="h5 fw-bold mb-3">Research &amp; Innovation</h3>
+              <p class="mb-0 text-secondary">
+                Presented as a Late Breaking Demo Paper showcasing the first
+                real-time AI music generation plugin designed for live
+                performance contexts.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div
+              class="feature-card-icon aimla-highlight-card h-100 p-4 rounded-4"
+            >
+              <div class="icon-circle bg-gradient-red mb-3">
+                <i class="fas fa-broadcast-tower fa-2x"></i>
+              </div>
+              <h3 class="h5 fw-bold mb-3">Uninterrupted Performance</h3>
+              <p class="mb-0 text-secondary">
+                Watch how AI-generated samples are triggered, mixed, and
+                processed live without breaking the flow—proving the plugin's
+                stability in professional settings.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-5">
+          <div class="col-lg-8 mx-auto">
+            <div class="alert aimla-alert d-flex align-items-start">
+              <i
+                class="fas fa-info-circle me-3 mt-1"
+                style="color: var(--color-primary); font-size: 1.5rem"
+              ></i>
+              <div>
+                <strong>Performance Setup:</strong><br />This excerpt
+                demonstrates the integration in Bitwig Studio within a complete
+                live hardware setup, featuring Akai APC20, Korg microKONTROL,
+                Arturia MIDI controller, Behringer Pro-1 synth, and Behringer
+                TD-3 for sample triggering, real-time mixing, and on-the-fly AI
+                generation during the performance—exactly as it would be used in
+                a club or live show environment.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-5">
+          <div class="col text-center">
+            <a
+              id="btn-paper"
+              href="#"
+              target="_blank"
+              rel="noopener"
+              class="btn btn-outline-primary btn-lg px-5 py-3 me-3 fw-bold"
+              ><i class="fas fa-file-pdf me-2"></i>Read Full Paper</a
+            >
+            <a
+              href="register.html"
+              class="btn btn-success btn-lg px-5 py-3 fw-bold"
+              ><i class="fas fa-rocket me-2"></i>Try It Yourself</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Draw-to-Audio -->
+    <section class="py-5 bg-gradient-dark" id="draw-to-audio">
+      <div class="container py-5">
+        <div class="row text-center mb-5">
+          <div class="col">
+            <h2 class="display-5 fw-bold mb-3">
+              <i class="fas fa-palette text-danger me-2"></i>Draw Your Sound
+            </h2>
+            <p class="lead text-secondary">
+              Transform visual drawings into unique audio samples with AI
+            </p>
+            <div class="badge aimla-badge text-dark mt-2 px-4 py-2">
+              <i class="fa-solid fa-spray-can-sparkles me-2"></i>Sketch-to-Audio
+              Generation
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center mb-5">
+          <div class="col-lg-10">
+            <div class="position-relative">
+              <div class="glow-effect"></div>
+              <div
+                class="ratio ratio-16x9 rounded-4 overflow-hidden shadow-2xl"
+              >
+                <div
+                  class="youtube-placeholder"
+                  id="yt-draw"
+                  data-video-id=""
+                  data-title="Draw-to-Audio Live Demo"
+                >
+                  <div
+                    style="
+                      background: rgba(0, 0, 0, 0.9);
+                      color: #fff;
+                      padding: 3rem 2rem;
+                      text-align: center;
+                      display: flex;
+                      flex-direction: column;
+                      align-items: center;
+                      justify-content: center;
+                      height: 100%;
+                    "
+                  >
+                    <i
+                      class="fab fa-youtube"
+                      style="
+                        font-size: 4rem;
+                        color: #f00;
+                        margin-bottom: 1.5rem;
+                      "
+                    ></i>
+                    <h4 style="margin-bottom: 1rem">Draw-to-Audio Live Demo</h4>
+                    <p
+                      style="
+                        margin-bottom: 1.5rem;
+                        font-size: 0.95rem;
+                        max-width: 400px;
+                      "
+                    >
+                      This YouTube video requires cookies to be displayed.
+                    </p>
+                    <button
+                      class="btn btn-primary btn-lg"
+                      onclick="
+                        localStorage.setItem('cookie_consent', 'accepted');
+                        if (window.enableYouTube) {
+                          window.enableYouTube();
+                        } else {
+                          location.reload();
+                        }
+                      "
+                    >
+                      <i class="fas fa-cookie-bite me-2"></i>Accept Cookies to
+                      Watch
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p class="text-center mt-4 text-secondary">
+              <i class="fas fa-info-circle me-2"></i>Raw improvisation
+              showcasing the experimental draw-to-audio workflow: sketch
+              patterns → AI interprets visuals → generates matching loops on the
+              fly
+            </p>
+          </div>
+        </div>
+        <div class="row g-4 mb-5">
+          <div class="col-lg-4">
+            <div class="feature-card-icon h-100 p-4 rounded-4 hover-lift">
+              <div class="icon-circle bg-gradient-purple mb-3">
+                <i class="fas fa-paintbrush fa-2x"></i>
+              </div>
+              <h3 class="h5 fw-bold mb-3">1. Sketch Your Idea</h3>
+              <p class="mb-3 text-secondary">
+                Use drawing tools (Pencil, Brush, Spray, Eraser) and 10 colors
+                on a 512x512 canvas. Visual patterns translate to sonic
+                characteristics.
+              </p>
+              <ul class="list-unstyled">
+                <li class="mb-2 d-flex align-items-center">
+                  <i
+                    class="fas fa-check me-2"
+                    style="color: var(--color-primary)"
+                  ></i
+                  >Pencil → Sharp, staccato sounds
+                </li>
+                <li class="mb-2 d-flex align-items-center">
+                  <i
+                    class="fas fa-check me-2"
+                    style="color: var(--color-primary)"
+                  ></i
+                  >Brush → Smooth, sustained pads
+                </li>
+                <li class="d-flex align-items-center">
+                  <i
+                    class="fas fa-check me-2"
+                    style="color: var(--color-primary)"
+                  ></i
+                  >Colors → Frequency ranges &amp; timbres
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="feature-card-icon h-100 p-4 rounded-4 hover-lift">
+              <div class="icon-circle bg-gradient-blue mb-3">
+                <i class="fas fa-tags fa-2x"></i>
+              </div>
+              <h3 class="h5 fw-bold mb-3">2. Add Musical Keywords</h3>
+              <p class="mb-3 text-secondary">
+                Select from 20+ musical keywords (drums, techno, ambient,
+                synth...) or add your own. Keywords guide the AI interpretation.
+              </p>
+              <ul class="list-unstyled">
+                <li class="mb-2 d-flex align-items-center">
+                  <i
+                    class="fas fa-check me-2"
+                    style="color: var(--color-primary)"
+                  ></i
+                  >Pre-defined musical terms
+                </li>
+                <li class="mb-2 d-flex align-items-center">
+                  <i
+                    class="fas fa-check me-2"
+                    style="color: var(--color-primary)"
+                  ></i
+                  >Custom keywords support
+                </li>
+                <li class="d-flex align-items-center">
+                  <i
+                    class="fas fa-check me-2"
+                    style="color: var(--color-primary)"
+                  ></i
+                  >Alphabetically sorted &amp; scrollable
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="feature-card-icon h-100 p-4 rounded-4 hover-lift">
+              <div class="icon-circle bg-gradient-red mb-3">
+                <i class="fas fa-robot fa-2x"></i>
+              </div>
+              <h3 class="h5 fw-bold mb-3">3. AI Sonic Translation</h3>
+              <p class="mb-3 text-secondary">
+                Vision LLM analyzes your drawing: tools, colors, patterns,
+                composition. Generates detailed musical prompt for audio
+                synthesis.
+              </p>
+              <ul class="list-unstyled">
+                <li class="mb-2 d-flex align-items-center">
+                  <i
+                    class="fas fa-check me-2"
+                    style="color: var(--color-primary)"
+                  ></i
+                  >Visual → Sonic interpretation
+                </li>
+                <li class="mb-2 d-flex align-items-center">
+                  <i
+                    class="fas fa-check me-2"
+                    style="color: var(--color-primary)"
+                  ></i
+                  >Context-aware generation
+                </li>
+                <li class="d-flex align-items-center">
+                  <i
+                    class="fas fa-check me-2"
+                    style="color: var(--color-primary)"
+                  ></i
+                  >BPM &amp; Key synchronized
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="feature-card-icon p-4 rounded-4">
+              <h3 class="h5 fw-bold mb-4 text-center">
+                <i
+                  class="fas fa-lightbulb me-2"
+                  style="color: var(--color-primary)"
+                ></i
+                >Visual-to-Sonic Mapping
+              </h3>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <div
+                    class="p-3 rounded-3"
+                    style="
+                      background: var(--color-bg-mid);
+                      border: 1px solid var(--color-inactive);
+                    "
+                  >
+                    <strong
+                      ><i class="fas fa-palette me-2"></i>Colors →
+                      Frequencies</strong
+                    >
+                    <ul class="small mb-0 mt-2 list-unstyled">
+                      <li class="mb-1">
+                        <span style="color: #000">●</span> Black → Deep bass,
+                        sub-bass
+                      </li>
+                      <li class="mb-1">
+                        <span style="color: #f00">●</span> Red → Aggressive
+                        mid-high energy
+                      </li>
+                      <li class="mb-1">
+                        <span style="color: #00f">●</span> Blue → Cool,
+                        ethereal, reverberant
+                      </li>
+                      <li class="mb-1">
+                        <span style="color: #ff0">●</span> Yellow → Bright, high
+                        frequencies
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div
+                    class="p-3 rounded-3"
+                    style="
+                      background: var(--color-bg-mid);
+                      border: 1px solid var(--color-inactive);
+                    "
+                  >
+                    <strong
+                      ><i class="fas fa-shapes me-2"></i>Patterns →
+                      Rhythms</strong
+                    >
+                    <ul class="small mb-0 mt-2 list-unstyled">
+                      <li class="mb-1">
+                        Vertical lines → Staccato, percussive hits
+                      </li>
+                      <li class="mb-1">
+                        Horizontal flows → Sustained notes, drones
+                      </li>
+                      <li class="mb-1">
+                        Circular patterns → Arpeggios, sequences
+                      </li>
+                      <li class="mb-1">
+                        Chaotic scribbles → Glitchy, randomized
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-5">
+          <div class="col text-center">
+            <div
+              class="alert d-inline-block px-4 py-3 rounded-4"
+              style="
+                background: rgba(184, 96, 92, 0.1);
+                border: 1px solid rgba(184, 96, 92, 0.3);
+                color: var(--color-text-primary);
+              "
+            >
+              <i
+                class="fas fa-info-circle me-2"
+                style="color: var(--color-primary)"
+              ></i
+              ><strong>Drawing State Saved:</strong> Your canvas, selected
+              keywords, and brush settings are saved per track and per page
+              (A/B/C/D) in your project.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recognition -->
+    <section class="py-5">
+      <div class="container">
+        <div class="row text-center mb-5">
+          <div class="col">
+            <h2 class="display-5 fw-bold mb-3">Featured &amp; Recognized</h2>
+            <p class="lead text-secondary">First plugin of its kind</p>
+          </div>
+        </div>
+        <div class="row g-4 justify-content-center">
+          <div class="col-md-6 col-lg-3">
+            <a
+              id="card-paper-link"
+              href="#"
+              target="_blank"
+              rel="noopener"
+              class="text-decoration-none"
+            >
+              <div
+                class="feature-card card-gradient-red h-100 p-4 rounded-4 text-center hover-lift"
+              >
+                <div class="feature-icon mb-3">
+                  <i class="fas fa-award fa-3x"></i>
+                </div>
+                <h3 class="h5 fw-bold mb-2" id="card-conference-name">
+                  AES AIMLA 2025
+                </h3>
+                <p class="mb-0 small">
+                  Late Breaking Demo Paper - Queen Mary University London
+                </p>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <a
+              id="card-kvr-link"
+              href="#"
+              target="_blank"
+              rel="noopener"
+              class="text-decoration-none"
+            >
+              <div
+                class="feature-card card-gradient-blue h-100 p-4 rounded-4 text-center hover-lift"
+              >
+                <div class="feature-icon mb-3">
+                  <i class="fas fa-headphones fa-3x"></i>
+                </div>
+                <h3 class="h5 fw-bold mb-2">KVR Audio</h3>
+                <p class="mb-0 small">
+                  Listed on world's largest plugin database
+                </p>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <a
+              href="https://bedroomproducersblog.com/2025/06/06/obsidian-neural-sound-engine/"
+              target="_blank"
+              rel="noopener"
+              class="text-decoration-none"
+            >
+              <div
+                class="feature-card card-gradient-purple h-100 p-4 rounded-4 text-center hover-lift"
+              >
+                <div class="feature-icon mb-3">
+                  <i class="fas fa-newspaper fa-3x"></i>
+                </div>
+                <h3 class="h5 fw-bold mb-2">BPB Featured</h3>
+                <p class="mb-0 small">Bedroom Producers Blog coverage</p>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <a
+              id="card-github-link"
+              href="#"
+              target="_blank"
+              rel="noopener"
+              class="text-decoration-none"
+            >
+              <div
+                class="feature-card card-gradient-green h-100 p-4 rounded-4 text-center hover-lift"
+              >
+                <div class="feature-icon mb-3">
+                  <i class="fab fa-github fa-3x"></i>
+                </div>
+                <h3 class="h5 fw-bold mb-2">
+                  <span id="github-stars-2">Loading...</span> Stars
+                </h3>
+                <p class="mb-0 small">Open source &amp; community-driven</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Press -->
+    <section class="py-5 bg-gradient-dark">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-8">
+            <h2 class="h3 fw-bold mb-3">
+              <i class="fas fa-newspaper me-2 text-danger"></i>International
+              Press Coverage
+            </h2>
+            <p class="lead mb-4" id="press-intro">
+              Featured across music production communities worldwide — from
+              France to Japan, USA to China.
+            </p>
+            <div class="d-flex gap-3 flex-wrap mb-4">
+              <span class="badge bg-secondary px-3 py-2">🇰🇷 S1 Forum</span>
+              <span class="badge bg-secondary px-3 py-2">🇫🇷 Audiofanzine</span>
+              <span class="badge bg-secondary px-3 py-2"
+                >🇺🇸 Bedroom Producers Blog</span
+              >
+              <span class="badge bg-secondary px-3 py-2">🇺🇸 Synthtopia</span>
+              <span class="badge bg-secondary px-3 py-2">🇳🇱 Rekkerd</span>
+              <span class="badge bg-secondary px-3 py-2"
+                >🇪🇸 FutureMusic España</span
+              >
+              <span class="badge bg-secondary px-3 py-2"
+                >🇨🇳 Sohu.com &amp; MIDIFAN</span
+              >
+              <span class="badge bg-secondary px-3 py-2"
+                >🇯🇵 DTM Plugin Sale</span
+              >
+            </div>
+            <a
+              href="press.html"
+              class="btn btn-outline-primary btn-lg px-5 py-3 fw-bold"
+              ><i class="fas fa-arrow-right me-2"></i>View All Press Coverage</a
+            >
+          </div>
+          <div class="col-lg-4 text-center mt-4 mt-lg-0">
+            <div class="position-relative">
+              <div
+                class="icon-circle bg-gradient-red mx-auto"
+                style="width: 150px; height: 150px"
+              >
+                <i class="fas fa-globe fa-4x"></i>
+              </div>
+              <div class="position-absolute top-0 end-0">
+                <span class="badge bg-warning text-dark px-3 py-2"
+                  ><i class="fas fa-star me-1"></i>12 Articles</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="container py-5" id="features">
+      <div class="row text-center mb-5">
+        <div class="col">
+          <h2 class="display-5 fw-bold mb-3">What Makes It Unique</h2>
+          <p class="lead text-secondary">
+            Built for live performance, not just production
+          </p>
+        </div>
+      </div>
+      <div class="row g-4 text-center mb-5">
+        <div class="col-md-3">
+          <div class="stat-card p-4 rounded-4">
+            <div class="stat-number text-primary mb-2">~20s</div>
+            <div class="stat-label">Generation Time</div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="stat-card p-4 rounded-4">
+            <div class="stat-number text-success mb-2">30s</div>
+            <div class="stat-label">Sample Duration</div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="stat-card p-4 rounded-4">
+            <div class="stat-number text-warning mb-2">8</div>
+            <div class="stat-label">Tracks + Outputs</div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="stat-card p-4 rounded-4">
+            <div class="stat-number text-info mb-2">Stereo</div>
+            <div class="stat-label">True Stereo Output</div>
+          </div>
+        </div>
+      </div>
+      <div class="row g-4 justify-content-center">
+        <div class="col-md-6">
+          <div class="feature-card-icon h-100 p-4 rounded-4 hover-lift">
+            <div class="icon-circle bg-gradient-red mb-3">
+              <i class="fas fa-brain fa-2x"></i>
+            </div>
+            <h3 class="h5 fw-bold">LLM Brain</h3>
+            <p class="mb-0 text-secondary">
+              Contextual memory learns from your sessions. Optimizes prompts
+              based on your style and DAW tempo.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="feature-card-icon h-100 p-4 rounded-4 hover-lift">
+            <div class="icon-circle bg-gradient-purple mb-3">
+              <i class="fas fa-palette fa-2x"></i>
+            </div>
+            <h3 class="h5 fw-bold">Draw to Audio</h3>
+            <p class="mb-0 text-secondary">
+              Sketch your sound ideas visually. AI vision model translates
+              drawings, colors, and patterns into detailed musical prompts with
+              keyword guidance.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="feature-card-icon h-100 p-4 rounded-4 hover-lift">
+            <div class="icon-circle bg-gradient-blue mb-3">
+              <i class="fas fa-grip-horizontal fa-2x"></i>
+            </div>
+            <h3 class="h5 fw-bold">8 Sequences Per Page</h3>
+            <p class="mb-0 text-secondary">
+              Up to 64-step sequencer (4 measures) with 8 independent sequences
+              per page. Switch patterns instantly via MIDI or UI.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="feature-card-icon h-100 p-4 rounded-4 hover-lift">
+            <div class="icon-circle bg-gradient-pink mb-3">
+              <i class="fas fa-laptop fa-2x"></i>
+            </div>
+            <h3 class="h5 fw-bold">Cross-Platform</h3>
+            <p class="mb-0 text-secondary">
+              Windows, macOS, Linux. VST3 (all DAWs) + AU (Logic
+              Pro/GarageBand). Universal binary (Intel + Apple Silicon).
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="py-5 bg-gradient-dark">
+      <div class="container py-5">
+        <div class="row text-center mb-5">
+          <div class="col">
+            <h2 class="display-5 fw-bold">Get Started in 3 Minutes</h2>
+            <p class="lead text-secondary mb-0">
+              From download to your first AI-generated loop
+            </p>
+          </div>
+        </div>
+        <div class="row g-4 justify-content-center">
+          <div class="col-md-6 col-lg-3">
+            <div class="step-card text-center">
+              <div class="step-number bg-gradient-red mb-4">1</div>
+              <div class="step-icon mb-3">
+                <i class="fas fa-user-plus fa-3x text-danger"></i>
+              </div>
+              <h3 class="h5 fw-bold">Sign Up</h3>
+              <p>Get 10 free credits (10 samples)</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="step-card text-center">
+              <div class="step-number bg-gradient-blue mb-4">2</div>
+              <div class="step-icon mb-3">
+                <i class="fas fa-download fa-3x text-primary"></i>
+              </div>
+              <h3 class="h5 fw-bold">Download Plugin</h3>
+              <p>
+                Free &amp; open source on
+                <a
+                  id="step2-github"
+                  href="#"
+                  target="_blank"
+                  class="text-success"
+                  >GitHub</a
+                >
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="step-card text-center">
+              <div class="step-number bg-gradient-purple mb-4">3</div>
+              <div class="step-icon mb-3">
+                <i class="fas fa-key fa-3x text-purple"></i>
+              </div>
+              <h3 class="h5 fw-bold">Configure</h3>
+              <p>Paste API key in plugin settings</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="step-card text-center">
+              <div class="step-number bg-gradient-green mb-4">4</div>
+              <div class="step-icon mb-3">
+                <i class="fas fa-music fa-3x text-success"></i>
+              </div>
+              <h3 class="h5 fw-bold">Create</h3>
+              <p>Type prompt, hit generate, jam!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section class="container py-5">
+      <div class="row text-center mb-5">
+        <div class="col">
+          <h2 class="display-5 fw-bold mb-3" id="who-uses-title">
+            Who Uses This Plugin
+          </h2>
+          <p class="lead text-secondary mb-0">
+            From bedroom producers to live performers
+          </p>
+        </div>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="use-case-card p-4 rounded-4 h-100">
+            <i class="fas fa-microphone-alt fa-3x text-primary mb-3"></i>
+            <h3 class="h5 fw-bold mb-3">Live Performers</h3>
+            <p class="mb-0">
+              Trigger AI-generated loops during live sets. MIDI-mapped controls
+              for hands-on performance.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="use-case-card p-4 rounded-4 h-100">
+            <i class="fas fa-home fa-3x text-success mb-3"></i>
+            <h3 class="h5 fw-bold mb-3">Bedroom Producers</h3>
+            <p class="mb-0">
+              Solo producers who need an intelligent jam partner that adapts to
+              their style.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="use-case-card p-4 rounded-4 h-100">
+            <i class="fas fa-flask fa-3x text-warning mb-3"></i>
+            <h3 class="h5 fw-bold mb-3">Experimenters</h3>
+            <p class="mb-0">
+              Explore human-AI musical interaction. Push creative boundaries
+              with generative audio.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BeatCrafter -->
+    <section class="py-5 bg-gradient-dark">
+      <div class="container py-5">
+        <div class="row text-center mb-5">
+          <div class="col">
+            <h2 class="display-5 fw-bold mb-3">
+              <i class="fas fa-drum text-danger me-2"></i>Also from
+              <span id="also-from-alias"></span>
+            </h2>
+            <p class="lead text-secondary">
+              Another free open source tool for live performance
+            </p>
+          </div>
+        </div>
+        <div class="row justify-content-center align-items-center g-5">
+          <div class="col-lg-6">
+            <div class="position-relative">
+              <div class="glow-effect"></div>
+              <img
+                src="assets/images/beatcrafter-screenshot.png"
+                alt="BeatCrafter VST3 — Live Drum Pattern Generator"
+                class="img-fluid shadow-2xl img-thumbnail rounded-4"
+              />
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="badge bg-warning text-dark mb-3 px-3 py-2">
+              <i class="fas fa-code me-2"></i>Free &amp; Open Source — VST3
+            </div>
+            <h3 class="display-6 fw-bold mb-3">BeatCrafter</h3>
+            <p class="lead mb-3">
+              <strong>Free live performance VST drum generator.</strong> No AI,
+              no subscription, no nonsense.
+            </p>
+            <p class="text-secondary mb-4">
+              8 style slots (Rock, Metal, Jazz, Funk, Electronic, Hip Hop,
+              Latin, Punk) triggerable via MIDI. Control groove density with the
+              <strong>Intensity</strong> slider and inject controlled chaos with
+              the <strong>Chaos</strong> knob — from ghost notes to wild fills.
+              Designed to be controlled hands-free with a foot controller while
+              you play guitar, keys or anything else.
+            </p>
+            <ul class="list-unstyled mb-4">
+              <li class="mb-2 d-flex align-items-center">
+                <i
+                  class="fas fa-check me-2"
+                  style="color: var(--color-primary)"
+                ></i
+                >8 drum style slots — switch live via MIDI
+              </li>
+              <li class="mb-2 d-flex align-items-center">
+                <i
+                  class="fas fa-check me-2"
+                  style="color: var(--color-primary)"
+                ></i
+                >Intensity slider — real-time groove density control
+              </li>
+              <li class="mb-2 d-flex align-items-center">
+                <i
+                  class="fas fa-check me-2"
+                  style="color: var(--color-primary)"
+                ></i
+                >Chaos knob — ghost notes, fills, controlled randomness
+              </li>
+              <li class="mb-2 d-flex align-items-center">
+                <i
+                  class="fas fa-check me-2"
+                  style="color: var(--color-primary)"
+                ></i
+                >Full MIDI learn — foot controller ready
+              </li>
+              <li class="d-flex align-items-center">
+                <i
+                  class="fas fa-check me-2"
+                  style="color: var(--color-primary)"
+                ></i
+                >Works headless — no GUI needed during performance
+              </li>
+            </ul>
+            <div class="d-flex gap-3 flex-wrap">
+              <a
+                id="btn-beatcrafter-dl"
+                href="#"
+                target="_blank"
+                rel="noopener"
+                class="btn btn-success btn-lg px-4 py-3 fw-bold"
+                ><i class="fab fa-github me-2"></i>Download Free</a
+              >
+              <a
+                id="btn-beatcrafter-src"
+                href="#"
+                target="_blank"
+                rel="noopener"
+                class="btn btn-outline-secondary btn-lg px-4 py-3 fw-bold"
+                ><i class="fas fa-code me-2"></i>View Source</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center mt-5">
+          <div class="col-lg-10">
+            <div class="position-relative">
+              <div class="glow-effect"></div>
+              <div
+                class="ratio ratio-16x9 rounded-4 overflow-hidden shadow-2xl"
+              >
+                <div
+                  class="youtube-placeholder"
+                  id="yt-beatcrafter"
+                  data-video-id=""
+                  data-title="BeatCrafter — First Improvisation Session"
+                >
+                  <div
+                    style="
+                      background: rgba(0, 0, 0, 0.9);
+                      color: #fff;
+                      padding: 3rem 2rem;
+                      text-align: center;
+                      display: flex;
+                      flex-direction: column;
+                      align-items: center;
+                      justify-content: center;
+                      height: 100%;
+                    "
+                  >
+                    <i
+                      class="fab fa-youtube"
+                      style="
+                        font-size: 4rem;
+                        color: #f00;
+                        margin-bottom: 1.5rem;
+                      "
+                    ></i>
+                    <h4 style="margin-bottom: 1rem">
+                      BeatCrafter — First Improvisation Session
+                    </h4>
+                    <p
+                      style="
+                        margin-bottom: 1.5rem;
+                        font-size: 0.95rem;
+                        max-width: 400px;
+                      "
+                    >
+                      This YouTube video requires cookies to be displayed.
+                    </p>
+                    <button
+                      class="btn btn-primary btn-lg"
+                      onclick="
+                        localStorage.setItem('cookie_consent', 'accepted');
+                        if (window.enableYouTube) {
+                          window.enableYouTube();
+                        } else {
+                          location.reload();
+                        }
+                      "
+                    >
+                      <i class="fas fa-cookie-bite me-2"></i>Accept Cookies to
+                      Watch
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p class="text-center mt-3 text-secondary fs-6">
+              <i class="fas fa-guitar me-2"></i>Ibanez Pro Line · Bitwig Studio
+              · Behringer FCB1010 · EZdrummer · 92 BPM · D minor
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="container py-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="cta-card rounded-4 p-5 text-center">
+            <h2 class="display-6 fw-bold mb-3">Try It Free</h2>
+            <p class="lead mb-4">
+              10 credits to test the plugin. No credit card required.
+            </p>
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+              <a
+                href="register.html"
+                class="btn btn-light btn-lg px-5 py-3 fw-bold"
+                ><i class="fas fa-rocket me-2"></i>Get Free Credits</a
+              >
+              <a
+                id="btn-cta-github"
+                href="#"
+                target="_blank"
+                rel="noopener"
+                class="btn btn-outline-light btn-lg px-5 py-3 fw-bold"
+                ><i class="fab fa-github me-2"></i>View on GitHub</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div id="footer-container"></div>
+
+    <script src="js/github-stats.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/cookie-consent.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/promo-popup.js"></script>
+
+    <!-- Hydrate all dynamic body content from APP_CONFIG -->
+    <script>
+      (function () {
+        var cfg = window.APP_CONFIG || {};
+        var pluginName = cfg.PLUGIN_NAME || cfg.SITE_NAME || "OBSIDIAN Neural";
+        var authorAlias = cfg.AUTHOR_ALIAS || "";
+        var conferenceTag = cfg.CONFERENCE_TAG || "AES AIMLA 2025";
+        var githubUrl = cfg.GITHUB_URL || "#";
+        var controllerUrl = cfg.CONTROLLER_GITHUB_URL || "#";
+        var beatcrafterUrl = cfg.BEATCRAFTER_GITHUB_URL || "#";
+        var argUrl = cfg.ARG_ADMIN_URL || "#";
+        var kvraudioUrl = cfg.KVRAUDIO_URL || "#";
+        var paperUrl = cfg.PAPER_URL || "#";
+        var videoIdDnB = cfg.VIDEO_ID_DNB || "";
+        var videoIdAimla = cfg.VIDEO_ID_AIMLA || "";
+        var videoIdDraw = cfg.VIDEO_ID_DRAW || "";
+        var videoIdBeatcrafter = cfg.VIDEO_ID_BEATCRAFTER || "";
+
+        // Helper
+        function setHref(id, url) {
+          var el = document.getElementById(id);
+          if (el && url !== "#") el.href = url;
+        }
+        function setText(id, text) {
+          var el = document.getElementById(id);
+          if (el) el.textContent = text;
+        }
+        function setVideoId(id, vid) {
+          var el = document.getElementById(id);
+          if (el && vid) {
+            el.setAttribute("data-video-id", vid);
+            el.setAttribute("data-title", el.getAttribute("data-title"));
+          }
+        }
+
+        // Hero plugin description
+        var heroDesc = document.getElementById("hero-plugin-desc");
+        if (heroDesc)
+          heroDesc.innerHTML =
+            "Whether you're a live performer or discovering music through AI, <strong>" +
+            pluginName +
+            "</strong> transforms the machine into an instrument you control—with 8 MIDI sequences per page ready to trigger.";
+
+        // Buttons
+        setHref("btn-download-plugin", githubUrl + "/releases/latest");
+        setHref("btn-controller", controllerUrl);
+        setHref("btn-controller-2", controllerUrl);
+
+        // Conference badge
+        var badge = document.getElementById("conference-badge");
+        if (badge && conferenceTag)
+          badge.innerHTML =
+            '<i class="fas fa-award me-2"></i>Presented at ' + conferenceTag;
+
+        // ARG link
+        setHref("arg-cta-link", argUrl);
+
+        // AIMLA section
+        setText("aimla-title", conferenceTag + " Live Performance");
+        setText(
+          "aimla-subtitle",
+          "Exclusive excerpt from the Audio Engineering Society conference at Queen Mary University London",
+        );
+        var aimlaBadge = document.getElementById("aimla-badge-text");
+        if (aimlaBadge)
+          aimlaBadge.innerHTML =
+            '<i class="fas fa-award me-2"></i>' +
+            conferenceTag +
+            " - Late Breaking Demo";
+
+        // Paper & KVR links
+        setHref("btn-paper", paperUrl);
+        setHref("card-paper-link", paperUrl);
+        setHref("card-kvr-link", kvraudioUrl);
+        setHref("card-github-link", githubUrl);
+
+        // Conference name card
+        setText("card-conference-name", conferenceTag);
+
+        // "Who Uses" title
+        setText("who-uses-title", "Who Uses " + pluginName);
+
+        // "Also from" alias
+        setText("also-from-alias", authorAlias || "the author");
+
+        // BeatCrafter
+        setHref("btn-beatcrafter-dl", beatcrafterUrl + "/releases/latest");
+        setHref("btn-beatcrafter-src", beatcrafterUrl);
+
+        // Step 2 GitHub link
+        var step2 = document.getElementById("step2-github");
+        if (step2) step2.href = githubUrl;
+
+        // CTA GitHub
+        setHref("btn-cta-github", githubUrl);
+
+        // Screenshot alt
+        var screenshot = document.getElementById("screenshot-img");
+        if (screenshot)
+          screenshot.alt =
+            pluginName +
+            " VST3 Interface - 8-track sampler with step sequencer";
+
+        // YouTube video IDs
+        setVideoId("yt-dnb", videoIdDnB);
+        setVideoId("yt-aimla", videoIdAimla);
+        setVideoId("yt-draw", videoIdDraw);
+        setVideoId("yt-beatcrafter", videoIdBeatcrafter);
+      })();
+    </script>
+  </body>
+</html>

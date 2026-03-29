@@ -1,0 +1,784 @@
+<!-- Header -->
+<div class="tutorial-header">
+  <div class="container text-center">
+    <div class="icon-circle mb-4 mx-auto">
+      <i class="fas fa-wave-square fa-3x"></i>
+    </div>
+    <h1 class="display-4 fw-bold mb-3">First Steps in Your DAW</h1>
+    <p class="lead mb-4">
+      Learn how to load Obsidian Neural into your DAW, configure multi-output
+      routing, explore track controls, and understand sample generation.
+    </p>
+    <span class="badge bg-light text-dark px-4 py-2 fs-6">
+      <i class="fas fa-clock me-2"></i>Estimated time: 10 minutes
+    </span>
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="container mb-5 mt-5">
+  <div class="row">
+    <!-- Sidebar Navigation -->
+    <div class="col-lg-3 d-none d-lg-block">
+      <nav class="tutorial-nav">
+        <h5 class="mb-4 fw-bold">Table of Contents</h5>
+        <a href="#step1" class="active">
+          <i class="fas fa-music me-2"></i>Step 1: Load the Plugin
+        </a>
+        <a href="#step2">
+          <i class="fas fa-sliders-h me-2"></i>Step 2: Enable Multi-Output
+        </a>
+        <a href="#step3">
+          <i class="fas fa-volume-mute me-2"></i>Step 3: Mute the Main Output
+        </a>
+        <a href="#step4">
+          <i class="fas fa-guitar me-2"></i>Step 4: Add Effects to Individual
+          Tracks
+        </a>
+        <a href="#step5">
+          <i class="fas fa-layer-group me-2"></i>Step 5: Track Controls Overview
+        </a>
+        <a href="#step6">
+          <i class="fas fa-brain me-2"></i>Step 6: Managing Prompts
+        </a>
+        <a href="#step7">
+          <i class="fas fa-wave-square me-2"></i>Step 7: Generate and Play
+          Samples
+        </a>
+        <a href="#step8">
+          <i class="fas fa-drum me-2"></i>Step 8: Sequencer and Mixer Controls
+        </a>
+      </nav>
+    </div>
+
+    <!-- Main Tutorial Content -->
+    <div class="col-lg-9">
+      <!-- Step 1 -->
+      <section id="step1" class="step-section">
+        <div class="step-number-badge">1</div>
+        <h2>Step 1: Load Obsidian Neural in Your DAW</h2>
+        <p class="lead">
+          Open your DAW, create a new <strong>Instrument Track</strong>, and
+          load the <strong>Obsidian Neural</strong> VST plugin.
+        </p>
+
+        <div class="screenshot-container">
+          <img
+            src="assets/images/open-daw.png"
+            alt="Open your DAW"
+            class="img-fluid"
+          />
+          <p class="screenshot-caption">
+            Screenshot: Opening your DAW and adding an instrument track
+          </p>
+        </div>
+      </section>
+
+      <!-- Step 2 - Version Ableton avec onglets -->
+      <section id="step2" class="step-section">
+        <div class="step-number-badge">2</div>
+        <h2>Step 2: Enable Multi-Output</h2>
+        <p>
+          Once the plugin is loaded, enable multi-output mode. The process
+          differs depending on your DAW.
+        </p>
+
+        <!-- Platform Selection Tabs -->
+        <div class="platform-tabs mb-4">
+          <ul class="nav nav-pills justify-content-center" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link active"
+                id="bitwig-tab"
+                data-bs-toggle="pill"
+                data-bs-target="#bitwig-multiout"
+                type="button"
+                role="tab"
+              >
+                <i class="fas fa-music me-2"></i>Bitwig Studio
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link"
+                id="ableton-tab"
+                data-bs-toggle="pill"
+                data-bs-target="#ableton-multiout"
+                type="button"
+                role="tab"
+              >
+                <i class="fas fa-wave-square me-2"></i>Ableton Live
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="tab-content">
+          <!-- ==================== BITWIG STUDIO ==================== -->
+          <div
+            class="tab-pane fade show active"
+            id="bitwig-multiout"
+            role="tabpanel"
+          >
+            <h4 class="mt-4 mb-4">
+              <i class="fas fa-music text-primary me-2"></i>Bitwig Studio
+              Multi-Output Setup
+            </h4>
+
+            <p>
+              In <strong>Bitwig Studio</strong>, click on the
+              <strong>double arrows icon</strong> next to the plugin name and
+              activate the <em>missing chains</em>.
+            </p>
+
+            <div class="screenshot-container">
+              <video
+                class="img-fluid rounded"
+                controls
+                poster="assets/images/video-placeholder-1.png"
+              >
+                <source src="assets/videos/multi-output.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <p class="screenshot-caption">
+                Video: Activating multi-output in Bitwig Studio
+              </p>
+            </div>
+          </div>
+
+          <!-- ==================== ABLETON LIVE ==================== -->
+          <div class="tab-pane fade" id="ableton-multiout" role="tabpanel">
+            <h4 class="mt-4 mb-4">
+              <i class="fas fa-wave-square text-primary me-2"></i>Ableton Live
+              Multi-Output Setup
+            </h4>
+
+            <div class="info-badge mb-4">
+              <div class="d-flex align-items-start">
+                <i class="fas fa-info-circle"></i>
+                <div>
+                  <h5 class="mb-2">Ableton Multi-Output Configuration</h5>
+                  <p class="mb-0">
+                    Ableton Live handles multi-output plugins differently than
+                    other DAWs. You'll need to manually route each output to
+                    separate audio tracks. OBSIDIAN Neural provides up to 9
+                    individual stereo outputs (Track 1-8 + Main).
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- NOUVEAU: Section résolution -->
+            <h5 class="mt-4 mb-3">
+              <i class="fas fa-desktop text-primary me-2"></i>Important: Fix
+              Plugin Resolution (Recommended First)
+            </h5>
+
+            <div class="warning-badge mb-4">
+              <div class="d-flex align-items-start">
+                <i class="fas fa-exclamation-triangle"></i>
+                <div>
+                  <h5 class="mb-2">Prevent Blurry Plugin Interface</h5>
+                  <p class="mb-0">
+                    Ableton Live's auto-scaling can make OBSIDIAN Neural appear
+                    blurry. Fix this <strong>before</strong> loading the plugin
+                    by disabling auto-resize.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <p>To get crisp, clear resolution for OBSIDIAN Neural:</p>
+
+            <ul class="action-list">
+              <li>
+                <i class="fas fa-list"></i>
+                <div>
+                  In Ableton's left sidebar, locate the
+                  <strong>Plug-ins</strong> browser
+                </div>
+              </li>
+              <li>
+                <i class="fas fa-search"></i>
+                <div>
+                  Find <strong>OBSIDIAN-Neural</strong> in the plugin list
+                </div>
+              </li>
+              <li>
+                <i class="fas fa-mouse-pointer"></i>
+                <div><strong>Right-click</strong> on OBSIDIAN-Neural</div>
+              </li>
+              <li>
+                <i class="fas fa-toggle-off"></i>
+                <div>
+                  <strong>Uncheck "Auto-Scale Plug-In Window"</strong>
+                </div>
+              </li>
+              <li>
+                <i class="fas fa-check-circle"></i>
+                <div>
+                  The plugin will now display at its native resolution without
+                  blurriness
+                </div>
+              </li>
+            </ul>
+
+            <div class="screenshot-container">
+              <img
+                src="assets/images/ableton-resolution-fix.png"
+                alt="Ableton Auto-Scale Plugin Window"
+                class="img-fluid"
+              />
+              <p class="screenshot-caption">
+                Screenshot: Right-click menu showing "Auto-Scale Plug-In Window"
+                option to uncheck
+              </p>
+            </div>
+
+            <div class="info-badge mb-4">
+              <div class="d-flex align-items-start">
+                <i class="fas fa-lightbulb"></i>
+                <div>
+                  <h5 class="mb-2">Why This Matters</h5>
+                  <p class="mb-0">
+                    Ableton's automatic window scaling can force plugins to
+                    resize, causing blurry text and controls. By disabling this
+                    option, OBSIDIAN Neural will always display at its designed
+                    1300×800 resolution for optimal clarity.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Reste du contenu existant -->
+            <h5 class="mt-5 mb-3">
+              <i class="fas fa-plug text-primary me-2"></i>Step 1: Load OBSIDIAN
+              Neural
+            </h5>
+            <ul class="action-list">
+              <li>
+                <i class="fas fa-plus"></i>
+                <div>Create a new <strong>MIDI track</strong></div>
+              </li>
+              <li>
+                <i class="fas fa-puzzle-piece"></i>
+                <div>
+                  Load <strong>OBSIDIAN Neural</strong> as an instrument on this
+                  track
+                </div>
+              </li>
+              <li>
+                <i class="fas fa-check-circle"></i>
+                <div>
+                  The plugin window should open automatically with crisp
+                  resolution
+                </div>
+              </li>
+            </ul>
+
+            <div class="screenshot-container">
+              <img
+                src="assets/images/ableton-step1.png"
+                alt="Ableton Load Plugin"
+                class="img-fluid"
+              />
+              <p class="screenshot-caption">
+                Screenshot 1: OBSIDIAN Neural loaded on MIDI track
+              </p>
+            </div>
+
+            <h5 class="mt-4 mb-3">
+              <i class="fas fa-columns text-primary me-2"></i>Step 2: Create
+              Audio Tracks for Each Output
+            </h5>
+            <p>
+              Now create individual audio tracks to receive each track's output
+              from OBSIDIAN Neural:
+            </p>
+
+            <ul class="action-list">
+              <li>
+                <i class="fas fa-plus-circle"></i>
+                <div>
+                  Create a new <strong>Audio track</strong> (this will be for
+                  Track 1)
+                </div>
+              </li>
+              <li>
+                <i class="fas fa-arrow-down"></i>
+                <div>
+                  In the <strong>"Audio From"</strong> section (top dropdown
+                  labeled "Input Type"), select the MIDI track containing
+                  OBSIDIAN Neural
+                </div>
+              </li>
+              <li>
+                <i class="fas fa-list"></i>
+                <div>
+                  In the <strong>lower "Audio From" dropdown</strong> (Input
+                  Channel), you'll see a list of available outputs:
+                  <ul class="mt-2">
+                    <li><code>Pre FX</code></li>
+                    <li><code>Post FX</code></li>
+                    <li><code>Post Mixer</code></li>
+                    <li><code>Track 1-OBSIDIAN-Neural</code> ← Select this</li>
+                    <li><code>Track 2-OBSIDIAN-Neural</code></li>
+                    <li><code>Track 3-OBSIDIAN-Neural</code></li>
+                    <li>... (up to Track 9)</li>
+                  </ul>
+                </div>
+              </li>
+              <li>
+                <i class="fas fa-toggle-on"></i>
+                <div>
+                  Set the audio track's <strong>Monitor switch to "In"</strong>
+                  (this enables monitoring of the input)
+                </div>
+              </li>
+            </ul>
+
+            <div class="screenshot-container">
+              <img
+                src="assets/images/ableton-step2.png"
+                alt="Ableton Audio Routing"
+                class="img-fluid"
+              />
+              <p class="screenshot-caption">
+                Screenshot 2: Configuring audio track to receive Track 1 output
+              </p>
+            </div>
+
+            <div class="warning-badge mt-4 mb-4">
+              <div class="d-flex align-items-start">
+                <i class="fas fa-exclamation-triangle"></i>
+                <div>
+                  <h5 class="mb-2">Important: Monitor Setting</h5>
+                  <p class="mb-0">
+                    Make sure to set Monitor to <strong>"In"</strong> on each
+                    audio track. Otherwise, you won't hear the output from
+                    OBSIDIAN Neural tracks.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <h5 class="mt-4 mb-3">
+              <i class="fas fa-clone text-primary me-2"></i>Step 3: Repeat for
+              Additional Tracks
+            </h5>
+            <p>
+              Repeat the process for each OBSIDIAN Neural track you want to use:
+            </p>
+
+            <ul class="action-list">
+              <li>
+                <i class="fas fa-plus"></i>
+                <div>Create another <strong>Audio track</strong></div>
+              </li>
+              <li>
+                <i class="fas fa-link"></i>
+                <div>Set "Audio From" to the OBSIDIAN Neural MIDI track</div>
+              </li>
+              <li>
+                <i class="fas fa-list-ol"></i>
+                <div>
+                  Select <strong>Track 2-OBSIDIAN-Neural</strong> (or 3, 4,
+                  etc.) from the Input Channel dropdown
+                </div>
+              </li>
+              <li>
+                <i class="fas fa-toggle-on"></i>
+                <div>Set Monitor to <strong>"In"</strong></div>
+              </li>
+              <li>
+                <i class="fas fa-redo"></i>
+                <div>
+                  Repeat until you have all 8 tracks routed (or as many as you
+                  need)
+                </div>
+              </li>
+            </ul>
+
+            <div class="screenshot-container">
+              <img
+                src="assets/images/ableton-step3.png"
+                alt="Ableton Multiple Tracks"
+                class="img-fluid"
+              />
+              <p class="screenshot-caption">
+                Screenshot 3: Multiple audio tracks routing different OBSIDIAN
+                Neural outputs
+              </p>
+            </div>
+
+            <h5 class="mt-4 mb-3">
+              <i class="fas fa-volume-up text-primary me-2"></i>Step 4: Mute the
+              Main MIDI Track
+            </h5>
+            <p>
+              To avoid hearing the mixed output alongside individual tracks:
+            </p>
+
+            <ul class="action-list">
+              <li>
+                <i class="fas fa-volume-mute"></i>
+                <div>
+                  <strong>Mute</strong> or turn down the volume on the original
+                  <strong>MIDI track</strong> containing OBSIDIAN Neural
+                </div>
+              </li>
+              <li>
+                <i class="fas fa-headphones"></i>
+                <div>
+                  Now you'll only hear the individual track outputs through your
+                  audio tracks
+                </div>
+              </li>
+            </ul>
+
+            <h5 class="mt-4 mb-3">
+              <i class="fas fa-magic text-primary me-2"></i>Step 5: Add Effects
+              to Individual Tracks
+            </h5>
+            <p>Now you can process each OBSIDIAN Neural track independently:</p>
+
+            <ul class="action-list">
+              <li>
+                <i class="fas fa-sliders-h"></i>
+                <div>
+                  Add EQ, Reverb, Delay, Compression to each audio track
+                </div>
+              </li>
+              <li>
+                <i class="fas fa-arrows-alt-h"></i>
+                <div>Adjust volume, pan, and send effects individually</div>
+              </li>
+              <li>
+                <i class="fas fa-save"></i>
+                <div>Group tracks for easier organization</div>
+              </li>
+            </ul>
+
+            <div class="info-badge mt-4">
+              <div class="d-flex align-items-start">
+                <i class="fas fa-lightbulb"></i>
+                <div>
+                  <h5 class="mb-2">Pro Tip: Save as Template</h5>
+                  <p class="mb-0">
+                    Once you've set up all the routing and disabled
+                    auto-scaling, save your project as a template. This way, you
+                    can quickly start new projects with OBSIDIAN Neural already
+                    configured for multi-output with perfect resolution!
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="info-badge mt-4">
+              <div class="d-flex align-items-start">
+                <i class="fas fa-book"></i>
+                <div>
+                  <h5 class="mb-2">Official Ableton Documentation</h5>
+                  <p class="mb-2">
+                    For more information about using multi-output plugins in
+                    Ableton Live:
+                  </p>
+                  <a
+                    href="https://help.ableton.com/hc/en-us/articles/209773065-Using-multi-out-plug-ins"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn btn-sm btn-outline-primary"
+                  >
+                    <i class="fas fa-external-link-alt me-2"></i>View Ableton
+                    Help Article
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Step 3 -->
+      <section id="step3" class="step-section">
+        <div class="step-number-badge">3</div>
+        <h2>Step 3: Mute the Main Output</h2>
+        <p>
+          After enabling the additional chains, mute the
+          <strong>Main Output</strong>
+          so that only individual tracks produce sound — not the main output as
+          well.
+        </p>
+
+        <div class="screenshot-container">
+          <img
+            src="assets/images/mute-main.png"
+            alt="Mute main output"
+            class="img-fluid"
+          />
+          <p class="screenshot-caption">
+            Screenshot: Muting the main output in Bitwig
+          </p>
+        </div>
+      </section>
+
+      <!-- Step 4 -->
+      <section id="step4" class="step-section">
+        <div class="step-number-badge">4</div>
+        <h2>Step 4: Add Effects to Individual Tracks</h2>
+        <p>
+          You can now add your favorite effects (EQ, Reverb, Delay, etc.) to
+          each individual track independently, just like with any other
+          instrument.
+        </p>
+
+        <div class="screenshot-container">
+          <img
+            src="assets/images/track-effects.png"
+            alt="Track effects"
+            class="img-fluid"
+          />
+          <p class="screenshot-caption">
+            Screenshot: Adding effects to individual tracks
+          </p>
+        </div>
+      </section>
+
+      <!-- Step 5 -->
+      <section id="step5" class="step-section">
+        <div class="step-number-badge">5</div>
+        <h2>Step 5: Track Controls Overview</h2>
+        <p>
+          Each track in Obsidian Neural offers multiple interactive controls:
+        </p>
+
+        <ul class="action-list">
+          <li>
+            <i class="fas fa-eye"></i>
+            <div><strong>Show/Hide waveform</strong></div>
+          </li>
+          <li>
+            <i class="fas fa-th"></i>
+            <div><strong>Show/Hide step sequencer</strong> (up to 4 bars)</div>
+          </li>
+          <li>
+            <i class="fas fa-random"></i>
+            <div>
+              Switch between <strong>original audio</strong> and
+              <strong>SoundTouch stretched version</strong>
+            </div>
+          </li>
+          <li>
+            <i class="fas fa-sync"></i>
+            <div>Generate new sample</div>
+          </li>
+          <li>
+            <i class="fas fa-trash-alt"></i>
+            <div>Delete track</div>
+          </li>
+          <li>
+            <i class="fas fa-redo"></i>
+            <div>Beat repeat control</div>
+          </li>
+          <li>
+            <i class="fas fa-dice"></i>
+            <div>
+              Enable/disable <strong>randomized quantization</strong> (1/2, 1/4,
+              etc.)
+            </div>
+          </li>
+          <li>
+            <i class="fas fa-sliders-h"></i>
+            <div>Adjust quantization randomness manually with the knob</div>
+          </li>
+          <li>
+            <i class="fas fa-layer-group"></i>
+            <div>
+              Pages A, B, C, D — each holding a different sample and prompt
+              (e.g. A: “ambient guitar loop”, B: “industrial drum groove”)
+            </div>
+          </li>
+          <li>
+            <i class="fas fa-play"></i>
+            <div>Preview playback button per track</div>
+          </li>
+        </ul>
+
+        <div class="screenshot-container">
+          <img
+            src="assets/images/track-controls.png"
+            alt="Track controls"
+            class="img-fluid"
+          />
+          <p class="screenshot-caption">Screenshot: Track controls overview</p>
+        </div>
+      </section>
+
+      <!-- Step 6 -->
+      <section id="step6" class="step-section">
+        <div class="step-number-badge">6</div>
+        <h2>Step 6: Managing Prompts</h2>
+        <p>
+          On the main interface, you can
+          <strong>add, edit, or delete prompts</strong> (except factory ones).
+          <br />To edit or remove a prompt,
+          <strong>Ctrl + right-click</strong> on the arrow in the prompt list.
+        </p>
+
+        <p>
+          When prompts are updated, all track prompt lists automatically
+          refresh. You can also choose the <strong>scale/mode</strong> and
+          sample duration (up to 30 seconds) before generating.
+        </p>
+
+        <div class="screenshot-container">
+          <img
+            src="assets/images/prompt-list.png"
+            alt="Prompt management"
+            class="img-fluid"
+          />
+          <p class="screenshot-caption">
+            Screenshot: Prompt list and scale list
+          </p>
+        </div>
+      </section>
+
+      <!-- Step 7 -->
+      <section id="step7" class="step-section">
+        <div class="step-number-badge">7</div>
+        <h2>Step 7: Generate and Play Samples</h2>
+        <p>To generate a sound on a track:</p>
+        <ul class="action-list">
+          <li>
+            <i class="fas fa-list"></i>
+            <div>
+              Select a prompt (either from the main list or the track prompt
+              list)
+            </div>
+          </li>
+          <li>
+            <i class="fas fa-bolt"></i>
+            <div>
+              Click <strong>Generate Loop</strong> on the bottom bar or the
+              track’s generate button
+            </div>
+          </li>
+          <li>
+            <i class="fas fa-hourglass-half"></i>
+            <div>Wait about 10 seconds for the AI to create your sample</div>
+          </li>
+          <li>
+            <i class="fas fa-wave-square"></i>
+            <div>Once ready, the waveform appears in the track view</div>
+          </li>
+          <li>
+            <i class="fas fa-crop"></i>
+            <div>
+              Edit <strong>start</strong> and
+              <strong>end loop points</strong> to isolate specific parts
+            </div>
+          </li>
+          <li>
+            <i class="fas fa-headphones"></i>
+            <div>
+              Preview and toggle between original and stretched versions
+            </div>
+          </li>
+        </ul>
+
+        <div class="screenshot-container">
+          <video
+            class="img-fluid rounded"
+            controls
+            poster="assets/images/video-placeholder-2.png"
+          >
+            <source
+              src="assets/videos/generate-sample-demo.mp4"
+              type="video/mp4"
+            />
+            Your browser does not support the video tag.
+          </video>
+          <p class="screenshot-caption">
+            Video: Generating and previewing samples in Obsidian Neural
+          </p>
+        </div>
+      </section>
+
+      <!-- Step 8 -->
+      <section id="step8" class="step-section">
+        <div class="step-number-badge">8</div>
+        <h2>Step 8: Sequencer and Mixer Controls</h2>
+        <p>
+          Use the <strong>step sequencer</strong> to trigger playback. Activate
+          the first step, then arm the mixer channel’s
+          <strong>Play</strong> button. Start your DAW — the sound plays on
+          beat.
+        </p>
+
+        <ul class="action-list">
+          <li>
+            <i class="fas fa-music"></i>
+            <div>Adjust <strong>Pitch (-12 to +12 semitones)</strong></div>
+          </li>
+          <li>
+            <i class="fas fa-balance-scale"></i>
+            <div>Adjust <strong>Finetune (-50 to +50 cents)</strong></div>
+          </li>
+          <li>
+            <i class="fas fa-volume-up"></i>
+            <div>Adjust <strong>Volume</strong></div>
+          </li>
+          <li>
+            <i class="fas fa-arrows-alt-h"></i>
+            <div>Adjust <strong>Pan</strong></div>
+          </li>
+          <li>
+            <i class="fas fa-sliders-h"></i>
+            <div>
+              All mixer parameters are MIDI-learnable (Pitch, Pan, Volume, Play,
+              Mute, Solo)
+            </div>
+          </li>
+        </ul>
+
+        <div class="info-badge">
+          <div class="d-flex align-items-start">
+            <i class="fas fa-info-circle"></i>
+            <div>
+              <h5 class="mb-2">Quantized Playback</h5>
+              <p class="mb-0">
+                Playback and sample loading are quantized — samples start
+                exactly at bar 1 and step 0 for perfect synchronization.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="warning-badge mt-4">
+          <div class="d-flex align-items-start">
+            <i class="fas fa-exclamation-triangle"></i>
+            <div>
+              <h5 class="mb-2">UI Reset</h5>
+              <p class="mb-0">
+                If the interface becomes inconsistent, click the
+                <strong>Reset UI</strong> button to restore the default layout.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="screenshot-container mt-4">
+          <img
+            src="assets/images/mixer-controls.png"
+            alt="Mixer controls"
+            class="img-fluid"
+          />
+          <p class="screenshot-caption">
+            Screenshot: Mixer controls and sequencer interaction
+          </p>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

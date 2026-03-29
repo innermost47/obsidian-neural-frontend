@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <script src="js/config.js"></script>
+    <script>
+      (function () {
+        var cfg = window.APP_CONFIG || {};
+        var siteName = cfg.SITE_NAME || "OBSIDIAN Neural";
+        document.title = "Access Granted | " + siteName;
+      })();
+    </script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Courier+Prime&family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/x-icon" href="assets/images/logo.ico" />
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      .success-page {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        background: var(--color-bg-deep);
+      }
+      .courier {
+        font-family: "Courier Prime", monospace;
+      }
+      .success-card {
+        max-width: 600px;
+        width: 100%;
+        text-align: center;
+      }
+      .terminal-box {
+        background: var(--color-bg-dark);
+        border: 1px solid var(--color-inactive);
+        border-radius: 12px;
+        padding: 2rem;
+        margin-top: 2rem;
+        text-align: left;
+        position: relative;
+      }
+      .terminal-header {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 1.5rem;
+      }
+      .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+      }
+      .dot-red {
+        background: var(--color-primary);
+      }
+      .dot-gray {
+        background: var(--color-inactive);
+      }
+      .step-item {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 1.2rem;
+        align-items: flex-start;
+      }
+      .step-icon {
+        color: var(--color-primary);
+        font-size: 1.2rem;
+        margin-top: 3px;
+      }
+    </style>
+  </head>
+  <body class="success-page">
+    <div class="success-card">
+      <div class="legal-icon mb-4">
+        <i class="fas fa-check fa-3x"></i>
+      </div>
+      <h1 class="display-4 courier text-accent mb-2">ACCESS GRANTED</h1>
+      <p class="text-secondary">Your Press VIP account is now active.</p>
+      <div class="terminal-box shadow-2xl">
+        <div class="terminal-header">
+          <div class="dot dot-red"></div>
+          <div class="dot dot-gray"></div>
+          <div class="dot dot-gray"></div>
+        </div>
+        <div class="terminal-content">
+          <div class="step-item">
+            <i class="fas fa-envelope-open-text step-icon"></i>
+            <div>
+              <strong class="text-primary-accent">Check your inbox</strong>
+              <p class="small text-secondary m-0">
+                We've sent your <strong>API Key</strong> and the Press Kit
+                download links. It should arrive within 5 minutes.
+              </p>
+            </div>
+          </div>
+          <div class="step-item">
+            <i class="fas fa-plug step-icon"></i>
+            <div>
+              <strong class="text-primary-accent">Install the Plugin</strong>
+              <p class="small text-secondary m-0">
+                Download the VST3/AU version for your OS and move it to your
+                plugin folder.
+              </p>
+            </div>
+          </div>
+          <div class="step-item">
+            <i class="fas fa-key step-icon"></i>
+            <div>
+              <strong class="text-primary-accent">Activate with API Key</strong>
+              <p class="small text-secondary m-0" id="activate-desc">
+                Paste your unique key directly into the plugin interface to
+                unlock your 200 credits.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script>
+      (function () {
+        var cfg = window.APP_CONFIG || {};
+        var pluginName = cfg.PLUGIN_NAME || cfg.SITE_NAME || "OBSIDIAN Neural";
+        var el = document.getElementById("activate-desc");
+        if (el) {
+          el.innerHTML =
+            "Paste your unique key directly into the <strong>" +
+            pluginName +
+            "</strong> interface to unlock your 200 credits.";
+        }
+      })();
+    </script>
+  </body>
+</html>
