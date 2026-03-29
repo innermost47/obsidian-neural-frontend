@@ -1,3 +1,21 @@
 RewriteEngine On
+
 RewriteCond %{HTTPS} off
-RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R,L]
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+<FilesMatch "\.md$">
+    Require all denied
+</FilesMatch>
+
+<Files "LICENSE">
+    Require all denied
+</Files>
+</FilesMatch>
+
+<Files "server.js">
+    Require all denied
+</Files>
+
+<FilesMatch "^(\.env|package\.json|package-lock\.json)$">
+    Require all denied
+</FilesMatch>
