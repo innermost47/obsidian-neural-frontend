@@ -2341,11 +2341,8 @@
     <script src="js/github-stats.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/config.js"></script>
-    <script src="js/cookie-consent.js"></script>
     <script src="js/components.js"></script>
     <script src="js/promo-popup.js"></script>
-
-    <!-- Hydrate all dynamic body content from APP_CONFIG -->
     <script>
       (function () {
         var cfg = window.APP_CONFIG || {};
@@ -2363,7 +2360,6 @@
         var videoIdDraw = cfg.VIDEO_ID_DRAW || "";
         var videoIdBeatcrafter = cfg.VIDEO_ID_BEATCRAFTER || "";
 
-        // Helper
         function setHref(id, url) {
           var el = document.getElementById(id);
           if (el && url !== "#") el.href = url;
@@ -2380,7 +2376,6 @@
           }
         }
 
-        // Hero plugin description
         var heroDesc = document.getElementById("hero-plugin-desc");
         if (heroDesc)
           heroDesc.innerHTML =
@@ -2388,21 +2383,17 @@
             pluginName +
             "</strong> transforms the machine into an instrument you control—with 8 MIDI sequences per page ready to trigger.";
 
-        // Buttons
         setHref("btn-download-plugin", githubUrl + "/releases/latest");
         setHref("btn-controller", controllerUrl);
         setHref("btn-controller-2", controllerUrl);
 
-        // Conference badge
         var badge = document.getElementById("conference-badge");
         if (badge && conferenceTag)
           badge.innerHTML =
             '<i class="fas fa-award me-2"></i>Presented at ' + conferenceTag;
 
-        // ARG link
         setHref("arg-cta-link", argUrl);
 
-        // AIMLA section
         setText("aimla-title", conferenceTag + " Live Performance");
         setText(
           "aimla-subtitle",
@@ -2415,45 +2406,37 @@
             conferenceTag +
             " - Late Breaking Demo";
 
-        // Paper & KVR links
         setHref("btn-paper", paperUrl);
         setHref("card-paper-link", paperUrl);
         setHref("card-kvr-link", kvraudioUrl);
         setHref("card-github-link", githubUrl);
 
-        // Conference name card
         setText("card-conference-name", conferenceTag);
 
-        // "Who Uses" title
         setText("who-uses-title", "Who Uses " + pluginName);
 
-        // "Also from" alias
         setText("also-from-alias", authorAlias || "the author");
 
-        // BeatCrafter
         setHref("btn-beatcrafter-dl", beatcrafterUrl + "/releases/latest");
         setHref("btn-beatcrafter-src", beatcrafterUrl);
 
-        // Step 2 GitHub link
         var step2 = document.getElementById("step2-github");
         if (step2) step2.href = githubUrl;
 
-        // CTA GitHub
         setHref("btn-cta-github", githubUrl);
 
-        // Screenshot alt
         var screenshot = document.getElementById("screenshot-img");
         if (screenshot)
           screenshot.alt =
             pluginName +
             " VST3 Interface - 8-track sampler with step sequencer";
 
-        // YouTube video IDs
         setVideoId("yt-dnb", videoIdDnB);
         setVideoId("yt-aimla", videoIdAimla);
         setVideoId("yt-draw", videoIdDraw);
         setVideoId("yt-beatcrafter", videoIdBeatcrafter);
       })();
     </script>
+    <script src="js/cookie-consent.js"></script>
   </body>
 </html>

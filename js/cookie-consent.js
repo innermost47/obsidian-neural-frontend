@@ -76,8 +76,7 @@
       iframe.title = title;
       iframe.allowFullscreen = true;
       iframe.allow =
-        "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
-      iframe.frameBorder = "0";
+        "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
       iframe.style.width = "100%";
       iframe.style.height = "100%";
       placeholder.parentNode.replaceChild(iframe, placeholder);
