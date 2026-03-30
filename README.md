@@ -1,5 +1,19 @@
 # OBSIDIAN Neural — Frontend
 
+### Related Repositories
+
+| Repository                                                                                             | Description                                  |
+| ------------------------------------------------------------------------------------------------------ | -------------------------------------------- |
+| [obsidian-neural-central](https://github.com/innermost47/obsidian-neural-central)                      | Central inference server                     |
+| [obsidian-neural-provider](https://github.com/innermost47/obsidian-neural-provider)                    | Provider kit — run a GPU node on the network |
+| **[obsidian-neural-frontend](https://github.com/innermost47/obsidian-neural-frontend)** ← you are here | Storefront & dashboard                       |
+| [obsidian-neural-controller](https://github.com/innermost47/obsidian-neural-controller)                | Mobile MIDI controller app                   |
+| [ai-dj](https://github.com/innermost47/ai-dj)                                                          | VST3/AU plugin (client)                      |
+
+---
+
+## Overview
+
 Marketing website and user dashboard for [OBSIDIAN Neural](https://obsidian-neural.com), the open-source VST3/AU plugin for real-time AI music generation in live performance.
 
 Presented at **AES AIMLA 2025** — Queen Mary University London.
