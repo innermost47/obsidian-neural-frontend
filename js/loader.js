@@ -23,7 +23,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     `;
   }
 
-  // Highlight the active doc page in the bottom menu
   function highlightActiveDocPage(page) {
     const links = document.querySelectorAll(".doc-page-link");
     links.forEach((link) => {

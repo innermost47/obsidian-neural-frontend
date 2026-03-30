@@ -726,6 +726,8 @@ async function loadProviderStats() {
 
 function renderProviderStats(data) {
   const { provider, network, users, revenue, period } = data;
+
+  const { year, month, days_elapsed, days_in_month } = period;
   const monthName = new Date(year, month - 1).toLocaleString("default", {
     month: "long",
   });
@@ -735,6 +737,7 @@ function renderProviderStats(data) {
   document.getElementById("month-progress-bar").style.width = `${progressPct}%`;
   document.getElementById("month-progress-label").textContent =
     `${progressPct}% of month elapsed`;
+
   document.getElementById("provider-name").textContent = provider.name;
   document.getElementById("provider-uptime").textContent =
     `${provider.uptime_score}%`;
