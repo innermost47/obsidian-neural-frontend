@@ -2920,8 +2920,6 @@
     <script src="js/analytics.js"></script>
     <script src="js/dashboard.js"></script>
     <script src="js/promo-popup.js"></script>
-
-    <!-- Hydrate all dynamic values from APP_CONFIG -->
     <script>
       (function () {
         var cfg = window.APP_CONFIG || {};
@@ -2938,9 +2936,8 @@
         var pBase = cfg.PLAN_PRICE_BASE || "5.99";
         var pStarter = cfg.GIFT_PRICE_STARTER || "14.99";
         var pPro = cfg.GIFT_PRICE_PRO || "29.99";
-        var apiUrl = cfg.API_URL || "";
+        var apiUrl = cfg.VST_API_URL || "";
 
-        // Expose prices for gtagSendEvent calls
         window._prices = { base: pBase, starter: pStarter, pro: pPro };
 
         function setText(id, val) {
@@ -2952,17 +2949,13 @@
           if (el && url !== "#") el.href = url;
         }
 
-        // Sidebar plugin name
         setText("sidebar-plugin-name", pluginName.toUpperCase());
-
-        // Sidebar nav links
         setHref(
           "nav-download",
           githubUrl !== "#" ? githubUrl + "/releases/latest" : "#",
         );
         setHref("nav-support", githubIssues);
 
-        // Download buttons — explicit filenames from config, fallback to auto-constructed
         var releasesBase =
           githubUrl !== "#" ? githubUrl + "/releases/latest/download/" : "";
         function dlUrl(cfgKey, fallbackFilename) {
@@ -2998,18 +2991,15 @@
           ),
         );
 
-        // Quick action links
         setHref("qa-docs", docsUrl);
         setHref("qa-support", githubIssues);
         setHref("qa-community", githubDiscuss);
 
-        // Server URL in API section
         if (apiUrl) {
           var serverEl = document.getElementById("server-url");
           if (serverEl) serverEl.textContent = apiUrl;
         }
 
-        // Subscription plan prices
         setText("sub-price-base", sym + pBase);
         setText("sub-price-base2", sym + pBase);
         setText("sub-price-starter", sym + pStarter);

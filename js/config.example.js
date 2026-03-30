@@ -6,6 +6,7 @@
 
 window.APP_CONFIG = {
   API_URL: "https://api.your-domain.com/api/v1",
+  VST_API_URL: "https://vst-api.your-domain.com",
 
   SITE_NAME: "OBSIDIAN Neural",
   SITE_URL: "https://your-domain.com",
