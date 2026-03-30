@@ -395,15 +395,19 @@
               Real-Time AI Music Generation<br />For Live Performance
             </h1>
             <p class="lead mb-4 fs-4">
-              <strong>AI as your creative partner, not your replacement.</strong
-              ><br />
-              Generate music in real-time, keep full control, explore without
-              limits—directly in your DAW.
+              <strong>The first VST that pays you back.</strong><br />
+              Generate music in real-time, keep full control — and if you have a
+              GPU,
+              <strong style="color: var(--color-primary)"
+                >earn 85% of the network revenue</strong
+              >
+              by powering it.
             </p>
             <p class="mb-4 text-secondary fs-5" id="hero-plugin-desc">
-              Whether you're a live performer or discovering music through AI,
-              the plugin transforms the machine into an instrument you
-              control—with 8 MIDI sequences per page ready to trigger.
+              Whether you're a live performer or a developer with an idle GPU,
+              OBSIDIAN Neural is built differently — open source, cooperative,
+              transparent. 8 MIDI sequences per page. AI as your instrument, not
+              your replacement.
             </p>
             <div class="d-flex justify-content-center gap-3 mb-4 flex-wrap">
               <a
@@ -449,7 +453,21 @@
               >
                 <i class="fas fa-mobile-alt me-2"></i>Mobile Controller
               </a>
+              <a
+                href="#provider-network"
+                class="btn btn-outline-secondary btn-lg px-5 py-3 fw-bold"
+                style="
+                  border-color: rgba(184, 96, 92, 0.5);
+                  color: var(--color-primary);
+                "
+                onclick="trackClick('provider_cta', 'Hero Provider Button')"
+                onmouseover="this.style.background = 'rgba(184,96,92,0.1)'"
+                onmouseout="this.style.background = 'transparent'"
+              >
+                <i class="fas fa-server me-2"></i>Earn with your GPU
+              </a>
             </div>
+
             <div class="d-flex justify-content-center gap-4 fs-5 flex-wrap">
               <span
                 ><i class="fas fa-code text-success me-2"></i>Open Source
@@ -2307,6 +2325,120 @@
       </div>
     </section>
 
+    <!-- Provider Network CTA -->
+    <section class="py-5 bg-gradient-dark" id="provider-network">
+      <div class="container py-3">
+        <div class="row justify-content-center">
+          <div class="col-lg-10">
+            <div
+              class="feature-card-icon p-5 rounded-4 text-center"
+              style="
+                border: 1px solid rgba(184, 96, 92, 0.35);
+                background: rgba(184, 96, 92, 0.04);
+              "
+            >
+              <div class="icon-circle bg-gradient-red mx-auto mb-4">
+                <i class="fas fa-server fa-2x"></i>
+              </div>
+              <div class="badge bg-warning text-dark mb-3 px-3 py-2">
+                <i class="fas fa-network-wired me-2"></i>Phase 1 — 10 spots
+              </div>
+              <h2 class="display-6 fw-bold mb-3">Have a GPU? Earn with it.</h2>
+              <p class="lead text-secondary mb-2">
+                <span id="provider-section-plugin-name"></span> runs on a
+                <strong style="color: var(--color-text-primary)"
+                  >distributed GPU network</strong
+                >
+                powered by independent providers. Every month,
+                <strong style="color: var(--color-primary)"
+                  >85% of subscription revenue</strong
+                >
+                is split equally among active providers.
+              </p>
+              <p class="text-secondary mb-4">
+                NVIDIA RTX 3060+ required. 15-minute setup. Fully open source.
+                Payouts via Stripe Connect. Plus
+                <strong style="color: var(--color-text-primary)"
+                  >500 free credits/month</strong
+                >
+                to use the plugin yourself.
+              </p>
+              <div class="d-flex justify-content-center gap-3 flex-wrap mb-4">
+                <div class="text-center px-3">
+                  <div
+                    class="h3 fw-bold mb-0"
+                    style="color: var(--color-primary)"
+                  >
+                    85%
+                  </div>
+                  <div class="small text-secondary">revenue shared</div>
+                </div>
+                <div class="vr" style="opacity: 0.2"></div>
+                <div class="text-center px-3">
+                  <div
+                    class="h3 fw-bold mb-0"
+                    style="color: var(--color-text-primary)"
+                  >
+                    500
+                  </div>
+                  <div class="small text-secondary">free credits/mo</div>
+                </div>
+                <div class="vr" style="opacity: 0.2"></div>
+                <div class="text-center px-3">
+                  <div
+                    class="h3 fw-bold mb-0"
+                    style="color: var(--color-text-primary)"
+                  >
+                    15min
+                  </div>
+                  <div class="small text-secondary">to set up</div>
+                </div>
+                <div class="vr" style="opacity: 0.2"></div>
+                <div class="text-center px-3">
+                  <div
+                    class="h3 fw-bold mb-0"
+                    style="color: var(--color-text-primary)"
+                  >
+                    10
+                  </div>
+                  <div class="small text-secondary">spots total</div>
+                </div>
+              </div>
+              <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <a
+                  id="provider-cta-contact"
+                  href="#"
+                  class="btn btn-gradient-primary btn-lg px-5 py-3 fw-bold"
+                >
+                  <i class="fas fa-envelope me-2"></i>I'm interested — contact
+                  me
+                </a>
+                <a
+                  id="provider-cta-github"
+                  href="#"
+                  target="_blank"
+                  rel="noopener"
+                  class="btn btn-outline-secondary btn-lg px-4 py-3 fw-bold"
+                >
+                  <i class="fab fa-github me-2"></i>Read the code first
+                </a>
+              </div>
+              <p class="small text-secondary mt-3 mb-0">
+                <i class="fas fa-lock me-1"></i>Revenue data published publicly
+                at
+                <a
+                  id="provider-finances-link"
+                  href="#"
+                  target="_blank"
+                  class="text-accent"
+                ></a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- CTA -->
     <section class="container py-5">
       <div class="row justify-content-center">
@@ -2419,6 +2551,22 @@
 
         setHref("btn-beatcrafter-dl", beatcrafterUrl + "/releases/latest");
         setHref("btn-beatcrafter-src", beatcrafterUrl);
+
+        setText("provider-section-plugin-name", pluginName);
+        setHref(
+          "provider-cta-contact",
+          (cfg.SITE_URL || "") + "/contact.html?subject=partnership",
+        );
+        setHref(
+          "provider-cta-github",
+          (cfg.PROVIDER_GITHUB_URL || githubUrl) + "",
+        );
+        var finLink = document.getElementById("provider-finances-link");
+        if (finLink) {
+          var finUrl = (cfg.API_URL || "") + "/public/finances";
+          finLink.href = finUrl;
+          finLink.textContent = finUrl.replace("https://", "");
+        }
 
         var step2 = document.getElementById("step2-github");
         if (step2) step2.href = githubUrl;

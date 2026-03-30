@@ -83,4 +83,7 @@ window.APP_CONFIG = {
 
   GITHUB_STATS_URL: "",
   GADS_MEASUREMENT_ID: "",
+
+  PROVIDER_GITHUB_URL:
+    "https://github.com/your-username/obsidian-neural-provider",
 };
