@@ -1187,6 +1187,9 @@ function restoreActiveSection() {
       if (sectionId === "providers" && userData && userData.is_admin) {
         setTimeout(loadProviders, 100);
       }
+      if (sectionId === "provider-stats" && userData.is_provider) {
+        setTimeout(loadProviderStats, 100);
+      }
     }
   }
 }
