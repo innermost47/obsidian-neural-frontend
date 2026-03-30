@@ -725,8 +725,16 @@ async function loadProviderStats() {
 }
 
 function renderProviderStats(data) {
-  const { provider, my_generations, network, users, revenue, period } = data;
-
+  const { provider, network, users, revenue, period } = data;
+  const monthName = new Date(year, month - 1).toLocaleString("default", {
+    month: "long",
+  });
+  const progressPct = Math.round((days_elapsed / days_in_month) * 100);
+  document.getElementById("period-label").textContent =
+    `${monthName} ${year} — day ${days_elapsed}/${days_in_month}`;
+  document.getElementById("month-progress-bar").style.width = `${progressPct}%`;
+  document.getElementById("month-progress-label").textContent =
+    `${progressPct}% of month elapsed`;
   document.getElementById("provider-name").textContent = provider.name;
   document.getElementById("provider-uptime").textContent =
     `${provider.uptime_score}%`;
@@ -744,9 +752,9 @@ function renderProviderStats(data) {
   }
 
   document.getElementById("stat-my-jobs-month").textContent =
-    my_generations.this_month.toLocaleString();
+    provider.billable_jobs.toLocaleString();
   document.getElementById("stat-my-jobs-total").textContent =
-    `${my_generations.all_time.toLocaleString()} total`;
+    `${provider.jobs_done.toLocaleString()} total`;
   document.getElementById("stat-global-generations").textContent =
     network.global_generations_this_month.toLocaleString();
   document.getElementById("stat-active-providers").textContent =
