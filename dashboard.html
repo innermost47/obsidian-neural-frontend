@@ -2954,6 +2954,7 @@
         var pStarter = cfg.GIFT_PRICE_STARTER || "14.99";
         var pPro = cfg.GIFT_PRICE_PRO || "29.99";
         var apiUrl = cfg.VST_API_URL || "";
+        var financesLink = cfg.API_URL + "/public/finances" || "";
 
         window._prices = { base: pBase, starter: pStarter, pro: pPro };
 
@@ -2972,6 +2973,7 @@
           githubUrl !== "#" ? githubUrl + "/releases/latest" : "#",
         );
         setHref("nav-support", githubIssues);
+        setHref("finances-link", financesLink);
 
         var releasesBase =
           githubUrl !== "#" ? githubUrl + "/releases/latest/download/" : "";
