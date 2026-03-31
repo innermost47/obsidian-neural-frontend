@@ -80,7 +80,8 @@
             "Stable Audio VST, LLM music generation, AI DAW plugin, " +
             pluginName +
             (authorAlias ? ", " + authorAlias : "") +
-            ", sketch to audio, draw to audio VST",
+            ", sketch to audio, draw to audio VST, " +
+            "DePIN, GPU provider network, passive income GPU, distributed AI audio, proof of work music",
         );
         setMeta(
           "author",
@@ -306,7 +307,6 @@
           });
         });
 
-        // FAQPage
         jsonLd.push({
           "@context": "https://schema.org",
           "@type": "FAQPage",
@@ -360,6 +360,51 @@
               },
             },
           ],
+        });
+        jsonLd.push({
+          "@context": "https://schema.org",
+          "@type": "Service",
+          name: g.NETWORK_NAME,
+          serviceType:
+            (window.APP_CONFIG && window.APP_CONFIG.NETWORK_TYPE) ||
+            "Distributed GPU Computing",
+          provider: {
+            "@type": "Organization",
+            name: g.siteName,
+          },
+          description:
+            "Distributed GPU provider network for real-time AI music generation with automated monthly redistribution.",
+          offers: {
+            "@type": "Offer",
+            description:
+              "Provider Eligibility: Uptime > 60%, 1+ billable job/month. " +
+              ((window.APP_CONFIG && window.APP_CONFIG.REVENUE_SHARE_PCT) ||
+                "85%") +
+              " net revenue share.",
+          },
+          hasRequirement: [
+            "Compatible GPUs: " +
+              ((window.APP_CONFIG && window.APP_CONFIG.GPU_MODEL_SUPPORTED) ||
+                "NVIDIA RTX 3090/4090"),
+            "NVIDIA GPU with CUDA support",
+            "Minimum 8GB VRAM",
+            "Stable Internet connection",
+          ],
+        });
+
+        jsonLd.push({
+          "@context": "https://schema.org",
+          "@type": "Dataset",
+          name: g.siteName + " Proof of Generation Logs",
+          description:
+            "Public immutable logs of AI audio generations verified via " +
+            ((window.APP_CONFIG && window.APP_CONFIG.VERIFICATION_METHOD) ||
+              "Mel Spectrogram Fingerprinting") +
+            ".",
+          url:
+            (window.APP_CONFIG && window.APP_CONFIG.EXPLORER_URL) ||
+            g.siteUrl + "/api/v1/public/ownership",
+          license: "https://www.mozilla.org/en-US/MPL/2.0/",
         });
 
         var el = document.getElementById("json-ld-placeholder");

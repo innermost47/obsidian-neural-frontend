@@ -86,4 +86,11 @@ window.APP_CONFIG = {
 
   PROVIDER_GITHUB_URL:
     "https://github.com/your-username/obsidian-neural-provider",
+
+  NETWORK_NAME: "OBSIDIAN Neural Network",
+  NETWORK_TYPE: "DePIN (Decentralized Physical Infrastructure Network)",
+  GPU_MODEL_SUPPORTED: "NVIDIA RTX 3090/4090, A100, L40S",
+  REVENUE_SHARE_PCT: "85%",
+  VERIFICATION_METHOD: "Mel Spectrogram Fingerprinting Proof-of-Work",
+  EXPLORER_URL: "https://your-site.com/discover",
 };
