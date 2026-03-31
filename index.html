@@ -256,6 +256,28 @@
             url: siteUrl,
             downloadUrl: githubUrl ? githubUrl + "/releases/latest" : undefined,
             screenshot: screenshotUrl,
+            review: [
+              {
+                "@type": "Review",
+                author: {
+                  "@type": "Organization",
+                  name: "Bedroom Producers Blog",
+                },
+                reviewRating: { "@type": "Rating", ratingValue: "5" },
+                url: "https://bedroomproducersblog.com/2025/06/06/obsidian-neural-sound-engine/",
+              },
+              {
+                "@type": "Review",
+                author: { "@type": "Organization", name: "Synthtopia" },
+                url: "https://www.synthtopia.com/content/2025/12/22/obsidian-neural-brings-ai-generated-samples-to-your-daw/",
+              },
+            ],
+            citation: [
+              "https://fr.audiofanzine.com/sequenceur-divers/obsidian-neural/obsidian-neural/news/a.play,n.78783.html",
+              "https://www.midifan.com/modulenews-detailview-57259.htm",
+              "https://rekkerd.org/obsidian-neural-real-time-ai-music-generation-vst3/",
+              "https://www.futuremusic-es.com/obsidian-neural-vst3-ia-generativa/",
+            ],
             featureList: [
               "Real-time AI stereo music generation",
               "8-track stereo sampler",
@@ -322,6 +344,88 @@
               name: authorAlias || authorName,
             },
           });
+        });
+
+        jsonLd.push({
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          name: "OBSIDIAN Neural - International Press & Academic Coverage",
+          description:
+            "Featured in leading music technology publications and academic conferences across 8 countries and 6 languages.",
+          itemListElement: [
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "AES AIMLA 2025 - Queen Mary University London",
+              url: "https://aes2.org/publications/elibrary-page/?id=22851",
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: "Synthtopia (USA) - AI-Generated Samples in DAW",
+              url: "https://www.synthtopia.com/content/2025/12/22/obsidian-neural-brings-ai-generated-samples-to-your-daw/",
+            },
+            {
+              "@type": "ListItem",
+              position: 3,
+              name: "Audiofanzine (France) - Voici Obsidian-Neural",
+              url: "https://fr.audiofanzine.com/sequenceur-divers/obsidian-neural/obsidian-neural/news/a.play,n.78783.html",
+            },
+            {
+              "@type": "ListItem",
+              position: 4,
+              name: "Bedroom Producers Blog (USA) - AI-powered jam partner",
+              url: "https://bedroomproducersblog.com/2025/06/06/obsidian-neural-sound-engine/",
+            },
+            {
+              "@type": "ListItem",
+              position: 5,
+              name: "MIDIFAN (China) - OBSIDIAN Neural AI创作插件",
+              url: "https://www.midifan.com/modulenews-detailview-57259.htm",
+            },
+            {
+              "@type": "ListItem",
+              position: 6,
+              name: "Rekkerd (Netherlands) - Real-time AI music generation VST3",
+              url: "https://rekkerd.org/obsidian-neural-real-time-ai-music-generation-vst3/",
+            },
+            {
+              "@type": "ListItem",
+              position: 7,
+              name: "FutureMusic (Spain) - IA creativa en vivo",
+              url: "https://www.futuremusic-es.com/obsidian-neural-vst3-ia-generativa/",
+            },
+            {
+              "@type": "ListItem",
+              position: 8,
+              name: "S1 Forum (South Korea) - OBSIDIAN Neural 공개",
+              url: "https://s1forum.kr/news/innermost47%EC%97%90%EC%84%9C-obsidian-neural-%EA%B3%B5%EA%B0%9C/",
+            },
+            {
+              "@type": "ListItem",
+              position: 9,
+              name: "DTM Plugin Sale (Japan) - AIを楽器に変える時代",
+              url: "https://projectofnapskint.com/obsidian-2/",
+            },
+            {
+              "@type": "ListItem",
+              position: 10,
+              name: "Audio Plugin Guy (USA) - Free real-time AI music generation",
+              url: "https://www.audiopluginguy.com/news-innermost47-launches-free-real-time-ai-music-generation-plugin-obsidian-neural-sound-engine/",
+            },
+            {
+              "@type": "ListItem",
+              position: 11,
+              name: "Sohu (China) - 免费开源 AI 驱动的即兴演奏引擎",
+              url: "https://www.sohu.com/a/903075640_455142",
+            },
+            {
+              "@type": "ListItem",
+              position: 12,
+              name: "Amner Hunter (YouTube) - 17 Best New FREE Effect Plugins",
+              url: "https://www.youtube.com/watch?v=40pkX_MkXjE",
+            },
+          ],
         });
 
         jsonLd.push({
