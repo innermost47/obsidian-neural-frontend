@@ -307,10 +307,13 @@
             description: v.desc,
             thumbnailUrl:
               "https://img.youtube.com/vi/" + v.id + "/maxresdefault.jpg",
-            embedUrl: "https://www.youtube.com/embed/" + v.id,
-            contentUrl: "https://www.youtube.com/watch?v=" + v.id,
             uploadDate: v.date,
-            publisher: { "@type": "Person", name: authorAlias || authorName },
+            embedUrl: "https://www.youtube.com/embed/" + v.id,
+            publisher: {
+              "@type": "Person",
+              name: authorAlias || authorName,
+              url: siteUrl,
+            },
           });
         });
 
