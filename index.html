@@ -273,7 +273,7 @@
             id: videoIdDnB,
             name: pluginName + " — Jungle Drum & Bass Live Mix",
             desc: "Live performance demo: AI-generated samples triggered via MIDI controller in a jungle drum & bass set",
-            date: "2025-01-01",
+            date: "2025-01-01T12:00:00+01:00",
           },
           {
             id: videoIdAimla,
@@ -282,13 +282,13 @@
               "Excerpt from the " +
               conferenceTag +
               " conference. Live AI music generation with hardware controllers in Bitwig Studio.",
-            date: "2025-09-01",
+            date: "2025-09-01T14:30:00+01:00",
           },
           {
             id: videoIdDraw,
             name: pluginName + " — Draw-to-Audio Live Demo",
             desc: "Raw improvisation showcasing the draw-to-audio workflow: sketch patterns on canvas, AI vision model interprets visuals and generates matching audio loops on the fly.",
-            date: "2025-01-01",
+            date: "2025-01-01T12:00:00+01:00",
           },
         ];
         videos.forEach(function (v) {
@@ -370,7 +370,13 @@
             "Distributed GPU Computing",
           provider: {
             "@type": "Organization",
-            name: g.siteName,
+            name: siteName,
+            url: siteUrl,
+          },
+          creator: {
+            "@type": "Person",
+            name: authorAlias || authorName,
+            url: authorGithub,
           },
           description:
             "Distributed GPU provider network for real-time AI music generation with automated monthly redistribution.",
@@ -396,6 +402,15 @@
           "@context": "https://schema.org",
           "@type": "Dataset",
           name: g.siteName + " Proof of Generation Logs",
+          creator: {
+            "@type": "Organization",
+            name: siteName,
+            url: siteUrl,
+          },
+          publisher: {
+            "@type": "Person",
+            name: authorAlias || authorName,
+          },
           description:
             "Public immutable logs of AI audio generations verified via " +
             ((window.APP_CONFIG && window.APP_CONFIG.VERIFICATION_METHOD) ||
