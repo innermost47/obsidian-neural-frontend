@@ -1,568 +1,420 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      OBSIDIAN Neural: Real-Time AI Generative Sampler | Live AI Music VST
+    </title>
+    <meta
+      name="description"
+      content="First VST3/AU plugin for real-time AI stereo music generation in live performance. Generate 30-second samples in ~20 seconds, 8-track sampler, MIDI control, BPM sync. Featured at AES AIMLA 2025."
+    />
+    <meta
+      name="keywords"
+      content="AI VST plugin, real-time music generation, AI music VST3, live performance AI audio, Stable Audio VST, LLM music generation, AI DAW plugin, OBSIDIAN Neural, InnerMost47, sketch to audio, draw to audio VST, DePIN, GPU provider network, passive income GPU, distributed AI audio, proof of work music"
+    />
+    <meta name="author" content="InnerMost47 - Anthony Charretier" />
+    <meta name="robots" content="index, follow" />
+    <link
+      rel="canonical"
+      href="https://ai-harmony.duckdns.org/obsidian/api/v1/"
+    />
 
-    <script src="js/config.js"></script>
-    <script>
-      (function () {
-        var cfg = window.APP_CONFIG || {};
-        var siteName = cfg.SITE_NAME || "OBSIDIAN Neural";
-        var siteUrl = cfg.SITE_URL || "";
-        var pluginName = cfg.PLUGIN_NAME || siteName;
-        var pluginFormats = cfg.PLUGIN_FORMATS || "VST3/AU";
-        var authorName = cfg.PUBLICATION_DIRECTOR || cfg.COMPANY_NAME || "";
-        var authorAlias = cfg.AUTHOR_ALIAS || "";
-        var twitterHandle = cfg.TWITTER_HANDLE || "";
-        var conferenceTag = cfg.CONFERENCE_TAG || "AES AIMLA 2025";
-        var screenshotUrl = siteUrl
-          ? siteUrl + "/assets/images/screenshot.png"
-          : "";
-        var githubUrl = cfg.GITHUB_URL || "";
-        var priceStarter = cfg.GIFT_PRICE_STARTER || "14.99";
-        var pricePro = cfg.GIFT_PRICE_PRO || "29.99";
-        var currency = cfg.GIFT_CURRENCY || "EUR";
-        var currencySymbol = cfg.GIFT_CURRENCY_SYMBOL || "€";
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="OBSIDIAN Neural" />
+    <meta property="og:locale" content="en_US" />
+    <meta
+      property="og:url"
+      content="https://ai-harmony.duckdns.org/obsidian/api/v1/"
+    />
+    <meta
+      property="og:title"
+      content="OBSIDIAN Neural — Real-Time AI Music Generation VST"
+    />
+    <meta
+      property="og:description"
+      content="First VST for real-time AI music generation. 8-track sampler, LLM brain, draw-to-audio, live performance ready. Presented at AES AIMLA 2025."
+    />
+    <meta
+      property="og:image"
+      content="https://ai-harmony.duckdns.org/obsidian/api/v1/assets/images/screenshot.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="OBSIDIAN Neural VST3 plugin interface — 8-track AI sampler"
+    />
 
-        // Expose for JSON-LD block
-        window._idxCfg = {
-          siteName,
-          siteUrl,
-          pluginName,
-          pluginFormats,
-          authorName,
-          authorAlias,
-          twitterHandle,
-          conferenceTag,
-          screenshotUrl,
-          githubUrl,
-          priceStarter,
-          pricePro,
-          currency,
-          currencySymbol,
-        };
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@innermost47" />
+    <meta
+      name="twitter:url"
+      content="https://ai-harmony.duckdns.org/obsidian/api/v1/"
+    />
+    <meta
+      name="twitter:title"
+      content="OBSIDIAN Neural — Real-Time AI Music VST"
+    />
+    <meta
+      name="twitter:description"
+      content="First VST for real-time AI music generation. Live performance ready. Open source."
+    />
+    <meta
+      name="twitter:image"
+      content="https://ai-harmony.duckdns.org/obsidian/api/v1/assets/images/screenshot.png"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="OBSIDIAN Neural VST plugin interface"
+    />
 
-        var pageTitle =
-          pluginName +
-          " — Real-Time AI Music Generation " +
-          pluginFormats +
-          " Plugin" +
-          (authorAlias ? " | " + authorAlias : "");
-        var pageDesc =
-          "First " +
-          pluginFormats +
-          " plugin for real-time AI stereo music generation in live performance. " +
-          "Generate 30-second samples in ~20 seconds, 8-track sampler, MIDI control, BPM sync." +
-          (conferenceTag ? " Featured at " + conferenceTag + "." : "");
-
-        document.title = pageTitle;
-
-        function setMeta(name, content, prop) {
-          if (!content) return;
-          var el = document.createElement("meta");
-          el.setAttribute(prop ? "property" : "name", name);
-          el.setAttribute("content", content);
-          document.head.appendChild(el);
-        }
-        function setLink(rel, href) {
-          if (!href) return;
-          var el = document.createElement("link");
-          el.setAttribute("rel", rel);
-          el.setAttribute("href", href);
-          document.head.appendChild(el);
-        }
-
-        setMeta("description", pageDesc);
-        setMeta(
-          "keywords",
-          "AI VST plugin, real-time music generation, AI music VST3, live performance AI audio, " +
-            "Stable Audio VST, LLM music generation, AI DAW plugin, " +
-            pluginName +
-            (authorAlias ? ", " + authorAlias : "") +
-            ", sketch to audio, draw to audio VST, " +
-            "DePIN, GPU provider network, passive income GPU, distributed AI audio, proof of work music",
-        );
-        setMeta(
-          "author",
-          authorAlias
-            ? authorAlias + (authorName ? " - " + authorName : "")
-            : authorName,
-        );
-        setMeta("robots", "index, follow");
-        setLink("canonical", siteUrl + "/");
-
-        setMeta("og:type", "website", true);
-        setMeta("og:site_name", siteName, true);
-        setMeta("og:locale", "en_US", true);
-        setMeta("og:url", siteUrl + "/", true);
-        setMeta(
-          "og:title",
-          pluginName + " — Real-Time AI Music Generation VST",
-          true,
-        );
-        setMeta(
-          "og:description",
-          "First VST for real-time AI music generation. 8-track sampler, LLM brain, draw-to-audio, live performance ready." +
-            (conferenceTag ? " Presented at " + conferenceTag + "." : ""),
-          true,
-        );
-        setMeta("og:image", screenshotUrl, true);
-        setMeta("og:image:width", "1200", true);
-        setMeta("og:image:height", "630", true);
-        setMeta(
-          "og:image:alt",
-          pluginName + " VST3 plugin interface — 8-track AI sampler",
-          true,
-        );
-
-        setMeta("twitter:card", "summary_large_image");
-        if (twitterHandle) setMeta("twitter:site", "@" + twitterHandle);
-        setMeta("twitter:url", siteUrl + "/");
-        setMeta("twitter:title", pluginName + " — Real-Time AI Music VST");
-        setMeta(
-          "twitter:description",
-          "First VST for real-time AI music generation. Live performance ready. Open source.",
-        );
-        setMeta("twitter:image", screenshotUrl);
-        setMeta("twitter:image:alt", pluginName + " VST plugin interface");
-      })();
-    </script>
-
+    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/images/logo.ico" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link rel="stylesheet" href="css/style.css" />
 
-    <!-- Schema.org JSON-LD — fully dynamic -->
-    <script id="json-ld-placeholder" type="application/ld+json">
-      []
-    </script>
-    <script>
-      (function () {
-        var g = window._idxCfg || {};
-        var siteName = g.siteName || "OBSIDIAN Neural";
-        var siteUrl = g.siteUrl || "";
-        var pluginName = g.pluginName || siteName;
-        var authorName = g.authorName || "";
-        var authorAlias = g.authorAlias || "";
-        var conferenceTag = g.conferenceTag || "";
-        var screenshotUrl = g.screenshotUrl || "";
-        var githubUrl = g.githubUrl || "";
-        var priceStarter = g.priceStarter || "14.99";
-        var pricePro = g.pricePro || "29.99";
-        var currency = g.currency || "EUR";
-        var currencySymbol = g.currencySymbol || "€";
-
-        // ARG admin URL — new optional config var
-        var argUrl =
-          (window.APP_CONFIG && window.APP_CONFIG.ARG_ADMIN_URL) || "";
-        var controllerUrl =
-          (window.APP_CONFIG && window.APP_CONFIG.CONTROLLER_GITHUB_URL) || "";
-        var beatcrafterUrl =
-          (window.APP_CONFIG && window.APP_CONFIG.BEATCRAFTER_GITHUB_URL) || "";
-        var kvraudioUrl =
-          (window.APP_CONFIG && window.APP_CONFIG.KVRAUDIO_URL) || "";
-        var paperUrl = (window.APP_CONFIG && window.APP_CONFIG.PAPER_URL) || "";
-
-        // YouTube video IDs — new optional config vars
-        var videoIdDnB =
-          (window.APP_CONFIG && window.APP_CONFIG.VIDEO_ID_DNB) || "";
-        var videoIdAimla =
-          (window.APP_CONFIG && window.APP_CONFIG.VIDEO_ID_AIMLA) || "";
-        var videoIdDraw =
-          (window.APP_CONFIG && window.APP_CONFIG.VIDEO_ID_DRAW) || "";
-
-        var authorGithub = githubUrl
-          ? githubUrl.replace(/\/[^/]+$/, "") // strip repo slug → profile URL
-          : undefined;
-
-        var jsonLd = [
-          {
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            name: siteName,
-            url: siteUrl,
-            description:
-              "First " +
-              ((window.APP_CONFIG && window.APP_CONFIG.PLUGIN_FORMATS) ||
-                "VST3/AU") +
-              " plugin for real-time AI music generation in live performance",
-            potentialAction: {
-              "@type": "SearchAction",
-              target: {
-                "@type": "EntryPoint",
-                urlTemplate:
-                  siteUrl + "/documentation.html?q={search_term_string}",
-              },
-              "query-input": "required name=search_term_string",
+    <!-- === SCHEMA.ORG JSON-LD (Hardcoded) === -->
+    <script type="application/ld+json">
+      [
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "OBSIDIAN Neural",
+          "url": "https://ai-harmony.duckdns.org/obsidian/api/v1",
+          "description": "First VST3/AU plugin for real-time AI music generation in live performance",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://ai-harmony.duckdns.org/obsidian/api/v1/documentation.html?q={search_term_string}"
             },
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "OBSIDIAN Neural",
+          "alternateName": "OBSIDIAN Neural Sound Engine",
+          "applicationCategory": "MultimediaApplication",
+          "applicationSubCategory": "Audio Plugin",
+          "operatingSystem": "Windows, macOS, Linux",
+          "softwareVersion": "latest",
+          "license": "https://www.mozilla.org/en-US/MPL/2.0/",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": "191",
+            "bestRating": "5",
+            "worstRating": "1"
           },
-          {
-            "@context": "https://schema.org",
-            "@type": "SoftwareApplication",
-            name: pluginName,
-            alternateName: pluginName + " Sound Engine",
-            applicationCategory: "MultimediaApplication",
-            applicationSubCategory: "Audio Plugin",
-            operatingSystem: "Windows, macOS, Linux",
-            softwareVersion: "latest",
-            license: "https://www.mozilla.org/en-US/MPL/2.0/",
-            aggregateRating: {
-              "@type": "AggregateRating",
-              ratingValue: "4.8",
-              reviewCount: "191",
-              bestRating: "5",
-              worstRating: "1",
+          "creator": {
+            "@type": "Person",
+            "name": "Anthony Charretier",
+            "alternateName": "InnerMost47",
+            "url": "https://github.com/innermost47"
+          },
+          "offers": [
+            {
+              "@type": "Offer",
+              "name": "Free",
+              "price": "0",
+              "priceCurrency": "EUR",
+              "description": "10 free credits, 10 samples"
             },
-            creator: {
-              "@type": "Person",
-              name: authorName,
-              alternateName: authorAlias || undefined,
-              url: authorGithub,
+            {
+              "@type": "Offer",
+              "name": "Starter",
+              "price": "14.99",
+              "priceCurrency": "EUR",
+              "description": "500 credits/month, full features"
             },
-            offers: [
-              {
-                "@type": "Offer",
-                name: "Free",
-                price: "0",
-                priceCurrency: currency,
-                description: "10 free credits, 10 samples",
+            {
+              "@type": "Offer",
+              "name": "Pro",
+              "price": "29.99",
+              "priceCurrency": "EUR",
+              "description": "1500 credits/month, priority generation"
+            }
+          ],
+          "url": "https://ai-harmony.duckdns.org/obsidian/api/v1",
+          "downloadUrl": "https://github.com/innermost47/ai-dj/releases/latest",
+          "screenshot": "https://ai-harmony.duckdns.org/obsidian/api/v1/assets/images/screenshot.png",
+          "review": [
+            {
+              "@type": "Review",
+              "author": {
+                "@type": "Organization",
+                "name": "Bedroom Producers Blog"
               },
-              {
-                "@type": "Offer",
-                name: "Starter",
-                price: priceStarter,
-                priceCurrency: currency,
-                description: "500 credits/month, full features",
-              },
-              {
-                "@type": "Offer",
-                name: "Pro",
-                price: pricePro,
-                priceCurrency: currency,
-                description: "1500 credits/month, priority generation",
-              },
-            ],
-            url: siteUrl,
-            downloadUrl: githubUrl ? githubUrl + "/releases/latest" : undefined,
-            screenshot: screenshotUrl,
-            review: [
-              {
-                "@type": "Review",
-                author: {
-                  "@type": "Organization",
-                  name: "Bedroom Producers Blog",
-                },
-                reviewRating: { "@type": "Rating", ratingValue: "5" },
-                url: "https://bedroomproducersblog.com/2025/06/06/obsidian-neural-sound-engine/",
-              },
-              {
-                "@type": "Review",
-                author: { "@type": "Organization", name: "Synthtopia" },
-                url: "https://www.synthtopia.com/content/2025/12/22/obsidian-neural-brings-ai-generated-samples-to-your-daw/",
-              },
-            ],
-            citation: [
-              "https://fr.audiofanzine.com/sequenceur-divers/obsidian-neural/obsidian-neural/news/a.play,n.78783.html",
-              "https://www.midifan.com/modulenews-detailview-57259.htm",
-              "https://rekkerd.org/obsidian-neural-real-time-ai-music-generation-vst3/",
-              "https://www.futuremusic-es.com/obsidian-neural-vst3-ia-generativa/",
-            ],
-            featureList: [
-              "Real-time AI stereo music generation",
-              "8-track stereo sampler",
-              "64-step sequencer with 8 sequences per page",
-              "MIDI controller integration and MIDI Learn",
-              "BPM auto-synchronization via Librosa",
-              "Draw-to-audio: sketch-to-sound via vision LLM",
-              "LLM Brain with contextual session memory",
-              "VST3 and AU (Logic Pro) formats",
-              "Multi-output DAW routing",
-              "Quantized sample launch system",
-            ],
-            award: conferenceTag
-              ? conferenceTag + " Late Breaking Demo"
-              : undefined,
-          },
-        ];
-        var videos = [
-          {
-            id: videoIdDnB,
-            name: pluginName + " — Jungle Drum & Bass Live Mix",
-            desc: "Live performance demo: AI-generated samples triggered via MIDI controller in a jungle drum & bass set",
-            date: "2025-01-01T12:00:00+01:00",
-          },
-          {
-            id: videoIdAimla,
-            name: pluginName + " — " + conferenceTag + " Live Performance",
-            desc:
-              "Excerpt from the " +
-              conferenceTag +
-              " conference. Live AI music generation with hardware controllers in Bitwig Studio.",
-            date: "2025-09-01T14:30:00+01:00",
-          },
-          {
-            id: videoIdDraw,
-            name: pluginName + " — Draw-to-Audio Live Demo",
-            desc: "Raw improvisation showcasing the draw-to-audio workflow: sketch patterns on canvas, AI vision model interprets visuals and generates matching audio loops on the fly.",
-            date: "2025-01-01T12:00:00+01:00",
-          },
-        ];
-        videos.forEach(function (v) {
-          if (!v.id) return;
-          jsonLd.push({
-            "@context": "https://schema.org",
-            "@type": "VideoObject",
-            name: v.name,
-            description: v.desc,
-            thumbnailUrl: [
-              "https://img.youtube.com/vi/" + v.id + "/maxresdefault.jpg",
-              "https://img.youtube.com/vi/" + v.id + "/hqdefault.jpg",
-            ],
-            uploadDate: v.date,
-            embedUrl: "https://www.youtube.com/embed/" + v.id,
-            publisher: {
-              "@type": "Organization",
-              name: siteName,
-              logo: {
-                "@type": "ImageObject",
-                url: siteUrl + "/assets/images/logo.png",
-              },
+              "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+              "url": "https://bedroomproducersblog.com/2025/06/06/obsidian-neural-sound-engine/"
             },
-            author: {
-              "@type": "Person",
-              name: authorAlias || authorName,
-            },
-          });
-        });
-
-        jsonLd.push({
+            {
+              "@type": "Review",
+              "author": { "@type": "Organization", "name": "Synthtopia" },
+              "url": "https://www.synthtopia.com/content/2025/12/22/obsidian-neural-brings-ai-generated-samples-to-your-daw/"
+            }
+          ],
+          "citation": [
+            "https://aes2.org/publications/elibrary-page/?id=22851",
+            "https://www.synthtopia.com/content/2025/12/22/obsidian-neural-brings-ai-generated-samples-to-your-daw/",
+            "https://fr.audiofanzine.com/sequenceur-divers/obsidian-neural/obsidian-neural/news/a.play,n.78783.html",
+            "https://bedroomproducersblog.com/2025/06/06/obsidian-neural-sound-engine/",
+            "https://www.midifan.com/modulenews-detailview-57259.htm",
+            "https://rekkerd.org/obsidian-neural-real-time-ai-music-generation-vst3/",
+            "https://www.futuremusic-es.com/obsidian-neural-vst3-ia-generativa/",
+            "https://s1forum.kr/news/innermost47%EC%97%90%EC%84%9C-obsidian-neural-%EA%B3%B5%EA%B0%9C/",
+            "https://projectofnapskint.com/obsidian-2/",
+            "https://www.audiopluginguy.com/news-innermost47-launches-free-real-time-ai-music-generation-plugin-obsidian-neural-sound-engine/",
+            "https://www.sohu.com/a/903075640_455142",
+            "https://www.youtube.com/watch?v=40pkX_MkXjE"
+          ],
+          "featureList": [
+            "Real-time AI stereo music generation",
+            "8-track stereo sampler",
+            "64-step sequencer with 8 sequences per page",
+            "MIDI controller integration and MIDI Learn",
+            "BPM auto-synchronization via Librosa",
+            "Draw-to-audio: sketch-to-sound via vision LLM",
+            "LLM Brain with contextual session memory",
+            "VST3 and AU (Logic Pro) formats",
+            "Multi-output DAW routing",
+            "Quantized sample launch system"
+          ],
+          "award": "AES AIMLA 2025 Late Breaking Demo"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "VideoObject",
+          "name": "OBSIDIAN Neural — Jungle Drum & Bass Live Mix",
+          "description": "Live performance demo: AI-generated samples triggered via MIDI controller in a jungle drum & bass set",
+          "thumbnailUrl": [
+            "https://img.youtube.com/vi/sihEcsG-W4s/maxresdefault.jpg",
+            "https://img.youtube.com/vi/sihEcsG-W4s/hqdefault.jpg"
+          ],
+          "uploadDate": "2025-01-01T12:00:00+01:00",
+          "embedUrl": "https://www.youtube.com/embed/sihEcsG-W4s",
+          "publisher": {
+            "@type": "Organization",
+            "name": "OBSIDIAN Neural",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://ai-harmony.duckdns.org/obsidian/api/v1/assets/images/logo.png"
+            }
+          },
+          "author": {
+            "@type": "Person",
+            "name": "InnerMost47"
+          }
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "VideoObject",
+          "name": "OBSIDIAN Neural — AES AIMLA 2025 Live Performance",
+          "description": "Excerpt from the AES AIMLA 2025 conference. Live AI music generation with hardware controllers in Bitwig Studio.",
+          "thumbnailUrl": [
+            "https://img.youtube.com/vi/LqHTUhqYl3s/maxresdefault.jpg",
+            "https://img.youtube.com/vi/LqHTUhqYl3s/hqdefault.jpg"
+          ],
+          "uploadDate": "2025-09-01T14:30:00+01:00",
+          "embedUrl": "https://www.youtube.com/embed/LqHTUhqYl3s",
+          "publisher": {
+            "@type": "Organization",
+            "name": "OBSIDIAN Neural",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://ai-harmony.duckdns.org/obsidian/api/v1/assets/images/logo.png"
+            }
+          },
+          "author": {
+            "@type": "Person",
+            "name": "InnerMost47"
+          }
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "VideoObject",
+          "name": "OBSIDIAN Neural — Draw-to-Audio Live Demo",
+          "description": "Raw improvisation showcasing the draw-to-audio workflow: sketch patterns on canvas, AI vision model interprets visuals and generates matching audio loops on the fly.",
+          "thumbnailUrl": [
+            "https://img.youtube.com/vi/goI34nJUTgM/maxresdefault.jpg",
+            "https://img.youtube.com/vi/goI34nJUTgM/hqdefault.jpg"
+          ],
+          "uploadDate": "2025-01-01T12:00:00+01:00",
+          "embedUrl": "https://www.youtube.com/embed/goI34nJUTgM",
+          "publisher": {
+            "@type": "Organization",
+            "name": "OBSIDIAN Neural",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://ai-harmony.duckdns.org/obsidian/api/v1/assets/images/logo.png"
+            }
+          },
+          "author": {
+            "@type": "Person",
+            "name": "InnerMost47"
+          }
+        },
+        {
           "@context": "https://schema.org",
           "@type": "ItemList",
-          name: "OBSIDIAN Neural - International Press & Academic Coverage",
-          description:
-            "Featured in leading music technology publications and academic conferences across 8 countries and 6 languages.",
-          itemListElement: [
+          "name": "OBSIDIAN Neural - International Press & Academic Coverage",
+          "description": "Featured in leading music technology publications and academic conferences across 8 countries and 6 languages.",
+          "itemListElement": [
             {
               "@type": "ListItem",
-              position: 1,
-              name: "AES AIMLA 2025 - Queen Mary University London",
-              url: "https://aes2.org/publications/elibrary-page/?id=22851",
+              "position": 1,
+              "name": "AES AIMLA 2025 - Queen Mary University London",
+              "url": "https://aes2.org/publications/elibrary-page/?id=22851"
             },
             {
               "@type": "ListItem",
-              position: 2,
-              name: "Synthtopia (USA) - AI-Generated Samples in DAW",
-              url: "https://www.synthtopia.com/content/2025/12/22/obsidian-neural-brings-ai-generated-samples-to-your-daw/",
+              "position": 2,
+              "name": "Synthtopia (USA) - AI-Generated Samples in DAW",
+              "url": "https://www.synthtopia.com/content/2025/12/22/obsidian-neural-brings-ai-generated-samples-to-your-daw/"
             },
             {
               "@type": "ListItem",
-              position: 3,
-              name: "Audiofanzine (France) - Voici Obsidian-Neural",
-              url: "https://fr.audiofanzine.com/sequenceur-divers/obsidian-neural/obsidian-neural/news/a.play,n.78783.html",
+              "position": 3,
+              "name": "Audiofanzine (France) - Voici Obsidian-Neural",
+              "url": "https://fr.audiofanzine.com/sequenceur-divers/obsidian-neural/obsidian-neural/news/a.play,n.78783.html"
             },
             {
               "@type": "ListItem",
-              position: 4,
-              name: "Bedroom Producers Blog (USA) - AI-powered jam partner",
-              url: "https://bedroomproducersblog.com/2025/06/06/obsidian-neural-sound-engine/",
+              "position": 4,
+              "name": "Bedroom Producers Blog (USA) - AI-powered jam partner",
+              "url": "https://bedroomproducersblog.com/2025/06/06/obsidian-neural-sound-engine/"
             },
             {
               "@type": "ListItem",
-              position: 5,
-              name: "MIDIFAN (China) - OBSIDIAN Neural AI创作插件",
-              url: "https://www.midifan.com/modulenews-detailview-57259.htm",
+              "position": 5,
+              "name": "MIDIFAN (China) - OBSIDIAN Neural AI创作插件",
+              "url": "https://www.midifan.com/modulenews-detailview-57259.htm"
             },
             {
               "@type": "ListItem",
-              position: 6,
-              name: "Rekkerd (Netherlands) - Real-time AI music generation VST3",
-              url: "https://rekkerd.org/obsidian-neural-real-time-ai-music-generation-vst3/",
+              "position": 6,
+              "name": "Rekkerd (Netherlands) - Real-time AI music generation VST3",
+              "url": "https://rekkerd.org/obsidian-neural-real-time-ai-music-generation-vst3/"
             },
             {
               "@type": "ListItem",
-              position: 7,
-              name: "FutureMusic (Spain) - IA creativa en vivo",
-              url: "https://www.futuremusic-es.com/obsidian-neural-vst3-ia-generativa/",
+              "position": 7,
+              "name": "FutureMusic (Spain) - IA creativa en vivo",
+              "url": "https://www.futuremusic-es.com/obsidian-neural-vst3-ia-generativa/"
             },
             {
               "@type": "ListItem",
-              position: 8,
-              name: "S1 Forum (South Korea) - OBSIDIAN Neural 공개",
-              url: "https://s1forum.kr/news/innermost47%EC%97%90%EC%84%9C-obsidian-neural-%EA%B3%B5%EA%B0%9C/",
+              "position": 8,
+              "name": "S1 Forum (South Korea) - OBSIDIAN Neural 공개",
+              "url": "https://s1forum.kr/news/innermost47%EC%97%90%EC%84%9C-obsidian-neural-%EA%B3%B5%EA%B0%9C/"
             },
             {
               "@type": "ListItem",
-              position: 9,
-              name: "DTM Plugin Sale (Japan) - AIを楽器に変える時代",
-              url: "https://projectofnapskint.com/obsidian-2/",
+              "position": 9,
+              "name": "DTM Plugin Sale (Japan) - AIを楽器に変える時代",
+              "url": "https://projectofnapskint.com/obsidian-2/"
             },
             {
               "@type": "ListItem",
-              position: 10,
-              name: "Audio Plugin Guy (USA) - Free real-time AI music generation",
-              url: "https://www.audiopluginguy.com/news-innermost47-launches-free-real-time-ai-music-generation-plugin-obsidian-neural-sound-engine/",
+              "position": 10,
+              "name": "Audio Plugin Guy (USA) - Free real-time AI music generation",
+              "url": "https://www.audiopluginguy.com/news-innermost47-launches-free-real-time-ai-music-generation-plugin-obsidian-neural-sound-engine/"
             },
             {
               "@type": "ListItem",
-              position: 11,
-              name: "Sohu (China) - 免费开源 AI 驱动的即兴演奏引擎",
-              url: "https://www.sohu.com/a/903075640_455142",
+              "position": 11,
+              "name": "Sohu (China) - 免费开源 AI 驱动的即兴演奏引擎",
+              "url": "https://www.sohu.com/a/903075640_455142"
             },
             {
               "@type": "ListItem",
-              position: 12,
-              name: "Amner Hunter (YouTube) - 17 Best New FREE Effect Plugins",
-              url: "https://www.youtube.com/watch?v=40pkX_MkXjE",
-            },
-          ],
-        });
-
-        jsonLd.push({
+              "position": 12,
+              "name": "Amner Hunter (YouTube) - 17 Best New FREE Effect Plugins",
+              "url": "https://www.youtube.com/watch?v=40pkX_MkXjE"
+            }
+          ]
+        },
+        {
           "@context": "https://schema.org",
           "@type": "FAQPage",
-          mainEntity: [
+          "mainEntity": [
             {
               "@type": "Question",
-              name: "What is " + pluginName + "?",
-              acceptedAnswer: {
+              "name": "What is OBSIDIAN Neural?",
+              "acceptedAnswer": {
                 "@type": "Answer",
-                text:
-                  pluginName +
-                  " is the first VST3/AU plugin for real-time AI stereo music generation in live performance. It generates 30-second audio samples in approximately 20 seconds, directly inside your DAW, with 8-track stereo output, MIDI control, and BPM synchronization.",
-              },
+                "text": "OBSIDIAN Neural is the first VST3/AU plugin for real-time AI stereo music generation in live performance. It generates 30-second audio samples in approximately 20 seconds, directly inside your DAW, with 8-track stereo output, MIDI control, and BPM synchronization."
+              }
             },
             {
               "@type": "Question",
-              name: "Is " + pluginName + " free?",
-              acceptedAnswer: {
+              "name": "Is OBSIDIAN Neural free?",
+              "acceptedAnswer": {
                 "@type": "Answer",
-                text:
-                  "Yes. The VST3/AU plugin itself is free and open source (MPL-2.0) on GitHub. A free account gives you 10 credits (10 samples) at no cost and with no credit card required. Paid plans start at " +
-                  currencySymbol +
-                  priceStarter +
-                  "/month for more credits.",
-              },
+                "text": "Yes. The VST3/AU plugin itself is free and open source (MPL-2.0) on GitHub. A free account gives you 10 credits (10 samples) at no cost and with no credit card required. Paid plans start at €14.99/month for more credits."
+              }
             },
             {
               "@type": "Question",
-              name: "Which DAWs and operating systems are supported?",
-              acceptedAnswer: {
+              "name": "Which DAWs and operating systems are supported?",
+              "acceptedAnswer": {
                 "@type": "Answer",
-                text:
-                  pluginName +
-                  " works on Windows, macOS (Intel + Apple Silicon universal binary), and Linux. It supports VST3 format for all major DAWs, and AU format for Logic Pro and GarageBand.",
-              },
+                "text": "OBSIDIAN Neural works on Windows, macOS (Intel + Apple Silicon universal binary), and Linux. It supports VST3 format for all major DAWs, and AU format for Logic Pro and GarageBand."
+              }
             },
             {
               "@type": "Question",
-              name: "What is the Draw-to-Audio feature?",
-              acceptedAnswer: {
+              "name": "What is the Draw-to-Audio feature?",
+              "acceptedAnswer": {
                 "@type": "Answer",
-                text: "Draw-to-Audio lets you sketch visual patterns on a 512x512 canvas using various tools and colors. A vision LLM analyzes your drawing and translates it into a detailed musical prompt, which is then used to generate audio. Colors map to frequencies (black = bass, red = high energy) and patterns map to rhythms.",
-              },
+                "text": "Draw-to-Audio lets you sketch visual patterns on a 512x512 canvas using various tools and colors. A vision LLM analyzes your drawing and translates it into a detailed musical prompt, which is then used to generate audio. Colors map to frequencies (black = bass, red = high energy) and patterns map to rhythms."
+              }
             },
             {
               "@type": "Question",
-              name: "How does " + pluginName + " handle BPM synchronization?",
-              acceptedAnswer: {
+              "name": "How does OBSIDIAN Neural handle BPM synchronization?",
+              "acceptedAnswer": {
                 "@type": "Answer",
-                text: "All generated samples are automatically time-stretched to match your DAW's current BPM using the Librosa algorithm. You can change tempo mid-session without reloading samples or interrupting playback.",
-              },
-            },
-          ],
-        });
-        jsonLd.push({
+                "text": "All generated samples are automatically time-stretched to match your DAW's current BPM using the Librosa algorithm. You can change tempo mid-session without reloading samples or interrupting playback."
+              }
+            }
+          ]
+        },
+        {
           "@context": "https://schema.org",
           "@type": "Service",
-          name: g.NETWORK_NAME,
-          serviceType:
-            (window.APP_CONFIG && window.APP_CONFIG.NETWORK_TYPE) ||
-            "Distributed GPU Computing",
-          provider: {
+          "name": "OBSIDIAN Neural Network",
+          "serviceType": "DePIN (Decentralized Physical Infrastructure Network)",
+          "provider": {
             "@type": "Organization",
-            name: siteName,
-            url: siteUrl,
+            "name": "OBSIDIAN Neural",
+            "url": "https://ai-harmony.duckdns.org/obsidian/api/v1"
           },
-          creator: {
-            "@type": "Person",
-            name: authorAlias || authorName,
-            url: authorGithub,
-          },
-          description:
-            "Distributed GPU provider network for real-time AI music generation with automated monthly redistribution.",
-          offers: {
+          "description": "Distributed GPU provider network for real-time AI music generation with automated monthly redistribution.",
+          "offers": {
             "@type": "Offer",
-            description:
-              "Provider Eligibility: Uptime > 60%, 1+ billable job/month. " +
-              ((window.APP_CONFIG && window.APP_CONFIG.REVENUE_SHARE_PCT) ||
-                "85%") +
-              " net revenue share.",
-          },
-          hasRequirement: [
-            "Compatible GPUs: " +
-              ((window.APP_CONFIG && window.APP_CONFIG.GPU_MODEL_SUPPORTED) ||
-                "NVIDIA RTX 3090/4090"),
-            "NVIDIA GPU with CUDA support",
-            "Minimum 8GB VRAM",
-            "Stable Internet connection",
-          ],
-        });
-
-        jsonLd.push({
+            "description": "Provider Eligibility: Uptime > 60%, 1+ billable job/month. 85% net revenue share."
+          }
+        },
+        {
           "@context": "https://schema.org",
           "@type": "Dataset",
-          name: g.siteName + " Proof of Generation Logs",
-          creator: {
+          "name": "OBSIDIAN Neural Proof of Generation Logs",
+          "creator": {
             "@type": "Organization",
-            name: siteName,
-            url: siteUrl,
+            "name": "OBSIDIAN Neural",
+            "url": "https://ai-harmony.duckdns.org/obsidian/api/v1"
           },
-          publisher: {
+          "publisher": {
             "@type": "Person",
-            name: authorAlias || authorName,
+            "name": "InnerMost47"
           },
-          description:
-            "Public immutable logs of AI audio generations verified via " +
-            ((window.APP_CONFIG && window.APP_CONFIG.VERIFICATION_METHOD) ||
-              "Mel Spectrogram Fingerprinting") +
-            ".",
-          url:
-            (window.APP_CONFIG && window.APP_CONFIG.EXPLORER_URL) ||
-            g.siteUrl + "/api/v1/public/ownership",
-          license: "https://www.mozilla.org/en-US/MPL/2.0/",
-        });
-
-        var el = document.getElementById("json-ld-placeholder");
-        if (el) el.textContent = JSON.stringify(jsonLd, null, 2);
-      })();
-    </script>
-
-    <script>
-      window.trackClick = function (eventName, label) {
-        return new Promise(function (resolve) {
-          if (typeof gtag === "function") {
-            gtag("event", eventName, {
-              event_category: "Engagement",
-              event_label: label,
-              event_callback: resolve,
-            });
-            setTimeout(resolve, 500);
-          } else {
-            resolve();
-          }
-        });
-      };
+          "description": "Public immutable logs of AI audio generations verified via Mel Spectrogram Fingerprinting Proof-of-Work.",
+          "url": "https://github.com/innermost47/obsidian-neural-central",
+          "license": "https://www.mozilla.org/en-US/MPL/2.0/"
+        }
+      ]
     </script>
   </head>
   <body>
