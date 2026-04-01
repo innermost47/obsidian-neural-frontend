@@ -5,3 +5,5 @@ assets/images/*
 !assets/images/.gitkeep
 assets/videos/*
 !assets/videos/.gitkeep
+.env
+vendor
