@@ -550,7 +550,7 @@ async function loadProviders() {
     const tbody = document.getElementById("providers-tbody");
     if (providers.length === 0) {
       tbody.innerHTML =
-        '<tr><td colspan="8" class="text-center text-muted py-4">No providers yet</td></tr>';
+        '<tr><td colspan="9" class="text-center text-muted py-4">No providers yet</td></tr>';
       return;
     }
 
@@ -559,6 +559,13 @@ async function loadProviders() {
         (p) => `
       <tr>
         <td><strong>${p.name}</strong></td>
+        <td>
+          ${
+            p.is_online
+              ? '<span class="badge rounded-pill bg-success"><i class="fas fa-circle me-1" style="font-size: 8px;"></i>Online</span>'
+              : '<span class="badge rounded-pill bg-light text-muted border">Offline</span>'
+          }
+        </td>
         <td>
           ${
             p.user_email
@@ -748,13 +755,11 @@ function renderProviderStats(data) {
 
   document.getElementById("provider-name").textContent = provider.name;
 
-  // --- NOUVELLE LOGIQUE D'UPTIME ---
   const hours24 = uptime.last_24h_hours;
   const target24 = uptime.last_24h_target;
   const uptimeText = `${hours24}h / ${target24}h today`;
   document.getElementById("provider-uptime").textContent = uptimeText;
 
-  // Couleur dynamique selon si l'objectif quotidien est atteint
   const uptimeEl = document.getElementById("provider-uptime");
   if (hours24 >= target24) {
     uptimeEl.className = "fw-bold text-success";
