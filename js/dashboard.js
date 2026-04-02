@@ -741,7 +741,14 @@ async function loadProviderStats() {
 
 function renderProviderStats(data) {
   const { provider, uptime, network, users, revenue, period } = data;
-
+  const onlineIndicator = document.getElementById("provider-online-indicator");
+  if (provider.is_online) {
+    onlineIndicator.innerHTML =
+      '<span class="badge rounded-pill bg-success" style="font-size: 0.65rem;"><i class="fas fa-circle me-1" style="font-size: 0.5rem;"></i>Online</span>';
+  } else {
+    onlineIndicator.innerHTML =
+      '<span class="badge rounded-pill bg-secondary" style="font-size: 0.65rem; opacity: 0.7;">Offline</span>';
+  }
   const { year, month, days_elapsed, days_in_month } = period;
   const monthName = new Date(year, month - 1).toLocaleString("default", {
     month: "long",
