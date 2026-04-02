@@ -1176,14 +1176,35 @@
                     >Loading...</span
                   >
                   <div class="text-end">
-                    <div class="fw-bold text-primary" id="provider-uptime">
-                      —%
-                    </div>
-                    <div class="text-muted small">uptime score</div>
+                    <div class="fw-bold" id="provider-uptime">—</div>
+                    <div class="text-muted small">today's presence</div>
                   </div>
                 </div>
               </div>
             </div>
+
+            <div class="dashboard-card mb-4">
+              <div
+                class="d-flex align-items-center justify-content-between mb-2"
+              >
+                <span class="fw-semibold"
+                  ><i class="fas fa-clock me-2 text-primary"></i>Monthly Uptime
+                  Goal (8h/day)</span
+                >
+                <span class="text-muted small" id="uptime-month-label">—</span>
+              </div>
+              <div class="progress" style="height: 12px">
+                <div
+                  class="progress-bar"
+                  id="uptime-month-bar"
+                  style="width: 0%"
+                  role="progressbar"
+                >
+                  0%
+                </div>
+              </div>
+            </div>
+
             <div class="dashboard-card mb-4">
               <div
                 class="d-flex align-items-center justify-content-between mb-2"
@@ -1202,6 +1223,7 @@
                 ></div>
               </div>
             </div>
+
             <div class="row g-3 mb-4">
               <div class="col-md-3 col-sm-6">
                 <div class="dashboard-card text-center h-100">
@@ -1260,6 +1282,7 @@
                 </div>
               </div>
             </div>
+
             <div class="row g-3 mb-4">
               <div class="col-md-6">
                 <div class="dashboard-card h-100">
@@ -1313,7 +1336,7 @@
                   <p class="text-muted small mt-3 mb-0">
                     <i class="fas fa-info-circle me-1"></i>Estimate based on
                     current subscribers. Final amount depends on uptime
-                    eligibility (≥60%).
+                    eligibility.
                   </p>
                 </div>
               </div>
@@ -1330,18 +1353,22 @@
                   <div
                     class="d-flex justify-content-between align-items-center mt-3"
                   >
-                    <span class="text-muted small">Public financial report</span
-                    ><a
+                    <span class="text-muted small"
+                      >Public financial report</span
+                    >
+                    <a
                       href="#"
                       id="finances-link"
                       target="_blank"
                       class="btn btn-sm btn-outline-secondary"
-                      ><i class="fas fa-external-link-alt me-1"></i>finances</a
                     >
+                      <i class="fas fa-external-link-alt me-1"></i>finances
+                    </a>
                   </div>
                 </div>
               </div>
             </div>
+
             <div class="dashboard-card mb-4">
               <div
                 class="d-flex justify-content-between align-items-center mb-4"
@@ -1381,6 +1408,7 @@
                 </table>
               </div>
             </div>
+
             <div
               class="alert border"
               style="
@@ -1395,10 +1423,13 @@
                     Eligibility to receive your monthly share
                   </div>
                   <div class="text-muted small mt-1">
-                    You must have an uptime score ≥ 60% (random pings) and at
-                    least 1 billable job processed during the month. Revenue is
-                    split equally among all eligible providers. Payouts via
-                    Stripe Connect.
+                    You must maintain at least
+                    <strong>8 hours of daily presence</strong> (verified by
+                    random network pings) and achieve at least
+                    <strong>80% of your monthly hour objective</strong>
+                    (prorated if you join mid-month). You also need at least 1
+                    billable job processed. Revenue is split equally among all
+                    eligible providers. Payouts via Stripe Connect.
                   </div>
                 </div>
               </div>

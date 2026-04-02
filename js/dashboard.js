@@ -733,7 +733,7 @@ async function loadProviderStats() {
 }
 
 function renderProviderStats(data) {
-  const { provider, network, users, revenue, period } = data;
+  const { provider, uptime, network, users, revenue, period } = data;
 
   const { year, month, days_elapsed, days_in_month } = period;
   const monthName = new Date(year, month - 1).toLocaleString("default", {
@@ -747,8 +747,21 @@ function renderProviderStats(data) {
     `${progressPct}% of month elapsed`;
 
   document.getElementById("provider-name").textContent = provider.name;
-  document.getElementById("provider-uptime").textContent =
-    `${provider.uptime_score}%`;
+
+  // --- NOUVELLE LOGIQUE D'UPTIME ---
+  const hours24 = uptime.last_24h_hours;
+  const target24 = uptime.last_24h_target;
+  const uptimeText = `${hours24}h / ${target24}h today`;
+  document.getElementById("provider-uptime").textContent = uptimeText;
+
+  // Couleur dynamique selon si l'objectif quotidien est atteint
+  const uptimeEl = document.getElementById("provider-uptime");
+  if (hours24 >= target24) {
+    uptimeEl.className = "fw-bold text-success";
+  } else {
+    uptimeEl.className = "fw-bold text-danger";
+  }
+
   document.getElementById("provider-last-seen").textContent = provider.last_seen
     ? new Date(provider.last_seen).toLocaleString()
     : "Never";
@@ -760,6 +773,22 @@ function renderProviderStats(data) {
   } else {
     badge.className = "badge bg-secondary";
     badge.textContent = "Inactive";
+  }
+
+  const monthProgress = Math.min(100, uptime.month_progress_pct);
+  document.getElementById("uptime-month-bar").style.width = `${monthProgress}%`;
+  document.getElementById("uptime-month-bar").textContent =
+    `${uptime.month_progress_pct}%`;
+  document.getElementById("uptime-month-label").textContent =
+    `${uptime.month_hours}h / ${uptime.month_required_hours}h required`;
+
+  const monthBar = document.getElementById("uptime-month-bar");
+  if (uptime.month_progress_pct >= 100) {
+    monthBar.className = "progress-bar bg-success";
+  } else if (uptime.month_progress_pct >= 80) {
+    monthBar.className = "progress-bar bg-warning text-dark";
+  } else {
+    monthBar.className = "progress-bar bg-danger";
   }
 
   document.getElementById("stat-my-jobs-month").textContent =
