@@ -742,7 +742,7 @@ async function loadProviderStats() {
 function renderProviderStats(data) {
   const { provider, uptime, network, users, revenue, period } = data;
   const onlineIndicator = document.getElementById("provider-online-indicator");
-  if (provider.is_online) {
+  if (uptime.is_online) {
     onlineIndicator.innerHTML =
       '<span class="badge rounded-pill bg-success" style="font-size: 0.65rem;"><i class="fas fa-circle me-1" style="font-size: 0.5rem;"></i>Online</span>';
   } else {
