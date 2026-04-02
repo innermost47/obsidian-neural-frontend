@@ -496,6 +496,8 @@ async function addProvider() {
     showNotification(`Provider "${name}" added successfully`, "success");
     document.getElementById("provider-api-key-display").textContent =
       data.provider.api_key;
+    document.getElementById("server-auth-key-display").textContent =
+      data.server_auth_key;
     document
       .getElementById("provider-api-key-alert")
       .classList.remove("d-none");
@@ -509,10 +511,16 @@ async function addProvider() {
   }
 }
 
-function copyProviderApiKey() {
-  const key = document.getElementById("provider-api-key-display").textContent;
-  navigator.clipboard.writeText(key);
-  showNotification("API key copied!", "success");
+function copyKey(elementId) {
+  const text = document.getElementById(elementId).textContent;
+  navigator.clipboard
+    .writeText(text)
+    .then(() => {
+      showNotification("Key copied to clipboard", "success");
+    })
+    .catch((err) => {
+      showNotification("Failed to copy key", "danger");
+    });
 }
 
 async function loadUsersForProviderSelect() {

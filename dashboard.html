@@ -2075,21 +2075,44 @@
               </button>
             </div>
             <div id="provider-api-key-alert" class="d-none mb-4">
-              <div class="alert alert-warning border-warning">
+              <div class="alert alert-warning border-warning shadow-sm">
                 <h5 class="fw-bold">
-                  <i class="fas fa-exclamation-triangle me-2"></i>Save this API
-                  key now — it will never be shown again
+                  <i class="fas fa-exclamation-triangle me-2"></i>Save these
+                  keys now — they will never be shown again
                 </h5>
-                <code
-                  id="provider-api-key-display"
-                  class="fs-6 d-block my-2"
-                ></code
-                ><button
-                  class="btn btn-sm btn-warning"
-                  onclick="copyProviderApiKey()"
-                >
-                  <i class="fas fa-copy me-1"></i>Copy Key
-                </button>
+                <hr />
+
+                <div class="mb-3">
+                  <label class="small fw-bold text-uppercase opacity-75"
+                    >Provider Identity Key (API_KEY)</label
+                  >
+                  <code
+                    id="provider-api-key-display"
+                    class="fs-6 d-block my-1 p-2 bg-light border rounded"
+                  ></code>
+                  <button
+                    class="btn btn-sm btn-outline-dark mt-1"
+                    onclick="copyKey('provider-api-key-display')"
+                  >
+                    <i class="fas fa-copy me-1"></i>Copy Identity Key
+                  </button>
+                </div>
+
+                <div class="mb-2">
+                  <label class="small fw-bold text-uppercase opacity-75"
+                    >Server Auth Key (X-API-Key for Provider)</label
+                  >
+                  <code
+                    id="server-auth-key-display"
+                    class="fs-6 d-block my-1 p-2 bg-light border rounded"
+                  ></code>
+                  <button
+                    class="btn btn-sm btn-outline-dark mt-1"
+                    onclick="copyKey('server-auth-key-display')"
+                  >
+                    <i class="fas fa-copy me-1"></i>Copy Auth Key
+                  </button>
+                </div>
               </div>
             </div>
             <div class="dashboard-card">
