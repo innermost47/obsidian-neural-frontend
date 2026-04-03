@@ -827,8 +827,6 @@ function renderProviderStats(data) {
   document.getElementById("rev-my-share").textContent =
     `€${revenue.my_estimated_share_eur.toFixed(2)}`;
 
-  document.getElementById("finances-link").href = revenue.finances_url;
-
   const tierColors = {
     free: "secondary",
     starter: "info",
@@ -866,16 +864,15 @@ function renderProviderStats(data) {
 
 async function loadFinancesHistory(financesUrl) {
   const tbody = document.getElementById("finances-history-tbody");
-  const url = financesUrl || document.getElementById("finances-link")?.href;
 
-  if (!url || url === "#") {
+  if (!financesUrl) {
     tbody.innerHTML =
       '<tr><td colspan="5" class="text-center text-muted py-3">No data available</td></tr>';
     return;
   }
 
   try {
-    const res = await fetch(url);
+    const res = await fetch(financesUrl);
     const data = await res.json();
 
     const history = data.history || [];

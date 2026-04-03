@@ -2474,12 +2474,7 @@
               <p class="small text-secondary mt-3 mb-0">
                 <i class="fas fa-lock me-1"></i>Revenue data published publicly
                 at
-                <a
-                  id="provider-finances-link"
-                  href="#"
-                  target="_blank"
-                  class="text-accent"
-                ></a>
+                <a href="public.html" target="_blank" class="text-accent"></a>
               </p>
             </div>
           </div>
@@ -2609,12 +2604,6 @@
           "provider-cta-github",
           (cfg.PROVIDER_GITHUB_URL || githubUrl) + "",
         );
-        var finLink = document.getElementById("provider-finances-link");
-        if (finLink) {
-          var finUrl = (cfg.API_URL || "") + "/public/finances";
-          finLink.href = finUrl;
-          finLink.textContent = finUrl.replace("https://", "");
-        }
 
         var step2 = document.getElementById("step2-github");
         if (step2) step2.href = githubUrl;
