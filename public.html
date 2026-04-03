@@ -312,6 +312,155 @@
         border-radius: 3px;
         transition: width 0.6s ease;
       }
+
+      /* ── Network panel ─────────────────────────────────────────────── */
+      .provider-card {
+        background: var(--color-bg-dark);
+        border: 1px solid var(--color-inactive);
+        border-radius: 0.875rem;
+        padding: 1.25rem 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        transition: all 0.25s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      .provider-card::before {
+        content: "";
+        position: absolute;
+        inset: 0 0 auto 0;
+        height: 3px;
+        background: var(--color-inactive);
+        transition: background 0.25s;
+      }
+      .provider-card.is-online::before {
+        background: linear-gradient(90deg, #28c840, #20a832);
+      }
+      .provider-card.is-trusted::before {
+        background: var(--gradient-primary);
+      }
+      .provider-card:hover {
+        border-color: var(--color-primary);
+        box-shadow: 0 8px 24px rgba(184, 96, 92, 0.15);
+        transform: translateY(-2px);
+      }
+      .provider-avatar {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: var(--color-bg-mid);
+        border: 2px solid var(--color-inactive);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+        flex-shrink: 0;
+        color: var(--color-text-secondary);
+        transition:
+          border-color 0.25s,
+          color 0.25s;
+      }
+      .provider-card.is-online .provider-avatar {
+        border-color: #28c840;
+        color: #28c840;
+      }
+      .provider-card.is-trusted .provider-avatar {
+        border-color: var(--color-primary);
+        color: var(--color-primary);
+      }
+      .provider-name {
+        font-weight: 700;
+        font-size: 0.95rem;
+        color: var(--color-text-primary);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+      .badge-trusted {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        background: rgba(184, 96, 92, 0.12);
+        color: var(--color-primary);
+        border: 1px solid rgba(184, 96, 92, 0.3);
+        border-radius: 50px;
+        padding: 0.15rem 0.6rem;
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      .badge-online {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        background: rgba(40, 200, 64, 0.1);
+        color: #28c840;
+        border: 1px solid rgba(40, 200, 64, 0.25);
+        border-radius: 50px;
+        padding: 0.15rem 0.6rem;
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      .badge-offline {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        background: rgba(150, 150, 150, 0.1);
+        color: var(--color-text-secondary);
+        border: 1px solid rgba(150, 150, 150, 0.2);
+        border-radius: 50px;
+        padding: 0.15rem 0.6rem;
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      .provider-meta {
+        font-size: 0.75rem;
+        color: var(--color-text-secondary);
+        margin-top: 0.2rem;
+        font-family: "JetBrains Mono", "Courier New", monospace;
+      }
+      .provider-jobs {
+        margin-left: auto;
+        text-align: right;
+        flex-shrink: 0;
+      }
+      .provider-jobs .jobs-num {
+        font-size: 1.4rem;
+        font-weight: 800;
+        color: var(--color-primary);
+        line-height: 1;
+      }
+      .provider-jobs .jobs-lbl {
+        font-size: 0.65rem;
+        color: var(--color-text-secondary);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-top: 0.15rem;
+      }
+      .trusted-callout {
+        background: rgba(184, 96, 92, 0.06);
+        border: 1px solid rgba(184, 96, 92, 0.2);
+        border-radius: 0.75rem;
+        padding: 0.9rem 1.1rem;
+        font-size: 0.8rem;
+        color: var(--color-text-secondary);
+        margin-bottom: 1.25rem;
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+      .trusted-callout i {
+        color: var(--color-primary);
+        margin-top: 0.1rem;
+        flex-shrink: 0;
+      }
     </style>
   </head>
   <body>
@@ -345,6 +494,7 @@
     </header>
 
     <div class="container py-5">
+      <!-- Hero stats -->
       <div class="row g-3 mb-5" id="stats-row">
         <div class="col-md-4">
           <div class="hero-stat">
@@ -378,6 +528,7 @@
         </div>
       </div>
 
+      <!-- Tabs -->
       <div class="d-flex gap-2 flex-wrap mb-4" role="tablist">
         <button
           class="section-tab active"
@@ -385,6 +536,13 @@
           onclick="switchPanel(this)"
         >
           <i class="fas fa-shield-halved me-2"></i>Proof of Generation
+        </button>
+        <button
+          class="section-tab"
+          data-panel="panel-network"
+          onclick="switchPanel(this)"
+        >
+          <i class="fas fa-network-wired me-2"></i>Network
         </button>
         <button
           class="section-tab"
@@ -472,6 +630,44 @@
         </div>
       </div>
 
+      <div class="data-panel" id="panel-network">
+        <div class="dashboard-card">
+          <div
+            class="d-flex align-items-center justify-content-between flex-wrap gap-3 mb-4"
+          >
+            <div>
+              <h2 class="h5 fw-bold mb-1">
+                <i class="fas fa-network-wired me-2 text-primary"></i>Provider
+                Network
+              </h2>
+              <p class="text-muted small mb-0">
+                Active GPU nodes contributing to the OBSIDIAN Neural network.
+              </p>
+            </div>
+          </div>
+
+          <div class="trusted-callout">
+            <i class="fas fa-shield-check"></i>
+            <div>
+              <strong style="color: var(--color-text-primary)"
+                >Reference node.</strong
+              >
+              The provider marked <em>Trusted</em> is the network's
+              proof-of-work reference — its audio fingerprints serve as the
+              ground truth for periodic verification rounds. All other providers
+              are compared against it to ensure they run a genuine, unmodified
+              model.
+            </div>
+          </div>
+
+          <div id="network-grid" class="d-flex flex-column gap-3">
+            <div class="empty-state">
+              <i class="fas fa-spinner fa-spin"></i>Loading…
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="data-panel" id="panel-finances">
         <div class="dashboard-card">
           <div
@@ -506,7 +702,6 @@
             </div>
           </div>
 
-          <!-- pagination -->
           <div
             class="d-flex align-items-center justify-content-between flex-wrap gap-3 mt-4"
           >
@@ -614,8 +809,6 @@
           el(btn.dataset.panel).classList.add("active");
         };
 
-        let totalGenCached = 0;
-
         async function loadPublicStats() {
           try {
             const r = await fetch(`${API_URL}/public/stats`);
@@ -630,143 +823,162 @@
           }
         }
 
-        let ownPage = 1;
+        let ownPage = 1,
+          ownTotal = 0,
+          ownTimer = null;
         const OWN_LIMIT = 50;
-        let ownTotal = 0;
-        let ownDebounceTimer = null;
 
-        window.debounceOwnership = function () {
-          clearTimeout(ownDebounceTimer);
-          ownDebounceTimer = setTimeout(() => {
+        window.debounceOwnership = () => {
+          clearTimeout(ownTimer);
+          ownTimer = setTimeout(() => {
             ownPage = 1;
             loadOwnership();
           }, 400);
         };
-        window.ownershipPage = function (dir) {
-          ownPage = Math.max(1, ownPage + dir);
+        window.ownershipPage = (d) => {
+          ownPage = Math.max(1, ownPage + d);
           loadOwnership();
         };
 
         async function loadOwnership() {
           const tbody = el("ownership-tbody");
           tbody.innerHTML = `<tr><td colspan="6"><div class="empty-state"><i class="fas fa-spinner fa-spin"></i>Loading…</div></td></tr>`;
-
           const uid = el("search-user-id").value.trim();
           let url = `${API_URL}/public/ownership?page=${ownPage}&limit=${OWN_LIMIT}`;
           if (uid) url += `&public_user_id=${encodeURIComponent(uid)}`;
-
           try {
             const r = await fetch(url);
             const d = await r.json();
             ownTotal = d.total ?? 0;
-            totalGenCached = ownTotal;
             el("stat-total-gen").textContent = ownTotal.toLocaleString();
-
-            const totalPages = Math.max(1, Math.ceil(ownTotal / OWN_LIMIT));
-            el("own-page-info").textContent = `Page ${ownPage} / ${totalPages}`;
+            const pages = Math.max(1, Math.ceil(ownTotal / OWN_LIMIT));
+            el("own-page-info").textContent = `Page ${ownPage} / ${pages}`;
             el("own-prev").disabled = ownPage <= 1;
-            el("own-next").disabled = ownPage >= totalPages;
+            el("own-next").disabled = ownPage >= pages;
             el("ownership-count-label").textContent =
               `${ownTotal.toLocaleString()} generation${ownTotal !== 1 ? "s" : ""} logged`;
-
-            if (!d.results || d.results.length === 0) {
+            if (!d.results?.length) {
               tbody.innerHTML = `<tr><td colspan="6"><div class="empty-state"><i class="fas fa-inbox"></i>No results found.</div></td></tr>`;
               return;
             }
-
             tbody.innerHTML = d.results
               .map(
                 (row) => `
-            <tr>
-              <td>
-                <span class="hash-chip" title="${row.public_user_id || ""}"
-                  onclick="copyHash(this, '${row.public_user_id || ""}')">
-                  ${row.public_user_id || "—"}
-                </span>
-              </td>
-              <td>
-                <span class="badge rounded-pill"
-                  style="background:rgba(184,96,92,0.12);color:var(--color-primary);font-size:0.72rem;font-weight:600;">
-                  ${row.provider || "—"}
-                </span>
-              </td>
-              <td>
-                <span class="hash-chip" title="${row.prompt_hash || ""}"
-                  onclick="copyHash(this, '${row.prompt_hash || ""}')">
-                  ${row.prompt_hash ? row.prompt_hash.slice(0, 16) + "…" : "—"}
-                </span>
-              </td>
-              <td>
-                <span class="hash-chip" title="${row.audio_content_hash || ""}"
-                  onclick="copyHash(this, '${row.audio_content_hash || ""}')">
-                  ${row.audio_content_hash ? row.audio_content_hash.slice(0, 16) + "…" : "—"}
-                </span>
-              </td>
-              <td style="white-space:nowrap;">${row.duration != null ? row.duration + "s" : "—"}</td>
-              <td style="white-space:nowrap;color:var(--color-text-secondary);">${fmtDate(row.generated_at)}</td>
-            </tr>
-          `,
+              <tr>
+                <td><span class="hash-chip" title="${row.public_user_id || ""}" onclick="copyHash(this,'${row.public_user_id || ""}')">${row.public_user_id || "—"}</span></td>
+                <td><span class="badge rounded-pill" style="background:rgba(184,96,92,0.12);color:var(--color-primary);font-size:0.72rem;font-weight:600;">${row.provider || "—"}</span></td>
+                <td><span class="hash-chip" title="${row.prompt_hash || ""}" onclick="copyHash(this,'${row.prompt_hash || ""}')">${row.prompt_hash ? row.prompt_hash.slice(0, 16) + "…" : "—"}</span></td>
+                <td><span class="hash-chip" title="${row.audio_content_hash || ""}" onclick="copyHash(this,'${row.audio_content_hash || ""}')">${row.audio_content_hash ? row.audio_content_hash.slice(0, 16) + "…" : "—"}</span></td>
+                <td style="white-space:nowrap;">${row.duration != null ? row.duration + "s" : "—"}</td>
+                <td style="white-space:nowrap;color:var(--color-text-secondary);">${fmtDate(row.generated_at)}</td>
+              </tr>`,
               )
               .join("");
           } catch {
-            tbody.innerHTML = `<tr><td colspan="6"><div class="empty-state"><i class="fas fa-triangle-exclamation"></i>Failed to load. Check your connection.</div></td></tr>`;
+            tbody.innerHTML = `<tr><td colspan="6"><div class="empty-state"><i class="fas fa-triangle-exclamation"></i>Failed to load.</div></td></tr>`;
           }
         }
 
-        window.copyHash = function (el, text) {
+        window.copyHash = function (chip, text) {
           navigator.clipboard.writeText(text).then(() => {
-            el.classList.add("copied");
-            el.textContent = "Copied!";
+            chip.classList.add("copied");
+            chip.textContent = "Copied!";
             setTimeout(() => {
-              el.classList.remove("copied");
-              el.textContent =
+              chip.classList.remove("copied");
+              chip.textContent =
                 text.length > 18 ? text.slice(0, 16) + "…" : text;
             }, 1500);
           });
         };
 
-        let finPage = 1;
-        const FIN_LIMIT = 12;
-        let finTotal = 0;
-        let finDebounceTimer = null;
+        async function loadNetwork() {
+          const grid = el("network-grid");
+          grid.innerHTML = `<div class="empty-state"><i class="fas fa-spinner fa-spin"></i>Loading…</div>`;
+          try {
+            const r = await fetch(`${API_URL}/public/network`);
+            const d = await r.json();
+            if (!d.providers?.length) {
+              grid.innerHTML = `<div class="empty-state"><i class="fas fa-server"></i>No active providers.</div>`;
+              return;
+            }
+            const sorted = [...d.providers].sort((a, b) => {
+              if (a.is_trusted !== b.is_trusted)
+                return (b.is_trusted ? 1 : 0) - (a.is_trusted ? 1 : 0);
+              if (a.is_online !== b.is_online)
+                return (b.is_online ? 1 : 0) - (a.is_online ? 1 : 0);
+              return (b.jobs_done ?? 0) - (a.jobs_done ?? 0);
+            });
+            grid.innerHTML = sorted
+              .map((p) => {
+                const cardClass = [
+                  "provider-card",
+                  p.is_trusted ? "is-trusted" : p.is_online ? "is-online" : "",
+                ]
+                  .join(" ")
+                  .trim();
+                const icon = p.is_trusted ? "fa-shield-check" : "fa-server";
+                const statusBadge = p.is_online
+                  ? `<span class="badge-online"><span class="live-dot" style="width:5px;height:5px;margin-right:2px;"></span>Online</span>`
+                  : `<span class="badge-offline"><i class="fas fa-circle" style="font-size:0.4rem;"></i>Offline</span>`;
+                const trustedBadge = p.is_trusted
+                  ? `<span class="badge-trusted"><i class="fas fa-shield-check"></i>Trusted</span>`
+                  : "";
+                return `
+                <div class="${cardClass}">
+                  <div class="provider-avatar"><i class="fas ${icon}"></i></div>
+                  <div style="flex:1;min-width:0;">
+                    <div class="provider-name">${p.name} ${trustedBadge} ${statusBadge}</div>
+                    <div class="provider-meta">${p.last_seen ? "Last seen " + fmtDate(p.last_seen) : "Never seen"}</div>
+                  </div>
+                  <div class="provider-jobs">
+                    <div class="jobs-num">${(p.jobs_done ?? 0).toLocaleString()}</div>
+                    <div class="jobs-lbl">jobs done</div>
+                  </div>
+                </div>`;
+              })
+              .join("");
+          } catch {
+            grid.innerHTML = `<div class="empty-state"><i class="fas fa-triangle-exclamation"></i>Failed to load.</div>`;
+          }
+        }
 
-        window.debounceFinances = function () {
-          clearTimeout(finDebounceTimer);
-          finDebounceTimer = setTimeout(() => {
+        let finPage = 1,
+          finTotal = 0,
+          finTimer = null;
+        const FIN_LIMIT = 12;
+
+        window.debounceFinances = () => {
+          clearTimeout(finTimer);
+          finTimer = setTimeout(() => {
             finPage = 1;
             loadFinances();
           }, 400);
         };
-        window.financesPage = function (dir) {
-          finPage = Math.max(1, finPage + dir);
+        window.financesPage = (d) => {
+          finPage = Math.max(1, finPage + d);
           loadFinances();
         };
 
         async function loadFinances() {
           const grid = el("finances-grid");
           grid.innerHTML = `<div class="col-12"><div class="empty-state"><i class="fas fa-spinner fa-spin"></i>Loading…</div></div>`;
-
           const month = el("search-month").value.trim();
           let url = `${API_URL}/public/finances?page=${finPage}&limit=${FIN_LIMIT}`;
           if (month) url += `&month=${encodeURIComponent(month)}`;
-
           try {
             const r = await fetch(url);
             const d = await r.json();
             finTotal = d.total ?? 0;
-
-            const totalPages = Math.max(1, Math.ceil(finTotal / FIN_LIMIT));
-            el("fin-page-info").textContent = `Page ${finPage} / ${totalPages}`;
+            const pages = Math.max(1, Math.ceil(finTotal / FIN_LIMIT));
+            el("fin-page-info").textContent = `Page ${finPage} / ${pages}`;
             el("fin-prev").disabled = finPage <= 1;
-            el("fin-next").disabled = finPage >= totalPages;
+            el("fin-next").disabled = finPage >= pages;
             el("finances-count-label").textContent =
               `${finTotal} report${finTotal !== 1 ? "s" : ""} available`;
-
-            if (!d.reports || d.reports.length === 0) {
+            if (!d.reports?.length) {
               grid.innerHTML = `<div class="col-12"><div class="empty-state"><i class="fas fa-file-invoice"></i>No reports found.</div></div>`;
               return;
             }
-
             grid.innerHTML = d.reports
               .map((r) => {
                 const distPct =
@@ -776,64 +988,31 @@
                       )
                     : 0;
                 return `
-              <div class="col-lg-4 col-md-6">
-                <div class="finance-card">
-                  <div class="month-badge">
-                    <i class="fas fa-calendar-alt"></i>
-                    ${r.month || "—"}
+                <div class="col-lg-4 col-md-6">
+                  <div class="finance-card">
+                    <div class="month-badge"><i class="fas fa-calendar-alt"></i>${r.month || "—"}</div>
+                    <div class="finance-row"><span class="lbl">Total revenue</span><span class="val accent">€${fmt(r.total_revenue_eur)}</span></div>
+                    <div class="finance-row"><span class="lbl">Platform fee (${r.platform_fee_pct ?? 15}%)</span><span class="val">€${fmt(r.platform_fee_eur)}</span></div>
+                    <div class="finance-row"><span class="lbl">Distributable (85%)</span><span class="val accent">€${fmt(r.distributable_eur)}</span></div>
+                    <div class="dist-bar"><div class="dist-bar-fill" style="width:${distPct}%"></div></div>
+                    <div class="text-muted small mb-3" style="font-size:0.7rem;margin-top:0.3rem;">${distPct}% redistributed to providers</div>
+                    <div class="finance-row"><span class="lbl">Eligible providers</span><span class="val">${r.eligible_providers ?? "—"}</span></div>
+                    <div class="finance-row"><span class="lbl">Share / provider</span><span class="val accent">€${fmt(r.share_per_provider_eur)}</span></div>
+                    <div class="finance-row"><span class="lbl">Remainder</span><span class="val">€${fmt(r.remainder_eur)}</span></div>
+                    <div class="finance-row"><span class="lbl">Transfers</span><span class="val">${r.transfers ?? "—"}</span></div>
+                    <div class="finance-row"><span class="lbl">Published</span><span class="val" style="font-size:0.72rem;color:var(--color-text-secondary);">${shortDate(r.published_at)}</span></div>
                   </div>
-
-                  <div class="finance-row">
-                    <span class="lbl">Total revenue</span>
-                    <span class="val accent">€${fmt(r.total_revenue_eur)}</span>
-                  </div>
-                  <div class="finance-row">
-                    <span class="lbl">Platform fee (${r.platform_fee_pct ?? 15}%)</span>
-                    <span class="val">€${fmt(r.platform_fee_eur)}</span>
-                  </div>
-                  <div class="finance-row">
-                    <span class="lbl">Distributable (85%)</span>
-                    <span class="val accent">€${fmt(r.distributable_eur)}</span>
-                  </div>
-
-                  <div class="dist-bar">
-                    <div class="dist-bar-fill" style="width:${distPct}%"></div>
-                  </div>
-                  <div class="text-muted small mb-3" style="font-size:0.7rem;margin-top:0.3rem;">
-                    ${distPct}% redistributed to providers
-                  </div>
-
-                  <div class="finance-row">
-                    <span class="lbl">Eligible providers</span>
-                    <span class="val">${r.eligible_providers ?? "—"}</span>
-                  </div>
-                  <div class="finance-row">
-                    <span class="lbl">Share / provider</span>
-                    <span class="val accent">€${fmt(r.share_per_provider_eur)}</span>
-                  </div>
-                  <div class="finance-row">
-                    <span class="lbl">Remainder</span>
-                    <span class="val">€${fmt(r.remainder_eur)}</span>
-                  </div>
-                  <div class="finance-row">
-                    <span class="lbl">Transfers</span>
-                    <span class="val">${r.transfers ?? "—"}</span>
-                  </div>
-                  <div class="finance-row">
-                    <span class="lbl">Published</span>
-                    <span class="val" style="font-size:0.72rem;color:var(--color-text-secondary);">${shortDate(r.published_at)}</span>
-                  </div>
-                </div>
-              </div>
-            `;
+                </div>`;
               })
               .join("");
           } catch {
-            grid.innerHTML = `<div class="col-12"><div class="empty-state"><i class="fas fa-triangle-exclamation"></i>Failed to load. Check your connection.</div></div>`;
+            grid.innerHTML = `<div class="col-12"><div class="empty-state"><i class="fas fa-triangle-exclamation"></i>Failed to load.</div></div>`;
           }
         }
+
         loadPublicStats();
         loadOwnership();
+        loadNetwork();
         loadFinances();
       })();
     </script>
