@@ -583,8 +583,8 @@ async function loadProviders() {
                 : '<span class="badge bg-secondary">Inactive</span>'
           }
         </td>
-        <td>${p.billable_jobs ?? p.jobs_done ?? 0}</td>
-        <td>${p.uptime_score != null ? (p.uptime_score * 100).toFixed(1) + "%" : "-"}</td>
+        <td>${p.jobs_done_this_month ?? 0}<small class="text-muted ms-1">/ ${p.jobs_done ?? 0}</small></td>
+        <td>${p.uptime?.month_progress_pct != null ? p.uptime.month_progress_pct + "%" : "-"}</td>
         <td><small>${p.last_seen ? new Date(p.last_seen).toLocaleString() : "Never"}</small></td>
         <td>
           ${
