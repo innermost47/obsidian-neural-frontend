@@ -791,8 +791,13 @@ function renderProviderStats(data) {
   document.getElementById("uptime-month-bar").style.width = `${monthProgress}%`;
   document.getElementById("uptime-month-bar").textContent =
     `${uptime.month_progress_pct}%`;
-  document.getElementById("uptime-month-label").textContent =
-    `${uptime.month_hours}h / ${uptime.month_required_hours}h required`;
+
+  const hoursRemaining = uptime.month_hours_remaining;
+  const label =
+    hoursRemaining > 0
+      ? `${uptime.month_hours}h done — ${hoursRemaining}h remaining / ${uptime.month_required_hours}h goal`
+      : `✓ ${uptime.month_hours}h — goal reached (${uptime.month_required_hours}h)`;
+  document.getElementById("uptime-month-label").textContent = label;
 
   const monthBar = document.getElementById("uptime-month-bar");
   if (uptime.month_progress_pct >= 100) {
@@ -803,8 +808,9 @@ function renderProviderStats(data) {
     monthBar.className = "progress-bar bg-danger";
   }
 
-  document.getElementById("stat-my-jobs-month").textContent =
-    provider.billable_jobs.toLocaleString();
+  document.getElementById("stat-my-jobs-month").textContent = (
+    provider.jobs_done_this_month ?? 0
+  ).toLocaleString();
   document.getElementById("stat-my-jobs-total").textContent =
     `${provider.jobs_done.toLocaleString()} total`;
   document.getElementById("stat-global-generations").textContent =
