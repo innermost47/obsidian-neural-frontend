@@ -2134,7 +2134,7 @@
 
                 <div class="mb-2">
                   <label class="small fw-bold text-uppercase opacity-75"
-                    >Server Auth Key (X-API-Key for Provider)</label
+                    >Docker Activation Token (OBSIDIAN_TOKEN)</label
                   >
                   <code
                     id="server-auth-key-display"
@@ -2144,7 +2144,21 @@
                     class="btn btn-sm btn-outline-dark mt-1"
                     onclick="copyKey('server-auth-key-display')"
                   >
-                    <i class="fas fa-copy me-1"></i>Copy Auth Key
+                    <i class="fas fa-copy me-1"></i>Copy Activation Token
+                  </button>
+                </div>
+
+                <div class="mt-3 p-2 bg-dark text-light rounded">
+                  <label
+                    class="small fw-bold text-uppercase opacity-75 d-block mb-1"
+                    >Docker Run Command</label
+                  >
+                  <code id="docker-command-display" class="small"></code>
+                  <button
+                    class="btn btn-sm btn-outline-light mt-1"
+                    onclick="copyKey('docker-command-display')"
+                  >
+                    <i class="fas fa-copy me-1"></i>Copy Command
                   </button>
                 </div>
               </div>

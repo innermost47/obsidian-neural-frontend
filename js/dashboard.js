@@ -497,7 +497,9 @@ async function addProvider() {
     document.getElementById("provider-api-key-display").textContent =
       data.provider.api_key;
     document.getElementById("server-auth-key-display").textContent =
-      data.server_auth_key;
+      data.provider.activation_token;
+    document.getElementById("docker-command-display").textContent =
+      data.provider.docker_command;
     document
       .getElementById("provider-api-key-alert")
       .classList.remove("d-none");
