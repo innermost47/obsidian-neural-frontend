@@ -231,22 +231,6 @@
           Start generating AI audio in seconds. Upgrade or downgrade anytime —
           no commitment.
         </p>
-        <div
-          class="d-inline-flex align-items-center gap-2 px-4 py-3 rounded-4"
-          style="
-            background: rgba(184, 96, 92, 0.06);
-            border: 1px solid rgba(184, 96, 92, 0.18);
-          "
-        >
-          <i class="fas fa-gift" style="color: var(--color-primary)"></i>
-          <span class="small"
-            ><strong style="color: var(--color-primary)"
-              >7-day free trial</strong
-            >
-            on all paid plans &middot; no card required &middot; cancel
-            anytime</span
-          >
-        </div>
       </div>
 
       <div class="row g-4 justify-content-center mb-5">
@@ -261,12 +245,12 @@
             <div class="pricing-badge badge-free">
               <i class="fas fa-seedling me-1"></i>Free
             </div>
-            <div class="pricing-icon-small mb-3">
-              <i class="fas fa-seedling fa-2x"></i>
+            <div class="pricing-icon-small mb-4 mt-2">
+              <i class="fas fa-seedling fa-lg"></i>
             </div>
             <h2 class="h4 fw-bold mb-1">Free</h2>
-            <p class="small text-muted mb-3">Try the basics</p>
-            <div class="pricing-price-modern mb-3">
+            <p class="small text-muted mb-4">Try the basics</p>
+            <div class="pricing-price-modern mb-4">
               <span
                 class="price"
                 style="
@@ -274,20 +258,22 @@
                   font-weight: 700;
                   color: var(--color-text-secondary);
                 "
-                ><span id="price-free">€0</span></span
+                >€0</span
               >
             </div>
-            <div class="credit-badge text-center mb-3" id="credits-free">
+            <div class="credit-badge text-center mb-4">
               200 credits included
             </div>
-            <ul class="pricing-features-modern mb-0">
+            <ul class="pricing-features-modern mb-0 mt-auto">
               <li>
-                <i class="fas fa-check-circle text-success me-2"></i
-                ><span id="feat-free-1">200 credits</span>
+                <i class="fas fa-check-circle text-success me-2"></i>200 credits
               </li>
               <li>
-                <i class="fas fa-check-circle text-success me-2"></i
-                ><span id="feat-free-2">200 samples</span>
+                <i class="fas fa-check-circle text-success me-2"></i>200 samples
+              </li>
+              <li>
+                <i class="fas fa-check-circle text-success me-2"></i>No card
+                required
               </li>
             </ul>
           </div>
@@ -304,33 +290,17 @@
             <div class="pricing-badge badge-starter">
               <i class="fas fa-music me-1"></i>Base
             </div>
-            <div class="pricing-icon-small mb-3">
-              <i class="fas fa-music fa-2x"></i>
+            <div class="pricing-icon-small mb-4 mt-2">
+              <i class="fas fa-music fa-lg"></i>
             </div>
             <h2 class="h4 fw-bold mb-1">Base</h2>
-            <p class="small text-muted mb-3">For regular creators</p>
+            <p class="small text-muted mb-4">For regular creators</p>
             <div class="pricing-price-modern mb-1">
               <span class="price" id="price-base">€5.99</span>
               <span class="period">/month</span>
             </div>
-            <ul class="list-unstyled text-muted small mb-4">
-              <li>
-                <i class="fas fa-gift text-success me-2"></i
-                ><strong>7 days FREE</strong>
-              </li>
-              <li>
-                <i class="fas fa-check text-success me-2"></i>100 trial credits
-              </li>
-              <li>
-                <i class="fas fa-check text-success me-2"></i>Then
-                <span id="price-base-then">€5.99</span>/month (200 credits)
-              </li>
-              <li>
-                <i class="fas fa-times-circle text-danger me-2"></i>Cancel
-                anytime
-              </li>
-            </ul>
-            <ul class="pricing-features-modern mb-0">
+            <p class="small text-muted mb-4">billed monthly</p>
+            <ul class="pricing-features-modern mb-0 mt-auto">
               <li>
                 <i class="fas fa-check-circle text-success me-2"></i>200 credits
                 per month
@@ -338,46 +308,43 @@
               <li>
                 <i class="fas fa-check-circle text-success me-2"></i>200 samples
               </li>
+              <li>
+                <i class="fas fa-sync text-success me-2"></i>Cancel anytime
+              </li>
             </ul>
           </div>
         </div>
 
-        <!-- Starter (recommended) -->
         <div class="col-lg-3 col-md-6">
           <div
-            class="pricing-card-modern plan-option selected-featured h-100 position-relative"
+            class="pricing-card-modern plan-option pricing-card-pro selected-featured h-100 position-relative"
             id="card-starter"
             onclick="selectPlan('starter')"
           >
             <div class="plan-radio"><i class="fas fa-check"></i></div>
             <div class="pricing-badge badge-popular">
-              <i class="fas fa-star me-1"></i>Recommended
+              <i class="fas fa-star me-1"></i>Starter
             </div>
-            <div class="pricing-icon-small mb-3">
-              <i class="fas fa-bolt fa-2x"></i>
+            <div class="pricing-icon-small mb-4 mt-2">
+              <i class="fas fa-bolt fa-lg"></i>
             </div>
             <h2 class="h4 fw-bold mb-1">Starter</h2>
-            <p class="small mb-3">The sweet spot</p>
+            <p class="small mb-4" style="color: rgba(255, 255, 255, 0.7)">
+              The sweet spot
+            </p>
             <div class="pricing-price-modern mb-1">
               <span class="price" id="price-starter">€14.99</span>
               <span class="period">/month</span>
             </div>
-            <ul class="list-unstyled small mb-4">
-              <li>
-                <i class="fas fa-gift me-2"></i><strong>7 days FREE</strong>
-              </li>
-              <li><i class="fas fa-check me-2"></i>100 trial credits</li>
-              <li>
-                <i class="fas fa-check me-2"></i>Then
-                <span id="price-starter-then">€14.99</span>/month (500 credits)
-              </li>
-              <li><i class="fas fa-times-circle me-2"></i>Cancel anytime</li>
-            </ul>
-            <ul class="pricing-features-modern mb-0">
+            <p class="small mb-4" style="color: rgba(255, 255, 255, 0.6)">
+              billed monthly
+            </p>
+            <ul class="pricing-features-modern mb-0 mt-auto">
               <li>
                 <i class="fas fa-check-circle me-2"></i>500 credits per month
               </li>
               <li><i class="fas fa-check-circle me-2"></i>500 samples</li>
+              <li><i class="fas fa-sync me-2"></i>Cancel anytime</li>
             </ul>
           </div>
         </div>
@@ -393,33 +360,17 @@
             <div class="pricing-badge badge-studio">
               <i class="fas fa-crown me-1"></i>Pro
             </div>
-            <div class="pricing-icon-small mb-3">
-              <i class="fas fa-crown fa-2x"></i>
+            <div class="pricing-icon-small mb-4 mt-2">
+              <i class="fas fa-crown fa-lg"></i>
             </div>
             <h2 class="h4 fw-bold mb-1">Pro</h2>
-            <p class="small text-muted mb-3">For heavy users</p>
+            <p class="small text-muted mb-4">For heavy users</p>
             <div class="pricing-price-modern mb-1">
               <span class="price" id="price-pro">€29.99</span>
               <span class="period">/month</span>
             </div>
-            <ul class="list-unstyled text-muted small mb-4">
-              <li>
-                <i class="fas fa-gift text-success me-2"></i
-                ><strong>7 days FREE</strong>
-              </li>
-              <li>
-                <i class="fas fa-check text-success me-2"></i>100 trial credits
-              </li>
-              <li>
-                <i class="fas fa-check text-success me-2"></i>Then
-                <span id="price-pro-then">€29.99</span>/month (1500 credits)
-              </li>
-              <li>
-                <i class="fas fa-times-circle text-danger me-2"></i>Cancel
-                anytime
-              </li>
-            </ul>
-            <ul class="pricing-features-modern mb-0">
+            <p class="small text-muted mb-4">billed monthly</p>
+            <ul class="pricing-features-modern mb-0 mt-auto">
               <li>
                 <i class="fas fa-check-circle text-success me-2"></i>1500
                 credits per month
@@ -428,11 +379,13 @@
                 <i class="fas fa-check-circle text-success me-2"></i>1500
                 samples
               </li>
+              <li>
+                <i class="fas fa-sync text-success me-2"></i>Cancel anytime
+              </li>
             </ul>
           </div>
         </div>
       </div>
-
       <div
         class="d-flex justify-content-center gap-4 flex-wrap small text-muted mt-2"
         style="opacity: 0.65"
@@ -474,17 +427,11 @@
         >
           Starter — €14.99/mo
         </div>
-        <div class="small text-muted" id="ctaPlanDetail">
-          7-day free trial · 500 credits · cancel anytime
-        </div>
       </div>
       <div class="d-flex align-items-center gap-3">
         <a
           class="skip-cta small text-muted text-decoration-none"
-          style="
-            border-bottom: 1px dashed var(--color-inactive);
-            cursor: pointer;
-          "
+          style="cursor: pointer"
           id="ctaSkip"
           onclick="goToDashboard()"
           >Continue with free plan</a
@@ -563,22 +510,22 @@
           },
           base: {
             label: "Base — " + p.sym + p.base + "/mo",
-            detail: "7-day free trial · 200 credits · cancel anytime",
-            btnText: "Start Free Trial",
+            detail: "200 credits/month · cancel anytime",
+            btnText: "Subscribe",
             btnIcon: "fas fa-rocket",
             skipVisible: true,
           },
           starter: {
             label: "Starter — " + p.sym + p.starter + "/mo",
-            detail: "7-day free trial · 500 credits · cancel anytime",
-            btnText: "Start Free Trial",
+            detail: "500 credits/month · cancel anytime",
+            btnText: "Subscribe",
             btnIcon: "fas fa-rocket",
             skipVisible: true,
           },
           pro: {
             label: "Pro — " + p.sym + p.pro + "/mo",
-            detail: "7-day free trial · 1,500 credits · cancel anytime",
-            btnText: "Start Free Trial",
+            detail: "1,500 credits/month · cancel anytime",
+            btnText: "Subscribe",
             btnIcon: "fas fa-rocket",
             skipVisible: true,
           },
@@ -656,7 +603,7 @@
         window.location.href = "dashboard.html";
       }
 
-      selectPlan("starter");
+      selectPlan("free");
     </script>
   </body>
 </html>

@@ -531,7 +531,6 @@
           </div>
         </section>
 
-        <!-- Subscription Section -->
         <section id="section-subscription" class="section-content">
           <div class="content-header">
             <h1><i class="fas fa-crown me-3"></i>Subscription Management</h1>
@@ -539,30 +538,8 @@
           </div>
           <div class="content-body">
             <div id="pricing-section" class="d-none">
-              <div
-                class="alert"
-                style="
-                  background: linear-gradient(
-                    135deg,
-                    rgba(34, 197, 94, 0.1) 0%,
-                    rgba(22, 163, 74, 0.05) 100%
-                  );
-                  border: 2px solid rgba(34, 197, 94, 0.3);
-                  border-radius: 1rem;
-                "
-              >
-                <div class="text-center">
-                  <i class="fas fa-gift fa-3x mb-3" style="color: #22c55e"></i>
-                  <h4 class="fw-bold mb-2">
-                    🎁 7-Day FREE Trial on All Plans!
-                  </h4>
-                  <p class="mb-0">
-                    Try any plan risk-free for 7 days — cancel anytime, no
-                    credit card required to start
-                  </p>
-                </div>
-              </div>
               <div class="row g-4">
+                <!-- Base -->
                 <div class="col-md-4">
                   <div class="pricing-card">
                     <div class="pricing-header bg-gradient-blue text-light">
@@ -571,29 +548,10 @@
                     </div>
                     <div class="pricing-body">
                       <div class="pricing-price">
-                        <span class="price" id="sub-price-base">€5.99</span
-                        ><span class="period">/month</span>
+                        <span class="price" id="sub-price-base">€5.99</span>
+                        <span class="period">/month</span>
                       </div>
-                      <ul class="list-unstyled text-muted small mb-4">
-                        <li>
-                          <i class="fas fa-gift text-success me-2"></i
-                          ><strong>7 days FREE</strong>
-                        </li>
-                        <li>
-                          <i class="fas fa-check text-success me-2"></i>100
-                          trial credits
-                        </li>
-                        <li>
-                          <i class="fas fa-check text-success me-2"></i>Then
-                          <span id="sub-price-base2">€5.99</span>/month (200
-                          credits)
-                        </li>
-                        <li>
-                          <i class="fas fa-times-circle text-danger me-2"></i
-                          >Cancel anytime
-                        </li>
-                      </ul>
-                      <ul class="pricing-features">
+                      <ul class="pricing-features mb-4">
                         <li>
                           <i class="fas fa-check text-success me-2"></i>200
                           credits per month
@@ -601,6 +559,10 @@
                         <li>
                           <i class="fas fa-check text-success me-2"></i>200
                           samples
+                        </li>
+                        <li>
+                          <i class="fas fa-sync text-success me-2"></i>Cancel
+                          anytime
                         </li>
                       </ul>
                       <button
@@ -612,11 +574,13 @@
                           ).then(() => subscribe('base'))
                         "
                       >
-                        Start 7-Day Trial
+                        <i class="fas fa-rocket me-2"></i>Subscribe
                       </button>
                     </div>
                   </div>
                 </div>
+
+                <!-- Starter -->
                 <div class="col-md-4">
                   <div class="pricing-card pricing-card-popular">
                     <div class="popular-badge">
@@ -632,28 +596,10 @@
                           class="price-promo text-light"
                           id="sub-price-starter"
                           >€14.99</span
-                        ><span class="period text-light">/month</span>
+                        >
+                        <span class="period text-light">/month</span>
                       </div>
-                      <ul class="list-unstyled text-light small mb-4">
-                        <li>
-                          <i class="fas fa-gift text-light me-2"></i
-                          ><strong>7 days FREE</strong>
-                        </li>
-                        <li>
-                          <i class="fas fa-check text-light me-2"></i>100 trial
-                          credits
-                        </li>
-                        <li>
-                          <i class="fas fa-check text-light me-2"></i>Then
-                          <span id="sub-price-starter2">€14.99</span>/month (500
-                          credits)
-                        </li>
-                        <li>
-                          <i class="fas fa-times-circle text-light me-2"></i
-                          >Cancel anytime
-                        </li>
-                      </ul>
-                      <ul class="pricing-features">
+                      <ul class="pricing-features mb-4">
                         <li>
                           <i class="fas fa-check text-light me-2"></i>500
                           credits per month
@@ -661,6 +607,10 @@
                         <li>
                           <i class="fas fa-check text-light me-2"></i>500
                           samples
+                        </li>
+                        <li>
+                          <i class="fas fa-sync text-light me-2"></i>Cancel
+                          anytime
                         </li>
                       </ul>
                       <button
@@ -672,11 +622,13 @@
                           ).then(() => subscribe('starter'))
                         "
                       >
-                        Start 7-Day Trial
+                        <i class="fas fa-rocket me-2"></i>Subscribe
                       </button>
                     </div>
                   </div>
                 </div>
+
+                <!-- Pro -->
                 <div class="col-md-4">
                   <div class="pricing-card">
                     <div class="pricing-header bg-gradient-green text-light">
@@ -685,29 +637,10 @@
                     </div>
                     <div class="pricing-body">
                       <div class="pricing-price">
-                        <span class="price" id="sub-price-pro">€29.99</span
-                        ><span class="period">/month</span>
+                        <span class="price" id="sub-price-pro">€29.99</span>
+                        <span class="period">/month</span>
                       </div>
-                      <ul class="list-unstyled text-muted small mb-4">
-                        <li>
-                          <i class="fas fa-gift text-success me-2"></i
-                          ><strong>7 days FREE</strong>
-                        </li>
-                        <li>
-                          <i class="fas fa-check text-success me-2"></i>100
-                          trial credits
-                        </li>
-                        <li>
-                          <i class="fas fa-check text-success me-2"></i>Then
-                          <span id="sub-price-pro2">€29.99</span>/month (1500
-                          credits)
-                        </li>
-                        <li>
-                          <i class="fas fa-times-circle text-danger me-2"></i
-                          >Cancel anytime
-                        </li>
-                      </ul>
-                      <ul class="pricing-features">
+                      <ul class="pricing-features mb-4">
                         <li>
                           <i class="fas fa-check text-success me-2"></i>1500
                           credits per month
@@ -715,6 +648,10 @@
                         <li>
                           <i class="fas fa-check text-success me-2"></i>1500
                           samples
+                        </li>
+                        <li>
+                          <i class="fas fa-sync text-success me-2"></i>Cancel
+                          anytime
                         </li>
                       </ul>
                       <button
@@ -726,7 +663,7 @@
                           ).then(() => subscribe('pro'))
                         "
                       >
-                        Start 7-Day Trial
+                        <i class="fas fa-rocket me-2"></i>Subscribe
                       </button>
                     </div>
                   </div>

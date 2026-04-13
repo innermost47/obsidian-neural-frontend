@@ -364,10 +364,18 @@
             },
             {
               "@type": "Question",
+              "name": "Which AI model powers OBSIDIAN Neural?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Provider nodes in the OBSIDIAN Neural network run Foundation-1 by RoyalCities, a specialized text-to-sample diffusion model built on Stable Audio Open. It generates tempo-synced, key-aware, bar-structured audio loops with precise control over instrumentation, timbre, FX, and musical phrasing — designed specifically for music production workflows. The fallback cloud service uses Stable Audio Open directly."
+              }
+            },
+            {
+              "@type": "Question",
               "name": "Is OBSIDIAN Neural free?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Yes. The VST3/AU plugin itself is free and open source (MPL-2.0) on GitHub. A free account gives you 200 credits (200 samples) at no cost and with no credit card required. Paid plans start at €14.99/month for more credits."
+                "text": "Yes. The VST3/AU plugin itself is free and open source (AGPL-3.0) on GitHub. A free account gives you 200 credits (200 samples) at no cost and with no credit card required. Paid plans start at €14.99/month for more credits."
               }
             },
             {
@@ -435,56 +443,99 @@
   <body>
     <div id="nav-container"></div>
 
-    <header class="hero-gradient py-4">
-      <div class="container py-5">
+    <header
+      class="hero-gradient py-4"
+      style="
+        position: relative;
+        overflow: hidden;
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
+      "
+    >
+      <div class="container py-5" style="position: relative; z-index: 3">
         <div class="row justify-content-center text-center">
-          <div class="col-lg-10">
-            <h1 class="display-3 fw-bold mb-4 text-gradient">
-              Real-Time AI Music Generation<br />For Live Performance
+          <div class="col-lg-9">
+            <div
+              class="mb-4"
+              style="
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                background: rgba(184, 96, 92, 0.1);
+                border: 1px solid rgba(184, 96, 92, 0.3);
+                border-radius: 999px;
+                padding: 5px 16px;
+                font-size: 0.75rem;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                color: var(--color-primary);
+                font-weight: 600;
+              "
+            >
+              <span
+                style="
+                  width: 6px;
+                  height: 6px;
+                  background: var(--color-primary);
+                  border-radius: 50%;
+                  display: inline-block;
+                  animation: pulse-dot 1.8s ease-in-out infinite;
+                "
+              ></span>
+              VST3 · AU · Open Source · Foundation-1 on providers
+            </div>
+
+            <h1
+              class="display-2 fw-bold mb-4 text-gradient"
+              style="line-height: 1.1; letter-spacing: -0.02em"
+            >
+              Real-Time AI Music<br />For Live Performance
             </h1>
-            <p class="lead mb-4 fs-4">
+
+            <p
+              class="lead mb-5 fs-4"
+              style="
+                color: rgba(30, 12, 10, 0.75);
+                max-width: 620px;
+                margin: 0 auto 2.5rem;
+              "
+            >
               <strong>The first VST that pays you back.</strong><br />
-              Generate music in real-time, keep full control — and if you have a
-              GPU,
+              Generate music in real-time — and if you have a GPU,
               <strong style="color: var(--color-primary)"
                 >earn 85% of the network revenue</strong
-              >
-              by powering it.
+              >.
             </p>
-            <p class="mb-4 text-secondary fs-5" id="hero-plugin-desc">
-              Whether you're a live performer or a developer with an idle GPU,
-              OBSIDIAN Neural is built differently — open source, cooperative,
-              transparent. 8 MIDI sequences per page. AI as your instrument, not
-              your replacement.
-            </p>
-            <div class="d-flex justify-content-center gap-3 mb-4 flex-wrap">
+
+            <div class="d-flex justify-content-center gap-3 mb-5 flex-wrap">
               <a
                 href="register.html"
                 class="btn btn-success btn-lg px-5 py-3 fw-bold shadow-lg"
               >
-                <i class="fas fa-rocket me-2"></i>Start Free Trial - 7 Days
+                <i class="fas fa-rocket me-2"></i>Start Free — 200 Credits
               </a>
               <a
                 id="btn-download-plugin"
                 href="#"
                 target="_blank"
                 rel="noopener"
-                class="btn btn-outline-secondary btn-lg px-5 py-3 fw-bold"
+                class="btn btn-outline-secondary btn-lg px-4 py-3 fw-bold"
               >
-                <i class="fab fa-github me-2"></i>Download Plugin (Free)
+                <i class="fab fa-github me-2"></i>Download Plugin
               </a>
               <a
                 id="btn-controller"
                 href="#"
                 target="_blank"
                 rel="noopener"
-                class="btn btn-outline-secondary btn-lg px-5 py-3 fw-bold"
+                class="btn btn-outline-secondary btn-lg px-4 py-3 fw-bold"
               >
                 <i class="fas fa-mobile-alt me-2"></i>Mobile Controller
               </a>
               <a
                 href="#provider-network"
-                class="btn btn-outline-secondary btn-lg px-5 py-3 fw-bold"
+                class="btn btn-outline-secondary btn-lg px-4 py-3 fw-bold"
                 style="
                   border-color: rgba(184, 96, 92, 0.5);
                   color: var(--color-primary);
@@ -496,16 +547,33 @@
               </a>
             </div>
 
-            <div class="d-flex justify-content-center gap-4 fs-5 flex-wrap">
+            <div
+              class="d-flex justify-content-center gap-4 flex-wrap"
+              style="color: rgba(30, 12, 10, 0.5); font-size: 0.9rem"
+            >
               <span
                 ><i class="fas fa-code text-success me-2"></i>Open Source
-                (MPL-2.0)</span
+                (AGPL-3.0)</span
               >
               <span
                 ><i class="fas fa-star text-warning me-2"></i
                 ><span id="github-stars">Loading...</span> Stars</span
               >
+              <span
+                ><i
+                  class="fas fa-download me-2"
+                  style="color: var(--color-primary)"
+                ></i
+                ><span id="github-downloads">Loading...</span> Downloads</span
+              >
               <span><i class="fas fa-bolt text-danger me-2"></i>Real-Time</span>
+              <span
+                ><i
+                  class="fas fa-microchip me-2"
+                  style="color: var(--color-primary)"
+                ></i
+                >Foundation-1</span
+              >
             </div>
             <div
               class="badge bg-warning text-dark mt-4 px-3 animate-pulse"
@@ -513,309 +581,24 @@
             >
               <i class="fas fa-award me-2"></i>
             </div>
-            <!-- ARG terminal widget -->
-            <div class="rag-signal-wrapper mt-4" id="rag-signal">
-              <div class="rag-terminal">
-                <div class="rag-terminal-bar">
-                  <span class="rag-dot rag-dot-red"></span>
-                  <span class="rag-dot rag-dot-yellow"></span>
-                  <span class="rag-dot rag-dot-green"></span>
-                  <span class="rag-terminal-title">obsidian_kernel.log</span>
-                </div>
-                <div class="rag-terminal-body">
-                  <p class="rag-line rag-line-1">
-                    <span class="rag-prompt">$</span
-                    ><span class="rag-cmd">
-                      tail -f /var/log/neural/kernel.log</span
-                    >
-                  </p>
-                  <p class="rag-line rag-line-2 rag-muted">
-                    [INFO] Stable Audio pipeline... OK
-                  </p>
-                  <p class="rag-line rag-line-3 rag-muted">
-                    [INFO] VLM vision bridge... OK
-                  </p>
-                  <p class="rag-line rag-line-4 rag-warn">
-                    [WARN] Unexpected write access detected on
-                    /neural/core/identity
-                  </p>
-                  <p class="rag-line rag-line-5 rag-err">
-                    [ERR&nbsp;] Unknown process writing to stream — signature
-                    unresolved
-                  </p>
-                  <p class="rag-line rag-line-6 rag-highlight">
-                    <span
-                      class="rag-glitch"
-                      data-text="// something is happening."
-                      >// something is happening.</span
-                    >
-                  </p>
-                  <p class="rag-line rag-line-7 rag-blink">
-                    <span class="rag-prompt">$</span>
-                    <span class="rag-cursor">█</span>
-                  </p>
-                </div>
-              </div>
-              <a
-                id="arg-cta-link"
-                href="#"
-                class="rag-cta"
-                target="_blank"
-                rel="noopener"
-              >
-                <span class="rag-cta-icon">⬡</span>
-                <span class="rag-cta-text">Investigate</span>
-                <span class="rag-cta-arrow">→</span>
-              </a>
-            </div>
-            <style>
-              .rag-signal-wrapper {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 1rem;
-                animation: argFadeIn 1.2s ease 0.8s both;
-              }
-              @keyframes argFadeIn {
-                from {
-                  opacity: 0;
-                  transform: translateY(12px);
-                }
-                to {
-                  opacity: 1;
-                  transform: translateY(0);
-                }
-              }
-              .rag-terminal {
-                width: 100%;
-                max-width: 540px;
-                background: rgba(0, 0, 0, 0.82);
-                border: 1px solid rgba(184, 96, 92, 0.35);
-                border-radius: 10px;
-                overflow: hidden;
-                box-shadow:
-                  0 0 0 1px rgba(184, 96, 92, 0.12),
-                  0 0 32px rgba(184, 96, 92, 0.08),
-                  0 8px 40px rgba(0, 0, 0, 0.6);
-                text-align: left;
-                font-family:
-                  "JetBrains Mono", "Fira Code", "Courier New", monospace;
-                font-size: 0.72rem;
-                backdrop-filter: blur(8px);
-              }
-              .rag-terminal-bar {
-                background: rgba(255, 255, 255, 0.04);
-                border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-                padding: 0.5rem 0.75rem;
-                display: flex;
-                align-items: center;
-                gap: 0.4rem;
-              }
-              .rag-dot {
-                width: 10px;
-                height: 10px;
-                border-radius: 50%;
-                display: inline-block;
-              }
-              .rag-dot-red {
-                background: #ff5f57;
-              }
-              .rag-dot-yellow {
-                background: #febc2e;
-              }
-              .rag-dot-green {
-                background: #28c840;
-              }
-              .rag-terminal-title {
-                margin-left: auto;
-                color: rgba(255, 255, 255, 0.25);
-                font-size: 0.65rem;
-                letter-spacing: 0.05em;
-              }
-              .rag-terminal-body {
-                padding: 1rem 1.1rem 1.1rem;
-                display: flex;
-                flex-direction: column;
-                gap: 0.25rem;
-              }
-              .rag-line {
-                margin: 0;
-                line-height: 1.6;
-                opacity: 0;
-                animation: argLineIn 0.3s ease forwards;
-              }
-              .rag-line-1 {
-                animation-delay: 1s;
-              }
-              .rag-line-2 {
-                animation-delay: 1.4s;
-              }
-              .rag-line-3 {
-                animation-delay: 1.7s;
-              }
-              .rag-line-4 {
-                animation-delay: 2.1s;
-              }
-              .rag-line-5 {
-                animation-delay: 2.5s;
-              }
-              .rag-line-6 {
-                animation-delay: 3s;
-              }
-              .rag-line-7 {
-                animation-delay: 3.4s;
-              }
-              @keyframes argLineIn {
-                from {
-                  opacity: 0;
-                }
-                to {
-                  opacity: 1;
-                }
-              }
-              .rag-prompt {
-                color: #b8605c;
-              }
-              .rag-cmd {
-                color: rgba(255, 255, 255, 0.6);
-              }
-              .rag-muted {
-                color: rgba(255, 255, 255, 0.3);
-              }
-              .rag-warn {
-                color: #febc2e;
-              }
-              .rag-err {
-                color: #ff5f57;
-              }
-              .rag-highlight {
-                color: rgba(255, 255, 255, 0.85);
-                font-weight: 600;
-              }
-              .rag-blink .rag-cursor {
-                color: #b8605c;
-                animation: argBlink 1s step-end infinite;
-              }
-              @keyframes argBlink {
-                0%,
-                100% {
-                  opacity: 1;
-                }
-                50% {
-                  opacity: 0;
-                }
-              }
-              .rag-glitch {
-                position: relative;
-                display: inline-block;
-              }
-              .rag-glitch::before,
-              .rag-glitch::after {
-                content: attr(data-text);
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                overflow: hidden;
-              }
-              .rag-glitch::before {
-                color: #ff5f57;
-                clip-path: polygon(0 0, 100% 0, 100% 40%, 0 40%);
-                transform: translateX(-2px);
-                animation: argGlitchTop 4s infinite linear 3.2s;
-              }
-              .rag-glitch::after {
-                color: #28c840;
-                clip-path: polygon(0 60%, 100% 60%, 100% 100%, 0 100%);
-                transform: translateX(2px);
-                animation: argGlitchBot 4s infinite linear 3.2s;
-              }
-              @keyframes argGlitchTop {
-                0%,
-                90%,
-                100% {
-                  transform: translateX(0);
-                  opacity: 0;
-                }
-                91% {
-                  transform: translateX(-3px);
-                  opacity: 0.8;
-                }
-                93% {
-                  transform: translateX(2px);
-                  opacity: 0.6;
-                }
-                95% {
-                  transform: translateX(0);
-                  opacity: 0;
-                }
-              }
-              @keyframes argGlitchBot {
-                0%,
-                90%,
-                100% {
-                  transform: translateX(0);
-                  opacity: 0;
-                }
-                91% {
-                  transform: translateX(3px);
-                  opacity: 0.8;
-                }
-                93% {
-                  transform: translateX(-2px);
-                  opacity: 0.6;
-                }
-                95% {
-                  transform: translateX(0);
-                  opacity: 0;
-                }
-              }
-              .rag-cta {
-                display: inline-flex;
-                align-items: center;
-                gap: 0.5rem;
-                padding: 0.45rem 1.1rem;
-                border: 1px solid rgba(184, 96, 92, 0.4);
-                border-radius: 4px;
-                background: rgba(184, 96, 92, 0.06);
-                color: #b8605c;
-                font-family: "JetBrains Mono", "Fira Code", monospace;
-                font-size: 0.72rem;
-                letter-spacing: 0.12em;
-                text-decoration: none;
-                text-transform: uppercase;
-                transition: all 0.25s ease;
-                opacity: 0;
-                animation: argFadeIn 0.6s ease 3.8s forwards;
-              }
-              .rag-cta:hover {
-                color: #b8605c;
-                border-color: rgba(184, 96, 92, 0.8);
-                background: rgba(184, 96, 92, 0.12);
-                box-shadow: 0 0 18px rgba(184, 96, 92, 0.15);
-                text-decoration: none;
-              }
-              .rag-cta-icon {
-                font-size: 0.9rem;
-                opacity: 0.6;
-              }
-              .rag-cta-arrow {
-                transition: transform 0.2s ease;
-              }
-              .rag-cta:hover .rag-cta-arrow {
-                transform: translateX(3px);
-              }
-            </style>
-            <!--
-  ██████╗ ██████╗ ███████╗██╗██████╗ ██╗ █████╗ ███╗   ██╗
-  You noticed. Good.
-  The signal started before the noise.
-  404 is not the end.
--->
           </div>
         </div>
       </div>
     </header>
+
+    <style>
+      @keyframes pulse-dot {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.35;
+          transform: scale(0.65);
+        }
+      }
+    </style>
 
     <!-- VST Screenshot -->
     <section class="container py-5">

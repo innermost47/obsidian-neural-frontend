@@ -1,59 +1,99 @@
-async function fetchGitHubStats() {
-  const CACHE_KEY = "obsidian_github_stats";
-  const CACHE_DURATION = 3600000;
+class GitHubStats {
+  constructor(repoPath) {
+    this.repoPath = repoPath;
+    this.cacheKey = "obsidian_github_stats_v3";
+    this.cacheDuration = 3600000;
+    this.starsElements = [
+      document.getElementById("github-stars"),
+      document.getElementById("github-stars-2"),
+    ].filter(Boolean);
+    this.downloadElements = [
+      document.getElementById("github-downloads"),
+      document.getElementById("github-downloads-2"),
+    ].filter(Boolean);
+    this.init();
+  }
 
-  const cached = localStorage.getItem(CACHE_KEY);
-  if (cached) {
-    const { data, timestamp } = JSON.parse(cached);
-    if (Date.now() - timestamp < CACHE_DURATION) {
-      updateStarsDisplay(data.stargazers_count);
-      return;
+  async init() {
+    const cached = localStorage.getItem(this.cacheKey);
+    if (cached) {
+      const { data, timestamp } = JSON.parse(cached);
+      if (Date.now() - timestamp < this.cacheDuration) {
+        this.updateStatsDisplay(data.stars, data.downloads);
+        return;
+      }
+    }
+    try {
+      const stats = await this.fetchData();
+      this.saveCache(stats);
+      this.updateStatsDisplay(stats.stars, stats.downloads);
+    } catch (error) {
+      console.error("Error fetching GitHub stats:", error);
     }
   }
 
-  try {
-    const response = await fetch(window.APP_CONFIG.GITHUB_STATS_URL, {
-      headers: {
-        Accept: "application/vnd.github.v3+json",
-      },
-    });
+  async fetchData() {
+    const repoRes = await fetch(
+      `https://api.github.com/repos/${this.repoPath}`,
+    );
+    const repoData = await repoRes.json();
+    const stars = repoData.stargazers_count;
 
-    if (!response.ok) throw new Error("API request failed");
+    let totalDownloads = 0;
+    let page = 1;
+    let keepFetching = true;
 
-    const data = await response.json();
+    while (keepFetching) {
+      const releasesRes = await fetch(
+        `https://api.github.com/repos/${this.repoPath}/releases?per_page=100&page=${page}`,
+      );
+      const releasesData = await releasesRes.json();
+      if (!Array.isArray(releasesData) || releasesData.length === 0) {
+        keepFetching = false;
+      } else {
+        releasesData.forEach((release) => {
+          release.assets.forEach((asset) => {
+            totalDownloads += asset.download_count;
+          });
+        });
+        keepFetching = releasesData.length === 100;
+        page++;
+      }
+    }
 
+    return { stars, downloads: totalDownloads };
+  }
+
+  saveCache(data) {
     localStorage.setItem(
-      CACHE_KEY,
+      this.cacheKey,
       JSON.stringify({
-        data: { stargazers_count: data.stargazers_count },
+        data,
         timestamp: Date.now(),
       }),
     );
+  }
 
-    updateStarsDisplay(data.stargazers_count);
-  } catch (error) {
-    console.error("Error fetching GitHub stats:", error);
-    updateStarsDisplay(120);
+  updateStatsDisplay(stars, downloads) {
+    const format = (num) =>
+      num >= 1000 ? (num / 1000).toFixed(1) + "k+" : num + "+";
+    this.starsElements.forEach((el) => (el.textContent = format(stars)));
+    this.downloadElements.forEach((el) => (el.textContent = format(downloads)));
   }
 }
 
-function updateStarsDisplay(count) {
-  const starsElement = document.getElementById("github-stars");
-  if (starsElement) {
-    const formatted =
-      count >= 1000 ? (count / 1000).toFixed(1) + "k+" : count + "+";
-    starsElement.textContent = formatted;
-  }
-  const starsElement2 = document.getElementById("github-stars-2");
-  if (starsElement2) {
-    const formatted =
-      count >= 1000 ? (count / 1000).toFixed(1) + "k+" : count + "+";
-    starsElement2.textContent = formatted;
+function initGitHubStats() {
+  const url = (window.APP_CONFIG && window.APP_CONFIG.GITHUB_STATS_URL) || "";
+  const match = url.match(/repos\/(.+?)\/?$/);
+  if (match) {
+    new GitHubStats(match[1]);
+  } else {
+    console.warn("GITHUB_STATS_URL invalide ou manquante");
   }
 }
 
 if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", fetchGitHubStats);
+  document.addEventListener("DOMContentLoaded", initGitHubStats);
 } else {
-  fetchGitHubStats();
+  initGitHubStats();
 }
