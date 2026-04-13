@@ -20,7 +20,6 @@ function togglePassword() {
 
 async function registerWithGoogle() {
   try {
-    await trackClick("sign_up", "Google Register");
     const response = await API.googleLogin();
     if (response.authorization_url) {
       window.location.href = response.authorization_url;
@@ -55,7 +54,6 @@ if (form) {
 
     try {
       await API.register(email, password, acceptNewsUpdates);
-      await trackClick("sign_up", "Email Register");
       const loginData = await API.login(email, password);
 
       if (!loginData || !loginData.access_token) {

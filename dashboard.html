@@ -72,21 +72,6 @@
         });
       };
 
-      window.trackClick = function (eventName, label) {
-        return new Promise(function (resolve) {
-          if (typeof gtag === "function") {
-            gtag("event", eventName, {
-              event_category: "Engagement",
-              event_label: label,
-              event_callback: resolve,
-            });
-            setTimeout(resolve, 500);
-          } else {
-            resolve();
-          }
-        });
-      };
-
       window.showSection = function (sectionId) {
         var newUrl =
           window.location.protocol +
@@ -147,16 +132,7 @@
               >
             </div>
             <div class="nav-item">
-              <a
-                href="#"
-                class="nav-link"
-                data-section="subscription"
-                onclick="
-                  trackClick(
-                    'select_content',
-                    'Sidebar Subscription Link',
-                  ).then(() => showSection('subscription'))
-                "
+              <a href="#" class="nav-link" data-section="subscription"
                 ><i class="fas fa-crown"></i><span>Subscription</span></a
               >
             </div>
@@ -449,13 +425,6 @@
                     target="_blank"
                     rel="noopener"
                     class="btn btn-gradient-primary btn-sm mb-2 w-100"
-                    onclick="
-                      event.preventDefault();
-                      trackClick(
-                        'file_download',
-                        'Dashboard VST Download Windows',
-                      ).then(() => window.open(this.href, '_blank'));
-                    "
                   >
                     <i class="fab fa-windows me-2"></i>Windows — VST3
                   </a>
@@ -465,13 +434,6 @@
                     target="_blank"
                     rel="noopener"
                     class="btn btn-gradient-primary btn-sm mb-2 w-100"
-                    onclick="
-                      event.preventDefault();
-                      trackClick(
-                        'file_download',
-                        'Dashboard VST Download macOS VST3',
-                      ).then(() => window.open(this.href, '_blank'));
-                    "
                   >
                     <i class="fab fa-apple me-2"></i>macOS — VST3
                   </a>
@@ -481,13 +443,6 @@
                     target="_blank"
                     rel="noopener"
                     class="btn btn-gradient-primary btn-sm mb-2 w-100"
-                    onclick="
-                      event.preventDefault();
-                      trackClick(
-                        'file_download',
-                        'Dashboard VST Download macOS AU',
-                      ).then(() => window.open(this.href, '_blank'));
-                    "
                   >
                     <i class="fab fa-apple me-2"></i>macOS — AU
                   </a>
@@ -497,24 +452,12 @@
                     target="_blank"
                     rel="noopener"
                     class="btn btn-gradient-primary btn-sm mb-2 w-100"
-                    onclick="
-                      event.preventDefault();
-                      trackClick(
-                        'file_download',
-                        'Dashboard VST Download Linux',
-                      ).then(() => window.open(this.href, '_blank'));
-                    "
                   >
                     <i class="fab fa-linux me-2"></i>Linux — VST3
                   </a>
                   <button
                     class="btn btn-outline-primary btn-sm w-100"
-                    onclick="
-                      trackClick(
-                        'select_content',
-                        'Overview to API Config Button',
-                      ).then(() => showSection('api'))
-                    "
+                    onclick="showSection('api')"
                   >
                     <i class="fas fa-key me-2"></i>Get your API key &amp; server
                     URL
@@ -573,13 +516,7 @@
                 <div class="col-md-3">
                   <a
                     href="#"
-                    onclick="
-                      trackClick(
-                        'select_content',
-                        'Quick Action API Config',
-                      ).then(() => showSection('api'));
-                      return false;
-                    "
+                    onclick="showSection('api')"
                     class="action-button"
                   >
                     <i class="fas fa-key fa-2x mb-2"></i>

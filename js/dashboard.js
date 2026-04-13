@@ -105,15 +105,13 @@ async function loadDashboard() {
 
     if (hasPaidPlan && (status === "active" || status === "canceling")) {
       subscriptionActions.innerHTML = `
-        <button class="btn btn-sm btn-outline-light w-100 mt-3" 
-                onclick="trackClick('manage_billing', 'Stripe Customer Portal').then(() => manageSubscription())">
+        <button class="btn btn-sm btn-outline-light w-100 mt-3" onclick="manageSubscription()">
           <i class="fas fa-cog me-1"></i>Manage Subscription
         </button>
       `;
     } else {
       subscriptionActions.innerHTML = `
-        <button class="btn btn-gradient-primary btn-sm w-100 mt-3" 
-                onclick="trackClick('begin_checkout', 'Dashboard Upgrade Button').then(() => showSection('subscription'))">
+        <button class="btn btn-gradient-primary btn-sm w-100 mt-3" onclick="showSection('subscription')">
           <i class="fas fa-rocket me-2"></i>Upgrade Now
         </button>
       `;

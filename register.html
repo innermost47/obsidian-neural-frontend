@@ -38,7 +38,7 @@
         var pageDesc =
           "Create your free " +
           pluginName +
-          " account and get 10 credits instantly. " +
+          " account and get 200 credits instantly. " +
           "Generate AI audio samples with the VST3 plugin" +
           (conferenceTag ? " used at " + conferenceTag + "." : ".") +
           " No credit card required.";
@@ -88,7 +88,7 @@
         );
         setMeta(
           "og:description",
-          "Sign up free and get 10 credits to generate AI audio samples instantly. Full VST3 plugin access, LLM prompt optimization, no card required.",
+          "Sign up free and get 200 credits to generate AI audio samples instantly. Full VST3 plugin access, LLM prompt optimization, no card required.",
           true,
         );
         setMeta("og:image", screenshotUrl, true);
@@ -109,7 +109,7 @@
         );
         setMeta(
           "twitter:description",
-          "Generate AI audio samples in your DAW. Free account, 10 credits, no card. VST3 for Windows & macOS.",
+          "Generate AI audio samples in your DAW. Free account, 200 credits, no card. VST3 for Windows & macOS.",
         );
         setMeta("twitter:image", screenshotUrl);
         setMeta(
@@ -216,23 +216,6 @@
         var el = document.getElementById("json-ld-placeholder");
         if (el) el.textContent = JSON.stringify(jsonLd, null, 2);
       })();
-    </script>
-
-    <script>
-      window.trackClick = function (eventName, label) {
-        return new Promise(function (resolve) {
-          if (typeof gtag === "function") {
-            gtag("event", eventName, {
-              event_category: "Engagement",
-              event_label: label,
-              event_callback: resolve,
-            });
-            setTimeout(resolve, 500);
-          } else {
-            resolve();
-          }
-        });
-      };
     </script>
   </head>
   <body>
@@ -377,7 +360,7 @@
             <div class="col-4">
               <div class="feature-badge">
                 <i class="fas fa-gift text-warning me-2"></i
-                ><span class="small">10 Credits</span>
+                ><span class="small">200 Credits</span>
               </div>
             </div>
             <div class="col-4">
