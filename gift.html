@@ -19,14 +19,14 @@
           : "";
         var pageUrl = siteUrl + "/gift.html";
 
-        // Pricing — new optional vars, with sensible defaults
-        var priceStarter = cfg.GIFT_PRICE_STARTER || "14.99";
-        var pricePro = cfg.GIFT_PRICE_PRO || "29.99";
-        var priceStudio = cfg.GIFT_PRICE_STUDIO || "59.99";
+        // Pricing
+        var priceBase = cfg.GIFT_PRICE_BASE || "7.99";
+        var priceStarter = cfg.GIFT_PRICE_STARTER || "11.99";
+        var pricePro = cfg.GIFT_PRICE_PRO || "14.99";
         var currency = cfg.GIFT_CURRENCY || "EUR";
         var currencySymbol = cfg.GIFT_CURRENCY_SYMBOL || "€";
 
-        // Conference mention — new optional var
+        // Conference mention
         var conferenceTag = cfg.CONFERENCE_TAG || "AES AIMLA 2025";
 
         var pageTitle =
@@ -34,20 +34,20 @@
           pluginName +
           " | From " +
           currencySymbol +
-          priceStarter +
+          priceBase +
           " for Producers & DJs";
         var pageDesc =
           "Give the gift of AI music generation to any producer, DJ or live performer. " +
           pluginName +
-          " gift cards available for Starter (" +
+          " gift cards available for Base (" +
+          currencySymbol +
+          priceBase +
+          "), Starter (" +
           currencySymbol +
           priceStarter +
-          "), Pro (" +
+          "), or Pro (" +
           currencySymbol +
           pricePro +
-          "), or Studio (" +
-          currencySymbol +
-          priceStudio +
           ") — 1, 3, or 6 months. Instant delivery by email. No auto-renewal.";
 
         document.title = pageTitle;
@@ -97,7 +97,7 @@
         );
         setMeta(
           "og:description",
-          "Give real-time AI music generation to someone you love. Starter, Pro or Studio plans — 1, 3 or 6 months. Instant email delivery, no auto-renewal.",
+          "Give real-time AI music generation to someone you love. Base, Starter or Pro plans — 1, 3 or 6 months. Instant email delivery, no auto-renewal.",
           true,
         );
         setMeta("og:image", screenshotUrl, true);
@@ -118,7 +118,7 @@
           "twitter:description",
           "The perfect gift for producers, DJs & live performers. AI music generation from " +
             currencySymbol +
-            priceStarter +
+            priceBase +
             ". Instant delivery, no auto-renewal.",
         );
         setMeta("twitter:image", screenshotUrl);
@@ -134,9 +134,9 @@
           pluginName,
           pageUrl,
           screenshotUrl,
+          priceBase,
           priceStarter,
           pricePro,
-          priceStudio,
           currency,
           currencySymbol,
           conferenceTag,
@@ -156,21 +156,21 @@
         var pluginName = g.pluginName || siteName;
         var pageUrl = g.pageUrl || "";
         var screenshotUrl = g.screenshotUrl || "";
-        var priceStarter = g.priceStarter || "14.99";
-        var pricePro = g.pricePro || "29.99";
-        var priceStudio = g.priceStudio || "59.99";
+        var priceBase = g.priceBase || "7.99";
+        var priceStarter = g.priceStarter || "11.99";
+        var pricePro = g.pricePro || "14.99";
         var currency = g.currency || "EUR";
         var currencySymbol = g.currencySymbol || "€";
         var conferenceTag = g.conferenceTag || "";
 
+        function baseMonths(n) {
+          return (parseFloat(priceBase) * n).toFixed(2);
+        }
         function starterMonths(n) {
           return (parseFloat(priceStarter) * n).toFixed(2);
         }
         function proMonths(n) {
           return (parseFloat(pricePro) * n).toFixed(2);
-        }
-        function studioMonths(n) {
-          return (parseFloat(priceStudio) * n).toFixed(2);
         }
 
         var seller = { "@type": "Organization", name: siteName };
@@ -184,7 +184,7 @@
             description:
               "Purchase a " +
               pluginName +
-              " gift card for any music producer, DJ or live performer. Choose Starter, Pro, or Studio plan for 1, 3, or 6 months. Instant email delivery.",
+              " gift card for any music producer, DJ or live performer. Choose Base, Starter, or Pro plan for 1, 3, or 6 months. Instant email delivery.",
             breadcrumb: {
               "@type": "BreadcrumbList",
               itemListElement: [
@@ -210,7 +210,7 @@
             description:
               "Gift card giving access to " +
               pluginName +
-              " AI music generation VST plugin. Available in Starter, Pro, and Studio tiers for 1, 3, or 6 months. Delivered instantly by email. No auto-renewal after the gift period.",
+              " AI music generation VST plugin. Available in Base, Starter, and Pro tiers for 1, 3, or 6 months. Delivered instantly by email. No auto-renewal after the gift period.",
             url: pageUrl,
             image: screenshotUrl,
             brand: { "@type": "Brand", name: siteName },
@@ -223,12 +223,31 @@
             offers: [
               {
                 "@type": "Offer",
+                name: "Base Gift Card — 1 Month",
+                price: priceBase,
+                priceCurrency: currency,
+                availability: "https://schema.org/InStock",
+                description:
+                  "1 month Base plan gift card — 150 AI generation credits, full VST3 plugin access",
+                seller: seller,
+              },
+              {
+                "@type": "Offer",
+                name: "Base Gift Card — 3 Months",
+                price: baseMonths(3),
+                priceCurrency: currency,
+                availability: "https://schema.org/InStock",
+                description: "3 months Base plan gift card",
+                seller: seller,
+              },
+              {
+                "@type": "Offer",
                 name: "Starter Gift Card — 1 Month",
                 price: priceStarter,
                 priceCurrency: currency,
                 availability: "https://schema.org/InStock",
                 description:
-                  "1 month Starter plan gift card — 500 AI generation credits, full VST3 plugin access",
+                  "1 month Starter plan gift card — 300 AI generation credits",
                 seller: seller,
               },
               {
@@ -247,17 +266,16 @@
                 priceCurrency: currency,
                 availability: "https://schema.org/InStock",
                 description:
-                  "1 month Pro plan gift card — 1500 AI generation credits",
+                  "1 month Pro plan gift card — 500 AI generation credits",
                 seller: seller,
               },
               {
                 "@type": "Offer",
-                name: "Studio Gift Card — 1 Month",
-                price: priceStudio,
+                name: "Pro Gift Card — 3 Months",
+                price: proMonths(3),
                 priceCurrency: currency,
                 availability: "https://schema.org/InStock",
-                description:
-                  "1 month Studio plan gift card — maximum credits and features",
+                description: "3 months Pro plan gift card",
                 seller: seller,
               },
             ],
@@ -272,7 +290,7 @@
                 acceptedAnswer: {
                   "@type": "Answer",
                   text:
-                    "Choose a plan (Starter, Pro, or Studio) and duration (1, 3, or 6 months). Enter the recipient's email and an optional message, then complete the secure Stripe payment. A gift code is instantly sent to the recipient by email. They activate it on their " +
+                    "Choose a plan (Base, Starter, or Pro) and duration (1, 3, or 6 months). Enter the recipient's email and an optional message, then complete the secure Stripe payment. A gift code is instantly sent to the recipient by email. They activate it on their " +
                     pluginName +
                     " account.",
                 },
@@ -300,16 +318,16 @@
                 acceptedAnswer: {
                   "@type": "Answer",
                   text:
-                    "Three plans are available: Starter at " +
+                    "Three plans are available: Base at " +
+                    currencySymbol +
+                    priceBase +
+                    "/month (150 credits), Starter at " +
                     currencySymbol +
                     priceStarter +
-                    "/month (500 credits), Pro at " +
+                    "/month (300 credits), and Pro at " +
                     currencySymbol +
                     pricePro +
-                    "/month (1500 credits), and Studio at " +
-                    currencySymbol +
-                    priceStudio +
-                    "/month. Each is available for 1, 3, or 6 months duration.",
+                    "/month (500 credits). Each is available for 1, 3, or 6 months duration.",
                 },
               },
               {
@@ -409,7 +427,7 @@
               <i class="fas fa-shopping-cart fa-3x text-primary"></i>
             </div>
             <h3 class="h5 fw-bold">Choose a Plan</h3>
-            <p>Select Starter, Pro, or Studio for 1, 3, or 6 months</p>
+            <p>Select Base, Starter, or Pro for 1, 3, or 6 months</p>
           </div>
         </div>
         <div class="col-md-6 col-lg-3">
@@ -453,10 +471,10 @@
             <div class="auth-card">
               <div class="text-center mb-4">
                 <h2 class="display-6 fw-bold mb-3">Purchase a Gift Card</h2>
-                <p class="text-secondary">All fields are required</p>
+                <p class="text-secondary">All fields marked * are required</p>
               </div>
 
-              <form id="giftForm">
+              <div id="giftForm">
                 <!-- Recipient Information -->
                 <div class="mb-4">
                   <h5 class="fw-bold mb-3">
@@ -498,11 +516,11 @@
                       <label for="tier" class="form-label">Plan *</label>
                       <select class="form-control-modern" id="tier" required>
                         <option value="">Choose a plan...</option>
+                        <option value="base" id="opt-base">Base</option>
                         <option value="starter" id="opt-starter">
                           Starter
                         </option>
                         <option value="pro" id="opt-pro">Pro</option>
-                        <option value="studio" id="opt-studio">Studio</option>
                       </select>
                     </div>
                     <div class="col-md-6">
@@ -600,13 +618,14 @@
 
                 <!-- Submit Button -->
                 <button
-                  type="submit"
+                  type="button"
                   class="btn btn-gradient-primary w-100 py-3 fw-bold"
                   id="submitBtn"
+                  onclick="handleGiftSubmit()"
                 >
                   <i class="fas fa-shopping-cart me-2"></i>Proceed to Payment
                 </button>
-              </form>
+              </div>
             </div>
           </div>
         </div>
@@ -668,9 +687,9 @@
       (function () {
         var cfg = window.APP_CONFIG || {};
         var pluginName = cfg.PLUGIN_NAME || cfg.SITE_NAME || "OBSIDIAN Neural";
-        var priceStarter = cfg.GIFT_PRICE_STARTER || "14.99";
-        var pricePro = cfg.GIFT_PRICE_PRO || "29.99";
-        var priceStudio = cfg.GIFT_PRICE_STUDIO || "59.99";
+        var priceBase = cfg.GIFT_PRICE_BASE || "7.99";
+        var priceStarter = cfg.GIFT_PRICE_STARTER || "11.99";
+        var pricePro = cfg.GIFT_PRICE_PRO || "14.99";
         var currencySymbol = cfg.GIFT_CURRENCY_SYMBOL || "€";
         var conferenceTag = cfg.CONFERENCE_TAG || "";
 
@@ -685,19 +704,23 @@
         }
 
         // Plan option labels with prices
+        var optBase = document.getElementById("opt-base");
         var optStarter = document.getElementById("opt-starter");
         var optPro = document.getElementById("opt-pro");
-        var optStudio = document.getElementById("opt-studio");
+        if (optBase)
+          optBase.textContent =
+            "Base — " + currencySymbol + priceBase + "/month (150 credits)";
         if (optStarter)
           optStarter.textContent =
-            "Starter — " + currencySymbol + priceStarter + "/month";
+            "Starter — " +
+            currencySymbol +
+            priceStarter +
+            "/month (300 credits)";
         if (optPro)
-          optPro.textContent = "Pro — " + currencySymbol + pricePro + "/month";
-        if (optStudio)
-          optStudio.textContent =
-            "Studio — " + currencySymbol + priceStudio + "/month";
+          optPro.textContent =
+            "Pro — " + currencySymbol + pricePro + "/month (500 credits)";
 
-        // "Why Gift" section title & unique desc
+        // "Why Gift" section
         var whyTitle = document.getElementById("why-gift-title");
         if (whyTitle) whyTitle.textContent = "Why Gift " + pluginName + "?";
 
@@ -709,7 +732,65 @@
               ". Give cutting-edge technology."
             : "First VST of its kind. Give cutting-edge technology.";
         }
+
+        // Live price calculation
+        var prices = {
+          base: parseFloat(priceBase),
+          starter: parseFloat(priceStarter),
+          pro: parseFloat(pricePro),
+        };
+
+        function updatePrice() {
+          var tier = document.getElementById("tier").value;
+          var duration = parseInt(document.getElementById("duration").value);
+          var display = document.getElementById("priceDisplay");
+          var total = document.getElementById("totalPrice");
+
+          if (tier && duration && prices[tier]) {
+            var amount = (prices[tier] * duration).toFixed(2);
+            total.textContent = currencySymbol + amount;
+            display.style.display = "block";
+          } else {
+            display.style.display = "none";
+          }
+        }
+
+        document.getElementById("tier").addEventListener("change", updatePrice);
+        document
+          .getElementById("duration")
+          .addEventListener("change", updatePrice);
+
+        // Char counter
+        var giftMessage = document.getElementById("giftMessage");
+        var charCount = document.getElementById("charCount");
+        if (giftMessage && charCount) {
+          giftMessage.addEventListener("input", function () {
+            charCount.textContent = giftMessage.value.length + " / 500";
+          });
+        }
       })();
+
+      function handleGiftSubmit() {
+        var recipientEmail = document
+          .getElementById("recipientEmail")
+          .value.trim();
+        var tier = document.getElementById("tier").value;
+        var duration = document.getElementById("duration").value;
+        var errorAlert = document.getElementById("errorAlert");
+
+        errorAlert.style.display = "none";
+
+        if (!recipientEmail || !tier || !duration) {
+          errorAlert.textContent = "Please fill in all required fields.";
+          errorAlert.style.display = "block";
+          return;
+        }
+
+        // Delegate to existing gift.js logic
+        if (typeof submitGiftForm === "function") {
+          submitGiftForm();
+        }
+      }
     </script>
 
     <script src="js/gift.js"></script>
