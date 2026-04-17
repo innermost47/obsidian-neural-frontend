@@ -685,10 +685,10 @@
                           ><i class="fas fa-brain me-1"></i>Gemini 2.5 Flash
                           (LLM)</span
                         >
-                        <span class="badge" style="background: #b8605c"
-                          ><i class="fas fa-music me-1"></i>Foundation-1 /
-                          Stable Audio</span
-                        >
+                        <span class="badge" style="background: #b8605c">
+                          <i class="fas fa-music me-1"></i>8 models on GPU nodes
+                          / Stable Audio fallback
+                        </span>
                       </div>
                     </td>
                     <td><span class="credit-badge">1 credit</span></td>
@@ -713,10 +713,10 @@
                           ><i class="fas fa-eye me-1"></i>Gemini 2.5 Flash
                           (Vision)</span
                         >
-                        <span class="badge" style="background: #b8605c"
-                          ><i class="fas fa-music me-1"></i>Foundation-1 /
-                          Stable Audio</span
-                        >
+                        <span class="badge" style="background: #b8605c">
+                          <i class="fas fa-music me-1"></i>8 models on GPU nodes
+                          / Stable Audio fallback
+                        </span>
                       </div>
                     </td>
                     <td><span class="credit-badge">1 credit</span></td>
@@ -777,12 +777,14 @@
                     style="background: white; border-radius: 8px"
                   >
                     <h6 class="fw-bold mb-2">
-                      <i class="fas fa-music me-2"></i>Audio Engine
+                      <i class="fas fa-music me-2"></i>Audio Engines
                     </h6>
                     <p class="mb-0 small text-secondary">
-                      <strong>Foundation-1</strong> by RoyalCities on provider
-                      nodes — structured, tempo-synced sample generation.<br />
-                      <strong>Stable Audio</strong> as fallback.
+                      <strong>8 specialized models</strong> on provider nodes
+                      (Foundation-1, StableBeaT, EDM Elements…) — tempo-synced,
+                      assignable per track.<br />
+                      <strong>Stable Audio Open</strong> via fal.ai as automatic
+                      fallback when no node is online.
                     </p>
                   </div>
                 </div>
@@ -800,11 +802,12 @@
               <p class="mb-0">
                 <i class="fas fa-check-circle me-2"></i>
                 <strong>Simple Pricing:</strong> 1 credit = 1 generation,
-                regardless of which models are used.<br />
-                <small class="text-secondary"
-                  >Text prompts and drawings both cost 1 credit per
-                  generation.</small
-                >
+                regardless of model or method.<br />
+                <small class="text-secondary">
+                  Text prompts and drawings both cost 1 credit. Model quality
+                  depends on GPU node availability — fallback to Stable Audio
+                  Open via fal.ai when no node is online.
+                </small>
               </p>
             </div>
           </div>
@@ -957,13 +960,87 @@
                   data-bs-parent="#faqAccordion"
                 >
                   <div class="accordion-body-custom">
-                    Provider nodes run
-                    <strong>Foundation-1 by RoyalCities</strong> — a specialized
-                    model for structured, tempo-synced, key-aware music sample
-                    generation. When no provider node is available, the system
-                    falls back to Stable Audio Open. The LLM layer uses Gemini
-                    2.5 Flash for prompt optimization and draw-to-audio
-                    interpretation.
+                    Provider nodes run <strong>8 specialized models</strong>,
+                    each assignable per track :
+                    <ul class="mt-2 mb-2 small">
+                      <li>
+                        <a
+                          href="https://huggingface.co/stabilityai/stable-audio-open-1.0"
+                          target="_blank"
+                          rel="noopener"
+                          >Stable Audio Open 1.0</a
+                        >
+                        — versatile, 80–160 BPM
+                      </li>
+                      <li>
+                        <a
+                          href="https://huggingface.co/RoyalCities/Foundation-1"
+                          target="_blank"
+                          rel="noopener"
+                          >Foundation-1</a
+                        >
+                        — melodic & harmonic, 100–150 BPM
+                      </li>
+                      <li>
+                        <a
+                          href="https://huggingface.co/adlb/Audialab_EDM_Elements"
+                          target="_blank"
+                          rel="noopener"
+                          >Audialab EDM Elements</a
+                        >
+                        — leads & supersaws, ideal 128 BPM
+                      </li>
+                      <li>
+                        <a
+                          href="https://huggingface.co/RoyalCities/RC_Infinite_Pianos"
+                          target="_blank"
+                          rel="noopener"
+                          >RC Infinite Pianos</a
+                        >
+                        — grand & electric piano, optimal 120 BPM
+                      </li>
+                      <li>
+                        <a
+                          href="https://huggingface.co/RoyalCities/Vocal_Textures_Main"
+                          target="_blank"
+                          rel="noopener"
+                          >Vocal Textures Main</a
+                        >
+                        — choral & atmospheric pads, 100–150 BPM
+                      </li>
+                      <li>
+                        <a
+                          href="https://huggingface.co/santifiorino/SAO-Instrumental-Finetune"
+                          target="_blank"
+                          rel="noopener"
+                          >SAO Instrumental Finetune</a
+                        >
+                        — trap, lofi, indie stems, great at 90 BPM
+                      </li>
+                      <li>
+                        <a
+                          href="https://huggingface.co/gab-gdp/StableBeaT"
+                          target="_blank"
+                          rel="noopener"
+                          >StableBeaT</a
+                        >
+                        — trap beats & 808s, tight at 140 BPM
+                      </li>
+                      <li>
+                        <a
+                          href="https://huggingface.co/atoof/gluten_v1"
+                          target="_blank"
+                          rel="noopener"
+                          >Gluten v1</a
+                        >
+                        — melodic trap & wavy motifs, optimal 135 BPM
+                      </li>
+                    </ul>
+                    When no provider node is available, the system automatically
+                    falls back to <strong>Stable Audio Open</strong> via
+                    fal.ai.<br />
+                    The LLM layer uses <strong>Gemini 2.5 Flash</strong> for
+                    prompt optimization and draw-to-audio interpretation.
                   </div>
                 </div>
               </div>

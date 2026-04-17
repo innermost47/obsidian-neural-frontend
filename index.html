@@ -483,14 +483,14 @@
                   animation: pulse-dot 1.8s ease-in-out infinite;
                 "
               ></span>
-              VST3 · AU · Open Source · Foundation-1 on providers
+              VST3 · AU · Open Source · 8 AI Models · Live Performance
             </div>
 
             <h1
               class="display-2 fw-bold mb-4 text-gradient"
               style="line-height: 1.1; letter-spacing: -0.02em"
             >
-              Real-Time AI Music<br />For Live Performance
+              AI Music Generation<br />For Live Performance
             </h1>
 
             <p
@@ -502,7 +502,8 @@
               "
             >
               <strong>The first VST that pays you back.</strong><br />
-              Generate music in real-time — and if you have a GPU,
+              Generate samples in ~30s, load them live in your 8-track sampler —
+              and if you have a GPU,
               <strong style="color: var(--color-primary)"
                 >earn 85% of the network revenue</strong
               >.
@@ -566,7 +567,10 @@
                 ></i
                 ><span id="github-downloads">Loading...</span> Downloads</span
               >
-              <span><i class="fas fa-bolt text-danger me-2"></i>Real-Time</span>
+              <span
+                ><i class="fas fa-bolt text-danger me-2"></i>~30s
+                Generation</span
+              >
               <span
                 ><i
                   class="fas fa-microchip me-2"
@@ -954,19 +958,19 @@
               <div class="icon-circle bg-gradient-red mb-3">
                 <i class="fas fa-bolt fa-2x"></i>
               </div>
-              <h3 class="h5 fw-bold mb-3">Generate Live During Performance</h3>
+              <h3 class="h5 fw-bold mb-3">Generate During Your Set</h3>
               <p class="mb-3 text-secondary">
-                Not just pre-generated samples! Create fresh material directly
-                during your set. While playing 3 tracks, generate new sounds in
-                the background.
+                Trigger your 8-track sampler while new samples cook in the
+                background (~30s). Queue a generation, keep playing — it drops
+                in when it's ready.
               </p>
               <ul class="list-unstyled">
                 <li class="mb-2 d-flex align-items-center">
                   <i
                     class="fas fa-check me-2"
                     style="color: var(--color-primary)"
-                  ></i
-                  >Real-time generation during performance
+                  ></i>
+                  Generation in ~30s, non-blocking
                 </li>
                 <li class="mb-2 d-flex align-items-center">
                   <i
@@ -1256,9 +1260,8 @@
               </div>
               <h3 class="h5 fw-bold mb-3">Research &amp; Innovation</h3>
               <p class="mb-0 text-secondary">
-                Presented as a Late Breaking Demo Paper showcasing the first
-                real-time AI music generation plugin designed for live
-                performance contexts.
+                Presented as a Late Breaking Demo Paper showcasing the first AI
+                music generation plugin designed for live performance contexts.
               </p>
             </div>
           </div>
@@ -1290,7 +1293,7 @@
                 demonstrates the integration in Bitwig Studio within a complete
                 live hardware setup, featuring Akai APC20, Korg microKONTROL,
                 Arturia MIDI controller, Behringer Pro-1 synth, and Behringer
-                TD-3 for sample triggering, real-time mixing, and on-the-fly AI
+                TD-3 for sample triggering, live mixing, and on-the-fly AI
                 generation during the performance—exactly as it would be used in
                 a club or live show environment.
               </div>
@@ -1764,6 +1767,239 @@
       </div>
     </section>
 
+    <section class="py-5 bg-gradient-dark" id="ai-models">
+      <div class="container py-5">
+        <div class="row text-center mb-5">
+          <div class="col">
+            <h2 class="display-5 fw-bold mb-3">
+              <i class="fas fa-microchip text-danger me-2"></i>8 Specialized AI
+              Engines
+            </h2>
+            <p class="lead text-secondary">
+              Assign a different model to each of your 8 tracks. Each one is
+              optimized for specific styles and tempos.<br />
+              <span class="small"
+                ><i class="fas fa-info-circle me-1"></i>Available on active GPU
+                provider nodes — fallback to Stable Audio Open when no node is
+                online.</span
+              >
+            </p>
+          </div>
+        </div>
+        <div class="row g-3">
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-card-icon h-100 p-4 rounded-4 hover-lift">
+              <div
+                class="icon-circle bg-gradient-red mb-3"
+                style="width: 50px; height: 50px; font-size: 0.8rem"
+              >
+                <i class="fas fa-layer-group"></i>
+              </div>
+              <h3 class="h6 fw-bold mb-1">
+                <a
+                  href="https://huggingface.co/stabilityai/stable-audio-open-1.0"
+                  target="_blank"
+                  rel="noopener"
+                  class="text-accent"
+                  >Stable Audio Open 1.0</a
+                >
+              </h3>
+              <p class="small text-secondary mb-1">
+                Versatile full-mix textures & drum loops
+              </p>
+              <span class="badge bg-secondary">80–160 BPM</span>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-card-icon h-100 p-4 rounded-4 hover-lift">
+              <div
+                class="icon-circle bg-gradient-red mb-3"
+                style="width: 50px; height: 50px; font-size: 0.8rem"
+              >
+                <i class="fas fa-music"></i>
+              </div>
+              <h3 class="h6 fw-bold mb-1">
+                <a
+                  href="https://huggingface.co/RoyalCities/Foundation-1"
+                  target="_blank"
+                  rel="noopener"
+                  class="text-accent"
+                  >Foundation-1</a
+                >
+              </h3>
+              <p class="small text-secondary mb-1">
+                Tag-based melodic & harmonic phrasing
+              </p>
+              <span class="badge bg-secondary">100–150 BPM</span>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-card-icon h-100 p-4 rounded-4 hover-lift">
+              <div
+                class="icon-circle bg-gradient-purple mb-3"
+                style="width: 50px; height: 50px; font-size: 0.8rem"
+              >
+                <i class="fas fa-bolt"></i>
+              </div>
+              <h3 class="h6 fw-bold mb-1">
+                <a
+                  href="https://huggingface.co/adlb/Audialab_EDM_Elements"
+                  target="_blank"
+                  rel="noopener"
+                  class="text-accent"
+                  >Audialab EDM Elements</a
+                >
+              </h3>
+              <p class="small text-secondary mb-1">
+                High-energy EDM leads, supersaws & plucks
+              </p>
+              <span class="badge bg-secondary">100–150 BPM · Ideal 128</span>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-card-icon h-100 p-4 rounded-4 hover-lift">
+              <div
+                class="icon-circle bg-gradient-blue mb-3"
+                style="width: 50px; height: 50px; font-size: 0.8rem"
+              >
+                <i class="fas fa-piano-keys fa-fw"></i>
+              </div>
+              <h3 class="h6 fw-bold mb-1">
+                <a
+                  href="https://huggingface.co/RoyalCities/RC_Infinite_Pianos"
+                  target="_blank"
+                  rel="noopener"
+                  class="text-accent"
+                  >RC Infinite Pianos</a
+                >
+              </h3>
+              <p class="small text-secondary mb-1">
+                Grand & electric piano performances
+              </p>
+              <span class="badge bg-secondary">100–150 BPM · Optimal 120</span>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-card-icon h-100 p-4 rounded-4 hover-lift">
+              <div
+                class="icon-circle bg-gradient-pink mb-3"
+                style="width: 50px; height: 50px; font-size: 0.8rem"
+              >
+                <i class="fas fa-microphone"></i>
+              </div>
+              <h3 class="h6 fw-bold mb-1">
+                <a
+                  href="https://huggingface.co/RoyalCities/Vocal_Textures_Main"
+                  target="_blank"
+                  rel="noopener"
+                  class="text-accent"
+                  >Vocal Textures Main</a
+                >
+              </h3>
+              <p class="small text-secondary mb-1">
+                Choral, operatic & atmospheric vocal pads
+              </p>
+              <span class="badge bg-secondary">100–150 BPM</span>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-card-icon h-100 p-4 rounded-4 hover-lift">
+              <div
+                class="icon-circle bg-gradient-green mb-3"
+                style="width: 50px; height: 50px; font-size: 0.8rem"
+              >
+                <i class="fas fa-guitar"></i>
+              </div>
+              <h3 class="h6 fw-bold mb-1">
+                <a
+                  href="https://huggingface.co/santifiorino/SAO-Instrumental-Finetune"
+                  target="_blank"
+                  rel="noopener"
+                  class="text-accent"
+                  >SAO Instrumental Finetune</a
+                >
+              </h3>
+              <p class="small text-secondary mb-1">
+                Trap, lofi jazz, modern indie stems
+              </p>
+              <span class="badge bg-secondary">75–160 BPM · Great 90</span>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-card-icon h-100 p-4 rounded-4 hover-lift">
+              <div
+                class="icon-circle bg-gradient-orange mb-3"
+                style="width: 50px; height: 50px; font-size: 0.8rem"
+              >
+                <i class="fas fa-drum"></i>
+              </div>
+              <h3 class="h6 fw-bold mb-1">
+                <a
+                  href="https://huggingface.co/gab-gdp/StableBeaT"
+                  target="_blank"
+                  rel="noopener"
+                  class="text-accent"
+                  >StableBeaT</a
+                >
+              </h3>
+              <p class="small text-secondary mb-1">Trap beats & 808 grooves</p>
+              <span class="badge bg-secondary">75–160 BPM · Tight 140</span>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <div class="feature-card-icon h-100 p-4 rounded-4 hover-lift">
+              <div
+                class="icon-circle bg-gradient-dark mb-3"
+                style="width: 50px; height: 50px; font-size: 0.8rem"
+              >
+                <i class="fas fa-wave-square"></i>
+              </div>
+              <h3 class="h6 fw-bold mb-1">
+                <a
+                  href="https://huggingface.co/atoof/gluten_v1"
+                  target="_blank"
+                  rel="noopener"
+                  class="text-accent"
+                  >Gluten v1</a
+                >
+              </h3>
+              <p class="small text-secondary mb-1">
+                Loopable melodic trap & wavy motifs
+              </p>
+              <span class="badge bg-secondary">90–160 BPM · Optimal 135</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-4">
+          <div class="col text-center">
+            <div
+              class="alert d-inline-block px-4 py-3 rounded-4"
+              style="
+                background: rgba(184, 96, 92, 0.1);
+                border: 1px solid rgba(184, 96, 92, 0.3);
+              "
+            >
+              <i
+                class="fas fa-server me-2"
+                style="color: var(--color-primary)"
+              ></i>
+              <strong>No GPU node available?</strong> The system automatically
+              falls back to <strong>Stable Audio Open</strong> via fal.ai — you
+              never get a blank response.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Features -->
     <section class="container py-5" id="features">
       <div class="row text-center mb-5">
@@ -1777,7 +2013,7 @@
       <div class="row g-4 text-center mb-5">
         <div class="col-md-3">
           <div class="stat-card p-4 rounded-4">
-            <div class="stat-number text-primary mb-2">~20s</div>
+            <div class="stat-number text-danger mb-2">~30s</div>
             <div class="stat-label">Generation Time</div>
           </div>
         </div>
@@ -1795,8 +2031,8 @@
         </div>
         <div class="col-md-3">
           <div class="stat-card p-4 rounded-4">
-            <div class="stat-number text-info mb-2">Stereo</div>
-            <div class="stat-label">True Stereo Output</div>
+            <div class="stat-number text-info mb-2">8</div>
+            <div class="stat-label">AI Models</div>
           </div>
         </div>
       </div>

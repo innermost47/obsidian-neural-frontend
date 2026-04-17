@@ -10,7 +10,7 @@ window.APP_CONFIG = {
 
   SITE_NAME: "OBSIDIAN Neural",
   SITE_URL: "https://your-domain.com",
-  SITE_DESCRIPTION: "Real-time AI music generation for live performers",
+  SITE_DESCRIPTION: "AI music generation designed for live performers",
 
   COMPANY_NAME: "Your Name / Company",
   COMPANY_STATUS: "Individual Entrepreneur (Auto-entrepreneur)",

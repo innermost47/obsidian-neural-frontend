@@ -14,7 +14,7 @@
 
 ## Overview
 
-Marketing website and user dashboard for [OBSIDIAN Neural](https://obsidian-neural.com), the open-source VST3/AU plugin for real-time AI music generation in live performance.
+Marketing website and user dashboard for [OBSIDIAN Neural](https://obsidian-neural.com), the open-source VST3/AU plugin for AI music generation designed for live performance.
 
 Presented at **AES AIMLA 2025** — Queen Mary University London.
 
