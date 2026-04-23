@@ -1,55 +1,18 @@
 (function () {
   const CONSENT_KEY = "cookie_consent";
   const cfg = window.APP_CONFIG || {};
-  const GA_ID = cfg.GA_MEASUREMENT_ID || "";
-  const GADS_ID = cfg.GADS_MEASUREMENT_ID || "";
 
   function hasConsent() {
     return localStorage.getItem(CONSENT_KEY) === "accepted";
   }
 
-  function showBanner() {
-    if (localStorage.getItem(CONSENT_KEY)) return;
-    const banner = document.createElement("div");
-    banner.id = "cookie-consent-banner";
-    banner.className =
-      "position-fixed bottom-0 start-0 end-0 bg-black border-top border-secondary p-3";
-    banner.style.zIndex = "9999";
-    banner.style.maxWidth = "100vw";
-    banner.innerHTML = `
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-md-8">
-            <p class="mb-2 mb-md-0 text-white">
-              We use cookies to enhance your experience, including YouTube videos and analytics.
-              Essential cookies are required for the site to function.
-              <a href="cookie-policy.html" class="text-primary">Learn more</a>
-            </p>
-          </div>
-          <div class="col-md-4 text-md-end">
-            <button id="accept-cookies" class="btn btn-primary btn-sm me-2">Accept All</button>
-            <button id="reject-optional" class="btn btn-outline-light btn-sm">Essential Only</button>
-          </div>
-        </div>
-      </div>
-    `;
-    document.body.appendChild(banner);
-    document.getElementById("accept-cookies").addEventListener("click", () => {
-      localStorage.setItem(CONSENT_KEY, "accepted");
-      enableAnalytics();
-      enableYouTube();
-      banner.remove();
-    });
-    document.getElementById("reject-optional").addEventListener("click", () => {
-      localStorage.setItem(CONSENT_KEY, "essential_only");
-      banner.remove();
-    });
-  }
-
   function enableAnalytics() {
     if (window.analyticsEnabled) return;
+    const GA_ID = cfg.GA_MEASUREMENT_ID || "";
+    const GADS_ID = cfg.GADS_MEASUREMENT_ID || "";
     if (!GADS_ID && !GA_ID) return;
     window.analyticsEnabled = true;
+
     const script = document.createElement("script");
     script.async = true;
     script.src = `https://www.googletagmanager.com/gtag/js?id=${GADS_ID || GA_ID}`;
@@ -67,69 +30,121 @@
   }
 
   function enableYouTube() {
-    const placeholders = document.querySelectorAll(".youtube-placeholder");
-    placeholders.forEach((placeholder) => {
-      const videoId = placeholder.dataset.videoId;
-      const title = placeholder.dataset.title || "YouTube video";
+    const videoMap = {
+      "yt-dnb": cfg.VIDEO_ID_DNB || "",
+      "yt-aimla": cfg.VIDEO_ID_AIMLA || "",
+      "yt-draw": cfg.VIDEO_ID_DRAW || "",
+      "yt-beatcrafter": cfg.VIDEO_ID_BEATCRAFTER || "",
+    };
+
+    Object.keys(videoMap).forEach(function (id) {
+      if (!videoMap[id]) return;
+
+      const container = document.getElementById(id);
+      if (!container || container.tagName === "IFRAME") return;
+
       const iframe = document.createElement("iframe");
-      iframe.src = `https://www.youtube.com/embed/${videoId}`;
-      iframe.title = title;
+      iframe.src = `https://www.youtube.com/embed/${videoMap[id]}`;
+      iframe.title = container.dataset.title || "YouTube video";
       iframe.allowFullscreen = true;
       iframe.allow =
         "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
-      iframe.style.width = "100%";
-      iframe.style.height = "100%";
-      placeholder.parentNode.replaceChild(iframe, placeholder);
+      iframe.className = "absolute inset-0 w-full h-full rounded-3xl";
+
+      container.innerHTML = "";
+      container.appendChild(iframe);
     });
   }
 
-  function createYouTubePlaceholder(videoId, title) {
-    const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
-    const placeholder = document.createElement("div");
-    placeholder.className = "youtube-placeholder";
-    placeholder.dataset.videoId = videoId;
-    placeholder.dataset.title = title;
-    placeholder.style.cssText = `
-      position: relative; width: 100%; height: 100%;
-      background: #000 url('${thumbnailUrl}') center/cover no-repeat;
-      cursor: pointer; display: flex; align-items: center; justify-content: center;
-    `;
-    placeholder.innerHTML = `
-      <div style="background:rgba(0,0,0,.8);color:white;padding:2rem;border-radius:1rem;text-align:center;max-width:400px;">
-        <i class="fab fa-youtube" style="font-size:3rem;color:#FF0000;margin-bottom:1rem;"></i>
-        <h4 style="margin-bottom:1rem;">YouTube Video</h4>
-        <p style="margin-bottom:1.5rem;font-size:.9rem;">This content requires cookies to be displayed.</p>
-        <button class="btn btn-primary" onclick="document.getElementById('accept-cookies')?.click() || location.reload()">
-          Accept Cookies to Watch
-        </button>
+  function showBanner() {
+    if (localStorage.getItem(CONSENT_KEY)) return;
+
+    const banner = document.createElement("div");
+    banner.id = "cookie-consent-banner";
+    banner.className =
+      "fixed bottom-0 inset-x-0 z-[9999] bg-black/90 backdrop-blur-xl border-t border-white/10 p-4";
+    banner.innerHTML = `
+      <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-sm text-gray-300 text-center md:text-left">
+          We use cookies to enhance your experience, including YouTube videos and analytics. 
+          Essential cookies are required for the site to function. 
+          <a href="cookie-policy.php" class="text-primary hover:underline">Learn more</a>
+        </p>
+        <div class="flex items-center gap-3 shrink-0">
+          <button id="accept-cookies" class="px-5 py-2 rounded-full bg-primary text-white text-sm font-bold hover:bg-primary/80 transition-colors shadow-[0_0_15px_rgba(217,104,80,0.3)]">
+            Accept All
+          </button>
+          <button id="reject-optional" class="px-5 py-2 rounded-full bg-white/5 border border-white/10 text-white text-sm font-bold hover:bg-white/10 transition-colors">
+            Essential Only
+          </button>
+        </div>
       </div>
     `;
-    return placeholder;
+
+    document.body.appendChild(banner);
+
+    document.getElementById("accept-cookies").addEventListener("click", () => {
+      localStorage.setItem(CONSENT_KEY, "accepted");
+      enableAnalytics();
+      enableYouTube();
+      banner.remove();
+    });
+
+    document.getElementById("reject-optional").addEventListener("click", () => {
+      localStorage.setItem(CONSENT_KEY, "essential_only");
+      banner.remove();
+    });
   }
 
   if (hasConsent()) {
     enableAnalytics();
-    enableYouTube();
+    setTimeout(enableYouTube, 150);
   } else if (!localStorage.getItem(CONSENT_KEY)) {
     showBanner();
   }
 
-  window.createYouTubePlaceholder = createYouTubePlaceholder;
+  window.enableYouTube = enableYouTube;
+  window.showCookieBanner = showBanner;
   window.enableYouTube = enableYouTube;
 })();
 
 (function () {
-  const CONSENT_KEY = "cookie_consent";
   const button = document.createElement("button");
-  button.id = "cookie-settings-btn";
-  button.className = "cookie-settings-floating";
+  button.className =
+    "fixed bottom-6 left-6 z-[9998] w-10 h-10 rounded-full bg-white/5 border border-white/10 backdrop-blur-md flex items-center justify-center text-gray-500 hover:text-primary hover:bg-primary/10 hover:border-primary/30 transition-all text-sm";
   button.title = "Cookie Settings";
   button.innerHTML = '<i class="fas fa-cookie-bite"></i>';
   button.onclick = function () {
-    localStorage.removeItem(CONSENT_KEY);
-    const oldBanner = document.getElementById("cookie-consent-banner");
-    if (oldBanner) oldBanner.remove();
-    location.reload();
+    localStorage.removeItem("cookie_consent");
+    const videoMap = {
+      "yt-dnb": (window.APP_CONFIG || {}).VIDEO_ID_DNB || "",
+      "yt-aimla": (window.APP_CONFIG || {}).VIDEO_ID_AIMLA || "",
+      "yt-draw": (window.APP_CONFIG || {}).VIDEO_ID_DRAW || "",
+      "yt-beatcrafter": (window.APP_CONFIG || {}).VIDEO_ID_BEATCRAFTER || "",
+    };
+
+    Object.keys(videoMap).forEach(function (id) {
+      const container = document.getElementById(id);
+      if (!container) return;
+
+      if (container.tagName === "IFRAME" || container.querySelector("iframe")) {
+        const title = container.dataset.title || "YouTube video";
+        container.innerHTML = `
+          <div class="absolute inset-0 bg-black/70 flex flex-col items-center justify-center text-center p-6 z-10">
+            <i class="fab fa-youtube text-6xl text-danger mb-4"></i>
+            <h4 class="font-bold text-xl mb-2">${title}</h4>
+            <p class="text-sm text-gray-400 mb-4 max-w-sm">This content requires cookies to be displayed.</p>
+            <button class="px-6 py-3 bg-primary text-white rounded-xl font-bold hover:bg-white hover:text-black transition-colors" onclick="document.getElementById('accept-cookies')?.click()">
+              <i class="fas fa-cookie-bite mr-2"></i>Accept Cookies to Watch
+            </button>
+          </div>
+        `;
+      }
+    });
+
+    if (typeof window.showCookieBanner === "function") {
+      window.showCookieBanner();
+    }
   };
   document.body.appendChild(button);
 })();

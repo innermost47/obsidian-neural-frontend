@@ -1,0 +1,2601 @@
+<!doctype html>
+<html lang="en" class="bg-black text-white overflow-x-hidden scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <title>
+      OBSIDIAN Neural: AI Generative Sampler for Live Performance | VST3 AU
+      Plugin
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="First VST3/AU plugin for AI stereo music generation designed for live performance. Generate 30-second samples in ~30 seconds, 8-track sampler, MIDI control, BPM sync. Featured at AES AIMLA 2025."
+    />
+    <meta
+      name="keywords"
+      content="AI VST plugin, AI music generation VST3, live performance AI audio, Stable Audio VST, LLM music generation, AI DAW plugin, OBSIDIAN Neural, InnerMost47, sketch to audio, draw to audio VST, DePIN, GPU provider network, passive income GPU, distributed AI audio, proof of work music"
+    />
+    <meta name="author" content="InnerMost47 - Anthony Charretier" />
+    <meta name="robots" content="index, follow" />
+    <link
+      rel="canonical"
+      href="https://ai-harmony.duckdns.org/obsidian/api/v1/"
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="OBSIDIAN Neural" />
+    <meta property="og:locale" content="en_US" />
+    <meta
+      property="og:url"
+      content="https://ai-harmony.duckdns.org/obsidian/api/v1/"
+    />
+    <meta
+      property="og:title"
+      content="OBSIDIAN Neural — AI Music Generation VST for Live Performance"
+    />
+    <meta
+      property="og:description"
+      content="First VST for AI music generation designed for live performance. 8-track sampler, LLM brain, draw-to-audio, 8 AI models. Presented at AES AIMLA 2025"
+    />
+    <meta
+      property="og:image"
+      content="https://ai-harmony.duckdns.org/obsidian/api/v1/assets/images/screenshot.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="OBSIDIAN Neural VST3 plugin interface — 8-track AI sampler"
+    />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@innermost47" />
+    <meta
+      name="twitter:url"
+      content="https://ai-harmony.duckdns.org/obsidian/api/v1/"
+    />
+    <meta
+      name="twitter:title"
+      content="OBSIDIAN Neural — AI Music VST for Live Performance"
+    />
+    <meta
+      name="twitter:description"
+      content="First VST for AI music generation designed for live performance. 8 AI models, open source."
+    />
+    <meta
+      name="twitter:image"
+      content="https://ai-harmony.duckdns.org/obsidian/api/v1/assets/images/screenshot.png"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="OBSIDIAN Neural VST plugin interface"
+    />
+
+    <link rel="icon" type="image/x-icon" href="assets/images/logo.ico" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <script type="application/ld+json">
+      [
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "OBSIDIAN Neural",
+          "url": "https://ai-harmony.duckdns.org/obsidian/api/v1",
+          "description": "First VST3/AU plugin for AI music generation designed for live performance",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://ai-harmony.duckdns.org/obsidian/api/v1/documentation.html?q={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "OBSIDIAN Neural",
+          "alternateName": "OBSIDIAN Neural Sound Engine",
+          "applicationCategory": "MultimediaApplication",
+          "applicationSubCategory": "Audio Plugin",
+          "operatingSystem": "Windows, macOS, Linux",
+          "softwareVersion": "latest",
+          "license": "https://www.mozilla.org/en-US/MPL/2.0/",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": "191",
+            "bestRating": "5",
+            "worstRating": "1"
+          },
+          "creator": {
+            "@type": "Person",
+            "name": "Anthony Charretier",
+            "alternateName": "InnerMost47",
+            "url": "https://github.com/innermost47"
+          },
+          "offers": [
+            {
+              "@type": "Offer",
+              "name": "Free",
+              "price": "0",
+              "priceCurrency": "EUR",
+              "description": "20 free credits, 20 samples"
+            },
+            {
+              "@type": "Offer",
+              "name": "Starter",
+              "price": "14.99",
+              "priceCurrency": "EUR",
+              "description": "500 credits/month, full features"
+            },
+            {
+              "@type": "Offer",
+              "name": "Pro",
+              "price": "29.99",
+              "priceCurrency": "EUR",
+              "description": "1500 credits/month, priority generation"
+            }
+          ],
+          "url": "https://ai-harmony.duckdns.org/obsidian/api/v1",
+          "downloadUrl": "https://github.com/innermost47/ai-dj/releases/latest",
+          "screenshot": "https://ai-harmony.duckdns.org/obsidian/api/v1/assets/images/screenshot.png",
+          "review": [
+            {
+              "@type": "Review",
+              "author": {
+                "@type": "Organization",
+                "name": "Bedroom Producers Blog"
+              },
+              "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+              "url": "https://bedroomproducersblog.com/2025/06/06/obsidian-neural-sound-engine/"
+            },
+            {
+              "@type": "Review",
+              "author": { "@type": "Organization", "name": "Synthtopia" },
+              "url": "https://www.synthtopia.com/content/2025/12/22/obsidian-neural-brings-ai-generated-samples-to-your-daw/"
+            }
+          ],
+          "citation": [
+            "https://aes2.org/publications/elibrary-page/?id=22851",
+            "https://www.synthtopia.com/content/2025/12/22/obsidian-neural-brings-ai-generated-samples-to-your-daw/",
+            "https://fr.audiofanzine.com/sequenceur-divers/obsidian-neural/obsidian-neural/news/a.play,n.78783.html",
+            "https://bedroomproducersblog.com/2025/06/06/obsidian-neural-sound-engine/",
+            "https://www.midifan.com/modulenews-detailview-57259.htm",
+            "https://rekkerd.org/obsidian-neural-real-time-ai-music-generation-vst3/",
+            "https://www.futuremusic-es.com/obsidian-neural-vst3-ia-generativa/",
+            "https://s1forum.kr/news/innermost47%EC%97%90%EC%84%9C-obsidian-neural-%EA%B3%B5%EA%B0%9C/",
+            "https://projectofnapskint.com/obsidian-2/",
+            "https://www.audiopluginguy.com/news-innermost47-launches-free-real-time-ai-music-generation-plugin-obsidian-neural-sound-engine/",
+            "https://www.sohu.com/a/903075640_455142",
+            "https://www.youtube.com/watch?v=40pkX_MkXjE"
+          ],
+          "featureList": [
+            "AI stereo music generation for live performance (~30s per sample)",
+            "8 specialized AI models assignable per track",
+            "8-track stereo sampler",
+            "64-step sequencer with 8 sequences per page",
+            "MIDI controller integration and MIDI Learn",
+            "BPM auto-synchronization via Librosa",
+            "Draw-to-audio: sketch-to-sound via vision LLM",
+            "LLM Brain with contextual session memory",
+            "VST3 and AU (Logic Pro) formats",
+            "Multi-output DAW routing",
+            "Quantized sample launch system"
+          ],
+          "award": "AES AIMLA 2025 Late Breaking Demo"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "VideoObject",
+          "name": "OBSIDIAN Neural — Jungle Drum & Bass Live Mix",
+          "description": "Live performance demo: AI-generated samples triggered via MIDI controller in a jungle drum & bass set",
+          "thumbnailUrl": [
+            "https://img.youtube.com/vi/sihEcsG-W4s/maxresdefault.jpg",
+            "https://img.youtube.com/vi/sihEcsG-W4s/hqdefault.jpg"
+          ],
+          "uploadDate": "2025-01-01T12:00:00+01:00",
+          "embedUrl": "https://www.youtube.com/embed/sihEcsG-W4s"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "VideoObject",
+          "name": "OBSIDIAN Neural — AES AIMLA 2025 Live Performance",
+          "description": "Excerpt from the AES AIMLA 2025 conference. Live AI music generation with hardware controllers in Bitwig Studio.",
+          "thumbnailUrl": [
+            "https://img.youtube.com/vi/LqHTUhqYl3s/maxresdefault.jpg",
+            "https://img.youtube.com/vi/LqHTUhqYl3s/hqdefault.jpg"
+          ],
+          "uploadDate": "2025-09-01T14:30:00+01:00",
+          "embedUrl": "https://www.youtube.com/embed/LqHTUhqYl3s"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "VideoObject",
+          "name": "OBSIDIAN Neural — Draw-to-Audio Live Demo",
+          "description": "Raw improvisation showcasing the draw-to-audio workflow: sketch patterns on canvas, AI vision model interprets visuals and generates matching audio loops on the fly.",
+          "thumbnailUrl": [
+            "https://img.youtube.com/vi/goI34nJUTgM/maxresdefault.jpg",
+            "https://img.youtube.com/vi/goI34nJUTgM/hqdefault.jpg"
+          ],
+          "uploadDate": "2025-01-01T12:00:00+01:00",
+          "embedUrl": "https://www.youtube.com/embed/goI34nJUTgM"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          "name": "OBSIDIAN Neural - International Press & Academic Coverage",
+          "description": "Featured in leading music technology publications and academic conferences across 8 countries and 6 languages.",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "AES AIMLA 2025 - Queen Mary University London",
+              "url": "https://aes2.org/publications/elibrary-page/?id=22851"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Synthtopia (USA)",
+              "url": "https://www.synthtopia.com/content/2025/12/22/obsidian-neural-brings-ai-generated-samples-to-your-daw/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Audiofanzine (France)",
+              "url": "https://fr.audiofanzine.com/sequenceur-divers/obsidian-neural/obsidian-neural/news/a.play,n.78783.html"
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "name": "Bedroom Producers Blog (USA)",
+              "url": "https://bedroomproducersblog.com/2025/06/06/obsidian-neural-sound-engine/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 5,
+              "name": "MIDIFAN (China)",
+              "url": "https://www.midifan.com/modulenews-detailview-57259.htm"
+            },
+            {
+              "@type": "ListItem",
+              "position": 6,
+              "name": "Rekkerd (Netherlands)",
+              "url": "https://rekkerd.org/obsidian-neural-real-time-ai-music-generation-vst3/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 7,
+              "name": "FutureMusic (Spain)",
+              "url": "https://www.futuremusic-es.com/obsidian-neural-vst3-ia-generativa/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 8,
+              "name": "S1 Forum (South Korea)",
+              "url": "https://s1forum.kr/news/innermost47%EC%97%90%EC%84%9C-obsidian-neural-%EA%B3%B5%EA%B0%9C/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 9,
+              "name": "DTM Plugin Sale (Japan)",
+              "url": "https://projectofnapskint.com/obsidian-2/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 10,
+              "name": "Audio Plugin Guy (USA)",
+              "url": "https://www.audiopluginguy.com/news-innermost47-launches-free-real-time-ai-music-generation-plugin-obsidian-neural-sound-engine/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 11,
+              "name": "Sohu (China)",
+              "url": "https://www.sohu.com/a/903075640_455142"
+            },
+            {
+              "@type": "ListItem",
+              "position": 12,
+              "name": "Amner Hunter (YouTube)",
+              "url": "https://www.youtube.com/watch?v=40pkX_MkXjE"
+            }
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is OBSIDIAN Neural?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "OBSIDIAN Neural is the first VST3/AU plugin for AI stereo music generation designed for live performance. It generates 30-second audio samples in approximately 30 seconds, directly inside your DAW, with 8-track stereo output, 8 specialized AI models, MIDI control, and BPM synchronization."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Which AI model powers OBSIDIAN Neural?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Provider nodes run Foundation-1 by RoyalCities, a specialized text-to-sample diffusion model built on Stable Audio Open. It generates tempo-synced, key-aware, bar-structured audio loops with precise control over instrumentation, timbre, FX, and musical phrasing. The fallback cloud service uses Stable Audio Open directly."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is OBSIDIAN Neural free?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. The VST3/AU plugin is free and open source (AGPL-3.0) on GitHub. A free account gives you 20 credits (20 samples) at no cost and with no credit card required. Paid plans start at €14.99/month."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Which DAWs and operating systems are supported?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Windows, macOS (Intel + Apple Silicon universal binary), and Linux. VST3 format for all major DAWs, and AU format for Logic Pro and GarageBand."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What is the Draw-to-Audio feature?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Draw-to-Audio lets you sketch visual patterns on a 512x512 canvas using various tools and colors. A vision LLM analyzes your drawing and translates it into a detailed musical prompt, which is then used to generate audio. Colors map to frequencies (black = bass, red = high energy) and patterns map to rhythms."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How does OBSIDIAN Neural handle BPM synchronization?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "All generated samples are automatically time-stretched to match your DAW's current BPM using the Librosa algorithm. You can change tempo mid-session without reloading samples or interrupting playback."
+              }
+            }
+          ]
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "name": "OBSIDIAN Neural Network",
+          "serviceType": "DePIN (Decentralized Physical Infrastructure Network)",
+          "description": "Distributed GPU provider network for AI music generation with automated monthly redistribution.",
+          "offers": {
+            "@type": "Offer",
+            "description": "Provider Eligibility: Uptime > 60%, 1+ billable job/month. 85% net revenue share."
+          }
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Dataset",
+          "name": "OBSIDIAN Neural Proof of Generation Logs",
+          "description": "Public immutable logs of AI audio generations verified via Mel Spectrogram Fingerprinting Proof-of-Work.",
+          "url": "https://github.com/innermost47/obsidian-neural-central",
+          "license": "https://www.mozilla.org/en-US/MPL/2.0/"
+        }
+      ]
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#d96850",
+              danger: "#e07060",
+              dangerLight: "#eb8777",
+              success: "#6bb38a",
+              warning: "#e8a860",
+              bgDeep: "#0a0a0c",
+              bgMid: "#111115",
+              track1: "#d96850",
+              track2: "#4da3b3",
+              track3: "#8b6ab5",
+              track4: "#d9a54e",
+              track5: "#6bb38a",
+              track6: "#5568a0",
+              track7: "#cb7aa8",
+              track8: "#6b8299",
+            },
+            fontFamily: { sans: ["Inter", "sans-serif"] },
+          },
+        },
+      };
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <style>
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px) rotateX(20deg) rotateY(-15deg)
+            rotateZ(2deg);
+        }
+        50% {
+          transform: translateY(-20px) rotateX(22deg) rotateY(-12deg)
+            rotateZ(1deg);
+        }
+      }
+      @keyframes shadow-pulse {
+        0%,
+        100% {
+          transform: translateX(-50%) rotateX(60deg) scale(1);
+          opacity: 0.8;
+        }
+        50% {
+          transform: translateX(-50%) rotateX(60deg) scale(0.9);
+          opacity: 0.4;
+        }
+      }
+      @keyframes pulse-dot {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.35;
+          transform: scale(0.65);
+        }
+      }
+      @keyframes scanline {
+        0% {
+          transform: translateY(-100%);
+        }
+        100% {
+          transform: translateY(800%);
+        }
+      }
+
+      .mock-console {
+        transform-style: preserve-3d;
+        transform: rotateX(20deg) rotateY(-15deg) rotateZ(2deg);
+        transition: transform 0.1s ease-out;
+        animation: float 6s ease-in-out infinite;
+      }
+      .mock-console::before {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 1rem;
+        right: 1rem;
+        height: 30px;
+        background: linear-gradient(to bottom, #111, #050505);
+        transform-origin: top;
+        transform: rotateX(-90deg);
+        border-radius: 0 0 1rem 1rem;
+      }
+      .mock-console::after {
+        content: "";
+        position: absolute;
+        top: 1rem;
+        left: 100%;
+        bottom: 1rem;
+        width: 30px;
+        background: linear-gradient(to right, #1a1a1d, #0a0a0c);
+        transform-origin: left;
+        transform: rotateY(90deg);
+        border-radius: 0 1rem 1rem 0;
+      }
+      .console-screen {
+        transform: translateZ(25px);
+      }
+      .console-shadow {
+        animation: shadow-pulse 6s ease-in-out infinite;
+      }
+      .animate-scanline {
+        animation: scanline 4s linear infinite;
+      }
+
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #000;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #333;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #d96850;
+      }
+    </style>
+  </head>
+
+  <body
+    class="bg-black text-white overflow-x-hidden antialiased selection:bg-primary selection:text-black"
+  >
+    <!-- THREE.JS CANVAS -->
+    <canvas
+      id="latent-space"
+      class="fixed inset-0 w-full h-full z-0 pointer-events-none opacity-50 mix-blend-screen"
+    ></canvas>
+
+    <!-- GRAIN -->
+    <div
+      class="fixed inset-0 z-10 pointer-events-none opacity-15 mix-blend-overlay"
+      style="
+        background-image: url(&quot;data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22n%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/%3E%3C/svg%3E&quot;);
+      "
+    ></div>
+
+    <!-- NAV -->
+    <div id="nav-container" class="relative z-50"></div>
+
+    <!-- ==========================================
+         HERO
+         ========================================== -->
+    <!-- ==========================================
+     HERO — VST 3D EN PREMIER
+     ========================================== -->
+    <section
+      class="relative z-20 min-h-screen flex flex-col items-center justify-center px-4 pt-24 pb-0"
+      style="
+        background-image: radial-gradient(
+          circle at 50% -20%,
+          #2a2a35 0%,
+          #0a0a0c 60%
+        );
+      "
+    >
+      <!-- ========== VST 3D HARDWARE (EN PREMIER) ========== -->
+      <div class="w-full max-w-4xl gs-reveal opacity-0 scale-90">
+        <div
+          class="mock-console-wrapper"
+          id="vst-wrapper"
+          style="perspective: 1500px; position: relative; z-index: 10"
+        >
+          <div
+            class="mock-console relative bg-gradient-to-br from-[#2b2b2f] to-[#1a1a1d] p-6 md:p-8 rounded-3xl"
+            style="
+              box-shadow:
+                inset 0 1px 1px rgba(255, 255, 255, 0.15),
+                inset 0 -1px 2px rgba(0, 0, 0, 0.5);
+            "
+            id="vst-console"
+          >
+            <div
+              class="console-screen bg-black rounded-xl overflow-hidden relative"
+              style="
+                box-shadow:
+                  0 20px 40px rgba(0, 0, 0, 0.8),
+                  inset 0 0 0 2px #333,
+                  inset 0 0 20px rgba(0, 0, 0, 1);
+              "
+            >
+              <div
+                class="glare absolute inset-0 z-10 pointer-events-none rounded-xl"
+                id="vst-glare"
+                style="
+                  background: radial-gradient(
+                    circle at 50% 50%,
+                    rgba(255, 255, 255, 0.15) 0%,
+                    transparent 60%
+                  );
+                "
+              ></div>
+              <img
+                src="assets/images/screenshot.png"
+                alt="VST3 Interface - 8-track sampler with step sequencer"
+                id="screenshot-img"
+                class="w-full block opacity-95"
+                onerror="
+                  this.src =
+                    'https://via.placeholder.com/900x500/111/fff?text=VST+SCREENSHOT'
+                "
+              />
+            </div>
+          </div>
+          <div
+            class="console-shadow absolute -bottom-20 left-1/2 w-4/5 h-10 bg-black/90 rounded-full z-[-1]"
+            style="
+              box-shadow: 0 0 60px 40px rgba(0, 0, 0, 0.8);
+              filter: blur(20px);
+            "
+          ></div>
+          <div
+            class="absolute -bottom-36 left-1/2 -translate-x-1/2 w-3/5 h-24 bg-primary opacity-15 pointer-events-none"
+            style="
+              transform: translateX(-50%) rotateX(70deg);
+              filter: blur(50px);
+            "
+          ></div>
+        </div>
+      </div>
+
+      <!-- Scroll indicator -->
+      <div
+        class="mt-12 mb-8 flex flex-col items-center gap-2 gs-reveal opacity-0 translate-y-6"
+      >
+        <span
+          class="text-[10px] uppercase tracking-[0.3em] text-gray-500 font-bold"
+          >Scroll to explore</span
+        >
+        <div
+          class="w-5 h-9 rounded-full border-2 border-white/20 flex items-start justify-center p-1"
+        >
+          <div class="w-1 h-2 rounded-full bg-primary animate-bounce"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hero text + CTAs (juste en dessous, sans padding top) -->
+    <section class="relative z-20 py-20 px-4">
+      <div class="max-w-4xl mx-auto text-center">
+        <!-- Badge -->
+        <div
+          class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full font-bold text-xs bg-primary/15 text-primary border border-primary/40 mb-8 uppercase tracking-widest backdrop-blur-md gs-reveal opacity-0 translate-y-6"
+        >
+          <div
+            class="w-2 h-2 rounded-full bg-primary"
+            style="animation: pulse-dot 1.8s ease-in-out infinite"
+          ></div>
+          <span>VST3 · AU · Open Source · 8 AI Models · Live Performance</span>
+        </div>
+
+        <h1
+          class="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6 tracking-tighter leading-[0.9] gs-reveal opacity-0 translate-y-6"
+          style="
+            background: linear-gradient(to right, #fff, #888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          "
+        >
+          AI Music Generation<br />For Live Performance
+        </h1>
+
+        <p
+          class="text-center max-w-2xl mx-auto mb-10 text-gray-400 text-lg leading-relaxed gs-reveal opacity-0 translate-y-6"
+        >
+          <strong class="text-white">The first VST that pays you back.</strong
+          ><br />
+          Generate samples in ~30s, load them live in your 8-track sampler — and
+          if you have a GPU,
+          <strong class="text-primary">earn 85% of the network revenue</strong>.
+        </p>
+
+        <div
+          class="flex flex-wrap justify-center gap-4 mb-10 gs-reveal opacity-0 translate-y-6"
+        >
+          <a
+            href="register.html"
+            class="px-8 py-4 rounded-xl bg-gradient-to-r from-primary to-[#a04840] text-white font-bold hover:scale-105 transition-transform shadow-[0_0_25px_rgba(217,104,80,0.4)]"
+          >
+            <i class="fas fa-rocket mr-2"></i>Start Free — 20 Credits
+          </a>
+          <a
+            id="btn-download-plugin"
+            href="#"
+            target="_blank"
+            class="px-6 py-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors backdrop-blur-md font-bold"
+          >
+            <i class="fab fa-github mr-2"></i>Download Plugin
+          </a>
+          <a
+            id="btn-controller"
+            href="#"
+            target="_blank"
+            class="px-6 py-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors backdrop-blur-md font-bold"
+          >
+            <i class="fas fa-mobile-alt mr-2"></i>Mobile Controller
+          </a>
+          <a
+            href="#provider-network"
+            class="px-6 py-4 rounded-xl border border-primary/40 text-primary hover:bg-primary/10 transition-colors font-bold"
+          >
+            <i class="fas fa-server mr-2"></i>Earn with GPU
+          </a>
+        </div>
+
+        <div
+          class="flex flex-wrap justify-center gap-6 text-sm text-gray-500 gs-reveal opacity-0 translate-y-6"
+        >
+          <span
+            ><i class="fas fa-code text-success mr-2"></i>Open Source
+            (AGPL-3.0)</span
+          >
+          <span
+            ><i class="fas fa-star text-warning mr-2"></i
+            ><span id="github-stars">Loading...</span> Stars</span
+          >
+          <span
+            ><i class="fas fa-download text-primary mr-2"></i
+            ><span id="github-downloads">Loading...</span> Downloads</span
+          >
+          <span
+            ><i class="fas fa-bolt text-danger mr-2"></i>~30s Generation</span
+          >
+          <span
+            ><i class="fas fa-microchip text-primary mr-2"></i
+            >Foundation-1</span
+          >
+        </div>
+
+        <div
+          class="mt-6 inline-block bg-warning/90 text-black px-4 py-2 rounded-lg text-sm font-bold animate-pulse gs-reveal opacity-0 translate-y-6"
+          id="conference-badge"
+        >
+          <i class="fas fa-award mr-2"></i>
+        </div>
+
+        <p class="mt-6 text-sm text-gray-600 gs-reveal opacity-0 translate-y-6">
+          <i class="fas fa-layer-group mr-2"></i>VST3 + AU (Logic) • 8-track
+          stereo sampler • 64-step sequencer • 8 sequences per page • MIDI Learn
+        </p>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         MOBILE CONTROLLER
+         ========================================== -->
+    <section
+      class="relative z-20 py-24 px-4"
+      style="
+        background: radial-gradient(
+          ellipse at 50% 0%,
+          rgba(217, 104, 80, 0.06) 0%,
+          transparent 60%
+        );
+      "
+      id="mobile-controller"
+    >
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <h2
+            class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-4 gs-reveal opacity-0 translate-y-6"
+          >
+            <i class="fas fa-mobile-alt text-primary mr-3"></i>MIDI Controller
+          </h2>
+          <p
+            class="text-gray-400 text-lg max-w-xl mx-auto gs-reveal opacity-0 translate-y-6"
+          >
+            Control the plugin from your mobile device via USB MIDI
+          </p>
+          <div
+            class="inline-block mt-4 px-4 py-1.5 bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest rounded-full border border-primary/30 gs-reveal opacity-0 translate-y-6"
+          >
+            <i class="fas fa-code mr-2"></i>Open Source — Flutter
+          </div>
+        </div>
+
+        <!-- Screenshot LANDSCAPE -->
+        <div class="mb-12 gs-reveal opacity-0 scale-95">
+          <div class="max-w-4xl mx-auto relative">
+            <div
+              class="absolute inset-0 bg-primary/15 blur-[80px] rounded-full mix-blend-screen pointer-events-none"
+            ></div>
+            <div
+              class="mock-console-wrapper"
+              id="controller-wrapper"
+              style="perspective: 1200px; position: relative; z-index: 10"
+            >
+              <div
+                class="mock-console relative bg-gradient-to-br from-[#2b2b2f] to-[#1a1a1d] p-4 md:p-5 rounded-2xl"
+                style="
+                  box-shadow:
+                    inset 0 1px 1px rgba(255, 255, 255, 0.12),
+                    inset 0 -1px 2px rgba(0, 0, 0, 0.5);
+                  animation: float 7s ease-in-out infinite;
+                "
+                id="controller-console"
+              >
+                <div
+                  class="console-screen bg-black rounded-xl overflow-hidden relative"
+                  style="
+                    box-shadow:
+                      0 15px 30px rgba(0, 0, 0, 0.8),
+                      inset 0 0 0 2px #333;
+                  "
+                >
+                  <div
+                    class="glare absolute inset-0 z-10 pointer-events-none rounded-xl"
+                    id="controller-glare"
+                    style="
+                      background: radial-gradient(
+                        circle at 50% 50%,
+                        rgba(255, 255, 255, 0.12) 0%,
+                        transparent 60%
+                      );
+                    "
+                  ></div>
+                  <div
+                    class="absolute inset-0 bg-gradient-to-b from-transparent via-primary/15 to-transparent h-12 animate-scanline mix-blend-screen pointer-events-none rounded-xl"
+                  ></div>
+                  <img
+                    src="assets/images/controller-screenshot.png"
+                    alt="Android MIDI Controller — 8 slots, pages, sequencer (landscape)"
+                    class="w-full block rounded-xl opacity-90"
+                    onerror="
+                      this.src =
+                        'https://via.placeholder.com/900x500/111/fff?text=CONTROLLER+LANDSCAPE'
+                    "
+                  />
+                </div>
+              </div>
+              <div
+                class="console-shadow absolute -bottom-16 left-1/2 w-4/5 h-8 bg-black/80 rounded-full z-[-1]"
+                style="
+                  box-shadow: 0 0 40px 30px rgba(0, 0, 0, 0.7);
+                  filter: blur(15px);
+                  animation: shadow-pulse 7s ease-in-out infinite;
+                "
+              ></div>
+              <div
+                class="absolute -bottom-28 left-1/2 -translate-x-1/2 w-2/5 h-16 bg-track2 opacity-15 pointer-events-none"
+                style="
+                  transform: translateX(-50%) rotateX(70deg);
+                  filter: blur(40px);
+                "
+              ></div>
+            </div>
+          </div>
+          <p class="text-center mt-4 text-sm text-gray-500">
+            <i class="fas fa-plug mr-2"></i>USB MIDI • 8 slots • Pages A/B/C/D •
+            Séquenceur • Feedback bidirectionnel
+          </p>
+        </div>
+
+        <!-- Features 3 colonnes -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div
+            class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-all gs-reveal opacity-0 translate-y-8"
+          >
+            <div
+              class="w-14 h-14 rounded-xl bg-primary/20 text-primary flex items-center justify-center text-2xl mb-4"
+            >
+              <i class="fas fa-sliders-h"></i>
+            </div>
+            <h3 class="font-bold text-lg mb-3 text-white">
+              Full Real-Time Control
+            </h3>
+            <p class="text-sm text-gray-400 mb-4">
+              Control all 8 tracks simultaneously — play, generate, mute, solo,
+              volume, pan, pitch, fine tuning, beat repeat and page switching,
+              all from your phone.
+            </p>
+            <ul class="space-y-2 text-sm text-gray-500">
+              <li class="flex items-center gap-2">
+                <i class="fas fa-check text-primary text-xs"></i>Map any button
+                to trigger samples
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fas fa-check text-primary text-xs"></i>Hardware and
+                software triggering
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fas fa-check text-primary text-xs"></i>Live
+                performance ready
+              </li>
+            </ul>
+          </div>
+          <div
+            class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-all gs-reveal opacity-0 translate-y-8"
+          >
+            <div
+              class="w-14 h-14 rounded-xl bg-track2/20 text-track2 flex items-center justify-center text-2xl mb-4"
+            >
+              <i class="fas fa-sync-alt"></i>
+            </div>
+            <h3 class="font-bold text-lg mb-3 text-white">
+              Bidirectional Feedback
+            </h3>
+            <p class="text-sm text-gray-400 mb-4">
+              The plugin sends its state back to the app in real time. Page
+              changes, play states, generated values — your phone always
+              reflects what's happening in the DAW.
+            </p>
+            <ul class="space-y-2 text-sm text-gray-500">
+              <li class="flex items-center gap-2">
+                <i class="fas fa-check text-track2 text-xs"></i>Live state sync
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fas fa-check text-track2 text-xs"></i>Page changes
+                reflected
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fas fa-check text-track2 text-xs"></i>Generated values
+                shown
+              </li>
+            </ul>
+          </div>
+          <div
+            class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-all gs-reveal opacity-0 translate-y-8"
+          >
+            <div
+              class="w-14 h-14 rounded-xl bg-track3/20 text-track3 flex items-center justify-center text-2xl mb-4"
+            >
+              <i class="fas fa-plug"></i>
+            </div>
+            <h3 class="font-bold text-lg mb-3 text-white">
+              USB — Zero Latency
+            </h3>
+            <p class="text-sm text-gray-400 mb-4">
+              Connects via USB OTG directly to your computer. No Bluetooth
+              pairing, no Wi-Fi setup, no latency. Plug in and play.
+            </p>
+            <ul class="space-y-2 text-sm text-gray-500">
+              <li class="flex items-center gap-2">
+                <i class="fas fa-check text-track3 text-xs"></i>No Bluetooth
+                needed
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fas fa-check text-track3 text-xs"></i>No Wi-Fi setup
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fas fa-check text-track3 text-xs"></i>Instant plug &
+                play
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="text-center mt-10 gs-reveal opacity-0 translate-y-6">
+          <a
+            id="btn-controller-2"
+            href="#"
+            target="_blank"
+            class="px-8 py-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 font-bold transition-colors"
+          >
+            <i class="fab fa-github mr-2"></i>View on GitHub
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         TESTIMONIAL COMPLET
+         ========================================== -->
+    <section class="relative z-20 py-24 px-4">
+      <div class="max-w-5xl mx-auto">
+        <div
+          class="bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl overflow-hidden relative gs-reveal opacity-0 scale-95"
+        >
+          <div
+            class="absolute inset-0 bg-primary/10 blur-[100px] rounded-full mix-blend-screen pointer-events-none opacity-30"
+          ></div>
+          <div class="relative grid grid-cols-1 md:grid-cols-12 gap-0">
+            <!-- Photo + Infos -->
+            <div
+              class="md:col-span-4 p-8 md:p-10 flex flex-col items-center justify-center text-center border-b md:border-b-0 md:border-r border-white/10"
+            >
+              <div
+                class="w-28 h-28 rounded-full overflow-hidden border-3 border-primary mb-4 shadow-[0_0_30px_rgba(217,104,80,0.3)]"
+              >
+                <img
+                  src="assets/images/moteka.jpg"
+                  alt="Moteka — producer and electronic musician"
+                  class="w-full h-full object-cover"
+                  onerror="this.src = 'https://via.placeholder.com/120'"
+                />
+              </div>
+              <h3 class="text-xl font-bold text-white mb-1">Moteka</h3>
+              <p
+                class="text-primary font-bold text-sm uppercase tracking-wider mb-5"
+              >
+                Producer
+              </p>
+              <div class="flex gap-3">
+                <a
+                  href="https://soundcloud.com/moteka"
+                  target="_blank"
+                  class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all"
+                  ><i class="fab fa-soundcloud"></i
+                ></a>
+                <a
+                  href="https://www.instagram.com/pmoteka/"
+                  target="_blank"
+                  class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all"
+                  ><i class="fab fa-instagram"></i
+                ></a>
+              </div>
+            </div>
+            <!-- Citation complète -->
+            <div class="md:col-span-8 p-8 md:p-10">
+              <i
+                class="fas fa-quote-left text-5xl text-white/5 absolute top-6 right-8"
+              ></i>
+              <blockquote class="space-y-5 text-gray-300 leading-relaxed">
+                <p>
+                  "I've cycled through almost every AI music tool on the market,
+                  but
+                  <span class="text-white font-semibold"
+                    >this is the first one that actually feels like a real
+                    production tool</span
+                  >
+                  rather than a novelty. While other AI apps try to replace the
+                  songwriter, it treats AI like a
+                  <span class="text-primary font-semibold"
+                    >powerful, playable instrument</span
+                  >."
+                </p>
+                <p>
+                  "The
+                  <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-track4 font-bold"
+                    >8-track MIDI-triggering</span
+                  >
+                  is a total game-changer—having immediate access to eight
+                  distinct loops that I can mix and manipulate individually
+                  makes it feel like a
+                  <span class="text-white font-semibold">smart sampler</span>
+                  rather than a 'black box.'"
+                </p>
+                <p>
+                  "Because it lives directly in my DAW, there is
+                  <span class="text-white font-semibold"
+                    >zero latency and zero break in my workflow</span
+                  >; I'm not downloading files or waiting for a browser to
+                  render. It stays perfectly locked to my project's tempo and
+                  vibe, serving as the ultimate
+                  <span class="text-primary font-bold"
+                    >'intelligent jam partner VST'</span
+                  >
+                  whenever I need to break through a creative block, or start a
+                  new track from scratch."
+                </p>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         LIVE MIXING DEMO
+         ========================================== -->
+    <section
+      class="relative z-20 py-24 px-4"
+      style="
+        background: radial-gradient(
+          ellipse at 80% 50%,
+          rgba(77, 163, 179, 0.06) 0%,
+          transparent 60%
+        );
+      "
+      id="demo"
+    >
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <h2
+            class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-4 gs-reveal opacity-0 translate-y-6"
+          >
+            <i class="fas fa-play-circle text-danger mr-3"></i>Mix AI Samples
+            Live
+          </h2>
+          <p
+            class="text-gray-400 text-lg max-w-xl mx-auto gs-reveal opacity-0 translate-y-6"
+          >
+            Jungle drum &amp; bass performance with AI-generated samples
+            triggered via MIDI controller
+          </p>
+        </div>
+
+        <!-- Video -->
+        <div class="max-w-4xl mx-auto mb-16 gs-reveal opacity-0 scale-95">
+          <div
+            class="aspect-video rounded-3xl border border-white/10 shadow-2xl relative overflow-hidden bg-black"
+            id="yt-dnb"
+            data-video-id=""
+          >
+            <div
+              class="absolute inset-0 bg-black/70 flex flex-col items-center justify-center text-center p-6 z-10 group cursor-pointer"
+            >
+              <i
+                class="fab fa-youtube text-6xl text-danger mb-4 group-hover:scale-110 transition-transform"
+              ></i>
+              <h4 class="font-bold text-xl mb-2">
+                Jungle Drum &amp; Bass Live Mix
+              </h4>
+              <p class="text-sm text-gray-400 mb-4 max-w-sm">
+                This YouTube video requires cookies to be displayed.
+              </p>
+              <button
+                class="px-6 py-3 bg-primary text-white rounded-xl font-bold hover:bg-white hover:text-black transition-colors"
+                onclick="
+                  localStorage.setItem('cookie_consent', 'accepted');
+                  location.reload();
+                "
+              >
+                <i class="fas fa-cookie-bite mr-2"></i>Accept Cookies to Watch
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div
+            class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-all gs-reveal opacity-0 translate-y-8"
+          >
+            <div
+              class="w-12 h-12 rounded-xl bg-track3/20 text-track3 flex items-center justify-center text-xl mb-4"
+            >
+              <i class="fas fa-gamepad"></i>
+            </div>
+            <h3 class="font-bold text-white mb-2">
+              MIDI Controller Integration
+            </h3>
+            <p class="text-sm text-gray-400">
+              Launch AI samples from your controller or UI. All track pages are
+              fully MIDI-learnable.
+            </p>
+          </div>
+          <div
+            class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-all gs-reveal opacity-0 translate-y-8"
+          >
+            <div
+              class="w-12 h-12 rounded-xl bg-track2/20 text-track2 flex items-center justify-center text-xl mb-4"
+            >
+              <i class="fas fa-clock"></i>
+            </div>
+            <h3 class="font-bold text-white mb-2">Quantized Launch System</h3>
+            <p class="text-sm text-gray-400">
+              Triggers wait for the current sequence to finish, then launch
+              perfectly synced on the next bar.
+            </p>
+          </div>
+          <div
+            class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-all gs-reveal opacity-0 translate-y-8"
+          >
+            <div
+              class="w-12 h-12 rounded-xl bg-primary/20 text-primary flex items-center justify-center text-xl mb-4"
+            >
+              <i class="fas fa-bolt"></i>
+            </div>
+            <h3 class="font-bold text-white mb-2">Generate During Your Set</h3>
+            <p class="text-sm text-gray-400">
+              Queue a generation, keep playing — it drops in when ready. ~30s
+              non-blocking background processing.
+            </p>
+          </div>
+          <div
+            class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-all gs-reveal opacity-0 translate-y-8"
+          >
+            <div
+              class="w-12 h-12 rounded-xl bg-track5/20 text-track5 flex items-center justify-center text-xl mb-4"
+            >
+              <i class="fas fa-sliders-h"></i>
+            </div>
+            <h3 class="font-bold text-white mb-2">
+              8 Stereo Tracks + Multi-Output
+            </h3>
+            <p class="text-sm text-gray-400">
+              Route each track to separate DAW channels for dedicated per-track
+              effects chains.
+            </p>
+          </div>
+          <div
+            class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-all gs-reveal opacity-0 translate-y-8"
+          >
+            <div
+              class="w-12 h-12 rounded-xl bg-track6/20 text-track6 flex items-center justify-center text-xl mb-4"
+            >
+              <i class="fas fa-th"></i>
+            </div>
+            <h3 class="font-bold text-white mb-2">8 Sequences Per Page</h3>
+            <p class="text-sm text-gray-400">
+              8 sequences × 64 steps per page. Switch instantly via MIDI for
+              dynamic pattern variations.
+            </p>
+          </div>
+          <div
+            class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-all gs-reveal opacity-0 translate-y-8"
+          >
+            <div
+              class="w-12 h-12 rounded-xl bg-track4/20 text-track4 flex items-center justify-center text-xl mb-4"
+            >
+              <i class="fas fa-music"></i>
+            </div>
+            <h3 class="font-bold text-white mb-2">Automatic BPM Sync</h3>
+            <p class="text-sm text-gray-400">
+              Librosa time-stretching adapts all samples to your DAW's BPM.
+              Change tempo mid-session without breaking flow.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         AIMLA 2025 PERFORMANCE
+         ========================================== -->
+    <section class="relative z-20 py-24 px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <h2
+            class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-4 gs-reveal opacity-0 translate-y-6"
+            id="aimla-title"
+          >
+            <i class="fas fa-video text-danger mr-3"></i>AIMLA 2025 Live
+            Performance
+          </h2>
+          <p
+            class="text-gray-400 text-lg max-w-xl mx-auto gs-reveal opacity-0 translate-y-6"
+          >
+            Exclusive excerpt from the Audio Engineering Society conference at
+            Queen Mary University London
+          </p>
+          <div
+            class="inline-block mt-4 px-4 py-1.5 bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest rounded-full border border-primary/30 gs-reveal opacity-0 translate-y-6"
+            id="aimla-badge-text"
+          >
+            <i class="fas fa-award mr-2"></i>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+          <!-- Video -->
+          <div class="lg:col-span-7 gs-reveal opacity-0 scale-95">
+            <div
+              class="aspect-video rounded-3xl border border-white/10 shadow-2xl relative overflow-hidden bg-black"
+              id="yt-aimla"
+              data-video-id=""
+            >
+              <div
+                class="absolute inset-0 bg-black/70 flex flex-col items-center justify-center text-center p-6 z-10"
+              >
+                <i class="fab fa-youtube text-6xl text-danger mb-4"></i>
+                <h4 class="font-bold text-xl mb-2">
+                  AIMLA 2025 Live Performance
+                </h4>
+                <p class="text-sm text-gray-400 mb-4 max-w-sm">
+                  This YouTube video requires cookies.
+                </p>
+                <button
+                  class="px-6 py-3 bg-primary text-white rounded-xl font-bold hover:bg-white hover:text-black transition-colors"
+                  onclick="
+                    localStorage.setItem('cookie_consent', 'accepted');
+                    location.reload();
+                  "
+                >
+                  <i class="fas fa-cookie-bite mr-2"></i>Accept Cookies
+                </button>
+              </div>
+            </div>
+            <p class="text-center text-sm text-gray-500 mt-4">
+              <i class="fas fa-map-marker-alt mr-2"></i>Queen Mary University
+              London • September 2025
+            </p>
+          </div>
+
+          <!-- Sidebar features -->
+          <div class="lg:col-span-5 space-y-5">
+            <div
+              class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl gs-reveal opacity-0 translate-x-8"
+            >
+              <h3 class="text-track3 font-bold mb-2">
+                <i class="fas fa-sliders-h mr-2"></i>Hardware + VST Hybrid Setup
+              </h3>
+              <p class="text-sm text-gray-400">
+                Akai APC20, Korg microKONTROL, Arturia controller, Behringer
+                Pro-1 &amp; TD-3 in Bitwig Studio.
+              </p>
+            </div>
+            <div
+              class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl gs-reveal opacity-0 translate-x-8"
+            >
+              <h3 class="text-track2 font-bold mb-2">
+                <i class="fas fa-university mr-2"></i>Research &amp; Innovation
+              </h3>
+              <p class="text-sm text-gray-400">
+                Late Breaking Demo Paper showcasing the first AI music
+                generation plugin designed for live performance.
+              </p>
+            </div>
+            <div
+              class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl gs-reveal opacity-0 translate-x-8"
+            >
+              <h3 class="text-primary font-bold mb-2">
+                <i class="fas fa-broadcast-tower mr-2"></i>Uninterrupted
+                Performance
+              </h3>
+              <p class="text-sm text-gray-400">
+                AI samples triggered, mixed, and processed live without breaking
+                flow — proving stability in professional settings.
+              </p>
+            </div>
+            <div
+              class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl gs-reveal opacity-0 translate-x-8"
+            >
+              <h3 class="text-track5 font-bold mb-2">
+                <i class="fas fa-brain mr-2"></i>LLM Brain
+              </h3>
+              <p class="text-sm text-gray-400">
+                Contextual memory learns from your sessions. Optimizes prompts
+                based on your style and DAW tempo.
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-4 gs-reveal opacity-0 translate-x-8">
+              <a
+                id="btn-paper"
+                href="#"
+                target="_blank"
+                class="px-6 py-3 rounded-xl border border-white/20 font-bold hover:bg-white hover:text-black transition-colors"
+                ><i class="fas fa-file-pdf mr-2"></i>Read Full Paper</a
+              >
+              <a
+                href="register.html"
+                class="px-6 py-3 rounded-xl bg-primary text-white font-bold hover:bg-white hover:text-black transition-colors"
+                ><i class="fas fa-rocket mr-2"></i>Try It Yourself</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         DRAW TO AUDIO
+         ========================================== -->
+    <section
+      class="relative z-20 py-24 px-4"
+      style="
+        background: radial-gradient(
+          ellipse at 20% 80%,
+          rgba(139, 106, 181, 0.06) 0%,
+          transparent 60%
+        );
+      "
+      id="draw-to-audio"
+    >
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <h2
+            class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-4 gs-reveal opacity-0 translate-y-6"
+          >
+            <i class="fas fa-palette text-danger mr-3"></i>Draw Your Sound
+          </h2>
+          <p
+            class="text-gray-400 text-lg max-w-xl mx-auto gs-reveal opacity-0 translate-y-6"
+          >
+            Transform visual drawings into unique audio samples with AI
+          </p>
+        </div>
+
+        <!-- Video -->
+        <div class="max-w-4xl mx-auto mb-16 gs-reveal opacity-0 scale-95">
+          <div
+            class="aspect-video rounded-3xl border border-white/10 shadow-2xl relative overflow-hidden bg-black"
+            id="yt-draw"
+            data-video-id=""
+          >
+            <div
+              class="absolute inset-0 bg-black/70 flex flex-col items-center justify-center text-center p-6 z-10"
+            >
+              <i class="fab fa-youtube text-6xl text-danger mb-4"></i>
+              <h4 class="font-bold text-xl mb-2">Draw-to-Audio Live Demo</h4>
+              <p class="text-sm text-gray-400 mb-4 max-w-sm">
+                Raw improvisation: sketch patterns → AI interprets visuals →
+                generates matching loops.
+              </p>
+              <button
+                class="px-6 py-3 bg-primary text-white rounded-xl font-bold hover:bg-white hover:text-black transition-colors"
+                onclick="
+                  localStorage.setItem('cookie_consent', 'accepted');
+                  location.reload();
+                "
+              >
+                <i class="fas fa-cookie-bite mr-2"></i>Accept Cookies
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 steps -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          <div
+            class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl gs-reveal opacity-0 translate-y-8"
+          >
+            <div class="text-3xl font-black text-track3 mb-4">1</div>
+            <div
+              class="w-12 h-12 rounded-xl bg-track3/20 text-track3 flex items-center justify-center text-xl mb-4"
+            >
+              <i class="fas fa-paintbrush"></i>
+            </div>
+            <h3 class="font-bold text-white mb-2">Sketch Your Idea</h3>
+            <p class="text-sm text-gray-400 mb-3">
+              Drawing tools (Pencil, Brush, Spray, Eraser) and 10 colors on a
+              512×512 canvas.
+            </p>
+            <ul class="space-y-1 text-xs text-gray-500">
+              <li>
+                <i class="fas fa-check text-track3 mr-2"></i>Pencil → Sharp,
+                staccato sounds
+              </li>
+              <li>
+                <i class="fas fa-check text-track3 mr-2"></i>Brush → Smooth,
+                sustained pads
+              </li>
+              <li>
+                <i class="fas fa-check text-track3 mr-2"></i>Colors → Frequency
+                ranges &amp; timbres
+              </li>
+            </ul>
+          </div>
+          <div
+            class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl gs-reveal opacity-0 translate-y-8"
+          >
+            <div class="text-3xl font-black text-track2 mb-4">2</div>
+            <div
+              class="w-12 h-12 rounded-xl bg-track2/20 text-track2 flex items-center justify-center text-xl mb-4"
+            >
+              <i class="fas fa-tags"></i>
+            </div>
+            <h3 class="font-bold text-white mb-2">Add Musical Keywords</h3>
+            <p class="text-sm text-gray-400 mb-3">
+              Select from 20+ musical keywords or add your own to guide the AI
+              interpretation.
+            </p>
+            <ul class="space-y-1 text-xs text-gray-500">
+              <li>
+                <i class="fas fa-check text-track2 mr-2"></i>Pre-defined musical
+                terms
+              </li>
+              <li>
+                <i class="fas fa-check text-track2 mr-2"></i>Custom keywords
+                support
+              </li>
+              <li>
+                <i class="fas fa-check text-track2 mr-2"></i>Alphabetically
+                sorted &amp; scrollable
+              </li>
+            </ul>
+          </div>
+          <div
+            class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl gs-reveal opacity-0 translate-y-8"
+          >
+            <div class="text-3xl font-black text-primary mb-4">3</div>
+            <div
+              class="w-12 h-12 rounded-xl bg-primary/20 text-primary flex items-center justify-center text-xl mb-4"
+            >
+              <i class="fas fa-robot"></i>
+            </div>
+            <h3 class="font-bold text-white mb-2">AI Sonic Translation</h3>
+            <p class="text-sm text-gray-400 mb-3">
+              Vision LLM analyzes tools, colors, patterns, composition.
+              Generates detailed musical prompt.
+            </p>
+            <ul class="space-y-1 text-xs text-gray-500">
+              <li>
+                <i class="fas fa-check text-primary mr-2"></i>Visual → Sonic
+                interpretation
+              </li>
+              <li>
+                <i class="fas fa-check text-primary mr-2"></i>Context-aware
+                generation
+              </li>
+              <li>
+                <i class="fas fa-check text-primary mr-2"></i>BPM &amp; Key
+                synchronized
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Mapping table -->
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 gap-6 gs-reveal opacity-0 translate-y-8"
+        >
+          <div class="bg-white/5 border border-white/10 p-6 rounded-2xl">
+            <h4 class="font-bold text-white mb-3">
+              <i class="fas fa-palette text-primary mr-2"></i>Colors →
+              Frequencies
+            </h4>
+            <ul class="space-y-2 text-sm text-gray-400">
+              <li>
+                <span
+                  class="inline-block w-3 h-3 rounded-full bg-black mr-2"
+                ></span
+                >Black → Deep bass, sub-bass
+              </li>
+              <li>
+                <span
+                  class="inline-block w-3 h-3 rounded-full bg-red-500 mr-2"
+                ></span
+                >Red → Aggressive mid-high energy
+              </li>
+              <li>
+                <span
+                  class="inline-block w-3 h-3 rounded-full bg-blue-500 mr-2"
+                ></span
+                >Blue → Cool, ethereal, reverberant
+              </li>
+              <li>
+                <span
+                  class="inline-block w-3 h-3 rounded-full bg-yellow-400 mr-2"
+                ></span
+                >Yellow → Bright, high frequencies
+              </li>
+            </ul>
+          </div>
+          <div class="bg-white/5 border border-white/10 p-6 rounded-2xl">
+            <h4 class="font-bold text-white mb-3">
+              <i class="fas fa-shapes text-track3 mr-2"></i>Patterns → Rhythms
+            </h4>
+            <ul class="space-y-2 text-sm text-gray-400">
+              <li>
+                <i class="fas fa-grip-lines-vertical text-track3 mr-2"></i
+                >Vertical lines → Staccato, percussive hits
+              </li>
+              <li>
+                <i class="fas fa-grip-lines text-track3 mr-2"></i>Horizontal
+                flows → Sustained notes, drones
+              </li>
+              <li>
+                <i class="fas fa-circle-notch text-track3 mr-2"></i>Circular
+                patterns → Arpeggios, sequences
+              </li>
+              <li>
+                <i class="fas fa-random text-track3 mr-2"></i>Chaotic scribbles
+                → Glitchy, randomized
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         8 NEURAL ENGINES
+         ========================================== -->
+    <section class="relative z-20 py-24 px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <h2
+            class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-4 gs-reveal opacity-0 translate-y-6"
+          >
+            8 NEURAL ENGINES.
+          </h2>
+          <p
+            class="text-gray-400 max-w-2xl mx-auto gs-reveal opacity-0 translate-y-6"
+          >
+            Assign a different model to each of your 8 tracks. Optimized for
+            specific styles and tempos. Fallback to cloud if no GPU node is
+            available.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div
+            class="gs-card opacity-0 translate-y-16 bg-white/5 backdrop-blur-md border border-white/10 p-5 rounded-2xl hover:bg-white/10 transition-all relative overflow-hidden group"
+          >
+            <div class="absolute top-0 left-0 w-full h-1 bg-track8"></div>
+            <div
+              class="w-10 h-10 rounded-lg bg-track8/20 text-track8 flex items-center justify-center text-lg mb-3 group-hover:scale-110 transition-transform"
+            >
+              <i class="fas fa-layer-group"></i>
+            </div>
+            <h3 class="font-bold text-sm mb-1">
+              <a
+                href="https://huggingface.co/stabilityai/stable-audio-open-1.0"
+                target="_blank"
+                class="text-white hover:text-track8 transition-colors"
+                >Stable Audio Open 1.0</a
+              >
+            </h3>
+            <p class="text-[11px] text-gray-500 mb-2">
+              Versatile full-mix &amp; drums
+            </p>
+            <span
+              class="text-[10px] uppercase font-bold text-track8 bg-track8/10 px-2 py-0.5 rounded"
+              >80–160 BPM</span
+            >
+          </div>
+          <div
+            class="gs-card opacity-0 translate-y-16 bg-white/5 backdrop-blur-md border border-white/10 p-5 rounded-2xl hover:bg-white/10 transition-all relative overflow-hidden group"
+          >
+            <div class="absolute top-0 left-0 w-full h-1 bg-track1"></div>
+            <div
+              class="w-10 h-10 rounded-lg bg-track1/20 text-track1 flex items-center justify-center text-lg mb-3 group-hover:scale-110 transition-transform"
+            >
+              <i class="fas fa-music"></i>
+            </div>
+            <h3 class="font-bold text-sm mb-1">
+              <a
+                href="https://huggingface.co/RoyalCities/Foundation-1"
+                target="_blank"
+                class="text-white hover:text-track1 transition-colors"
+                >Foundation-1</a
+              >
+            </h3>
+            <p class="text-[11px] text-gray-500 mb-2">
+              Melodic &amp; harmonic phrasing
+            </p>
+            <span
+              class="text-[10px] uppercase font-bold text-track1 bg-track1/10 px-2 py-0.5 rounded"
+              >100–150 BPM</span
+            >
+          </div>
+          <div
+            class="gs-card opacity-0 translate-y-16 bg-white/5 backdrop-blur-md border border-white/10 p-5 rounded-2xl hover:bg-white/10 transition-all relative overflow-hidden group"
+          >
+            <div class="absolute top-0 left-0 w-full h-1 bg-track2"></div>
+            <div
+              class="w-10 h-10 rounded-lg bg-track2/20 text-track2 flex items-center justify-center text-lg mb-3 group-hover:scale-110 transition-transform"
+            >
+              <i class="fas fa-bolt"></i>
+            </div>
+            <h3 class="font-bold text-sm mb-1">
+              <a
+                href="https://huggingface.co/adlb/Audialab_EDM_Elements"
+                target="_blank"
+                class="text-white hover:text-track2 transition-colors"
+                >Audialab EDM Elements</a
+              >
+            </h3>
+            <p class="text-[11px] text-gray-500 mb-2">
+              High-energy leads &amp; plucks
+            </p>
+            <span
+              class="text-[10px] uppercase font-bold text-track2 bg-track2/10 px-2 py-0.5 rounded"
+              >128 BPM Ideal</span
+            >
+          </div>
+          <div
+            class="gs-card opacity-0 translate-y-16 bg-white/5 backdrop-blur-md border border-white/10 p-5 rounded-2xl hover:bg-white/10 transition-all relative overflow-hidden group"
+          >
+            <div class="absolute top-0 left-0 w-full h-1 bg-track4"></div>
+            <div
+              class="w-10 h-10 rounded-lg bg-track4/20 text-track4 flex items-center justify-center text-lg mb-3 group-hover:scale-110 transition-transform"
+            >
+              <i class="fas fa-piano-keys"></i>
+            </div>
+            <h3 class="font-bold text-sm mb-1">
+              <a
+                href="https://huggingface.co/RoyalCities/RC_Infinite_Pianos"
+                target="_blank"
+                class="text-white hover:text-track4 transition-colors"
+                >RC Infinite Pianos</a
+              >
+            </h3>
+            <p class="text-[11px] text-gray-500 mb-2">
+              Grand &amp; electric pianos
+            </p>
+            <span
+              class="text-[10px] uppercase font-bold text-track4 bg-track4/10 px-2 py-0.5 rounded"
+              >120 BPM Optimal</span
+            >
+          </div>
+          <div
+            class="gs-card opacity-0 translate-y-16 bg-white/5 backdrop-blur-md border border-white/10 p-5 rounded-2xl hover:bg-white/10 transition-all relative overflow-hidden group"
+          >
+            <div class="absolute top-0 left-0 w-full h-1 bg-track3"></div>
+            <div
+              class="w-10 h-10 rounded-lg bg-track3/20 text-track3 flex items-center justify-center text-lg mb-3 group-hover:scale-110 transition-transform"
+            >
+              <i class="fas fa-microphone"></i>
+            </div>
+            <h3 class="font-bold text-sm mb-1">
+              <a
+                href="https://huggingface.co/RoyalCities/Vocal_Textures_Main"
+                target="_blank"
+                class="text-white hover:text-track3 transition-colors"
+                >Vocal Textures Main</a
+              >
+            </h3>
+            <p class="text-[11px] text-gray-500 mb-2">
+              Choral &amp; operatic pads
+            </p>
+            <span
+              class="text-[10px] uppercase font-bold text-track3 bg-track3/10 px-2 py-0.5 rounded"
+              >100–150 BPM</span
+            >
+          </div>
+          <div
+            class="gs-card opacity-0 translate-y-16 bg-white/5 backdrop-blur-md border border-white/10 p-5 rounded-2xl hover:bg-white/10 transition-all relative overflow-hidden group"
+          >
+            <div class="absolute top-0 left-0 w-full h-1 bg-track5"></div>
+            <div
+              class="w-10 h-10 rounded-lg bg-track5/20 text-track5 flex items-center justify-center text-lg mb-3 group-hover:scale-110 transition-transform"
+            >
+              <i class="fas fa-guitar"></i>
+            </div>
+            <h3 class="font-bold text-sm mb-1">
+              <a
+                href="https://huggingface.co/santifiorino/SAO-Instrumental-Finetune"
+                target="_blank"
+                class="text-white hover:text-track5 transition-colors"
+                >SAO Instrumental Finetune</a
+              >
+            </h3>
+            <p class="text-[11px] text-gray-500 mb-2">
+              Trap, lofi jazz, indie stems
+            </p>
+            <span
+              class="text-[10px] uppercase font-bold text-track5 bg-track5/10 px-2 py-0.5 rounded"
+              >75–160 BPM</span
+            >
+          </div>
+          <div
+            class="gs-card opacity-0 translate-y-16 bg-white/5 backdrop-blur-md border border-white/10 p-5 rounded-2xl hover:bg-white/10 transition-all relative overflow-hidden group"
+          >
+            <div class="absolute top-0 left-0 w-full h-1 bg-track6"></div>
+            <div
+              class="w-10 h-10 rounded-lg bg-track6/20 text-track6 flex items-center justify-center text-lg mb-3 group-hover:scale-110 transition-transform"
+            >
+              <i class="fas fa-drum"></i>
+            </div>
+            <h3 class="font-bold text-sm mb-1">
+              <a
+                href="https://huggingface.co/gab-gdp/StableBeaT"
+                target="_blank"
+                class="text-white hover:text-track6 transition-colors"
+                >StableBeaT</a
+              >
+            </h3>
+            <p class="text-[11px] text-gray-500 mb-2">
+              Trap beats &amp; 808 grooves
+            </p>
+            <span
+              class="text-[10px] uppercase font-bold text-track6 bg-track6/10 px-2 py-0.5 rounded"
+              >140 BPM Tight</span
+            >
+          </div>
+          <div
+            class="gs-card opacity-0 translate-y-16 bg-white/5 backdrop-blur-md border border-white/10 p-5 rounded-2xl hover:bg-white/10 transition-all relative overflow-hidden group"
+          >
+            <div class="absolute top-0 left-0 w-full h-1 bg-track7"></div>
+            <div
+              class="w-10 h-10 rounded-lg bg-track7/20 text-track7 flex items-center justify-center text-lg mb-3 group-hover:scale-110 transition-transform"
+            >
+              <i class="fas fa-wave-square"></i>
+            </div>
+            <h3 class="font-bold text-sm mb-1">
+              <a
+                href="https://huggingface.co/atoof/gluten_v1"
+                target="_blank"
+                class="text-white hover:text-track7 transition-colors"
+                >Gluten v1</a
+              >
+            </h3>
+            <p class="text-[11px] text-gray-500 mb-2">Loopable melodic trap</p>
+            <span
+              class="text-[10px] uppercase font-bold text-track7 bg-track7/10 px-2 py-0.5 rounded"
+              >135 BPM Optimal</span
+            >
+          </div>
+        </div>
+
+        <div class="text-center mt-8 gs-reveal opacity-0 translate-y-6">
+          <div
+            class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-primary/10 border border-primary/30 text-sm text-gray-300"
+          >
+            <i class="fas fa-server text-primary"></i>
+            <strong>No GPU node available?</strong> The system automatically
+            falls back to
+            <strong class="text-white">Stable Audio Open</strong> via fal.ai —
+            you never get a blank response.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         STATS + FEATURES
+         ========================================== -->
+    <section
+      class="relative z-20 py-24 px-4"
+      style="
+        background: radial-gradient(
+          ellipse at 50% 50%,
+          rgba(217, 104, 80, 0.04) 0%,
+          transparent 60%
+        );
+      "
+    >
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <h2
+            class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-4 gs-reveal opacity-0 translate-y-6"
+          >
+            What Makes It Unique
+          </h2>
+          <p class="text-gray-400 text-lg gs-reveal opacity-0 translate-y-6">
+            Built for live performance, not just production
+          </p>
+        </div>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
+          <div
+            class="text-center p-6 bg-white/5 border border-white/10 rounded-2xl gs-reveal opacity-0 translate-y-6"
+          >
+            <div class="text-4xl font-black text-danger mb-2">~30s</div>
+            <div class="text-sm text-gray-500">Generation Time</div>
+          </div>
+          <div
+            class="text-center p-6 bg-white/5 border border-white/10 rounded-2xl gs-reveal opacity-0 translate-y-6"
+          >
+            <div class="text-4xl font-black text-success mb-2">30s</div>
+            <div class="text-sm text-gray-500">Sample Duration</div>
+          </div>
+          <div
+            class="text-center p-6 bg-white/5 border border-white/10 rounded-2xl gs-reveal opacity-0 translate-y-6"
+          >
+            <div class="text-4xl font-black text-warning mb-2">8</div>
+            <div class="text-sm text-gray-500">Tracks + Outputs</div>
+          </div>
+          <div
+            class="text-center p-6 bg-white/5 border border-white/10 rounded-2xl gs-reveal opacity-0 translate-y-6"
+          >
+            <div class="text-4xl font-black text-track2 mb-2">8</div>
+            <div class="text-sm text-gray-500">AI Models</div>
+          </div>
+        </div>
+
+        <!-- Feature cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div
+            class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-all gs-reveal opacity-0 translate-y-8"
+          >
+            <div
+              class="w-12 h-12 rounded-xl bg-primary/20 text-primary flex items-center justify-center text-xl mb-4"
+            >
+              <i class="fas fa-brain"></i>
+            </div>
+            <h3 class="font-bold text-white mb-2">LLM Brain</h3>
+            <p class="text-sm text-gray-400">
+              Contextual memory learns from your sessions. Optimizes prompts
+              based on your style and DAW tempo.
+            </p>
+          </div>
+          <div
+            class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-all gs-reveal opacity-0 translate-y-8"
+          >
+            <div
+              class="w-12 h-12 rounded-xl bg-track3/20 text-track3 flex items-center justify-center text-xl mb-4"
+            >
+              <i class="fas fa-palette"></i>
+            </div>
+            <h3 class="font-bold text-white mb-2">Draw to Audio</h3>
+            <p class="text-sm text-gray-400">
+              Sketch your sound ideas visually. AI vision model translates
+              drawings, colors, and patterns into detailed musical prompts with
+              keyword guidance.
+            </p>
+          </div>
+          <div
+            class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-all gs-reveal opacity-0 translate-y-8"
+          >
+            <div
+              class="w-12 h-12 rounded-xl bg-track2/20 text-track2 flex items-center justify-center text-xl mb-4"
+            >
+              <i class="fas fa-grip-horizontal"></i>
+            </div>
+            <h3 class="font-bold text-white mb-2">8 Sequences Per Page</h3>
+            <p class="text-sm text-gray-400">
+              Up to 64-step sequencer (4 measures) with 8 independent sequences
+              per page. Switch patterns instantly via MIDI or UI.
+            </p>
+          </div>
+          <div
+            class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-all gs-reveal opacity-0 translate-y-8"
+          >
+            <div
+              class="w-12 h-12 rounded-xl bg-track7/20 text-track7 flex items-center justify-center text-xl mb-4"
+            >
+              <i class="fas fa-laptop"></i>
+            </div>
+            <h3 class="font-bold text-white mb-2">Cross-Platform</h3>
+            <p class="text-sm text-gray-400">
+              Windows, macOS, Linux. VST3 (all DAWs) + AU (Logic
+              Pro/GarageBand). Universal binary (Intel + Apple Silicon).
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         RECOGNITION + PRESS
+         ========================================== -->
+    <section class="relative z-20 py-24 px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <h2
+            class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-4 gs-reveal opacity-0 translate-y-6"
+          >
+            Featured &amp; Recognized
+          </h2>
+          <p class="text-gray-400 text-lg gs-reveal opacity-0 translate-y-6">
+            First plugin of its kind — covered across 8 countries
+          </p>
+        </div>
+
+        <!-- Recognition cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+          <a
+            id="card-paper-link"
+            href="#"
+            target="_blank"
+            class="gs-reveal opacity-0 translate-y-8 group"
+          >
+            <div
+              class="bg-white/5 border border-primary/20 p-6 rounded-2xl text-center hover:bg-primary/10 transition-all h-full"
+            >
+              <div
+                class="w-14 h-14 rounded-full bg-primary/20 text-primary flex items-center justify-center text-2xl mx-auto mb-4 group-hover:scale-110 transition-transform"
+              >
+                <i class="fas fa-award"></i>
+              </div>
+              <h3
+                class="font-bold text-white text-sm mb-1"
+                id="card-conference-name"
+              >
+                AES AIMLA 2025
+              </h3>
+              <p class="text-xs text-gray-500">
+                Late Breaking Demo Paper — QMUL London
+              </p>
+            </div>
+          </a>
+          <a
+            id="card-kvr-link"
+            href="#"
+            target="_blank"
+            class="gs-reveal opacity-0 translate-y-8 group"
+          >
+            <div
+              class="bg-white/5 border border-track2/20 p-6 rounded-2xl text-center hover:bg-track2/10 transition-all h-full"
+            >
+              <div
+                class="w-14 h-14 rounded-full bg-track2/20 text-track2 flex items-center justify-center text-2xl mx-auto mb-4 group-hover:scale-110 transition-transform"
+              >
+                <i class="fas fa-headphones"></i>
+              </div>
+              <h3 class="font-bold text-white text-sm mb-1">KVR Audio</h3>
+              <p class="text-xs text-gray-500">
+                World's largest plugin database
+              </p>
+            </div>
+          </a>
+          <a
+            href="https://bedroomproducersblog.com/2025/06/06/obsidian-neural-sound-engine/"
+            target="_blank"
+            class="gs-reveal opacity-0 translate-y-8 group"
+          >
+            <div
+              class="bg-white/5 border border-track3/20 p-6 rounded-2xl text-center hover:bg-track3/10 transition-all h-full"
+            >
+              <div
+                class="w-14 h-14 rounded-full bg-track3/20 text-track3 flex items-center justify-center text-2xl mx-auto mb-4 group-hover:scale-110 transition-transform"
+              >
+                <i class="fas fa-newspaper"></i>
+              </div>
+              <h3 class="font-bold text-white text-sm mb-1">BPB Featured</h3>
+              <p class="text-xs text-gray-500">
+                Bedroom Producers Blog coverage
+              </p>
+            </div>
+          </a>
+          <a
+            id="card-github-link"
+            href="#"
+            target="_blank"
+            class="gs-reveal opacity-0 translate-y-8 group"
+          >
+            <div
+              class="bg-white/5 border border-track5/20 p-6 rounded-2xl text-center hover:bg-track5/10 transition-all h-full"
+            >
+              <div
+                class="w-14 h-14 rounded-full bg-track5/20 text-track5 flex items-center justify-center text-2xl mx-auto mb-4 group-hover:scale-110 transition-transform"
+              >
+                <i class="fab fa-github"></i>
+              </div>
+              <h3 class="font-bold text-white text-sm mb-1">
+                <span id="github-stars-2">Loading...</span> Stars
+              </h3>
+              <p class="text-xs text-gray-500">
+                Open source &amp; community-driven
+              </p>
+            </div>
+          </a>
+        </div>
+
+        <!-- Press badges -->
+        <div class="text-center gs-reveal opacity-0 translate-y-6">
+          <h3 class="text-xl font-bold mb-6">
+            <i class="fas fa-globe text-primary mr-2"></i>International Press
+            Coverage
+          </h3>
+          <div class="flex flex-wrap justify-center gap-2 mb-8">
+            <span
+              class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-xs text-gray-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+              >🇰🇷 S1 Forum</span
+            >
+            <span
+              class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-xs text-gray-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+              >🇫🇷 Audiofanzine</span
+            >
+            <span
+              class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-xs text-gray-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+              >🇺🇸 Bedroom Producers Blog</span
+            >
+            <span
+              class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-xs text-gray-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+              >🇺🇸 Synthtopia</span
+            >
+            <span
+              class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-xs text-gray-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+              >🇳🇱 Rekkerd</span
+            >
+            <span
+              class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-xs text-gray-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+              >🇪🇸 FutureMusic España</span
+            >
+            <span
+              class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-xs text-gray-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+              >🇨🇳 Sohu.com &amp; MIDIFAN</span
+            >
+            <span
+              class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-xs text-gray-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+              >🇯🇵 DTM Plugin Sale</span
+            >
+            <span
+              class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-xs text-gray-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+              >🇺🇸 Audio Plugin Guy</span
+            >
+          </div>
+          <a
+            href="press.html"
+            class="inline-flex px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 font-bold transition-colors"
+            ><i class="fas fa-arrow-right mr-2"></i>View All Press Coverage</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         BEATCRAFTER
+         ========================================== -->
+    <section
+      class="relative z-20 py-24 px-4"
+      style="
+        background: radial-gradient(
+          ellipse at 70% 30%,
+          rgba(232, 168, 96, 0.05) 0%,
+          transparent 60%
+        );
+      "
+    >
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+          <h2
+            class="text-4xl md:text-5xl font-extrabold tracking-tighter mb-4 gs-reveal opacity-0 translate-y-6"
+          >
+            <i class="fas fa-drum text-warning mr-3"></i>Also from
+            <span id="also-from-alias">InnerMost47</span>
+          </h2>
+          <p class="text-gray-400 text-lg gs-reveal opacity-0 translate-y-6">
+            Another free open source tool for live performance
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div class="gs-reveal opacity-0 scale-95">
+            <div class="max-w-4xl mx-auto relative">
+              <div
+                class="absolute inset-0 bg-warning/10 blur-[60px] rounded-full mix-blend-screen pointer-events-none"
+              ></div>
+              <div
+                class="mock-console-wrapper"
+                id="beatcrafter-wrapper"
+                style="perspective: 1200px; position: relative; z-index: 10"
+              >
+                <div
+                  class="mock-console relative bg-gradient-to-br from-[#2b2b2f] to-[#1a1a1d] p-4 md:p-5 rounded-2xl"
+                  style="
+                    box-shadow:
+                      inset 0 1px 1px rgba(255, 255, 255, 0.12),
+                      inset 0 -1px 2px rgba(0, 0, 0, 0.5);
+                    animation: float 8s ease-in-out infinite;
+                  "
+                  id="beatcrafter-console"
+                >
+                  <div
+                    class="console-screen bg-black rounded-xl overflow-hidden relative"
+                    style="
+                      box-shadow:
+                        0 15px 30px rgba(0, 0, 0, 0.8),
+                        inset 0 0 0 2px #333;
+                    "
+                  >
+                    <div
+                      class="glare absolute inset-0 z-10 pointer-events-none rounded-xl"
+                      id="beatcrafter-glare"
+                      style="
+                        background: radial-gradient(
+                          circle at 50% 50%,
+                          rgba(255, 255, 255, 0.12) 0%,
+                          transparent 60%
+                        );
+                      "
+                    ></div>
+                    <img
+                      src="assets/images/beatcrafter-screenshot.png"
+                      alt="BeatCrafter VST3 — Live Drum Pattern Generator"
+                      class="w-full block rounded-xl opacity-90"
+                      onerror="
+                        this.src =
+                          'https://via.placeholder.com/800x500/111/fff?text=BEATCRAFTER'
+                      "
+                    />
+                  </div>
+                </div>
+                <div
+                  class="console-shadow absolute -bottom-16 left-1/2 w-4/5 h-8 bg-black/80 rounded-full z-[-1]"
+                  style="
+                    box-shadow: 0 0 40px 30px rgba(0, 0, 0, 0.7);
+                    filter: blur(15px);
+                    animation: shadow-pulse 8s ease-in-out infinite;
+                  "
+                ></div>
+                <div
+                  class="absolute -bottom-28 left-1/2 -translate-x-1/2 w-2/5 h-16 bg-warning opacity-15 pointer-events-none"
+                  style="
+                    transform: translateX(-50%) rotateX(70deg);
+                    filter: blur(40px);
+                  "
+                ></div>
+              </div>
+            </div>
+          </div>
+          <div class="gs-reveal opacity-0 translate-x-8">
+            <span
+              class="inline-block px-3 py-1 rounded-lg bg-warning/10 text-warning text-[10px] font-bold uppercase tracking-widest mb-4 border border-warning/20"
+              >Free &amp; Open Source — VST3</span
+            >
+            <h3
+              class="text-3xl md:text-5xl font-extrabold tracking-tighter mb-4"
+            >
+              BeatCrafter
+            </h3>
+            <p class="text-xl text-white mb-4">
+              <strong>Free live performance VST drum generator.</strong> No AI,
+              no subscription, no nonsense.
+            </p>
+            <p class="text-gray-400 text-sm mb-6 leading-relaxed">
+              8 style slots (Rock, Metal, Jazz, Funk, Electronic, Hip Hop,
+              Latin, Punk) triggerable via MIDI. Control groove density with
+              <strong>Intensity</strong> and inject chaos with
+              <strong>Chaos</strong> — from ghost notes to wild fills. Designed
+              to be controlled hands-free with a foot controller.
+            </p>
+            <ul class="space-y-2 mb-8 text-sm text-gray-400">
+              <li class="flex items-center gap-2">
+                <i class="fas fa-check text-primary text-xs"></i>8 drum style
+                slots — switch live via MIDI
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fas fa-check text-primary text-xs"></i>Intensity
+                slider — real-time groove density
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fas fa-check text-primary text-xs"></i>Chaos knob —
+                ghost notes, fills, randomness
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fas fa-check text-primary text-xs"></i>Full MIDI learn
+                — foot controller ready
+              </li>
+              <li class="flex items-center gap-2">
+                <i class="fas fa-check text-primary text-xs"></i>Works headless
+                — no GUI needed during performance
+              </li>
+            </ul>
+            <div class="flex flex-wrap gap-4">
+              <a
+                id="btn-beatcrafter-dl"
+                href="#"
+                target="_blank"
+                class="px-6 py-3 rounded-xl bg-success text-white font-bold hover:bg-success/80 transition-colors"
+                ><i class="fab fa-github mr-2"></i>Download Free</a
+              >
+              <a
+                id="btn-beatcrafter-src"
+                href="#"
+                target="_blank"
+                class="px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 font-bold transition-colors"
+                ><i class="fas fa-code mr-2"></i>View Source</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         PROVIDER NETWORK
+         ========================================== -->
+    <section class="relative z-20 py-24 px-4" id="provider-network">
+      <div class="max-w-5xl mx-auto">
+        <div
+          class="relative bg-gradient-to-br from-danger/10 via-transparent to-transparent border border-danger/30 p-8 md:p-14 rounded-3xl text-center overflow-hidden gs-reveal opacity-0 scale-95"
+        >
+          <div
+            class="absolute inset-0 bg-danger/5 blur-[120px] rounded-full pointer-events-none"
+          ></div>
+          <div class="relative">
+            <div
+              class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full font-bold text-[10px] bg-danger/20 text-danger mb-6 uppercase tracking-widest border border-danger/30"
+            >
+              <i class="fas fa-network-wired"></i> Phase 1 Active — 10 spots
+            </div>
+            <h2
+              class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-4 leading-none"
+            >
+              OWN THE<br /><span class="text-danger">COMPUTE.</span>
+            </h2>
+            <p class="text-gray-300 text-sm mb-8 max-w-xl mx-auto">
+              <span id="provider-section-plugin-name">OBSIDIAN Neural</span>
+              runs on a
+              <strong class="text-white">distributed GPU network</strong>
+              powered by independent providers. Every month,
+              <strong class="text-danger">85% of subscription revenue</strong>
+              is split equally among active providers.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-8 mb-8">
+              <div class="text-center">
+                <div class="text-4xl font-black text-danger">85%</div>
+                <div
+                  class="text-[10px] text-gray-500 uppercase tracking-wider mt-1"
+                >
+                  Revenue Shared
+                </div>
+              </div>
+              <div class="w-px bg-white/10"></div>
+              <div class="text-center">
+                <div class="text-4xl font-black text-white">500</div>
+                <div
+                  class="text-[10px] text-gray-500 uppercase tracking-wider mt-1"
+                >
+                  Free Credits/mo
+                </div>
+              </div>
+              <div class="w-px bg-white/10"></div>
+              <div class="text-center">
+                <div class="text-4xl font-black text-white">15m</div>
+                <div
+                  class="text-[10px] text-gray-500 uppercase tracking-wider mt-1"
+                >
+                  Setup Time
+                </div>
+              </div>
+              <div class="w-px bg-white/10"></div>
+              <div class="text-center">
+                <div class="text-4xl font-black text-white">10</div>
+                <div
+                  class="text-[10px] text-gray-500 uppercase tracking-wider mt-1"
+                >
+                  Spots Total
+                </div>
+              </div>
+            </div>
+
+            <p class="text-sm text-gray-400 mb-8">
+              NVIDIA RTX 3060+ required. Fully open source. Payouts via Stripe
+              Connect.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-4">
+              <a
+                id="provider-cta-contact"
+                href="#"
+                class="px-8 py-4 rounded-xl bg-danger text-white font-bold hover:bg-[#a04840] transition-colors shadow-[0_0_25px_rgba(224,112,96,0.3)]"
+                ><i class="fas fa-envelope mr-2"></i>I'm interested — contact
+                me</a
+              >
+              <a
+                id="provider-cta-github"
+                href="#"
+                target="_blank"
+                class="px-8 py-4 rounded-xl bg-white/10 text-white font-bold hover:bg-white/20 transition-colors"
+                ><i class="fab fa-github mr-2"></i>Read the code first</a
+              >
+            </div>
+
+            <p class="text-xs text-gray-500 mt-6">
+              <i class="fas fa-lock mr-1"></i>Revenue data published publicly —
+              <a
+                href="public.html"
+                target="_blank"
+                class="text-primary hover:underline"
+                ><i
+                  class="fas fa-arrow-up-right-from-square mr-1 text-[10px]"
+                ></i
+                >View live network dashboard</a
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         FINAL CTA
+         ========================================== -->
+    <section class="relative z-20 py-24 px-4">
+      <div class="max-w-3xl mx-auto text-center gs-reveal opacity-0 scale-95">
+        <div
+          class="bg-white/5 border border-white/10 rounded-3xl p-10 md:p-16 relative overflow-hidden"
+        >
+          <div
+            class="absolute inset-0 bg-white/5 blur-[100px] rounded-full pointer-events-none"
+          ></div>
+          <div class="relative">
+            <h2
+              class="text-4xl md:text-5xl font-extrabold tracking-tighter mb-4"
+            >
+              Try It Free
+            </h2>
+            <p class="text-gray-400 text-lg mb-8">
+              20 credits to test the plugin. No credit card required.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+              <a
+                href="register.html"
+                class="px-8 py-4 rounded-xl bg-white text-black font-extrabold hover:bg-gray-200 transition-colors shadow-[0_0_25px_rgba(255,255,255,0.15)]"
+                ><i class="fas fa-rocket mr-2"></i>Get Free Credits</a
+              >
+              <a
+                id="btn-cta-github"
+                href="#"
+                target="_blank"
+                class="px-8 py-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 font-bold transition-colors"
+                ><i class="fab fa-github mr-2"></i>View on GitHub</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <div id="footer-container" class="relative z-50"></div>
+
+    <!-- SCRIPTS -->
+    <script src="js/github-stats.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/cookie-consent.js"></script>
+
+    <!-- POPULATION LOGIC -->
+    <script>
+      (function () {
+        var cfg = window.APP_CONFIG || {};
+        var pluginName = cfg.PLUGIN_NAME || cfg.SITE_NAME || "OBSIDIAN Neural";
+        var authorAlias = cfg.AUTHOR_ALIAS || "InnerMost47";
+        var conferenceTag = cfg.CONFERENCE_TAG || "AES AIMLA 2025";
+        var githubUrl = cfg.GITHUB_URL || "#";
+        var controllerUrl = cfg.CONTROLLER_GITHUB_URL || "#";
+        var beatcrafterUrl = cfg.BEATCRAFTER_GITHUB_URL || "#";
+        var kvraudioUrl = cfg.KVRAUDIO_URL || "#";
+        var paperUrl = cfg.PAPER_URL || "#";
+
+        function setHref(id, url) {
+          var el = document.getElementById(id);
+          if (el && url !== "#") el.href = url;
+        }
+        function setText(id, text) {
+          var el = document.getElementById(id);
+          if (el) el.textContent = text;
+        }
+        function setVideoId(id, vid) {
+          var el = document.getElementById(id);
+          if (el && vid) el.setAttribute("data-video-id", vid);
+        }
+
+        setHref("btn-download-plugin", githubUrl + "/releases/latest");
+        setHref("btn-controller", controllerUrl);
+        setHref("btn-controller-2", controllerUrl);
+        setHref("btn-paper", paperUrl);
+        setHref("card-paper-link", paperUrl);
+        setHref("card-kvr-link", kvraudioUrl);
+        setHref("card-github-link", githubUrl);
+        setHref("btn-beatcrafter-dl", beatcrafterUrl + "/releases/latest");
+        setHref("btn-beatcrafter-src", beatcrafterUrl);
+        setHref(
+          "provider-cta-contact",
+          (cfg.SITE_URL || "") + "/contact.html?subject=partnership",
+        );
+        setHref("provider-cta-github", cfg.PROVIDER_GITHUB_URL || githubUrl);
+        setHref("btn-cta-github", githubUrl);
+
+        setText("conference-badge", "\u{1F3C6} Presented at " + conferenceTag);
+        setText("aimla-title", conferenceTag + " Live Performance");
+        setText("aimla-badge-text", conferenceTag + " — Late Breaking Demo");
+        setText("card-conference-name", conferenceTag);
+        setText("also-from-alias", authorAlias);
+        setText("provider-section-plugin-name", pluginName);
+
+        setVideoId("yt-dnb", cfg.VIDEO_ID_DNB || "");
+        setVideoId("yt-aimla", cfg.VIDEO_ID_AIMLA || "");
+        setVideoId("yt-draw", cfg.VIDEO_ID_DRAW || "");
+      })();
+    </script>
+
+    <!-- VST 3D PARALLAX + GSAP SCROLL + THREE.JS -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // === 1. VST HARDWARE 3D PARALLAX ===
+        const wrapper = document.getElementById("vst-wrapper");
+        const vstConsole = document.getElementById("vst-console");
+        const glare = document.getElementById("vst-glare");
+
+        if (wrapper && vstConsole && glare) {
+          wrapper.addEventListener("mousemove", (e) => {
+            vstConsole.style.animation = "none";
+            const rect = wrapper.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const rotateX = (y - centerY) / 20 + 15;
+            const rotateY = (centerX - x) / 20 - 10;
+            vstConsole.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(0deg)`;
+            const glareX = (x / rect.width) * 100;
+            const glareY = (y / rect.height) * 100;
+            glare.style.background = `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255,255,255,0.2) 0%, transparent 50%)`;
+          });
+          wrapper.addEventListener("mouseleave", () => {
+            vstConsole.style.transform = `rotateX(20deg) rotateY(-15deg) rotateZ(2deg)`;
+            vstConsole.style.animation = "float 6s ease-in-out infinite";
+            glare.style.background = `radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 60%)`;
+          });
+        }
+
+        // === 2. THREE.JS LATENT SPACE ===
+        const canvas = document.getElementById("latent-space");
+        if (canvas) {
+          const scene = new THREE.Scene();
+          const camera = new THREE.PerspectiveCamera(
+            75,
+            window.innerWidth / window.innerHeight,
+            0.1,
+            1000,
+          );
+          camera.position.z = 120;
+          const renderer = new THREE.WebGLRenderer({
+            canvas,
+            alpha: true,
+            antialias: true,
+          });
+          renderer.setSize(window.innerWidth, window.innerHeight);
+          renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+          const geo = new THREE.BufferGeometry();
+          const count = 1800;
+          const pos = new Float32Array(count * 3);
+          const col = new Float32Array(count * 3);
+          const palette = [
+            new THREE.Color("#d96850"),
+            new THREE.Color("#4da3b3"),
+            new THREE.Color("#8b6ab5"),
+          ];
+
+          for (let i = 0; i < count * 3; i += 3) {
+            const r = 250,
+              theta = Math.random() * 2 * Math.PI,
+              phi = Math.acos(Math.random() * 2 - 1);
+            pos[i] = r * Math.sin(phi) * Math.cos(theta);
+            pos[i + 1] = r * Math.sin(phi) * Math.sin(theta);
+            pos[i + 2] = r * Math.cos(phi);
+            const c = palette[Math.floor(Math.random() * palette.length)];
+            col[i] = c.r;
+            col[i + 1] = c.g;
+            col[i + 2] = c.b;
+          }
+          geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+          geo.setAttribute("color", new THREE.BufferAttribute(col, 3));
+          const mat = new THREE.PointsMaterial({
+            size: 0.8,
+            vertexColors: true,
+            transparent: true,
+            opacity: 0.6,
+            blending: THREE.AdditiveBlending,
+          });
+          const mesh = new THREE.Points(geo, mat);
+          scene.add(mesh);
+
+          let mx = 0,
+            my = 0;
+          document.addEventListener("mousemove", (e) => {
+            mx = e.clientX / window.innerWidth - 0.5;
+            my = e.clientY / window.innerHeight - 0.5;
+          });
+
+          const clock = new THREE.Clock();
+          function animate() {
+            requestAnimationFrame(animate);
+            const t = clock.getElapsedTime();
+            mesh.rotation.y = t * 0.05;
+            mesh.rotation.x = t * 0.02;
+            mesh.position.x += (mx * 30 - mesh.position.x) * 0.05;
+            mesh.position.y += (-my * 30 - mesh.position.y) * 0.05;
+            renderer.render(scene, camera);
+          }
+          animate();
+
+          window.addEventListener("resize", () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+          });
+        }
+
+        // === 3. GSAP SCROLL ANIMATIONS ===
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Generic reveals
+        gsap.utils.toArray(".gs-reveal").forEach((el, i) => {
+          gsap.to(el, {
+            opacity: 1,
+            y: 0,
+            x: 0,
+            scale: 1,
+            duration: 0.9,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: el,
+              start: "top 85%",
+              toggleActions: "play none none reverse",
+            },
+          });
+        });
+
+        // Engine cards stagger
+        gsap.to(".gs-card", {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          stagger: 0.08,
+          ease: "back.out(1.2)",
+          scrollTrigger: { trigger: ".gs-card", start: "top 85%" },
+        });
+
+        // === 4. PARALLAXE 3D POUR CONTROLLER & BEATCRAFTER ===
+        function init3DParallax(wrapperId, consoleId, glareId) {
+          const w = document.getElementById(wrapperId);
+          const c = document.getElementById(consoleId);
+          const g = document.getElementById(glareId);
+          if (!w || !c || !g) return;
+          w.addEventListener("mousemove", (e) => {
+            c.style.animation = "none";
+            const rect = w.getBoundingClientRect();
+            const x = e.clientX - rect.left,
+              y = e.clientY - rect.top;
+            const cx = rect.width / 2,
+              cy = rect.height / 2;
+            c.style.transform = `rotateX(${(y - cy) / 25 + 12}deg) rotateY(${(cx - x) / 25 - 8}deg) rotateZ(0deg)`;
+            g.style.background = `radial-gradient(circle at ${(x / rect.width) * 100}% ${(y / rect.height) * 100}%, rgba(255,255,255,0.18) 0%, transparent 50%)`;
+          });
+          w.addEventListener("mouseleave", () => {
+            c.style.transform = `rotateX(15deg) rotateY(-10deg) rotateZ(1deg)`;
+            c.style.animation = c.style.animation; // relance l'animation originale
+            g.style.background = `radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 60%)`;
+          });
+        }
+        init3DParallax(
+          "controller-wrapper",
+          "controller-console",
+          "controller-glare",
+        );
+        init3DParallax(
+          "beatcrafter-wrapper",
+          "beatcrafter-console",
+          "beatcrafter-glare",
+        );
+      });
+    </script>
+  </body>
+</html>
