@@ -1,7 +1,6 @@
 (function () {
   "use strict";
 
-  // Get gift code from URL
   const urlParams = new URLSearchParams(window.location.search);
   const giftCode = urlParams.get("code");
 
@@ -10,25 +9,19 @@
   const errorState = document.getElementById("errorState");
   const errorMessage = document.getElementById("errorMessage");
 
-  // Check if user is logged in
   const token = localStorage.getItem("token");
   const isLoggedIn = !!token;
 
   if (!giftCode) {
-    // No code provided
     showError("No gift code provided in the URL.");
     return;
   }
 
-  // If user is logged in, try to activate immediately
   if (isLoggedIn) {
     activateGift();
   } else {
-    // Not logged in, show gift details and login options
     checkGiftCode();
   }
-
-  // Store gift code for after login
   localStorage.setItem("pending_gift_code", giftCode);
 
   function showError(message) {
@@ -41,7 +34,6 @@
     loadingState.style.display = "none";
     giftDetails.style.display = "block";
 
-    // Populate details
     const giftPlan = document.getElementById("giftPlan");
     const giftDuration = document.getElementById("giftDuration");
     const giftMessageBox = document.getElementById("giftMessageBox");
@@ -59,7 +51,6 @@
       }`;
     }
 
-    // Show personal message if exists
     if (data.gift_message && giftMessageBox && giftMessageContent) {
       giftMessageBox.style.display = "block";
       giftMessageContent.textContent = data.gift_message;
@@ -77,7 +68,7 @@
       console.error("Error:", error);
       showError(
         error.detail ||
-          "This gift code is not valid or has already been activated."
+          "This gift code is not valid or has already been activated.",
       );
     }
   }
@@ -89,13 +80,10 @@
     try {
       const data = await API.activateGift(giftCode);
 
-      // Clear the pending gift code
       localStorage.removeItem("pending_gift_code");
 
-      // Show success message
       loadingState.style.display = "none";
 
-      // Create success display
       const successHTML = `
         <div class="text-center py-5">
           <div class="success-icon mx-auto mb-4" style="width: 100px; height: 100px; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; animation: success-bounce 0.6s ease;">
@@ -108,7 +96,7 @@
               data.tier.charAt(0).toUpperCase() + data.tier.slice(1)
             }<br>
             <strong>Expires:</strong> ${new Date(
-              data.expires_at
+              data.expires_at,
             ).toLocaleDateString()}<br>
             <strong>Credits Granted:</strong> ${data.credits_granted}
           </div>
@@ -121,18 +109,16 @@
       giftDetails.innerHTML = successHTML;
       giftDetails.style.display = "block";
 
-      // Add confetti animation
       createConfetti();
     } catch (error) {
       console.error("Error:", error);
       showError(
         error.detail ||
-          "Failed to activate gift. Please try again or contact support."
+          "Failed to activate gift. Please try again or contact support.",
       );
     }
   }
 
-  // Confetti animation
   function createConfetti() {
     const colors = ["#b8605c", "#c97571", "#d4a5a0", "#f5c842", "#f7a800"];
     const confettiCount = 50;
@@ -174,7 +160,7 @@
           {
             duration: fallDuration,
             easing: "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-          }
+          },
         );
 
         setTimeout(() => {
@@ -183,4 +169,13 @@
       }, i * 50);
     }
   }
+})();
+
+(function () {
+  var cfg = window.APP_CONFIG || {};
+  var siteName = cfg.SITE_NAME || "OBSIDIAN Neural";
+  var subtitle = document.getElementById("activation-hero-sub");
+  if (subtitle)
+    subtitle.textContent =
+      "Activate your " + siteName + " subscription gift below";
 })();
