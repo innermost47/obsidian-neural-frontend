@@ -20,7 +20,7 @@
     <div id="nav-docs-desktop" class="flex items-center"></div>
 
     <a
-      href="#provider-network"
+      href="index.php#provider-network"
       class="nav-link-pill text-warning/80 hover:text-warning">Earn GPU</a>
 
     <div class="w-px h-5 bg-white/10 mx-1.5"></div>
@@ -67,7 +67,7 @@
       <div id="nav-docs-mobile" class="mb-4"></div>
 
       <a
-        href="#provider-network"
+        href="index.php#provider-network"
         class="mobile-link"
         onclick="toggleMobileMenu()"><i class="fas fa-server w-5 text-warning"></i><span class="text-warning">Earn with GPU</span></a>
       <div id="nav-auth-mobile" class="space-y-3 mt-6"></div>

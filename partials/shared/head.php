@@ -95,93 +95,9 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
     <link href="/css/new.css" rel="stylesheet" />
 </head>
 
 <body
     class="bg-black text-white overflow-x-hidden antialiased selection:bg-primary selection:text-black">
-    <canvas
-        id="latent-space"
-        class="fixed inset-0 w-full h-full z-0 pointer-events-none opacity-50 mix-blend-screen"></canvas>
-    <script>
-        const canvas = document.getElementById("latent-space");
-        if (canvas) {
-            const scene = new THREE.Scene();
-            const camera = new THREE.PerspectiveCamera(
-                75,
-                window.innerWidth / window.innerHeight,
-                0.1,
-                1000,
-            );
-            camera.position.z = 120;
-            const renderer = new THREE.WebGLRenderer({
-                canvas,
-                alpha: true,
-                antialias: true,
-            });
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-            const geo = new THREE.BufferGeometry();
-            const count = 1800;
-            const pos = new Float32Array(count * 3);
-            const col = new Float32Array(count * 3);
-            const palette = [
-                new THREE.Color("#d96850"),
-                new THREE.Color("#4da3b3"),
-                new THREE.Color("#8b6ab5"),
-            ];
-
-            for (let i = 0; i < count * 3; i += 3) {
-                const r = 250,
-                    theta = Math.random() * 2 * Math.PI,
-                    phi = Math.acos(Math.random() * 2 - 1);
-                pos[i] = r * Math.sin(phi) * Math.cos(theta);
-                pos[i + 1] = r * Math.sin(phi) * Math.sin(theta);
-                pos[i + 2] = r * Math.cos(phi);
-                const c = palette[Math.floor(Math.random() * palette.length)];
-                col[i] = c.r;
-                col[i + 1] = c.g;
-                col[i + 2] = c.b;
-            }
-            geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
-            geo.setAttribute("color", new THREE.BufferAttribute(col, 3));
-            const mat = new THREE.PointsMaterial({
-                size: 0.8,
-                vertexColors: true,
-                transparent: true,
-                opacity: 0.6,
-                blending: THREE.AdditiveBlending,
-            });
-            const mesh = new THREE.Points(geo, mat);
-            scene.add(mesh);
-
-            let mx = 0,
-                my = 0;
-            document.addEventListener("mousemove", (e) => {
-                mx = e.clientX / window.innerWidth - 0.5;
-                my = e.clientY / window.innerHeight - 0.5;
-            });
-
-            const clock = new THREE.Clock();
-
-            function animate() {
-                requestAnimationFrame(animate);
-                const t = clock.getElapsedTime();
-                mesh.rotation.y = t * 0.05;
-                mesh.rotation.x = t * 0.02;
-                mesh.position.x += (mx * 30 - mesh.position.x) * 0.05;
-                mesh.position.y += (-my * 30 - mesh.position.y) * 0.05;
-                renderer.render(scene, camera);
-            }
-            animate();
-
-            window.addEventListener("resize", () => {
-                camera.aspect = window.innerWidth / window.innerHeight;
-                camera.updateProjectionMatrix();
-                renderer.setSize(window.innerWidth, window.innerHeight);
-            });
-        }
-    </script>

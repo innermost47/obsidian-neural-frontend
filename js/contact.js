@@ -21,8 +21,9 @@ async function handleSubmit(event) {
   const btnSpinner = document.getElementById("btnSpinner");
 
   submitBtn.disabled = true;
+  submitBtn.classList.add("opacity-70", "pointer-events-none");
   btnText.textContent = "Sending...";
-  btnSpinner.style.display = "inline-block";
+  btnSpinner.classList.remove("hidden");
 
   const formData = new FormData(event.target);
   const data = Object.fromEntries(formData.entries());
@@ -42,14 +43,13 @@ async function handleSubmit(event) {
       {
         website: data.website || "",
         email_confirm: data.email_confirm || "",
-        phone: data.phone || "",
         timestamp: data.timestamp,
-      }
+      },
     );
 
     showAlert(
       "Message sent successfully! We'll respond within 24-48 hours.",
-      "success"
+      "success",
     );
     event.target.reset();
     document.getElementById("timestamp").value = Date.now();
@@ -58,7 +58,7 @@ async function handleSubmit(event) {
     console.error("Error:", error);
     const errorMessage =
       error.detail ||
-      "❌ An error occurred. Please check your connection and try again.";
+      "An error occurred. Please check your connection and try again.";
     showAlert(errorMessage, "error");
   } finally {
     resetButton(submitBtn, btnText, btnSpinner);
@@ -66,7 +66,7 @@ async function handleSubmit(event) {
 }
 
 function validateForm(data) {
-  if (data.website || data.email_confirm || data.phone) {
+  if (data.website || data.email_confirm) {
     console.warn("Bot detected: honeypot filled");
     return false;
   }
@@ -85,28 +85,71 @@ function validateForm(data) {
 
 function showAlert(message, type) {
   const alertContainer = document.getElementById("alert-container");
-  const alertClass =
-    type === "success" ? "alert-success-custom" : "alert-error-custom";
+  if (!alertContainer) return;
+
+  const isSuccess = type === "success";
 
   alertContainer.innerHTML = `
-    <div class="alert ${alertClass} alert-custom alert-dismissible fade show" role="alert">
-      ${message}
+    <div class="flex items-start gap-3 p-4 rounded-xl border ${isSuccess ? "bg-success/10 border-success/30 text-success" : "bg-danger/10 border-danger/30 text-danger"} transition-all duration-300" id="live-alert">
+      <i class="fas ${isSuccess ? "fa-check-circle" : "fa-exclamation-circle"} text-lg mt-0.5"></i>
+      <p class="text-sm font-medium flex-1">${message}</p>
+      <button onclick="this.parentElement.remove()" class="opacity-60 hover:opacity-100 transition-opacity">
+        <i class="fas fa-times text-sm"></i>
+      </button>
     </div>
   `;
 
   alertContainer.scrollIntoView({ behavior: "smooth", block: "center" });
 
   setTimeout(() => {
-    const alert = alertContainer.querySelector(".alert");
-    if (alert) {
-      const bsAlert = new bootstrap.Alert(alert);
-      bsAlert.close();
-    }
+    const alert = document.getElementById("live-alert");
+    if (alert) alert.remove();
   }, 8000);
 }
 
 function resetButton(btn, text, spinner) {
   btn.disabled = false;
+  btn.classList.remove("opacity-70", "pointer-events-none");
   text.textContent = "Send Message";
-  spinner.style.display = "none";
+  spinner.classList.add("hidden");
 }
+
+(function () {
+  var cfg = window.APP_CONFIG || {};
+  var supportEmail = cfg.SUPPORT_EMAIL || cfg.COMPANY_EMAIL || "";
+  var githubUrl = cfg.GITHUB_URL || "#";
+  var githubIssuesUrl =
+    cfg.GITHUB_ISSUES_URL || (githubUrl !== "#" ? githubUrl + "/issues" : "#");
+  var docsUrl = cfg.DOCS_URL || "#";
+  var githubLabel =
+    githubUrl !== "#" ? githubUrl.replace(/^https?:\/\/github\.com\//, "") : "";
+
+  var emailLink = document.getElementById("contact-email-link");
+  if (emailLink && supportEmail) {
+    emailLink.href = "mailto:" + supportEmail;
+    emailLink.querySelector(".ct-value").textContent = supportEmail;
+  }
+
+  var githubLink = document.getElementById("contact-github-link");
+  if (githubLink) {
+    if (githubUrl !== "#") {
+      githubLink.href = githubUrl;
+      githubLink.querySelector(".ct-value").textContent =
+        githubLabel || githubUrl;
+    } else {
+      githubLink.style.display = "none";
+    }
+  }
+
+  var docsLink = document.getElementById("contact-docs-link");
+  if (docsLink && docsUrl !== "#") docsLink.href = docsUrl;
+
+  var issuesLink = document.getElementById("contact-issues-link");
+  if (issuesLink) {
+    if (githubIssuesUrl !== "#") {
+      issuesLink.href = githubIssuesUrl;
+    } else {
+      issuesLink.style.display = "none";
+    }
+  }
+})();

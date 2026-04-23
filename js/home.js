@@ -126,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     w.addEventListener("mouseleave", () => {
       c.style.transform = `rotateX(15deg) rotateY(-10deg) rotateZ(1deg)`;
-      c.style.animation = c.style.animation; // relance l'animation originale
+      c.style.animation = c.style.animation;
       g.style.background = `radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 60%)`;
     });
   }

@@ -24,6 +24,3 @@ include('partials/shared/head.php');
 <script src="js/config.js"></script>
 <script src="js/cookie-consent.js"></script>
 <script src="js/home.js"></script>
-</body>
-
-</html>
