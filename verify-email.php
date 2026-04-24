@@ -13,7 +13,6 @@ include('partials/shared/head.php');
 
 <?php include('partials/shared/footer.php'); ?>
 
-<script src="js/config.js"></script>
 <script src="js/api.js"></script>
 <script src="js/cookie-consent.js"></script>
 <script src="js/verify-email.js"></script>

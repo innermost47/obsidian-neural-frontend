@@ -205,7 +205,7 @@
     </div>
   </div>
 </footer>
-
+<script src="js/config.js"></script>
 <script>
   (function() {
     var cfg = window.APP_CONFIG || {};
@@ -244,7 +244,7 @@
 
     setHref(
       "footer-download",
-      "https://github.com/innermost47/ai-dj/releases/latest",
+      githubUrl !== "#" ? githubUrl + "/releases/latest" : "#",
     );
 
     setHref("footer-github-res", githubUrl);

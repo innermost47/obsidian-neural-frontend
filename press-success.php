@@ -71,5 +71,4 @@ include('partials/shared/head.php');
 
 <?php include('partials/shared/footer.php'); ?>
 
-<script src="js/config.js"></script>
 <script src="js/press-success.js"></script>
