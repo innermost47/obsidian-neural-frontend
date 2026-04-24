@@ -88,3 +88,12 @@ if (form) {
     }
   });
 }
+
+(function () {
+  var cfg = window.APP_CONFIG || {};
+  var pluginName = cfg.PLUGIN_NAME || cfg.SITE_NAME || "Obsidian Neural";
+  var label = document.getElementById("newsletter-label");
+  if (label)
+    label.textContent =
+      "I want to receive news and updates about " + pluginName;
+})();

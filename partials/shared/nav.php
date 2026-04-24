@@ -139,6 +139,7 @@
             '<button onclick="window._logout()" class="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-bold text-gray-400 hover:text-white hover:bg-white/10 transition-all"><i class="fas fa-sign-out-alt"></i></button>';
         } else {
           authDesktop.innerHTML =
+            '<a href="login.php" class="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-bold text-gray-300 hover:text-white hover:bg-white/10 transition-all whitespace-nowrap"><i class="fas fa-sign-in-alt mr-1.5"></i>Login</a>' +
             '<a href="register.php" class="px-5 py-2 rounded-full bg-gradient-to-r from-primary to-[#a04840] text-white text-sm font-bold hover:scale-105 transition-transform shadow-[0_0_15px_rgba(217,104,80,0.3)] whitespace-nowrap"><i class="fas fa-rocket mr-1.5"></i>Start Free</a>';
         }
       }
@@ -151,10 +152,9 @@
             '<button onclick="window._logout(); toggleMobileMenu();" class="block w-full text-center px-6 py-3 rounded-xl bg-white/5 border border-white/10 font-bold text-gray-400 hover:text-white hover:bg-white/10 transition-colors"><i class="fas fa-sign-out-alt mr-2"></i>Logout</button>';
         } else {
           authMobile.innerHTML =
+            '<a href="login.php" class="block w-full text-center px-6 py-3.5 rounded-xl bg-white/5 border border-white/10 font-bold hover:bg-white/10 transition-colors"><i class="fas fa-sign-in-alt mr-2"></i>Login</a>' +
             '<a href="register.php" class="block w-full text-center px-6 py-3.5 rounded-xl bg-gradient-to-r from-primary to-[#a04840] text-white font-bold hover:scale-[1.02] transition-transform shadow-[0_0_20px_rgba(217,104,80,0.3)]"><i class="fas fa-rocket mr-2"></i>Start Free — 20 Credits</a>' +
-            '<a id="nav-github-mobile" href="' +
-            githubUrl +
-            '" target="_blank" class="block w-full text-center px-6 py-3.5 rounded-xl bg-white/5 border border-white/10 font-bold hover:bg-white/10 transition-colors"><i class="fab fa-github mr-2"></i>Download on GitHub</a>';
+            '<a id="nav-github-mobile" href="' + githubUrl + '" target="_blank" class="block w-full text-center px-6 py-3.5 rounded-xl bg-white/5 border border-white/10 font-bold hover:bg-white/10 transition-colors"><i class="fab fa-github mr-2"></i>Download on GitHub</a>';
         }
       }
 
