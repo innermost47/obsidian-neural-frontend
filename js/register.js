@@ -33,10 +33,10 @@ async function registerWithGoogle() {
 function redirectAfterRegistration() {
   const pendingGiftCode = localStorage.getItem("pending_gift_code");
   if (pendingGiftCode) {
-    window.location.href = `gift-activate.html?code=${pendingGiftCode}`;
+    window.location.href = `gift-activate.php?code=${pendingGiftCode}`;
     return;
   }
-  window.location.href = "onboarding.html";
+  window.location.href = "onboarding.php";
 }
 
 if (form) {

@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const contentContainer = document.getElementById("content");
 
   try {
-    const response = await fetch(`docs/${page}.html`);
+    const response = await fetch(`docs/${page}.php`);
     if (!response.ok) throw new Error("Page not found");
     const html = await response.text();
     contentContainer.innerHTML = html;

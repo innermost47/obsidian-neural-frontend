@@ -34,7 +34,6 @@
         <div class="mb-6">
             <p class="px-6 mb-3 text-[0.7rem] font-bold uppercase tracking-[0.1em] text-white/40">Resources</p>
             <div class="space-y-1 px-4">
-                <a id="nav-docs" href="/documentation.php?page=getting-started" target="_blank" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-white/70 font-medium hover:bg-primary/10 hover:text-white hover:translate-x-1 transition-all"><i class="fas fa-book w-6 text-center"></i><span>Documentation</span></a>
                 <a id="nav-download" href="#" target="_blank" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-white/70 font-medium hover:bg-primary/10 hover:text-white hover:translate-x-1 transition-all"><i class="fas fa-download w-6 text-center"></i><span>Download Plugin</span></a>
                 <a id="nav-support" href="#" target="_blank" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-white/70 font-medium hover:bg-primary/10 hover:text-white hover:translate-x-1 transition-all"><i class="fas fa-life-ring w-6 text-center"></i><span>Support</span></a>
             </div>

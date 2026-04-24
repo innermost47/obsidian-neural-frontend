@@ -16,7 +16,7 @@
     // Auto-submit after a short delay
     setTimeout(() => {
       form.dispatchEvent(
-        new Event("submit", { cancelable: true, bubbles: true })
+        new Event("submit", { cancelable: true, bubbles: true }),
       );
     }, 500);
   }
@@ -69,7 +69,7 @@
 
     // Update activate button with code
     const giftCode = document.getElementById("giftCode").value.trim();
-    activateBtn.href = `gift-activate.html?code=${giftCode}`;
+    activateBtn.href = `gift-activate.php?code=${giftCode}`;
   }
 
   function showCheckForm() {
@@ -108,7 +108,7 @@
       showCheckForm();
       showError(
         error.detail ||
-          "Invalid or already activated gift code. Please check and try again."
+          "Invalid or already activated gift code. Please check and try again.",
       );
     } finally {
       submitBtn.disabled = false;

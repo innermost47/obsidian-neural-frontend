@@ -100,7 +100,7 @@ location.reload();
                         target="_blank"
                         class="px-6 py-3 rounded-xl border border-white/20 font-bold hover:bg-white hover:text-black transition-colors"><i class="fas fa-file-pdf mr-2"></i>Read Full Paper</a>
                     <a
-                        href="register.html"
+                        href="register.php"
                         class="px-6 py-3 rounded-xl bg-primary text-white font-bold hover:bg-white hover:text-black transition-colors"><i class="fas fa-rocket mr-2"></i>Try It Yourself</a>
                 </div>
             </div>

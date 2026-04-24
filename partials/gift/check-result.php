@@ -48,7 +48,7 @@ function render_gift_check_result($args)
             </div>
 
             <div class="flex flex-col sm:flex-row gap-3">
-                <a href="gift-activate.html?id=<?php echo $_GET['code'] ?? ''; ?>" class="px-6 py-3.5 rounded-xl bg-primary text-white font-bold hover:bg-primary/80 transition-colors shadow-[0_0_20px_rgba(217,104,80,0.3)]">
+                <a href="gift-activate.php?id=<?php echo $_GET['code'] ?? ''; ?>" class="px-6 py-3.5 rounded-xl bg-primary text-white font-bold hover:bg-primary/80 transition-colors shadow-[0_0_20px_rgba(217,104,80,0.3)]">
                     <i class="fas fa-unlock mr-2"></i>Activate This Gift
                 </a>
                 <button onclick="window.location.reload()" class="px-6 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white font-bold hover:bg-white/10 transition-colors">

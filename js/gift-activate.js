@@ -100,7 +100,7 @@
             ).toLocaleDateString()}<br>
             <strong>Credits Granted:</strong> ${data.credits_granted}
           </div>
-          <a href="dashboard.html" class="btn btn-gradient-primary btn-lg px-5 py-3">
+          <a href="dashboard.php" class="btn btn-gradient-primary btn-lg px-5 py-3">
             <i class="fas fa-rocket me-2"></i>Go to Dashboard
           </a>
         </div>

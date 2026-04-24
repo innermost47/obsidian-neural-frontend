@@ -244,7 +244,7 @@
 
     setHref(
       "footer-download",
-      githubUrl !== "#" ? githubUrl + "/releases/latest" : "#",
+      "https://github.com/innermost47/ai-dj/releases/latest",
     );
 
     setHref("footer-github-res", githubUrl);

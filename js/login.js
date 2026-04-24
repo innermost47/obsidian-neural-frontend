@@ -42,17 +42,14 @@ async function loginWithGoogle() {
   }
 }
 
-// Helper function to redirect after login
 function redirectAfterLogin() {
-  // Check for pending gift code
   const pendingGiftCode = localStorage.getItem("pending_gift_code");
   if (pendingGiftCode) {
-    window.location.href = `gift-activate.html?code=${pendingGiftCode}`;
+    window.location.href = `gift-activate.php?code=${pendingGiftCode}`;
     return;
   }
 
-  // Default redirect to dashboard
-  window.location.href = "dashboard.html";
+  window.location.href = "dashboard.php";
 }
 
 form.addEventListener("submit", async (e) => {

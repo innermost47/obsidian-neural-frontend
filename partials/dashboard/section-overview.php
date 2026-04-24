@@ -68,12 +68,7 @@
 
         <div class="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-6">
             <h3 class="text-base font-bold text-white mb-5"><i class="fas fa-rocket mr-2 text-primary"></i>Quick Actions</h3>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <a id="qa-docs" href="/documentation.php?page=getting-started" target="_blank" class="flex flex-col items-center gap-2 p-4 bg-white/[0.03] border border-white/[0.06] rounded-xl hover:bg-white/[0.06] hover:border-primary/30 transition-all text-center">
-                    <i class="fas fa-book text-2xl text-primary"></i>
-                    <span class="text-sm font-bold text-white">Documentation</span>
-                    <span class="text-xs text-gray-500">Learn how to use the plugin</span>
-                </a>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
                 <a id="qa-support" href="#" target="_blank" class="flex flex-col items-center gap-2 p-4 bg-white/[0.03] border border-white/[0.06] rounded-xl hover:bg-white/[0.06] hover:border-primary/30 transition-all text-center">
                     <i class="fas fa-life-ring text-2xl text-primary"></i>
                     <span class="text-sm font-bold text-white">Get Support</span>

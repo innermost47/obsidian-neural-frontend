@@ -10,7 +10,7 @@
     "recipientEmailDisplay",
   );
   const checkCodeLink = document.getElementById("checkCodeLink");
-  checkCodeLink.href = "gift-check.html?code=" + giftCode;
+  checkCodeLink.href = "gift-check.php?code=" + giftCode;
 
   if (giftCode && giftCodeDisplay) {
     giftCodeDisplay.querySelector("code").textContent = giftCode;

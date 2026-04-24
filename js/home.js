@@ -35,7 +35,7 @@
   setHref("btn-beatcrafter-src", beatcrafterUrl);
   setHref(
     "provider-cta-contact",
-    (cfg.SITE_URL || "") + "/contact.html?subject=partnership",
+    (cfg.SITE_URL || "") + "/contact.php?subject=partnership",
   );
   setHref("provider-cta-github", cfg.PROVIDER_GITHUB_URL || githubUrl);
   setHref("btn-cta-github", githubUrl);

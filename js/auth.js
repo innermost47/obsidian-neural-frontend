@@ -15,7 +15,7 @@ form.addEventListener("submit", async (e) => {
   try {
     const data = await API.register(email, password);
     localStorage.setItem("token", data.access_token);
-    window.location.href = "dashboard.html";
+    window.location.href = "dashboard.php";
   } catch (error) {
     errorAlert.textContent = error.detail || "Registration failed";
     errorAlert.classList.remove("d-none");
