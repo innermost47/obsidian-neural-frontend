@@ -1,19 +1,17 @@
 (function () {
   "use strict";
 
-  // Get gift code from URL parameter
   const urlParams = new URLSearchParams(window.location.search);
   const giftCode = urlParams.get("gift_code");
 
   const giftCodeDisplay = document.getElementById("giftCodeDisplay");
   const copyCodeBtn = document.getElementById("copyCodeBtn");
   const recipientEmailDisplay = document.getElementById(
-    "recipientEmailDisplay"
+    "recipientEmailDisplay",
   );
   const checkCodeLink = document.getElementById("checkCodeLink");
   checkCodeLink.href = "gift-check.html?code=" + giftCode;
 
-  // Display gift code
   if (giftCode && giftCodeDisplay) {
     giftCodeDisplay.querySelector("code").textContent = giftCode;
   } else if (giftCodeDisplay) {
@@ -21,7 +19,6 @@
     copyCodeBtn.style.display = "none";
   }
 
-  // Copy code functionality
   copyCodeBtn?.addEventListener("click", () => {
     const code = giftCode || "";
     navigator.clipboard
@@ -44,7 +41,6 @@
       });
   });
 
-  // Display recipient email from session storage
   if (recipientEmailDisplay) {
     const recipientEmail = sessionStorage.getItem("gift_recipient_email");
     if (recipientEmail) {
@@ -55,7 +51,6 @@
     }
   }
 
-  // Add confetti animation (optional)
   function createConfetti() {
     const colors = ["#b8605c", "#c97571", "#d4a5a0", "#f5c842", "#f7a800"];
     const confettiCount = 50;
@@ -97,7 +92,7 @@
           {
             duration: fallDuration,
             easing: "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-          }
+          },
         );
 
         setTimeout(() => {
@@ -107,8 +102,17 @@
     }
   }
 
-  // Trigger confetti on page load
   if (giftCode) {
     setTimeout(createConfetti, 300);
+  }
+})();
+
+(function () {
+  var cfg = window.APP_CONFIG || {};
+  var siteName = cfg.SITE_NAME || "OBSIDIAN Neural";
+  var subtitle = document.getElementById("hero-subtitle");
+  if (subtitle) {
+    subtitle.textContent =
+      "Activate your " + siteName + " subscription gift below";
   }
 })();
