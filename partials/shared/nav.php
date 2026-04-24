@@ -15,13 +15,9 @@
   </button>
 
   <div class="hidden lg:flex items-center gap-1" id="nav-links">
-
     <div id="nav-extra-desktop" class="flex items-center gap-1"></div>
-    <div id="nav-docs-desktop" class="flex items-center"></div>
 
-    <a
-      href="index.php#provider-network"
-      class="nav-link-pill text-warning/80 hover:text-warning">Earn GPU</a>
+    <a href="index.php#provider-network" class="nav-link-pill text-warning/80 hover:text-warning">Earn GPU</a>
 
     <div class="w-px h-5 bg-white/10 mx-1.5"></div>
 
@@ -48,9 +44,7 @@
     class="absolute top-0 right-0 h-full w-[85%] max-w-sm bg-[#111115] border-l border-white/10 transform translate-x-full transition-transform duration-300 overflow-y-auto">
     <div class="p-5">
       <div class="flex items-center justify-between mb-7">
-        <span
-          class="text-primary font-black tracking-widest text-sm"
-          id="nav-site-name-mobile">OBSIDIAN NEURAL</span>
+        <span class="text-primary font-black tracking-widest text-sm" id="nav-site-name-mobile">OBSIDIAN NEURAL</span>
         <button
           onclick="toggleMobileMenu()"
           class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-white transition-colors">
@@ -64,12 +58,13 @@
 
       <div id="nav-extra-mobile" class="space-y-1 mb-4"></div>
 
-      <div id="nav-docs-mobile" class="mb-4"></div>
-
       <a
         href="index.php#provider-network"
         class="mobile-link"
-        onclick="toggleMobileMenu()"><i class="fas fa-server w-5 text-warning"></i><span class="text-warning">Earn with GPU</span></a>
+        onclick="toggleMobileMenu()">
+        <i class="fas fa-server w-5 text-warning"></i><span class="text-warning">Earn with GPU</span>
+      </a>
+
       <div id="nav-auth-mobile" class="space-y-3 mt-6"></div>
     </div>
   </div>
@@ -98,37 +93,6 @@
           '<a href="gift.php" class="mobile-link" onclick="toggleMobileMenu()"><i class="fas fa-gift w-5 text-track7"></i>Gift Card</a>' +
           '<a href="press.php" class="mobile-link"><i class="fas fa-newspaper w-5 text-gray-400"></i>Press</a>' +
           '<a href="contact.php" class="mobile-link"><i class="fas fa-envelope w-5 text-gray-400"></i>Contact</a>';
-      }
-
-      var docDesktop = document.getElementById("nav-docs-desktop");
-      if (docDesktop) {
-        docDesktop.innerHTML =
-          '<div class="relative group">' +
-          '<button class="nav-link-pill flex items-center gap-1.5">Docs <i class="fas fa-chevron-down text-[9px] opacity-40 group-hover:opacity-100 transition-opacity"></i></button>' +
-          '<div class="absolute top-full right-0 mt-2 w-52 bg-[#1a1a1c]/95 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 -translate-y-1 group-hover:translate-y-0 z-50">' +
-          '<a href="documentation.php?page=getting-started" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-colors"><i class="fas fa-rocket text-primary w-4 text-center"></i>Getting Started</a>' +
-          '<a href="documentation.php?page=first-step" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-colors"><i class="fas fa-headphones text-primary w-4 text-center"></i>First Step</a>' +
-          '<a href="documentation.php?page=bank-management" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-colors"><i class="fas fa-database text-primary w-4 text-center"></i>Bank Management</a>' +
-          '<a href="documentation.php?page=draw-to-audio" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-300 hover:text-white hover:bg-white/5 transition-colors"><i class="fas fa-paintbrush text-primary w-4 text-center"></i>Draw to Audio</a>' +
-          "</div>" +
-          "</div>";
-      }
-
-      var docMobile = document.getElementById("nav-docs-mobile");
-      if (docMobile) {
-        docMobile.innerHTML =
-          "<div>" +
-          "<button onclick=\"this.nextElementSibling.classList.toggle('hidden'); this.querySelector('.chevron').classList.toggle('rotate-180')\" class=\"mobile-link w-full justify-between\">" +
-          '<span class="flex items-center gap-3"><i class="fas fa-book w-5 text-gray-400"></i>Documentation</span>' +
-          '<i class="fas fa-chevron-down chevron text-[10px] text-gray-500 transition-transform duration-200"></i>' +
-          "</button>" +
-          '<div class="hidden pl-12 space-y-1 mt-1 mb-2">' +
-          '<a href="documentation.php?page=getting-started" class="block py-2 text-sm text-gray-500 hover:text-white transition-colors">Getting Started</a>' +
-          '<a href="documentation.php?page=first-step" class="block py-2 text-sm text-gray-500 hover:text-white transition-colors">First Step</a>' +
-          '<a href="documentation.php?page=bank-management" class="block py-2 text-sm text-gray-500 hover:text-white transition-colors">Bank Management</a>' +
-          '<a href="documentation.php?page=draw-to-audio" class="block py-2 text-sm text-gray-500 hover:text-white transition-colors">Draw to Audio</a>' +
-          "</div>" +
-          "</div>";
       }
 
       var authDesktop = document.getElementById("nav-auth-desktop");
@@ -163,16 +127,12 @@
     });
   })();
 
-
   window.toggleMobileMenu = function() {
     const menu = document.getElementById('mobile-menu');
     const panel = document.getElementById('mobile-panel');
     const icon = document.getElementById('burger-icon');
-
     if (!menu || !panel) return;
-
     const isOpen = !menu.classList.contains('pointer-events-none');
-
     if (isOpen) {
       menu.classList.add('pointer-events-none', 'opacity-0');
       panel.classList.add('translate-x-full');

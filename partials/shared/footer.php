@@ -69,14 +69,6 @@
               rel="noopener"
               class="hover:text-white transition-colors">Download</a>
           </li>
-          <li>
-            <a
-              id="footer-docs"
-              href="/documentation.php?page=getting-started"
-              target="_blank"
-              rel="noopener"
-              class="hover:text-white transition-colors">Documentation</a>
-          </li>
         </ul>
       </div>
       <div>
@@ -231,7 +223,6 @@
     var paperUrl = cfg.PAPER_URL || "#";
     var authorUrl = cfg.AUTHOR_URL || "#";
     var authorAlias = cfg.AUTHOR_ALIAS || "InnerMost47";
-    var docsUrl = cfg.DOCS_URL || "/documentation.html?page=getting-started";
 
     function setHref(id, url) {
       var el = document.getElementById(id);
@@ -255,7 +246,6 @@
       "footer-download",
       githubUrl !== "#" ? githubUrl + "/releases/latest" : "#",
     );
-    setHref("footer-docs", docsUrl);
 
     setHref("footer-github-res", githubUrl);
     setHref("footer-kvr-res", kvraudioUrl);
