@@ -10,8 +10,7 @@ form.addEventListener("submit", async (e) => {
   e.preventDefault();
   const email = document.getElementById("email").value;
   submitBtn.disabled = true;
-  submitText.innerHTML =
-    '<i class="fas fa-spinner fa-spin mr-2"></i>Sending...';
+  submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Sending...';
   errorAlert.classList.add("hidden");
   successAlert.classList.add("hidden");
 
@@ -20,7 +19,7 @@ form.addEventListener("submit", async (e) => {
     successMessage.textContent =
       "If an account exists with this email, you'll receive a reset link shortly. Check your inbox!";
     successAlert.classList.remove("hidden");
-    submitText.innerHTML = '<i class="fas fa-check mr-2"></i>Email Sent!';
+    submitBtn.innerHTML = '<i class="fas fa-check mr-2"></i>Email Sent!';
     submitBtn.classList.remove(
       "from-primary",
       "to-[#a04840]",
@@ -36,7 +35,7 @@ form.addEventListener("submit", async (e) => {
         "to-[#a04840]",
         "shadow-[0_0_25px_rgba(217,104,80,0.3)]",
       );
-      submitText.innerHTML =
+      submitBtn.innerHTML =
         '<i class="fas fa-paper-plane mr-2"></i>Send Reset Link';
     }, 3000);
   } catch (error) {
@@ -44,7 +43,7 @@ form.addEventListener("submit", async (e) => {
       error.detail || "Failed to send reset email. Please try again.";
     errorAlert.classList.remove("hidden");
     submitBtn.disabled = false;
-    submitText.innerHTML =
+    submitBtn.innerHTML =
       '<i class="fas fa-paper-plane mr-2"></i>Send Reset Link';
   }
 });

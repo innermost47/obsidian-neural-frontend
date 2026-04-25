@@ -15,14 +15,14 @@
     <meta name="robots" content="index, follow" />
     <link
         rel="canonical"
-        href="https://ai-harmony.duckdns.org/obsidian/api/v1/" />
+        href="https://obsidian-neural.com" />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="OBSIDIAN Neural" />
     <meta property="og:locale" content="en_US" />
     <meta
         property="og:url"
-        content="https://ai-harmony.duckdns.org/obsidian/api/v1/" />
+        content="https://obsidian-neural.com" />
     <meta
         property="og:title"
         content="OBSIDIAN Neural — AI Music Generation VST for Live Performance" />
@@ -31,7 +31,7 @@
         content="First VST for AI music generation designed for live performance. 8-track sampler, LLM brain, draw-to-audio, 8 AI models. Presented at AES AIMLA 2025" />
     <meta
         property="og:image"
-        content="https://ai-harmony.duckdns.org/obsidian/api/v1/assets/images/screenshot.png" />
+        content="https://obsidian-neural.com/assets/images/screenshot.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta
@@ -42,7 +42,7 @@
     <meta name="twitter:site" content="@innermost47" />
     <meta
         name="twitter:url"
-        content="https://ai-harmony.duckdns.org/obsidian/api/v1/" />
+        content="https://obsidian-neural.com" />
     <meta
         name="twitter:title"
         content="OBSIDIAN Neural — AI Music VST for Live Performance" />
@@ -51,15 +51,13 @@
         content="First VST for AI music generation designed for live performance. 8 AI models, open source." />
     <meta
         name="twitter:image"
-        content="https://ai-harmony.duckdns.org/obsidian/api/v1/assets/images/screenshot.png" />
+        content="https://obsidian-neural.com/assets/images/screenshot.png" />
     <meta
         name="twitter:image:alt"
         content="OBSIDIAN Neural VST plugin interface" />
 
     <link rel="icon" type="image/x-icon" href="assets/images/logo.ico" />
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
 
@@ -95,7 +93,8 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+    <script src="js/confetti-helper.js"></script>
     <link href="/css/style.css" rel="stylesheet" />
 </head>
 

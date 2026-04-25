@@ -9,20 +9,20 @@
   const errorState = document.getElementById("errorState");
   const errorMessage = document.getElementById("errorMessage");
 
-  const token = localStorage.getItem("token");
-  const isLoggedIn = !!token;
+  const isLoggedIn = !!localStorage.getItem("token");
 
   if (!giftCode) {
     showError("No gift code provided in the URL.");
     return;
   }
 
+  localStorage.setItem("pending_gift_code", giftCode);
+
   if (isLoggedIn) {
     activateGift();
   } else {
     checkGiftCode();
   }
-  localStorage.setItem("pending_gift_code", giftCode);
 
   function showError(message) {
     loadingState.style.display = "none";
@@ -40,23 +40,17 @@
     const giftMessageContent = document.getElementById("giftMessageContent");
     const purchaserName = document.getElementById("purchaserName");
 
-    if (giftPlan) {
+    if (giftPlan)
       giftPlan.textContent =
         data.tier.charAt(0).toUpperCase() + data.tier.slice(1);
-    }
-
-    if (giftDuration) {
-      giftDuration.textContent = `${data.duration_months} Month${
-        data.duration_months > 1 ? "s" : ""
-      }`;
-    }
+    if (giftDuration)
+      giftDuration.textContent = `${data.duration_months} Month${data.duration_months > 1 ? "s" : ""}`;
 
     if (data.gift_message && giftMessageBox && giftMessageContent) {
-      giftMessageBox.style.display = "block";
+      giftMessageBox.classList.remove("hidden");
       giftMessageContent.textContent = data.gift_message;
-      if (purchaserName) {
+      if (purchaserName)
         purchaserName.textContent = data.purchaser_name || "someone special";
-      }
     }
   }
 
@@ -65,7 +59,6 @@
       const data = await API.checkGiftCode(giftCode);
       showGiftDetails(data);
     } catch (error) {
-      console.error("Error:", error);
       showError(
         error.detail ||
           "This gift code is not valid or has already been activated.",
@@ -75,98 +68,56 @@
 
   async function activateGift() {
     loadingState.style.display = "block";
-    loadingState.querySelector("p").textContent = "Activating your gift...";
+    const loadingText = loadingState.querySelector("p");
+    if (loadingText) loadingText.textContent = "Activating your gift...";
 
     try {
       const data = await API.activateGift(giftCode);
-
       localStorage.removeItem("pending_gift_code");
-
       loadingState.style.display = "none";
 
-      const successHTML = `
-        <div class="text-center py-5">
-          <div class="success-icon mx-auto mb-4" style="width: 100px; height: 100px; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; animation: success-bounce 0.6s ease;">
-            <i class="fas fa-check fa-3x" style="color: white;"></i>
-          </div>
-          <h2 class="h3 fw-bold mb-3">🎉 Gift Activated!</h2>
-          <p class="lead mb-4">${data.message}</p>
-          <div class="alert alert-success mb-4">
-            <strong>Plan:</strong> ${
-              data.tier.charAt(0).toUpperCase() + data.tier.slice(1)
-            }<br>
-            <strong>Expires:</strong> ${new Date(
-              data.expires_at,
-            ).toLocaleDateString()}<br>
-            <strong>Credits Granted:</strong> ${data.credits_granted}
-          </div>
-          <a href="dashboard.php" class="btn btn-gradient-primary btn-lg px-5 py-3">
-            <i class="fas fa-rocket me-2"></i>Go to Dashboard
-          </a>
-        </div>
-      `;
+      giftDetails.innerHTML = `
+                <div class="text-center py-8">
+                    <div class="w-24 h-24 rounded-full bg-gradient-to-br from-primary to-[#a04840] flex items-center justify-center text-white text-4xl mx-auto mb-6 shadow-[0_0_40px_rgba(217,104,80,0.4)]"
+                         style="animation: successBounce 0.6s ease">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-extrabold text-white mb-3">🎉 Gift Activated!</h2>
+                    <p class="text-gray-400 text-lg mb-6">${data.message}</p>
+                    <div class="bg-success/10 border border-success/30 rounded-2xl p-5 mb-6 text-left space-y-2 max-w-xs mx-auto">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Plan</span>
+                            <span class="font-bold text-white">${data.tier.charAt(0).toUpperCase() + data.tier.slice(1)}</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Expires</span>
+                            <span class="font-bold text-white">${new Date(data.expires_at).toLocaleDateString()}</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Credits Granted</span>
+                            <span class="font-bold text-primary">${data.credits_granted}</span>
+                        </div>
+                    </div>
+                    <a href="dashboard.php" class="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-primary to-[#a04840] text-white font-bold hover:scale-[1.02] transition-transform shadow-[0_0_25px_rgba(217,104,80,0.3)]">
+                        <i class="fas fa-rocket"></i>Go to Dashboard
+                    </a>
+                </div>
+                <style>
+                    @keyframes successBounce {
+                        0%   { transform: scale(0); opacity: 0; }
+                        60%  { transform: scale(1.15); }
+                        100% { transform: scale(1); opacity: 1; }
+                    }
+                </style>`;
 
-      giftDetails.innerHTML = successHTML;
       giftDetails.style.display = "block";
 
-      createConfetti();
+      Confetti.success();
     } catch (error) {
-      console.error("Error:", error);
       showError(
         error.detail ||
           "Failed to activate gift. Please try again or contact support.",
       );
-    }
-  }
-
-  function createConfetti() {
-    const colors = ["#b8605c", "#c97571", "#d4a5a0", "#f5c842", "#f7a800"];
-    const confettiCount = 50;
-
-    for (let i = 0; i < confettiCount; i++) {
-      setTimeout(() => {
-        const confetti = document.createElement("div");
-        confetti.style.position = "fixed";
-        confetti.style.width = "10px";
-        confetti.style.height = "10px";
-        confetti.style.backgroundColor =
-          colors[Math.floor(Math.random() * colors.length)];
-        confetti.style.left = Math.random() * 100 + "%";
-        confetti.style.top = "-10px";
-        confetti.style.opacity = "1";
-        confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
-        confetti.style.pointerEvents = "none";
-        confetti.style.zIndex = "9999";
-        confetti.style.borderRadius = "50%";
-
-        document.body.appendChild(confetti);
-
-        const fallDuration = 3000 + Math.random() * 2000;
-        const fallDistance = window.innerHeight + 50;
-
-        confetti.animate(
-          [
-            {
-              transform: `translateY(0) rotate(0deg)`,
-              opacity: 1,
-            },
-            {
-              transform: `translateY(${fallDistance}px) rotate(${
-                Math.random() * 720
-              }deg)`,
-              opacity: 0,
-            },
-          ],
-          {
-            duration: fallDuration,
-            easing: "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
-          },
-        );
-
-        setTimeout(() => {
-          confetti.remove();
-        }, fallDuration);
-      }, i * 50);
     }
   }
 })();

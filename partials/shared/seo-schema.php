@@ -3,16 +3,8 @@
             "@context": "https://schema.org",
             "@type": "WebSite",
             "name": "OBSIDIAN Neural",
-            "url": "https://ai-harmony.duckdns.org/obsidian/api/v1",
-            "description": "First VST3/AU plugin for AI music generation designed for live performance",
-            "potentialAction": {
-                "@type": "SearchAction",
-                "target": {
-                    "@type": "EntryPoint",
-                    "urlTemplate": "https://ai-harmony.duckdns.org/obsidian/api/v1/documentation.html?q={search_term_string}"
-                },
-                "query-input": "required name=search_term_string"
-            }
+            "url": "https://obsidian-neural.com",
+            "description": "First VST3/AU plugin for AI music generation designed for live performance"
         },
         {
             "@context": "https://schema.org",
@@ -59,9 +51,9 @@
                     "description": "1500 credits/month, priority generation"
                 }
             ],
-            "url": "https://ai-harmony.duckdns.org/obsidian/api/v1",
+            "url": "https://obsidian-neural.com",
             "downloadUrl": "https://github.com/innermost47/ai-dj/releases/latest",
-            "screenshot": "https://ai-harmony.duckdns.org/obsidian/api/v1/assets/images/screenshot.png",
+            "screenshot": "https://obsidian-neural.com/assets/images/screenshot.png",
             "review": [{
                     "@type": "Review",
                     "author": {

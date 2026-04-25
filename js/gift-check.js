@@ -8,12 +8,10 @@
   const errorAlert = document.getElementById("errorAlert");
   const submitBtn = document.getElementById("submitBtn");
 
-  // Auto-fill code from URL parameter
   const urlParams = new URLSearchParams(window.location.search);
   const codeFromUrl = urlParams.get("code");
   if (codeFromUrl) {
     document.getElementById("giftCode").value = codeFromUrl;
-    // Auto-submit after a short delay
     setTimeout(() => {
       form.dispatchEvent(
         new Event("submit", { cancelable: true, bubbles: true }),
@@ -39,7 +37,6 @@
     loadingState.classList.add("d-none");
     giftDetailsCard.classList.remove("d-none");
 
-    // Populate details
     const giftPlan = document.getElementById("giftPlan");
     const giftDuration = document.getElementById("giftDuration");
     const giftMessageBox = document.getElementById("giftMessageBox");
@@ -48,26 +45,21 @@
     const recipientEmail = document.getElementById("recipientEmail");
     const activateBtn = document.getElementById("activateBtn");
 
-    // Plan name
     giftPlan.textContent =
       data.tier.charAt(0).toUpperCase() + data.tier.slice(1);
 
-    // Duration
     giftDuration.textContent = `${data.duration_months} Month${
       data.duration_months > 1 ? "s" : ""
     }`;
 
-    // Personal message
     if (data.gift_message) {
       giftMessageBox.style.display = "block";
       giftMessageContent.textContent = data.gift_message;
       purchaserName.textContent = data.purchaser_name || "someone special";
     }
 
-    // Recipient email
     recipientEmail.textContent = data.recipient_email;
 
-    // Update activate button with code
     const giftCode = document.getElementById("giftCode").value.trim();
     activateBtn.href = `gift-activate.php?code=${giftCode}`;
   }
@@ -91,7 +83,6 @@
       return;
     }
 
-    // Basic format validation
     if (!giftCode.startsWith("OBSIDIAN-") || giftCode.length < 20) {
       showError("Invalid gift code format. Should be OBSIDIAN-XXXXXXXXXXXX");
       return;

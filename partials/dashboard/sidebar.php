@@ -18,7 +18,6 @@
                 <a href="#" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-white/70 font-medium hover:bg-primary/10 hover:text-white hover:translate-x-1 transition-all active bg-gradient-to-r from-primary to-[#a04840] text-white shadow-[0_4px_12px_rgba(184,96,92,0.4)]" data-section="overview"><i class="fas fa-th-large w-6 text-center"></i><span>Overview</span></a>
                 <a href="#" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-white/70 font-medium hover:bg-primary/10 hover:text-white hover:translate-x-1 transition-all" data-section="subscription"><i class="fas fa-crown w-6 text-center"></i><span>Subscription</span></a>
                 <a href="#" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-white/70 font-medium hover:bg-primary/10 hover:text-white hover:translate-x-1 transition-all" data-section="usage"><i class="fas fa-chart-bar w-6 text-center"></i><span>Usage &amp; Credits</span></a>
-                <a href="#" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-white/70 font-medium hover:bg-primary/10 hover:text-white hover:translate-x-1 transition-all" data-section="gift"><i class="fas fa-gift w-6 text-center"></i><span>Gift Cards</span></a>
             </div>
         </div>
 

@@ -75,7 +75,6 @@ form.addEventListener("submit", async (e) => {
     }
 
     localStorage.setItem("token", data.access_token);
-    submitText.innerHTML = '<i class="fas fa-check me-2"></i>Success!';
     submitBtn.classList.add("btn-success");
 
     setTimeout(() => {
@@ -128,7 +127,6 @@ twoFAForm.addEventListener("submit", async (e) => {
   }
 });
 
-// Handle OAuth callback
 const urlParams = new URLSearchParams(window.location.search);
 const token = urlParams.get("token");
 if (token) {

@@ -39,7 +39,7 @@ window.APP_CONFIG = {
   TINYMCE_API_KEY: "your-tinymce-api-key",
 
   SUPPORT_EMAIL: "support@your-domain.com",
-  DOCS_URL: "https://your-domain.com/documentation.html",
+  DOCS_URL: "https://your-domain.com/documentation.php",
 
   GITHUB_ISSUES_URL: "https://github.com/your-username/your-repo/issues",
 

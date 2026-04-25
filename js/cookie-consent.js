@@ -48,7 +48,7 @@
       iframe.title = container.dataset.title || "YouTube video";
       iframe.allowFullscreen = true;
       iframe.allow =
-        "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+        "accelerometer 'src'; autoplay 'src'; clipboard-write 'src'; encrypted-media 'src'; gyroscope 'src'; picture-in-picture 'src'; web-share 'src'";
       iframe.className = "absolute inset-0 w-full h-full rounded-3xl";
 
       container.innerHTML = "";
@@ -105,7 +105,6 @@
 
   window.enableYouTube = enableYouTube;
   window.showCookieBanner = showBanner;
-  window.enableYouTube = enableYouTube;
 })();
 
 (function () {

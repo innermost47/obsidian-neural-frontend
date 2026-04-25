@@ -80,8 +80,6 @@ include('partials/shared/head.php');
       ]); ?>
 
     </div>
-
-    <?php include('partials/pricing/gift-section.php'); ?>
     <?php include('partials/pricing/how-it-works.php'); ?>
     <?php include('partials/pricing/faq.php'); ?>
 

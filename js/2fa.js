@@ -1,127 +1,124 @@
-let twoFAModal;
-let currentUser;
+let currentUser = null;
 let backupCodes = [];
 
+function open2FAModal() {
+  document.getElementById("2fa-modal")?.classList.remove("hidden");
+}
+function close2FAModal() {
+  document.getElementById("2fa-modal")?.classList.add("hidden");
+}
+
+function show2FAPanel(panelId) {
+  ["setup-2fa-content", "backup-codes-content", "disable-2fa-content"].forEach(
+    (id) => {
+      document.getElementById(id)?.classList.add("hidden");
+    },
+  );
+  document.getElementById(panelId)?.classList.remove("hidden");
+}
+
 document.addEventListener("DOMContentLoaded", () => {
-  twoFAModal = new bootstrap.Modal(document.getElementById("2fa-modal"));
   loadUserSecurityStatus();
 });
 
 async function loadUserSecurityStatus() {
+  const twoFABadge = document.getElementById("2fa-status-badge");
+  const twoFABtnText = document.getElementById("2fa-btn-text");
+  const emailBadge = document.getElementById("email-status-badge");
+
   try {
     const user = await API.getCurrentUser();
     currentUser = user;
 
-    const twoFACardContainer = document.getElementById("2fa-card-container");
-    const twoFAStatusBadge = document.getElementById("2fa-status-badge");
-    const twoFABtnText = document.getElementById("2fa-btn-text");
-    const emailStatusBadge = document.getElementById("email-status-badge");
-    const emailVerificationAlert = document.getElementById(
-      "email-verification-alert"
-    );
-    const emailVerificationCard = document.getElementById(
-      "email-verification-card"
-    );
-    const securitySettingsRow = document.getElementById(
-      "security-settings-row"
-    );
-
-    if (user.oauth_provider === "google") {
-      if (twoFACardContainer) {
-        twoFACardContainer.classList.add("d-none");
-      }
-      if (emailVerificationCard) {
-        emailVerificationCard.classList.remove("col-md-6");
-        emailVerificationCard.classList.add("col-md-12");
-      }
-    }
-
-    if (!user.email_verified) {
-      if (emailVerificationAlert) {
-        emailVerificationAlert.classList.remove("d-none");
-      }
-
-      const subscribeButtons = document.querySelectorAll(
-        '[onclick^="subscribe"]'
-      );
-      subscribeButtons.forEach((btn) => {
-        btn.disabled = true;
-        btn.classList.add("disabled");
-        btn.title = "Verify your email first";
-        const originalOnclick = btn.getAttribute("onclick");
-        btn.setAttribute("data-original-onclick", originalOnclick);
-        btn.setAttribute(
-          "onclick",
-          'alert("Please verify your email address before subscribing."); return false;'
-        );
-      });
-    }
-
-    if (twoFAStatusBadge && twoFABtnText) {
+    // 2FA badge
+    if (twoFABadge && twoFABtnText) {
       if (user.two_factor_enabled) {
-        twoFAStatusBadge.className = "badge bg-success";
-        twoFAStatusBadge.innerHTML = '<i class="fas fa-check me-1"></i>Enabled';
+        twoFABadge.className =
+          "inline-block px-3 py-1 rounded-full text-xs font-bold bg-success/10 border border-success/30 text-success";
+        twoFABadge.innerHTML = '<i class="fas fa-check mr-1"></i>Enabled';
         twoFABtnText.textContent = "Disable";
       } else {
-        twoFAStatusBadge.className = "badge bg-secondary";
-        twoFAStatusBadge.innerHTML =
-          '<i class="fas fa-times me-1"></i>Disabled';
+        twoFABadge.className =
+          "inline-block px-3 py-1 rounded-full text-xs font-bold bg-white/10 border border-white/20 text-gray-400";
+        twoFABadge.innerHTML = '<i class="fas fa-times mr-1"></i>Disabled';
         twoFABtnText.textContent = "Setup";
       }
     }
 
-    if (emailStatusBadge) {
+    if (emailBadge) {
       if (user.email_verified) {
-        emailStatusBadge.className = "badge bg-success";
-        emailStatusBadge.innerHTML =
-          '<i class="fas fa-check me-1"></i>Verified';
+        emailBadge.className =
+          "inline-block px-3 py-1 rounded-full text-xs font-bold bg-success/10 border border-success/30 text-success";
+        emailBadge.innerHTML = '<i class="fas fa-check mr-1"></i>Verified';
       } else {
-        emailStatusBadge.className = "badge bg-warning";
-        emailStatusBadge.innerHTML =
-          '<i class="fas fa-exclamation me-1"></i>Not Verified';
+        emailBadge.className =
+          "inline-block px-3 py-1 rounded-full text-xs font-bold bg-warning/10 border border-warning/30 text-warning";
+        emailBadge.innerHTML =
+          '<i class="fas fa-exclamation mr-1"></i>Not Verified';
       }
+    }
+
+    if (user.oauth_provider === "google") {
+      document
+        .getElementById("2fa-toggle-btn")
+        ?.closest(".bg-white\\/\\[0\\.03\\]")
+        ?.classList.add("hidden");
+    }
+
+    if (!user.email_verified) {
+      document.querySelectorAll('[onclick^="subscribe"]').forEach((btn) => {
+        btn.disabled = true;
+        btn.title = "Verify your email first";
+        btn.setAttribute(
+          "onclick",
+          'showNotification("Please verify your email address before subscribing.", "warning"); return false;',
+        );
+      });
     }
   } catch (error) {
     console.error("Failed to load security status:", error);
-
-    const twoFAStatusBadge = document.getElementById("2fa-status-badge");
-    const emailStatusBadge = document.getElementById("email-status-badge");
-
-    if (twoFAStatusBadge) {
-      twoFAStatusBadge.className = "badge bg-danger";
-      twoFAStatusBadge.textContent = "Error";
+    const errCls =
+      "inline-block px-3 py-1 rounded-full text-xs font-bold bg-danger/10 border border-danger/30 text-danger";
+    if (twoFABadge) {
+      twoFABadge.className = errCls;
+      twoFABadge.textContent = "Error";
     }
-
-    if (emailStatusBadge) {
-      emailStatusBadge.className = "badge bg-danger";
-      emailStatusBadge.textContent = "Error";
+    if (emailBadge) {
+      emailBadge.className = errCls;
+      emailBadge.textContent = "Error";
     }
   }
 }
 
-async function resendVerificationEmail() {
-  if (!currentUser || !currentUser.email) {
-    alert("Unable to resend email. Please refresh the page.");
+window.resendVerificationEmail = async function () {
+  if (!currentUser?.email) {
+    showNotification(
+      "Unable to resend email. Please refresh the page.",
+      "warning",
+    );
     return;
   }
-
   try {
     await API.resendVerification(currentUser.email);
-    alert("Verification email sent! Please check your inbox.");
+    showNotification(
+      "Verification email sent! Please check your inbox.",
+      "success",
+    );
   } catch (error) {
-    alert(
-      error.detail || "Failed to send verification email. Please try again."
+    showNotification(
+      error.detail || "Failed to send verification email. Please try again.",
+      "danger",
     );
   }
-}
+};
 
-async function toggle2FA() {
+window.toggle2FA = async function () {
+  if (!currentUser) await loadUserSecurityStatus();
   if (!currentUser) {
-    await loadUserSecurityStatus();
-  }
-
-  if (!currentUser) {
-    alert("Failed to load user data. Please refresh the page.");
+    showNotification(
+      "Failed to load user data. Please refresh the page.",
+      "danger",
+    );
     return;
   }
 
@@ -130,57 +127,46 @@ async function toggle2FA() {
   } else {
     await setup2FA();
   }
-}
+};
 
 async function setup2FA() {
   try {
     const response = await API.setup2FA();
-
     document.getElementById("modal-title").textContent =
       "Setup Two-Factor Authentication";
     document.getElementById("qr-code-img").src = response.qr_code;
     document.getElementById("manual-code").textContent = response.secret;
-
-    document.getElementById("setup-2fa-content").classList.remove("d-none");
-    document.getElementById("backup-codes-content").classList.add("d-none");
-    document.getElementById("disable-2fa-content").classList.add("d-none");
-
-    twoFAModal.show();
+    show2FAPanel("setup-2fa-content");
+    open2FAModal();
   } catch (error) {
-    alert(error.detail || "Failed to setup 2FA");
+    showNotification(error.detail || "Failed to setup 2FA", "danger");
   }
 }
 
-async function verifySetup2FA() {
+window.verifySetup2FA = async function () {
   const code = document.getElementById("verify-code").value;
-
   if (!code || code.length !== 6) {
-    alert("Please enter a valid 6-digit code");
+    showNotification("Please enter a valid 6-digit code", "warning");
     return;
   }
 
   try {
     const response = await API.verifySetup2FA(code);
-
     backupCodes = response.backup_codes;
-
-    const backupCodesList = document.getElementById("backup-codes-list");
-    backupCodesList.textContent = backupCodes.join("\n");
-
-    document.getElementById("setup-2fa-content").classList.add("d-none");
-    document.getElementById("backup-codes-content").classList.remove("d-none");
-
+    document.getElementById("backup-codes-list").textContent =
+      backupCodes.join("\n");
+    show2FAPanel("backup-codes-content");
     await loadUserSecurityStatus();
   } catch (error) {
-    alert(error.detail || "Invalid code. Please try again.");
+    showNotification(
+      error.detail || "Invalid code. Please try again.",
+      "danger",
+    );
   }
-}
+};
 
-function downloadBackupCodes() {
-  const content = `Obsidian Neural - 2FA Backup Codes\n\nGenerated: ${new Date().toLocaleString()}\n\n${backupCodes.join(
-    "\n"
-  )}\n\nKeep these codes in a safe place. Each code can only be used once.`;
-
+window.downloadBackupCodes = function () {
+  const content = `Obsidian Neural - 2FA Backup Codes\n\nGenerated: ${new Date().toLocaleString()}\n\n${backupCodes.join("\n")}\n\nKeep these codes in a safe place. Each code can only be used once.`;
   const blob = new Blob([content], { type: "text/plain" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
@@ -190,37 +176,33 @@ function downloadBackupCodes() {
   a.click();
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
-
-  twoFAModal.hide();
-}
+  close2FAModal();
+};
 
 function showDisable2FAModal() {
   document.getElementById("modal-title").textContent =
     "Disable Two-Factor Authentication";
-  document.getElementById("setup-2fa-content").classList.add("d-none");
-  document.getElementById("backup-codes-content").classList.add("d-none");
-  document.getElementById("disable-2fa-content").classList.remove("d-none");
   document.getElementById("disable-code").value = "";
-
-  twoFAModal.show();
+  show2FAPanel("disable-2fa-content");
+  open2FAModal();
 }
 
-async function confirmDisable2FA() {
+window.confirmDisable2FA = async function () {
   const code = document.getElementById("disable-code").value;
-
   if (!code || code.length !== 6) {
-    alert("Please enter a valid 6-digit code");
+    showNotification("Please enter a valid 6-digit code", "warning");
     return;
   }
 
   try {
     await API.disable2FA(code);
-
-    alert("2FA has been disabled");
-    twoFAModal.hide();
-
+    showNotification("2FA has been disabled", "success");
+    close2FAModal();
     await loadUserSecurityStatus();
   } catch (error) {
-    alert(error.detail || "Invalid code. Please try again.");
+    showNotification(
+      error.detail || "Invalid code. Please try again.",
+      "danger",
+    );
   }
-}
+};

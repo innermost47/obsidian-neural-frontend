@@ -1,3 +1,5 @@
+"use strict";
+
 const form = document.getElementById("reset-password-form");
 const errorAlert = document.getElementById("error-alert");
 const errorMessage = document.getElementById("error-message");
@@ -17,7 +19,7 @@ if (!token) {
   invalidTokenContainer.classList.remove("hidden");
 }
 
-function togglePassword(inputId, iconId) {
+window.togglePassword = function (inputId, iconId) {
   const input = document.getElementById(inputId);
   const icon = document.getElementById(iconId);
   if (input.type === "password") {
@@ -27,7 +29,7 @@ function togglePassword(inputId, iconId) {
     input.type = "password";
     icon.classList.replace("fa-eye-slash", "fa-eye");
   }
-}
+};
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -47,17 +49,17 @@ form.addEventListener("submit", async (e) => {
   }
 
   submitBtn.disabled = true;
-  submitText.innerHTML =
-    '<i class="fas fa-spinner fa-spin mr-2"></i>Resetting...';
+  submitText.textContent = "Resetting...";
   errorAlert.classList.add("hidden");
   successAlert.classList.add("hidden");
 
   try {
     await API.resetPassword(token, password);
+
     successMessage.textContent =
       "Password reset successfully! Redirecting to login...";
     successAlert.classList.remove("hidden");
-    submitText.innerHTML = '<i class="fas fa-check mr-2"></i>Success!';
+    submitText.textContent = "Success!";
     submitBtn.classList.remove(
       "from-primary",
       "to-[#a04840]",
@@ -65,6 +67,7 @@ form.addEventListener("submit", async (e) => {
     );
     submitBtn.classList.add("from-success", "to-green-600");
     form.classList.add("hidden");
+
     setTimeout(() => {
       window.location.href = "login.php";
     }, 2000);
@@ -80,7 +83,7 @@ form.addEventListener("submit", async (e) => {
         error.detail || "Failed to reset password. Please try again.";
       errorAlert.classList.remove("hidden");
       submitBtn.disabled = false;
-      submitText.innerHTML = '<i class="fas fa-check mr-2"></i>Reset Password';
+      submitText.textContent = "Reset Password";
     }
   }
 });

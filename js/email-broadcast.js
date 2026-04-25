@@ -1,16 +1,21 @@
 let tinyEditor = null;
 let broadcastRecipients = 0;
 
+function injectModal(id, html) {
+  document.getElementById(id)?.remove();
+  document.body.insertAdjacentHTML("beforeend", html);
+}
+function closeInjectModal(id) {
+  document.getElementById(id)?.remove();
+}
+
 function initializeTinyMCE() {
   const textarea = document.getElementById("email-body");
   if (!textarea) {
     console.error("Textarea #email-body not found");
     return;
   }
-
-  if (tinymce.get("email-body")) {
-    tinymce.get("email-body").remove();
-  }
+  if (tinymce.get("email-body")) tinymce.get("email-body").remove();
 
   setTimeout(() => {
     tinymce.init({
@@ -32,18 +37,16 @@ function initializeTinyMCE() {
         "wordcount",
       ],
       toolbar:
-        "undo redo | formatselect | " +
-        "bold italic underline forecolor backcolor | alignleft aligncenter " +
-        "alignright alignjustify | bullist numlist | " +
-        "link | removeformat | help",
+        "undo redo | formatselect | bold italic underline forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist | link | removeformat | help",
       content_style:
-        'body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; font-size: 14px; }',
+        'body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; font-size: 14px; background:#0a0a0c; color:#fff; }',
       placeholder: "Write your message here...",
       promotion: false,
       branding: false,
+      skin: "oxide-dark",
+      content_css: "dark",
       setup: function (editor) {
         editor.on("init", function () {
-          console.log("TinyMCE initialized successfully");
           tinyEditor = editor;
         });
       },
@@ -63,7 +66,7 @@ async function loadBroadcastRecipients() {
   }
 }
 
-function previewEmail() {
+window.previewEmail = function () {
   const subject = document.getElementById("email-subject").value;
   const body = tinymce.get("email-body").getContent();
   const bodyText = tinymce
@@ -75,61 +78,41 @@ function previewEmail() {
     showNotification("Please enter a subject", "warning");
     return;
   }
-
-  if (bodyText.length === 0) {
+  if (!bodyText.length) {
     showNotification("Please enter a message", "warning");
     return;
   }
 
-  const modalHTML = `
-    <div class="modal fade" id="previewModal" tabindex="-1">
-      <div class="modal-dialog modal-lg modal-dialog-scrollable">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">
-              <i class="fas fa-eye me-2"></i>Email Preview
-            </h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-          </div>
-          <div class="modal-body">
-            <div class="alert alert-info mb-3">
-              <i class="fas fa-info-circle me-2"></i>
-              This email will be sent to <strong>${broadcastRecipients}</strong> recipient(s)
+  injectModal(
+    "previewModal",
+    `
+        <div id="previewModal" class="fixed inset-0 z-[2000] flex items-center justify-center p-4">
+            <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" onclick="closeInjectModal('previewModal')"></div>
+            <div class="relative bg-[#1a1a1c] border border-white/10 rounded-2xl w-full max-w-2xl max-h-[90vh] flex flex-col overflow-hidden">
+                <div class="px-6 py-4 border-b border-white/10 flex items-center justify-between">
+                    <h5 class="font-bold text-white m-0"><i class="fas fa-eye mr-2 text-primary"></i>Email Preview</h5>
+                    <button onclick="closeInjectModal('previewModal')" class="text-gray-400 hover:text-white transition-colors"><i class="fas fa-times"></i></button>
+                </div>
+                <div class="p-6 overflow-y-auto flex-1">
+                    <div class="bg-primary/10 border border-primary/30 rounded-xl p-3 mb-4 text-sm text-primary">
+                        <i class="fas fa-info-circle mr-2"></i>This email will be sent to <strong>${broadcastRecipients}</strong> recipient(s)
+                    </div>
+                    <div class="mb-4">
+                        <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Subject</p>
+                        <div class="bg-white/[0.03] border border-white/[0.06] rounded-xl px-4 py-3 text-white text-sm">${subject}</div>
+                    </div>
+                    <div>
+                        <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Message</p>
+                        <div class="bg-white/[0.03] border border-white/[0.06] rounded-xl p-4 text-gray-300 text-sm min-h-[200px]">${body}</div>
+                    </div>
+                </div>
+                <div class="px-6 pb-6 flex justify-end">
+                    <button onclick="closeInjectModal('previewModal')" class="px-5 py-2.5 rounded-xl border border-white/20 text-white font-bold text-sm hover:bg-white/5 transition-colors">Close</button>
+                </div>
             </div>
-            <div class="mb-3">
-              <strong>Subject:</strong>
-              <div class="p-2 bg-light rounded mt-1">${subject}</div>
-            </div>
-            <div>
-              <strong>Message:</strong>
-              <div class="p-3 bg-light rounded mt-1" style="min-height: 200px;">
-                ${body}
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  `;
-
-  const existingModal = document.getElementById("previewModal");
-  if (existingModal) {
-    existingModal.remove();
-  }
-
-  document.body.insertAdjacentHTML("beforeend", modalHTML);
-  const modal = new bootstrap.Modal(document.getElementById("previewModal"));
-  modal.show();
-
-  document
-    .getElementById("previewModal")
-    .addEventListener("hidden.bs.modal", function () {
-      this.remove();
-    });
-}
+        </div>`,
+  );
+};
 
 function setupBroadcastForm() {
   const form = document.getElementById("broadcast-form");
@@ -152,53 +135,39 @@ function setupBroadcastForm() {
       showNotification("Please enter a subject", "warning");
       return;
     }
-
-    if (bodyText.length === 0) {
+    if (!bodyText.length) {
       showNotification("Please enter a message", "warning");
       return;
     }
 
-    const confirmHTML = `
-      <div class="modal fade" id="confirmSendModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header bg-warning text-dark">
-              <h5 class="modal-title">
-                <i class="fas fa-exclamation-triangle me-2"></i>Confirm Send
-              </h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-              <p class="mb-3">You are about to send this email to:</p>
-              <div class="alert alert-warning">
-                <i class="fas fa-users me-2"></i>
-                <strong>${broadcastRecipients}</strong> recipient(s)
-              </div>
-              <p class="mb-0"><strong>Subject:</strong> ${subject}</p>
-              <p class="text-muted small mb-3">This action cannot be undone.</p>
-              <p class="mb-0">Are you sure you want to continue?</p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-              <button type="button" class="btn btn-warning" id="confirmSendBtn">
-                <i class="fas fa-paper-plane me-2"></i>Yes, Send Now
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    `;
-
-    const existingModal = document.getElementById("confirmSendModal");
-    if (existingModal) {
-      existingModal.remove();
-    }
-
-    document.body.insertAdjacentHTML("beforeend", confirmHTML);
-    const modal = new bootstrap.Modal(
-      document.getElementById("confirmSendModal")
+    injectModal(
+      "confirmSendModal",
+      `
+            <div id="confirmSendModal" class="fixed inset-0 z-[2000] flex items-center justify-center p-4">
+                <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" onclick="closeInjectModal('confirmSendModal')"></div>
+                <div class="relative bg-[#1a1a1c] border border-white/10 rounded-2xl w-full max-w-md overflow-hidden">
+                    <div class="px-6 py-4 border-b border-warning/30 bg-warning/10 flex items-center justify-between">
+                        <h5 class="font-bold text-warning m-0"><i class="fas fa-exclamation-triangle mr-2"></i>Confirm Send</h5>
+                        <button onclick="closeInjectModal('confirmSendModal')" class="text-gray-400 hover:text-white transition-colors"><i class="fas fa-times"></i></button>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-sm text-gray-400 mb-3">You are about to send this email to:</p>
+                        <div class="bg-warning/10 border border-warning/30 rounded-xl p-3 mb-3 text-warning text-sm font-medium">
+                            <i class="fas fa-users mr-2"></i><strong>${broadcastRecipients}</strong> recipient(s)
+                        </div>
+                        <p class="text-sm text-white mb-1"><strong>Subject:</strong> ${subject}</p>
+                        <p class="text-xs text-gray-500 mb-3">This action cannot be undone.</p>
+                        <p class="text-sm text-gray-400">Are you sure you want to continue?</p>
+                    </div>
+                    <div class="px-6 pb-6 flex justify-end gap-3">
+                        <button onclick="closeInjectModal('confirmSendModal')" class="px-5 py-2.5 rounded-xl border border-white/20 text-white font-bold text-sm hover:bg-white/5 transition-colors">Cancel</button>
+                        <button id="confirmSendBtn" class="px-5 py-2.5 rounded-xl bg-warning/10 border border-warning/30 text-warning font-bold text-sm hover:bg-warning/20 transition-colors">
+                            <i class="fas fa-paper-plane mr-2"></i>Yes, Send Now
+                        </button>
+                    </div>
+                </div>
+            </div>`,
     );
-    modal.show();
 
     document
       .getElementById("confirmSendBtn")
@@ -206,37 +175,27 @@ function setupBroadcastForm() {
         const btn = document.getElementById("confirmSendBtn");
         const originalHTML = btn.innerHTML;
         btn.disabled = true;
-        btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Sending...';
 
         try {
           const result = await API.sendBroadcastEmail(subject, body);
-
-          modal.hide();
-
+          closeInjectModal("confirmSendModal");
           showNotification(
             `Email sent successfully to ${result.sent_count} recipient(s)!`,
-            "success"
+            "success",
           );
-
           newForm.reset();
           tinymce.get("email-body").setContent("");
-
           await loadEmailHistory();
         } catch (error) {
           showNotification(
             `Failed to send email: ${error.detail || error.message}`,
-            "danger"
+            "danger",
           );
         } finally {
           btn.disabled = false;
           btn.innerHTML = originalHTML;
         }
-      });
-
-    document
-      .getElementById("confirmSendModal")
-      .addEventListener("hidden.bs.modal", function () {
-        this.remove();
       });
   });
 }
@@ -249,109 +208,89 @@ async function loadEmailHistory() {
     const data = await API.getBroadcastHistory();
     const history = data.history;
 
-    if (history.length === 0) {
+    if (!history.length) {
       tbody.innerHTML =
-        '<tr><td colspan="5" class="text-center">No emails sent yet</td></tr>';
+        '<tr><td colspan="5" class="text-center py-8 text-gray-600">No emails sent yet</td></tr>';
       return;
     }
 
     tbody.innerHTML = history
       .map(
         (email) => `
-      <tr>
-        <td><small>${formatDate(email.sent_at)}</small></td>
-        <td>${email.subject}</td>
-        <td>${email.recipients_count}</td>
-        <td>
-          <span class="badge bg-success">
-            <i class="fas fa-check me-1"></i>Sent
-          </span>
-        </td>
-        <td>
-          <button class="btn btn-sm btn-outline-primary" onclick="viewEmailDetail(${
-            email.id
-          })">
-            <i class="fas fa-eye"></i>
-          </button>
-        </td>
-      </tr>
-    `
+            <tr class="hover:bg-white/[0.02] transition-colors">
+                <td class="px-3 py-2.5 border-b border-white/[0.04] text-gray-500 text-xs">${formatDate(email.sent_at)}</td>
+                <td class="px-3 py-2.5 border-b border-white/[0.04] text-white text-sm">${email.subject}</td>
+                <td class="px-3 py-2.5 border-b border-white/[0.04] text-gray-400 text-xs">${email.recipients_count}</td>
+                <td class="px-3 py-2.5 border-b border-white/[0.04]">
+                    <span class="inline-flex items-center gap-1 bg-success/10 text-success border border-success/30 rounded-full px-2 py-0.5 text-[0.65rem] font-bold">
+                        <i class="fas fa-check"></i>Sent
+                    </span>
+                </td>
+                <td class="px-3 py-2.5 border-b border-white/[0.04]">
+                    <button onclick="viewEmailDetail(${email.id})" class="px-2 py-1 rounded-lg border border-white/20 text-white text-xs hover:bg-white/5 transition-colors">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </td>
+            </tr>`,
       )
       .join("");
   } catch (error) {
     console.error("Error loading email history:", error);
     tbody.innerHTML =
-      '<tr><td colspan="5" class="text-center text-danger">Error loading history</td></tr>';
+      '<tr><td colspan="5" class="text-center py-6 text-danger">Error loading history</td></tr>';
   }
 }
 
-async function viewEmailDetail(emailId) {
+window.viewEmailDetail = async function (emailId) {
   try {
     const data = await API.getBroadcastDetail(emailId);
     const email = data.email;
 
-    const modalHTML = `
-      <div class="modal fade" id="emailDetailModal" tabindex="-1">
-        <div class="modal-dialog modal-lg modal-dialog-scrollable">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">
-                <i class="fas fa-envelope me-2"></i>Email Details
-              </h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-              <div class="mb-3">
-                <strong>Sent:</strong> ${formatDate(email.sent_at)}
-              </div>
-              <div class="mb-3">
-                <strong>Recipients:</strong> ${email.recipients_count}
-              </div>
-              <div class="mb-3">
-                <strong>Subject:</strong>
-                <div class="p-2 bg-light rounded mt-1">${email.subject}</div>
-              </div>
-              <div>
-                <strong>Message:</strong>
-                <div class="p-3 bg-light rounded mt-1" style="min-height: 200px;">
-                  ${email.body}
+    injectModal(
+      "emailDetailModal",
+      `
+            <div id="emailDetailModal" class="fixed inset-0 z-[2000] flex items-center justify-center p-4">
+                <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" onclick="closeInjectModal('emailDetailModal')"></div>
+                <div class="relative bg-[#1a1a1c] border border-white/10 rounded-2xl w-full max-w-2xl max-h-[90vh] flex flex-col overflow-hidden">
+                    <div class="px-6 py-4 border-b border-white/10 flex items-center justify-between">
+                        <h5 class="font-bold text-white m-0"><i class="fas fa-envelope mr-2 text-primary"></i>Email Details</h5>
+                        <button onclick="closeInjectModal('emailDetailModal')" class="text-gray-400 hover:text-white transition-colors"><i class="fas fa-times"></i></button>
+                    </div>
+                    <div class="p-6 overflow-y-auto flex-1 space-y-4">
+                        <div class="flex gap-4 text-sm">
+                            <div class="bg-white/[0.03] border border-white/[0.06] rounded-xl px-4 py-3 flex-1">
+                                <p class="text-xs text-gray-500 mb-1">Sent</p>
+                                <p class="text-white font-bold">${formatDate(email.sent_at)}</p>
+                            </div>
+                            <div class="bg-white/[0.03] border border-white/[0.06] rounded-xl px-4 py-3 flex-1">
+                                <p class="text-xs text-gray-500 mb-1">Recipients</p>
+                                <p class="text-white font-bold">${email.recipients_count}</p>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Subject</p>
+                            <div class="bg-white/[0.03] border border-white/[0.06] rounded-xl px-4 py-3 text-white text-sm">${email.subject}</div>
+                        </div>
+                        <div>
+                            <p class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Message</p>
+                            <div class="bg-white/[0.03] border border-white/[0.06] rounded-xl p-4 text-gray-300 text-sm min-h-[200px]">${email.body}</div>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 flex justify-end">
+                        <button onclick="closeInjectModal('emailDetailModal')" class="px-5 py-2.5 rounded-xl border border-white/20 text-white font-bold text-sm hover:bg-white/5 transition-colors">Close</button>
+                    </div>
                 </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    `;
-
-    const existingModal = document.getElementById("emailDetailModal");
-    if (existingModal) {
-      existingModal.remove();
-    }
-
-    document.body.insertAdjacentHTML("beforeend", modalHTML);
-    const modal = new bootstrap.Modal(
-      document.getElementById("emailDetailModal")
+            </div>`,
     );
-    modal.show();
-
-    document
-      .getElementById("emailDetailModal")
-      .addEventListener("hidden.bs.modal", function () {
-        this.remove();
-      });
   } catch (error) {
     console.error("Error loading email detail:", error);
     showNotification("Error loading email details", "danger");
   }
-}
+};
 
-function initBroadcastSection() {
-  console.log("Initializing broadcast section...");
+window.initBroadcastSection = function () {
   initializeTinyMCE();
   loadBroadcastRecipients();
   loadEmailHistory();
   setupBroadcastForm();
-}
+};

@@ -1,3 +1,5 @@
+<?php include_once('partials/shared/pricing-card.php'); ?>
+
 <div id="section-subscription" class="section-content">
     <div class="sticky top-0 z-10 bg-[#0a0a0c]/95 backdrop-blur-md border-b border-white/[0.06] px-6 lg:px-12 py-5">
         <h1 class="text-xl md:text-2xl font-extrabold text-white m-0"><i class="fas fa-crown mr-3 text-primary"></i>Subscription Management</h1>
@@ -7,67 +9,52 @@
 
         <div id="pricing-section" class="hidden">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-
-                <div class="bg-white/[0.03] border border-white/[0.06] rounded-2xl overflow-hidden hover:border-primary/40 transition-all">
-                    <div class="bg-gradient-to-br from-primary/30 to-primary/10 px-6 py-8 text-center">
-                        <i class="fas fa-seedling text-3xl text-primary mb-3 block"></i>
-                        <h3 class="text-xl font-extrabold text-white">Base</h3>
-                    </div>
-                    <div class="p-6">
-                        <div class="text-center mb-5">
-                            <span class="text-4xl font-black text-white" id="sub-price-base">€7.99</span>
-                            <span class="text-sm text-gray-500">/month</span>
-                        </div>
-                        <ul class="space-y-2 mb-6">
-                            <li class="flex items-center gap-2 text-sm text-gray-400"><i class="fas fa-check-circle text-success text-xs"></i>150 credits per month</li>
-                            <li class="flex items-center gap-2 text-sm text-gray-400"><i class="fas fa-check-circle text-success text-xs"></i>150 samples</li>
-                            <li class="flex items-center gap-2 text-sm text-gray-400"><i class="fas fa-sync text-success text-xs"></i>Cancel anytime</li>
-                        </ul>
-                        <button onclick="gtagSendEvent('Base', parseFloat(window._prices.base)).then(() => subscribe('base'))" class="w-full px-6 py-3 rounded-xl bg-white/5 border border-white/10 text-white font-bold hover:bg-white/10 transition-colors"><i class="fas fa-rocket mr-2"></i>Subscribe</button>
-                    </div>
-                </div>
-
-                <div class="bg-gradient-to-b from-primary/20 to-transparent border border-primary/40 rounded-2xl overflow-hidden relative hover:border-primary/60 transition-all">
-                    <div class="absolute top-0 inset-x-0 h-8 bg-primary flex items-center justify-center">
-                        <span class="text-[10px] font-bold uppercase tracking-[0.15em] text-white"><i class="fas fa-star mr-1"></i>Recommended</span>
-                    </div>
-                    <div class="pt-8 px-6 py-8 text-center">
-                        <i class="fas fa-music text-3xl text-white mb-3 block"></i>
-                        <h3 class="text-xl font-extrabold text-white">Starter</h3>
-                    </div>
-                    <div class="p-6">
-                        <div class="text-center mb-5">
-                            <span class="text-4xl font-black text-white" id="sub-price-starter">€11.99</span>
-                            <span class="text-sm text-white/60">/month</span>
-                        </div>
-                        <ul class="space-y-2 mb-6">
-                            <li class="flex items-center gap-2 text-sm text-white/80"><i class="fas fa-check-circle text-white/60 text-xs"></i>300 credits per month</li>
-                            <li class="flex items-center gap-2 text-sm text-white/80"><i class="fas fa-check-circle text-white/60 text-xs"></i>300 samples</li>
-                            <li class="flex items-center gap-2 text-sm text-white/80"><i class="fas fa-sync text-white/60 text-xs"></i>Cancel anytime</li>
-                        </ul>
-                        <button onclick="gtagSendEvent('Starter', parseFloat(window._prices.starter)).then(() => subscribe('starter'))" class="w-full px-6 py-3 rounded-xl bg-white text-black font-bold hover:bg-gray-200 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.15)]"><i class="fas fa-rocket mr-2"></i>Subscribe</button>
-                    </div>
-                </div>
-
-                <div class="bg-white/[0.03] border border-white/[0.06] rounded-2xl overflow-hidden hover:border-primary/40 transition-all">
-                    <div class="bg-gradient-to-br from-warning/20 to-warning/5 px-6 py-8 text-center">
-                        <i class="fas fa-bolt text-3xl text-warning mb-3 block"></i>
-                        <h3 class="text-xl font-extrabold text-white">Pro</h3>
-                    </div>
-                    <div class="p-6">
-                        <div class="text-center mb-5">
-                            <span class="text-4xl font-black text-white" id="sub-price-pro">€14.99</span>
-                            <span class="text-sm text-gray-500">/month</span>
-                        </div>
-                        <ul class="space-y-2 mb-6">
-                            <li class="flex items-center gap-2 text-sm text-gray-400"><i class="fas fa-check-circle text-success text-xs"></i>500 credits per month</li>
-                            <li class="flex items-center gap-2 text-sm text-gray-400"><i class="fas fa-check-circle text-success text-xs"></i>500 samples</li>
-                            <li class="flex items-center gap-2 text-sm text-gray-400"><i class="fas fa-sync text-success text-xs"></i>Cancel anytime</li>
-                        </ul>
-                        <button onclick="gtagSendEvent('Pro', parseFloat(window._prices.pro)).then(() => subscribe('pro'))" class="w-full px-6 py-3 rounded-xl bg-white/5 border border-white/10 text-white font-bold hover:bg-white/10 transition-colors"><i class="fas fa-rocket mr-2"></i>Subscribe</button>
-                    </div>
-                </div>
-
+                <?php render_pricing_card([
+                    'name'        => 'Base',
+                    'desc'        => 'For regular creators',
+                    'price'       => '€7.99',
+                    'period'      => 'month',
+                    'billing'     => 'billed monthly',
+                    'icon'        => 'fas fa-seedling',
+                    'icon_color'  => 'text-track2',
+                    'badge_text'  => 'Base',
+                    'badge_icon'  => 'fas fa-rocket',
+                    'features'    => ['150 credits per month', '150 samples', 'Cancel anytime'],
+                    'btn_text'    => 'Subscribe',
+                    'btn_icon'    => 'fas fa-rocket',
+                    'btn_onclick' => "gtagSendEvent('Base', parseFloat(window._prices.base)).then(() => subscribe('base'))",
+                ]); ?>
+                <?php render_pricing_card([
+                    'name'        => 'Starter',
+                    'desc'        => 'The sweet spot',
+                    'price'       => '€11.99',
+                    'period'      => 'month',
+                    'billing'     => 'billed monthly',
+                    'icon'        => 'fas fa-music',
+                    'icon_color'  => 'text-primary',
+                    'featured'    => true,
+                    'badge_text'  => 'Recommended',
+                    'badge_icon'  => 'fas fa-star',
+                    'features'    => ['300 credits per month', '300 samples', 'Cancel anytime'],
+                    'btn_text'    => 'Subscribe',
+                    'btn_icon'    => 'fas fa-rocket',
+                    'btn_onclick' => "gtagSendEvent('Starter', parseFloat(window._prices.starter)).then(() => subscribe('starter'))",
+                ]); ?>
+                <?php render_pricing_card([
+                    'name'        => 'Pro',
+                    'desc'        => 'For heavy users',
+                    'price'       => '€14.99',
+                    'period'      => 'month',
+                    'billing'     => 'billed monthly',
+                    'icon'        => 'fas fa-fire',
+                    'icon_color'  => 'text-warning',
+                    'badge_text'  => 'Pro',
+                    'badge_icon'  => 'fas fa-bolt',
+                    'features'    => ['500 credits per month', '500 samples', 'Cancel anytime'],
+                    'btn_text'    => 'Subscribe',
+                    'btn_icon'    => 'fas fa-rocket',
+                    'btn_onclick' => "gtagSendEvent('Pro', parseFloat(window._prices.pro)).then(() => subscribe('pro'))",
+                ]); ?>
             </div>
         </div>
 
@@ -93,6 +80,7 @@
                     <button onclick="viewBillingHistory()" class="px-5 py-2.5 rounded-xl border border-white/20 text-white font-bold text-sm hover:bg-white/5 transition-colors"><i class="fas fa-history mr-2"></i>Billing History</button>
                 </div>
             </div>
+
             <div id="upgrade-options" class="hidden">
                 <h5 class="text-base font-bold text-white mb-4"><i class="fas fa-arrow-up mr-2 text-primary"></i>Upgrade Your Plan</h5>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-5" id="upgrade-plans-container"></div>
