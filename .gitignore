@@ -7,3 +7,4 @@ assets/videos/*
 !assets/videos/.gitkeep
 .env
 vendor
+node_modules

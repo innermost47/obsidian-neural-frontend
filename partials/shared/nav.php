@@ -17,7 +17,8 @@
   <div class="hidden lg:flex items-center gap-1" id="nav-links">
     <div id="nav-extra-desktop" class="flex items-center gap-1"></div>
 
-    <a href="index.php#provider-network" class="nav-link-pill text-warning/80 hover:text-warning">Earn GPU</a>
+    <a href="index.php#provider-network"
+      class="nav-link-pill nav-link-pill--warning">Earn GPU</a>
 
     <div class="w-px h-5 bg-white/10 mx-1.5"></div>
 

@@ -40,7 +40,7 @@
   setHref("provider-cta-github", cfg.PROVIDER_GITHUB_URL || githubUrl);
   setHref("btn-cta-github", githubUrl);
 
-  setText("conference-badge", "\u{1F3C6} Presented at " + conferenceTag);
+  setText("conference-badge", "Presented at " + conferenceTag);
   setText("aimla-title", conferenceTag + " Live Performance");
   setText("aimla-badge-text", conferenceTag + " — Late Breaking Demo");
   setText("card-conference-name", conferenceTag);

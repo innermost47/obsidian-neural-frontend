@@ -58,38 +58,7 @@
 
     <link rel="icon" type="image/x-icon" href="assets/images/logo.ico" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: "#d96850",
-                        danger: "#e07060",
-                        dangerLight: "#eb8777",
-                        success: "#6bb38a",
-                        warning: "#e8a860",
-                        bgDeep: "#0a0a0c",
-                        bgMid: "#111115",
-                        track1: "#d96850",
-                        track2: "#4da3b3",
-                        track3: "#8b6ab5",
-                        track4: "#d9a54e",
-                        track5: "#6bb38a",
-                        track6: "#5568a0",
-                        track7: "#cb7aa8",
-                        track8: "#6b8299",
-                    },
-                    fontFamily: {
-                        sans: ["Inter", "sans-serif"]
-                    },
-                },
-            },
-        };
-    </script>
+    <link rel="stylesheet" href="/css/tailwind.min.css" />
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
