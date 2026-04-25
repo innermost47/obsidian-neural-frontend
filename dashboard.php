@@ -104,11 +104,8 @@ include('partials/shared/head.php');
 
 </div>
 
-<?php include('partials/dashboard/modals.php'); ?>
-
 <script src="js/config.js"></script>
 <script src="js/api.js"></script>
-<script src="js/cookie-consent.js"></script>
 <script src="js/dashboard-notifications.js"></script>
 <script src="js/dashboard-subscription.js"></script>
 <script src="js/dashboard-api.js"></script>
@@ -133,3 +130,5 @@ include('partials/shared/head.php');
 <script src="js/analytics.js"></script>
 <script src="js/dashboard-core.js"></script>
 <script src="js/dashboard-data.js"></script>
+
+<?php include('partials/dashboard/modals.php'); ?>
