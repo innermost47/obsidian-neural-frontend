@@ -4,11 +4,6 @@ include('partials/shared/head.php');
 ?>
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-<script id="tinymce-script" referrerpolicy="origin" crossorigin="anonymous"></script>
-<script>
-  document.getElementById("tinymce-script").src =
-    "https://cdn.tiny.cloud/1/" + (window.APP_CONFIG.TINYMCE_API_KEY || "") + "/tinymce/8/tinymce.min.js";
-</script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
@@ -83,9 +78,7 @@ include('partials/shared/head.php');
 </script>
 
 <div class="flex min-h-screen bg-[#0a0a0c] overflow-x-hidden">
-
   <div id="sidebar-overlay" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[1101] lg:hidden" onclick="toggleSidebar()"></div>
-
   <button onclick="toggleSidebar()" class="fixed top-4 right-4 z-[1102] lg:hidden w-12 h-12 bg-white/10 backdrop-blur-md border border-white/10 rounded-xl text-white flex items-center justify-center hover:scale-105 transition-transform">
     <i class="fas fa-bars"></i>
   </button>
@@ -111,8 +104,11 @@ include('partials/shared/head.php');
 
 </div>
 
+<?php include('partials/dashboard/modals.php'); ?>
+
 <script src="js/config.js"></script>
 <script src="js/api.js"></script>
+<script src="js/cookie-consent.js"></script>
 <script src="js/dashboard-notifications.js"></script>
 <script src="js/dashboard-subscription.js"></script>
 <script src="js/dashboard-api.js"></script>
@@ -120,9 +116,20 @@ include('partials/shared/head.php');
 <script src="js/dashboard-providers.js"></script>
 <script src="js/2fa.js"></script>
 <script src="js/email-logs.js"></script>
+<script>
+  (function() {
+    var key = (window.APP_CONFIG && window.APP_CONFIG.TINYMCE_API_KEY) ? window.APP_CONFIG.TINYMCE_API_KEY : "";
+    var s = document.createElement("script");
+    s.referrerPolicy = "origin";
+    s.crossOrigin = "anonymous";
+    s.src = "https://cdn.tiny.cloud/1/" + key + "/tinymce/8/tinymce.min.js";
+    s.onload = function() {
+      window.tinymceReady = true;
+    };
+    document.head.appendChild(s);
+  })();
+</script>
 <script src="js/email-broadcast.js"></script>
 <script src="js/analytics.js"></script>
 <script src="js/dashboard-core.js"></script>
 <script src="js/dashboard-data.js"></script>
-
-<?php include('partials/dashboard/modals.php'); ?>

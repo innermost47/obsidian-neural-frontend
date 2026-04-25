@@ -15,9 +15,9 @@ function initializeTinyMCE() {
     console.error("Textarea #email-body not found");
     return;
   }
-  if (tinymce.get("email-body")) tinymce.get("email-body").remove();
 
-  setTimeout(() => {
+  function doInit() {
+    if (tinymce.get("email-body")) tinymce.get("email-body").remove();
     tinymce.init({
       selector: "#email-body",
       height: 400,
@@ -51,7 +51,23 @@ function initializeTinyMCE() {
         });
       },
     });
-  }, 100);
+  }
+
+  if (typeof tinymce !== "undefined") {
+    setTimeout(doInit, 100);
+  } else {
+    var waited = 0;
+    var interval = setInterval(function () {
+      waited += 100;
+      if (typeof tinymce !== "undefined") {
+        clearInterval(interval);
+        setTimeout(doInit, 100);
+      } else if (waited > 10000) {
+        clearInterval(interval);
+        console.error("TinyMCE failed to load after 10s");
+      }
+    }, 100);
+  }
 }
 
 async function loadBroadcastRecipients() {
