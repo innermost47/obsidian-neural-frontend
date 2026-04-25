@@ -29,7 +29,7 @@ function render_pricing_card($args)
                 </div>
             <?php endif; ?>
 
-            <div class="flex-1 flex flex-col pt-<?php echo $badge_text ? '10' : '6'; ?>">
+            <div class="flex-1 flex flex-col <?php echo $badge_text ? 'mt-2 pt-6' : 'pt-6'; ?>">
 
                 <div class="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-2xl mx-auto mb-4 <?php echo $icon_color; ?> transition-transform">
                     <i class="<?php echo $icon; ?>"></i>

@@ -115,7 +115,7 @@
         label: "Free — " + p.sym + "0/mo",
         detail: "20 credits · no card required",
         btnText: "Get Started Free",
-        btnIcon: "fas fa-arrow-right",
+        btnIcon: "",
         skipVisible: false,
       },
       base: {
