@@ -86,8 +86,7 @@ transparent 60%
                 </div>
             </div>
             <p class="text-center mt-4 text-sm text-gray-500">
-                <i class="fas fa-plug mr-2"></i>USB MIDI • 8 slots • Pages A/B/C/D •
-                Séquenceur • Feedback bidirectionnel
+                <i class="fas fa-plug mr-2"></i>USB MIDI • 8 slots • Pages A/B/C/D • Sequencer • Bidirectional feedback
             </p>
         </div>
 
