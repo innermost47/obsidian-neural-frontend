@@ -76,7 +76,7 @@
                 <div class="absolute top-0 left-0 w-full h-1 bg-track4"></div>
                 <div
                     class="w-10 h-10 rounded-lg bg-track4/20 text-track4 flex items-center justify-center text-lg mb-3 group-hover:scale-110 transition-transform">
-                    <i class="fas fa-piano-keys"></i>
+                    <i class="fas fa-infinity"></i>
                 </div>
                 <h3 class="font-bold text-sm mb-1">
                     <a
