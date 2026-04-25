@@ -20,7 +20,6 @@ transparent 60%
             </p>
         </div>
 
-        <!-- Video -->
         <div class="max-w-4xl mx-auto mb-16 gs-reveal opacity-0 scale-95">
             <div
                 class="aspect-video rounded-3xl border border-white/10 shadow-2xl relative overflow-hidden bg-black"
@@ -46,11 +45,9 @@ location.reload();
             </div>
         </div>
 
-        <!-- 3 steps -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             <div
                 class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl gs-reveal opacity-0 translate-y-8">
-                <div class="text-3xl font-black text-track3 mb-4">1</div>
                 <div
                     class="w-12 h-12 rounded-xl bg-track3/20 text-track3 flex items-center justify-center text-xl mb-4">
                     <i class="fas fa-paintbrush"></i>
@@ -77,7 +74,6 @@ location.reload();
             </div>
             <div
                 class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl gs-reveal opacity-0 translate-y-8">
-                <div class="text-3xl font-black text-track2 mb-4">2</div>
                 <div
                     class="w-12 h-12 rounded-xl bg-track2/20 text-track2 flex items-center justify-center text-xl mb-4">
                     <i class="fas fa-tags"></i>
@@ -104,7 +100,6 @@ location.reload();
             </div>
             <div
                 class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl gs-reveal opacity-0 translate-y-8">
-                <div class="text-3xl font-black text-primary mb-4">3</div>
                 <div
                     class="w-12 h-12 rounded-xl bg-primary/20 text-primary flex items-center justify-center text-xl mb-4">
                     <i class="fas fa-robot"></i>
