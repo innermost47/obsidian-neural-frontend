@@ -61,7 +61,7 @@
                     <a id="dl-macos-vst3" href="#" target="_blank" rel="noopener" class="flex items-center gap-2 w-full px-4 py-2.5 rounded-xl bg-gradient-to-r from-primary to-[#a04840] text-white font-bold text-sm hover:scale-[1.02] transition-transform"><i class="fab fa-apple"></i>macOS — VST3</a>
                     <a id="dl-macos-au" href="#" target="_blank" rel="noopener" class="flex items-center gap-2 w-full px-4 py-2.5 rounded-xl bg-gradient-to-r from-primary to-[#a04840] text-white font-bold text-sm hover:scale-[1.02] transition-transform"><i class="fab fa-apple"></i>macOS — AU</a>
                     <a id="dl-linux" href="#" target="_blank" rel="noopener" class="flex items-center gap-2 w-full px-4 py-2.5 rounded-xl bg-gradient-to-r from-primary to-[#a04840] text-white font-bold text-sm hover:scale-[1.02] transition-transform"><i class="fab fa-linux"></i>Linux — VST3</a>
-                    <button onclick="showSection('api')" class="flex items-center gap-2 w-full px-4 py-2.5 rounded-xl border border-white/20 text-white font-bold text-sm hover:bg-white/5 transition-colors"><i class="fas fa-key"></i>Get your API key &amp; server URL</button>
+                    <button onclick="showSection('api')" class="flex items-center gap-2 w-full px-4 py-2.5 rounded-xl border border-white/20 text-white font-bold text-sm hover:bg-white/5 transition-colors" style="cursor: pointer;"><i class="fas fa-key"></i>Get your API key &amp; server URL</button>
                 </div>
             </div>
         </div>
