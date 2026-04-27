@@ -1,6 +1,6 @@
 <?php
-$page_title = "Pricing — OBSIDIAN Neural | Free Plan + Plans from €5.99/month";
-$page_desc = "OBSIDIAN Neural pricing: Free (20 credits included), Base €5.99/mo, Starter €11.99/mo, Pro €14.99/mo. No credit card required. AI music generation VST3 directly in your DAW.";
+$page_title = "Pricing — OBSIDIAN Neural | Free Plan + Plans from €7.99/month";
+$page_desc = "OBSIDIAN Neural pricing: Free (20 credits included), Base €7.99/mo, Starter €11.99/mo, Pro €14.99/mo. No credit card required. AI music generation VST3 directly in your DAW.";
 include('partials/shared/head.php');
 ?>
 <?php include('partials/shared/nav.php'); ?>
@@ -33,7 +33,7 @@ include('partials/shared/head.php');
       <?php render_pricing_card([
         'name' => 'Base',
         'desc' => 'For regular creators',
-        'price' => '€5.99',
+        'price' => '€7.99',
         'period' => 'month',
         'billing' => 'billed monthly',
         'icon' => 'fas fa-seedling',

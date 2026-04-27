@@ -1,7 +1,7 @@
 (function () {
   var cfg = window.APP_CONFIG || {};
   var sym = cfg.GIFT_CURRENCY_SYMBOL || "€";
-  var pBase = cfg.PLAN_PRICE_BASE || "5.99";
+  var pBase = cfg.PLAN_PRICE_BASE || "7.99";
   var pStarter = cfg.GIFT_PRICE_STARTER || "11.99";
   var pPro = cfg.GIFT_PRICE_PRO || "14.99";
   var githubUrl = cfg.GITHUB_URL || "#";
