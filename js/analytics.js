@@ -300,6 +300,11 @@ async function loadAnalyticsDaily(days) {
       if (analyticsChart) {
         analyticsChart.destroy();
       }
+      if (window.innerWidth < 768) {
+        chartContainer.style.height = "220px";
+      } else {
+        chartContainer.style.height = "80px";
+      }
       const ctx = document
         .getElementById("analytics-daily-chart")
         .getContext("2d");
@@ -336,7 +341,7 @@ async function loadAnalyticsDaily(days) {
         },
         options: {
           responsive: true,
-          maintainAspectRatio: true,
+          maintainAspectRatio: false,
           plugins: {
             legend: { position: "top", labels: { color: "#9ca3af" } },
             tooltip: { mode: "index", intersect: false },
