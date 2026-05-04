@@ -300,14 +300,14 @@ async function loadAnalyticsDaily(days) {
       if (analyticsChart) {
         analyticsChart.destroy();
       }
-      if (window.innerWidth < 768) {
-        chartContainer.style.height = "220px";
-      } else {
-        chartContainer.style.height = "80px";
-      }
       const ctx = document
         .getElementById("analytics-daily-chart")
         .getContext("2d");
+      if (window.innerWidth < 768) {
+        document.getElementById("analytics-daily-chart").style.height = "220px";
+      } else {
+        document.getElementById("analytics-daily-chart").style.height = "80px";
+      }
       analyticsChart = new Chart(ctx, {
         type: "line",
         data: {
