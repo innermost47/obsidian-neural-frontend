@@ -33,7 +33,7 @@
 
         <div class="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-5">
             <div class="flex items-center justify-between mb-2">
-                <span class="text-sm font-bold text-white"><i class="fas fa-calendar-check mr-2 text-primary"></i>Presence days</span>
+                <span class="text-sm font-bold text-white"><i class="fas fa-calendar-check mr-2 text-primary"></i>Presence days this month</span>
                 <span class="text-xs text-gray-500">Target: 80%</span>
             </div>
             <div class="flex items-baseline gap-1.5 mb-3">
