@@ -135,14 +135,12 @@
                 </table>
             </div>
         </div>
-
         <div class="flex items-start gap-3 p-5 bg-primary/[0.06] border border-primary/20 rounded-2xl">
             <i class="fas fa-shield-alt text-primary mt-0.5 shrink-0"></i>
             <div>
                 <div class="text-sm font-bold text-white mb-1">Eligibility to receive your monthly share</div>
-                <div class="text-xs text-gray-500">You must maintain at least <strong class="text-gray-300">8 hours of daily presence</strong> (verified by random network pings) and achieve at least <strong class="text-gray-300">80% of your monthly hour objective</strong> (prorated if you join mid-month). You also need at least 1 billable job processed. Revenue is split equally among all eligible providers. Payouts via Stripe Connect.</div>
+                <div class="text-xs text-gray-500">You must maintain at least <strong class="text-gray-300">8 hours of daily presence</strong> (verified by random network pings) and achieve at least <strong class="text-gray-300">80% of presence days for the month</strong> (prorated if you join mid-month). You also need at least 1 billable job processed. Revenue is split equally among all eligible providers. Payouts via Stripe Connect.</div>
             </div>
         </div>
-
     </div>
 </div>
