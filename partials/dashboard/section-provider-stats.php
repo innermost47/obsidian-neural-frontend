@@ -25,12 +25,9 @@
         </div>
 
         <div class="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-5">
-            <div class="flex items-center justify-between mb-3">
-                <span class="text-sm font-bold text-white"><i class="fas fa-clock mr-2 text-primary"></i>Monthly Uptime Goal (8h/day)</span>
-                <span class="text-xs text-gray-500" id="uptime-month-label">—</span>
-            </div>
-            <div class="h-3 rounded-full bg-white/5 overflow-hidden">
-                <div id="uptime-month-bar" class="h-full rounded-full bg-gradient-to-r from-primary to-[#a04840] transition-all" style="width:0%"></div>
+            <div class="flex items-center justify-between">
+                <span class="text-sm font-bold text-white"><i class="fas fa-clock mr-2 text-primary"></i>Hours accumulated this month</span>
+                <span class="text-lg font-black text-white" id="provider-uptime-month">—</span>
             </div>
         </div>
 
@@ -46,16 +43,6 @@
             </div>
             <div class="h-2 rounded-full bg-white/5 overflow-hidden">
                 <div id="days-present-bar" class="h-full rounded-full bg-danger transition-all duration-500" style="width:0%"></div>
-            </div>
-        </div>
-
-        <div class="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-5">
-            <div class="flex items-center justify-between mb-3">
-                <span class="text-sm font-bold text-white" id="period-label">—</span>
-                <span class="text-xs text-gray-500" id="month-progress-label">—</span>
-            </div>
-            <div class="h-1.5 rounded-full bg-white/5 overflow-hidden">
-                <div id="month-progress-bar" class="h-full rounded-full bg-primary transition-all" style="width:0%"></div>
             </div>
         </div>
 

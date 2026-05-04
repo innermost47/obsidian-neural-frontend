@@ -168,17 +168,6 @@ function renderProviderStats(data) {
     ? `<span class="inline-flex items-center gap-1 ml-2 bg-success/10 text-success border border-success/25 rounded-full px-2 py-0.5 text-[0.65rem] font-bold"><span class="w-1.5 h-1.5 rounded-full bg-success" style="box-shadow:0 0 4px #28c840"></span>Online</span>`
     : `<span class="inline-flex items-center gap-1 ml-2 bg-white/5 text-gray-500 border border-white/10 rounded-full px-2 py-0.5 text-[0.65rem] font-bold opacity-70">Offline</span>`;
 
-  const { year, month, days_elapsed, days_in_month } = period;
-  const monthName = new Date(year, month - 1).toLocaleString("default", {
-    month: "long",
-  });
-  const progressPct = Math.round((days_elapsed / days_in_month) * 100);
-  document.getElementById("period-label").textContent =
-    `${monthName} ${year} — day ${days_elapsed}/${days_in_month}`;
-  document.getElementById("month-progress-bar").style.width = `${progressPct}%`;
-  document.getElementById("month-progress-label").textContent =
-    `${progressPct}% of month elapsed`;
-
   document.getElementById("provider-name").textContent = provider.name;
   document.getElementById("provider-last-seen").textContent = provider.last_seen
     ? new Date(provider.last_seen).toLocaleString()
@@ -194,16 +183,8 @@ function renderProviderStats(data) {
   badge.textContent = provider.is_active ? "Active" : "Inactive";
   badge.className = `px-3 py-1 rounded-full text-xs font-bold border ${provider.is_active ? "bg-success/10 border-success/30 text-success" : "bg-white/10 border-white/20 text-gray-400"}`;
 
-  const monthPct = Math.min(100, uptime.month_progress_pct);
-  const monthBar = document.getElementById("uptime-month-bar");
-  monthBar.style.width = `${monthPct}%`;
-  monthBar.className = `h-full rounded-full transition-all ${monthPct >= 100 ? "bg-success" : monthPct >= 80 ? "bg-warning" : "bg-danger"}`;
-
-  const hoursRemaining = uptime.month_hours_remaining;
-  document.getElementById("uptime-month-label").textContent =
-    hoursRemaining > 0
-      ? `${uptime.month_hours}h done — ${hoursRemaining}h remaining / ${uptime.month_required_hours}h goal`
-      : `✓ ${uptime.month_hours}h — goal reached (${uptime.month_required_hours}h)`;
+  document.getElementById("provider-uptime-month").textContent =
+    `${uptime.month_hours}h`;
 
   const daysPresent = uptime.days_present ?? 0;
   const daysRequired = uptime.days_required ?? 1;
