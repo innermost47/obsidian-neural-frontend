@@ -303,11 +303,6 @@ async function loadAnalyticsDaily(days) {
       const ctx = document
         .getElementById("analytics-daily-chart")
         .getContext("2d");
-      if (window.innerWidth < 768) {
-        document.getElementById("analytics-daily-chart").style.height = "220px";
-      } else {
-        document.getElementById("analytics-daily-chart").style.height = "80px";
-      }
       analyticsChart = new Chart(ctx, {
         type: "line",
         data: {
@@ -341,7 +336,7 @@ async function loadAnalyticsDaily(days) {
         },
         options: {
           responsive: true,
-          maintainAspectRatio: false,
+          maintainAspectRatio: true,
           plugins: {
             legend: { position: "top", labels: { color: "#9ca3af" } },
             tooltip: { mode: "index", intersect: false },

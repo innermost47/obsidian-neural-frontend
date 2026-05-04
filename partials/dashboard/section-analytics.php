@@ -47,7 +47,7 @@
         </div>
 
         <div class="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-5">
-            <h3 class="text-sm font-bold text-white mb-4"><i class="fas fa-chart-area mr-2 text-primary"></i>Daily Traffic</h3><canvas id="analytics-daily-chart"></canvas>
+            <h3 class="text-sm font-bold text-white mb-4"><i class="fas fa-chart-area mr-2 text-primary"></i>Daily Traffic</h3><canvas id="analytics-daily-chart" height="80"></canvas>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
