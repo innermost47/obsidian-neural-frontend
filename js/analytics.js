@@ -150,104 +150,6 @@ function getColorForIntensity(intensity) {
   ];
 }
 
-async function loadConversionFunnel(days) {
-  const container = document.getElementById("analytics-funnel-container");
-  const summaryContainer = document.getElementById("analytics-funnel-summary");
-  const pathsContainer = document.getElementById("analytics-paths");
-
-  try {
-    const data = await API.getConversionFunnel(days);
-
-    if (data.funnel?.length) {
-      container.innerHTML =
-        '<div class="space-y-5">' +
-        data.funnel
-          .map((step, i) => {
-            let dropOffText = "";
-            if (i > 0 && step.drop_off > 0) {
-              dropOffText = `<span class="text-danger text-xs"><i class="fas fa-arrow-down mr-1"></i>${step.drop_off} dropped (${step.retention_rate.toFixed(0)}% stayed)</span>`;
-            } else if (i > 0 && step.drop_off < 0) {
-              dropOffText = `<span class="text-success text-xs"><i class="fas fa-arrow-up mr-1"></i>${Math.abs(step.drop_off)} joined directly</span>`;
-            }
-            return `
-                    <div>
-                        <div class="flex justify-between items-start mb-2">
-                            <div>
-                                <div class="font-bold text-white">${step.name}</div>
-                                <div class="text-xs text-gray-500">${step.description}</div>
-                                <div class="text-xs text-gray-600 mt-0.5">${step.users.toLocaleString()} users · ${step.views.toLocaleString()} views</div>
-                            </div>
-                            <div class="text-right shrink-0 ml-4">
-                                <div class="text-2xl font-black text-primary">${step.conversion_rate.toFixed(1)}%</div>
-                                ${dropOffText}
-                            </div>
-                        </div>
-                        <div class="h-9 bg-white/5 rounded-xl overflow-hidden">
-                            <div class="h-full bg-gradient-to-r from-primary to-[#a04840] rounded-xl flex items-center justify-center text-white font-bold text-sm transition-all" style="width:${step.conversion_rate}%">
-                                ${step.users.toLocaleString()} users
-                            </div>
-                        </div>
-                    </div>`;
-          })
-          .join("") +
-        "</div>";
-    } else {
-      container.innerHTML = `<div class="text-center py-6 text-gray-600">No funnel data available</div>`;
-    }
-
-    if (data.summary) {
-      const s = data.summary;
-      summaryContainer.innerHTML = `
-                <div class="space-y-4">
-                    <div class="pb-3 border-b border-white/[0.06]">
-                        <div class="text-xs text-gray-500 mb-1">Total Visitors</div>
-                        <div class="text-2xl font-black text-white">${s.total_visitors.toLocaleString()}</div>
-                    </div>
-                    <div class="pb-3 border-b border-white/[0.06]">
-                        <div class="text-xs text-gray-500 mb-1">Overall Conversion</div>
-                        <div class="text-2xl font-black text-success">${s.overall_conversion_rate.toFixed(1)}%</div>
-                        <div class="text-xs text-gray-600">${s.successful_conversions} / ${s.total_visitors} visitors</div>
-                    </div>
-                    <div class="pb-3 border-b border-white/[0.06]">
-                        <div class="text-xs text-gray-500 mb-1">Signup Completion</div>
-                        <div class="text-2xl font-black text-primary">${s.signup_completion_rate.toFixed(1)}%</div>
-                        <div class="text-xs text-gray-600">${s.successful_conversions} / ${s.registration_attempts} signups</div>
-                    </div>
-                    <div>
-                        <div class="text-xs text-gray-500 mb-1">Total Pageviews</div>
-                        <div class="text-xl font-bold text-white">${s.total_pageviews.toLocaleString()}</div>
-                    </div>
-                </div>`;
-    }
-
-    if (data.paths) {
-      pathsContainer.innerHTML = Object.values(data.paths)
-        .map(
-          (path) => `
-                <div class="bg-white/[0.03] border border-white/[0.06] rounded-xl p-4">
-                    <div class="flex items-center gap-3 mb-3">
-                        <i class="fas ${path.icon} text-2xl text-primary"></i>
-                        <div>
-                            <div class="font-bold text-white text-sm">${path.name}</div>
-                            <div class="text-xs text-gray-500">${path.description}</div>
-                        </div>
-                    </div>
-                    <div class="text-center mt-2">
-                        <div class="text-2xl font-black text-primary">${path.count.toLocaleString()}</div>
-                        ${path.rate !== undefined ? `<div class="text-xs text-success font-bold">${path.rate.toFixed(1)}% rate</div>` : ""}
-                    </div>
-                </div>`,
-        )
-        .join("");
-    }
-  } catch (error) {
-    console.error("Error loading conversion funnel:", error);
-    container.innerHTML = `<div class="text-center py-6 text-danger">Error loading funnel data</div>`;
-    summaryContainer.innerHTML = `<div class="text-center py-6 text-danger">Error</div>`;
-    pathsContainer.innerHTML = `<div class="col-span-full text-center py-6 text-danger">Error loading paths</div>`;
-  }
-}
-
 async function loadSocialReferrals(days) {
   const container = document.getElementById("analytics-social-media");
   try {
@@ -335,7 +237,6 @@ window.loadAnalytics = async function (days = 30) {
       loadDeviceBreakdown(days),
       loadWorldMap(days),
       loadCountries(days),
-      loadConversionFunnel(days),
       loadSocialReferrals(days),
     ]);
     showNotification("Analytics data loaded successfully", "success");
@@ -364,8 +265,6 @@ function showLoadingState() {
   document.getElementById("analytics-devices").innerHTML =
     `<div class="col-span-full text-center py-8 text-gray-600"><i class="fas fa-spinner fa-spin text-xl"></i></div>`;
   document.getElementById("analytics-world-map").innerHTML = spinnerBox();
-  document.getElementById("analytics-funnel-summary").innerHTML =
-    `<div class="text-center py-8 text-gray-600"><i class="fas fa-spinner fa-spin text-xl"></i></div>`;
   document.getElementById("analytics-paths").innerHTML = spinnerGrid();
 }
 

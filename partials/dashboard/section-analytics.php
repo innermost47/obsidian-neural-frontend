@@ -112,28 +112,6 @@
             </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-            <div class="md:col-span-2 bg-white/[0.03] border border-white/[0.06] rounded-2xl p-5">
-                <h3 class="text-sm font-bold text-white mb-4"><i class="fas fa-filter mr-2 text-primary"></i>Conversion Funnel</h3>
-                <div id="analytics-funnel-container">
-                    <div class="text-center py-8 text-gray-600"><i class="fas fa-spinner fa-spin text-xl"></i></div>
-                </div>
-            </div>
-            <div class="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-5">
-                <h3 class="text-sm font-bold text-white mb-4"><i class="fas fa-chart-pie mr-2 text-primary"></i>Conversion Summary</h3>
-                <div id="analytics-funnel-summary">
-                    <div class="text-center py-8 text-gray-600"><i class="fas fa-spinner fa-spin text-xl"></i></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-5">
-            <h3 class="text-sm font-bold text-white mb-4"><i class="fas fa-route mr-2 text-primary"></i>User Journeys &amp; Insights</h3>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="analytics-paths">
-                <div class="col-span-full text-center py-8 text-gray-600"><i class="fas fa-spinner fa-spin text-xl"></i></div>
-            </div>
-        </div>
-
         <div class="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-5">
             <h3 class="text-sm font-bold text-white mb-4"><i class="fas fa-mobile-alt mr-2 text-primary"></i>Device Breakdown</h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="analytics-devices">
