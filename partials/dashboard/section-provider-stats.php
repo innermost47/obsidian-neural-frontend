@@ -45,7 +45,7 @@
                 <span class="ml-auto text-lg font-black" id="stat-days-percent">0%</span>
             </div>
             <div class="h-2 rounded-full bg-white/5 overflow-hidden">
-                <div id="days-present-bar" class="h-full rounded-full transition-all duration-500" style="width:0%; background: #ef4444;"></div>
+                <div id="days-present-bar" class="h-full rounded-full bg-danger transition-all duration-500" style="width:0%"></div>
             </div>
         </div>
 
