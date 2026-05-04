@@ -219,11 +219,15 @@ function renderProviderStats(data) {
   daysBar.style.width = `${Math.min(daysPercent, 100)}%`;
 
   if (daysPercent >= 80) {
-    daysBar.style.background = "#22c55e";
-    daysPercentEl.style.color = "#22c55e";
+    daysBar.classList.add("bg-success");
+    daysBar.classList.remove("bg-danger");
+    daysPercentEl.classList.add("text-success");
+    daysPercentEl.classList.remove("text-danger");
   } else {
-    daysBar.style.background = "#ef4444";
-    daysPercentEl.style.color = "#ef4444";
+    daysBar.classList.add("bg-danger");
+    daysBar.classList.remove("bg-success");
+    daysPercentEl.classList.add("text-danger");
+    daysPercentEl.classList.remove("text-success");
   }
 
   document.getElementById("stat-my-jobs-month").textContent = (
