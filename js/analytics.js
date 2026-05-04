@@ -212,11 +212,6 @@ window.loadAnalytics = async function (days = 30) {
   if (isLoading) return;
   isLoading = true;
   currentAnalyticsPeriod = days;
-  if (window.innerWidth < 768) {
-    document.getElementById("analytics-daily-chart").style.height = "300px";
-  } else {
-    document.getElementById("analytics-daily-chart").style.height = "350px";
-  }
   document
     .querySelectorAll("#section-analytics button[onclick^='loadAnalytics']")
     .forEach((btn) => {
@@ -315,24 +310,24 @@ async function loadAnalyticsDaily(days) {
             {
               label: "Active Users",
               data: data.data.map((d) => d.active_users),
-              borderColor: "rgb(184,96,92)",
-              backgroundColor: "rgba(184,96,92,0.1)",
+              borderColor: "rgb(153, 102, 255)",
+              backgroundColor: "rgba(153, 102, 255, 0.1)",
               tension: 0.4,
               fill: true,
             },
             {
               label: "New Users",
               data: data.data.map((d) => d.new_users),
-              borderColor: "rgb(201,117,113)",
-              backgroundColor: "rgba(201,117,113,0.1)",
+              borderColor: "rgb(0, 150, 136)",
+              backgroundColor: "rgba(0, 150, 136, 0.1)",
               tension: 0.4,
               fill: true,
             },
             {
               label: "Sessions",
               data: data.data.map((d) => d.sessions),
-              borderColor: "rgb(212,165,160)",
-              backgroundColor: "rgba(212,165,160,0.1)",
+              borderColor: "rgb(255, 205, 86)",
+              backgroundColor: "rgba(255, 205, 86, 0.1)",
               tension: 0.4,
               fill: true,
             },
