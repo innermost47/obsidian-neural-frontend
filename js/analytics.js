@@ -265,7 +265,6 @@ function showLoadingState() {
   document.getElementById("analytics-devices").innerHTML =
     `<div class="col-span-full text-center py-8 text-gray-600"><i class="fas fa-spinner fa-spin text-xl"></i></div>`;
   document.getElementById("analytics-world-map").innerHTML = spinnerBox();
-  document.getElementById("analytics-paths").innerHTML = spinnerGrid();
 }
 
 async function loadAnalyticsOverview(days) {
