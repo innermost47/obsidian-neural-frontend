@@ -11,7 +11,7 @@
                 <i class="fas fa-file-pdf"></i> Read Full Paper
             </a>
         </div>
-        <div class="w-28 h-28 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-primary text-5xl shrink-0">
+        <div class="hidden md:flex w-28 h-28 rounded-2xl bg-white/5 border border-white/10 items-center justify-center text-primary text-5xl shrink-0">
             <i class="fas fa-university"></i>
         </div>
     </div>

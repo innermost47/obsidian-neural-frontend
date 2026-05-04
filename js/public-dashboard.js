@@ -291,49 +291,82 @@
                 )
               : 0;
           return `
-                <div class="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-5 hover:border-primary/40 hover:shadow-[0_8px_24px_rgba(217,104,80,0.15)] transition-all duration-300">
-                    <div class="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-[#a04840] text-white rounded-full px-3 py-1 text-xs font-bold mb-4">
-                        <i class="fas fa-calendar-alt"></i>${rep.month || "—"}
-                    </div>
-                    <div class="space-y-2">
-                        <div class="flex justify-between items-center py-2 border-b border-white/[0.05] text-sm">
-                            <span class="text-gray-500">Total revenue</span>
-                            <span class="font-black font-mono text-primary">€${fmt(rep.total_revenue_eur)}</span>
-                        </div>
-                        <div class="flex justify-between items-center py-2 border-b border-white/[0.05] text-sm">
-                            <span class="text-gray-500">Platform fee (${rep.platform_fee_pct ?? 15}%)</span>
-                            <span class="font-bold font-mono text-gray-300">€${fmt(rep.platform_fee_eur)}</span>
-                        </div>
-                        <div class="flex justify-between items-center py-2 border-b border-white/[0.05] text-sm">
-                            <span class="text-gray-500">Distributable (85%)</span>
-                            <span class="font-black font-mono text-primary">€${fmt(rep.distributable_eur)}</span>
-                        </div>
-                        <div class="h-1.5 rounded-full bg-white/5 mt-2 mb-1 overflow-hidden">
-                            <div class="h-full bg-gradient-to-r from-primary to-[#a04840] rounded-full transition-all duration-500" style="width:${distPct}%"></div>
-                        </div>
-                        <div class="text-[0.68rem] text-gray-600 mb-2">${distPct}% redistributed to providers</div>
-                        <div class="flex justify-between items-center py-2 border-b border-white/[0.05] text-sm">
-                            <span class="text-gray-500">Eligible providers</span>
-                            <span class="font-bold font-mono text-gray-300">${rep.eligible_providers ?? "—"}</span>
-                        </div>
-                        <div class="flex justify-between items-center py-2 border-b border-white/[0.05] text-sm">
-                            <span class="text-gray-500">Share / provider</span>
-                            <span class="font-black font-mono text-primary">€${fmt(rep.share_per_provider_eur)}</span>
-                        </div>
-                        <div class="flex justify-between items-center py-2 border-b border-white/[0.05] text-sm">
-                            <span class="text-gray-500">Remainder</span>
-                            <span class="font-bold font-mono text-gray-300">€${fmt(rep.remainder_eur)}</span>
-                        </div>
-                        <div class="flex justify-between items-center py-2 border-b border-white/[0.05] text-sm">
-                            <span class="text-gray-500">Transfers</span>
-                            <span class="font-bold font-mono text-gray-300">${rep.transfers ?? "—"}</span>
-                        </div>
-                        <div class="flex justify-between items-center py-2 text-sm">
-                            <span class="text-gray-500">Published</span>
-                            <span class="font-mono text-[0.72rem] text-gray-500">${shortDate(rep.published_at)}</span>
-                        </div>
-                    </div>
-                </div>`;
+            <div class="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-5 hover:border-primary/40 hover:shadow-[0_8px_24px_rgba(217,104,80,0.15)] transition-all duration-300">
+              <div class="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-[#a04840] text-white rounded-full px-3 py-1 text-xs font-bold mb-4">
+                  <i class="fas fa-calendar-alt"></i>${rep.month || "—"}
+              </div>
+              <div class="space-y-2">
+                <div class="flex justify-between items-center py-2 border-b border-white/[0.05] text-sm">
+                    <span class="text-gray-500">Total revenue</span>
+                    <span class="font-black font-mono text-primary">€${fmt(rep.total_revenue_eur)}</span>
+                </div>
+                <div class="flex justify-between items-center py-2 border-b border-white/[0.05] text-sm">
+                    <span class="text-gray-500">Platform fee (${rep.platform_fee_pct ?? 15}%)</span>
+                    <span class="font-bold font-mono text-gray-300">€${fmt(rep.platform_fee_eur)}</span>
+                </div>
+                <div class="flex justify-between items-center text-sm">
+                    <span class="text-gray-500">Distributable (85%)</span>
+                    <span class="font-black font-mono text-primary">€${fmt(rep.distributable_eur)}</span>
+                </div>
+                <div class="h-1.5 rounded-full bg-white/5 mt-2 mb-1 overflow-hidden">
+                    <div class="h-full bg-gradient-to-r from-primary to-[#a04840] rounded-full transition-all duration-500" style="width:${distPct}%"></div>
+                </div>
+                <div class="text-[0.68rem] text-gray-600 mb-2">${distPct}% redistributed to providers</div>
+                <div class="flex justify-between items-center py-2 border-b border-white/[0.05] text-sm">
+                    <span class="text-gray-500">Eligible providers</span>
+                    <span class="font-bold font-mono text-gray-300">${rep.eligible_providers ?? "—"}</span>
+                </div>
+                <div class="flex justify-between items-center py-2 border-b border-white/[0.05] text-sm">
+                    <span class="text-gray-500">Share / provider</span>
+                    <span class="font-black font-mono text-primary">€${fmt(rep.share_per_provider_eur)}</span>
+                </div>
+                <div class="flex justify-between items-center py-2 border-b border-white/[0.05] text-sm">
+                    <span class="text-gray-500">Remainder</span>
+                    <span class="font-bold font-mono text-gray-300">€${fmt(rep.remainder_eur)}</span>
+                </div>
+                <div class="py-2 text-sm">
+                  <div class="flex justify-between items-center mb-3">
+                      <span class="text-gray-500">Transfers</span>
+                      <span class="text-xs text-gray-600 font-mono">
+                          ${rep.transfers ? Object.keys(rep.transfers).length : 0} entries
+                      </span>
+                  </div>
+                  <div class="space-y-2">
+                    ${
+                      rep.transfers
+                        ? Object.values(rep.transfers)
+                            .map((t) => {
+                              const uptime =
+                                typeof t.uptime_score_pct === "object"
+                                  ? t.uptime_score_pct.parsedValue
+                                  : t.uptime_score_pct;
+                              const amount =
+                                typeof t.amount_eur === "object"
+                                  ? t.amount_eur.parsedValue
+                                  : t.amount_eur;
+                              const safeName = (t.provider_name || "").replace(
+                                /</g,
+                                "&lt;",
+                              );
+
+                              return `
+                    <div class="bg-white/[0.03] border border-white/[0.05] rounded-lg p-3 text-[0.7rem] font-mono">
+                      <div class="font-bold text-primary mb-2 truncate">${safeName}</div>
+                      <div class="flex justify-between mb-1"><span class="text-gray-500">Jobs:</span><span class="text-gray-200">${t.billable_jobs ?? 0}</span></div>
+                      <div class="flex justify-between mb-1"><span class="text-gray-500">Uptime:</span><span class="text-gray-200">${uptime}%</span></div>
+                      <div class="flex justify-between"><span class="text-gray-500">Amount:</span><span class="text-white font-bold">€${amount}</span></div>
+                    </div>`;
+                            })
+                            .join("")
+                        : '<span class="text-gray-600">—</span>'
+                    }
+                  </div>
+                  <div class="flex justify-between items-center py-2 text-sm mt-3">
+                      <span class="text-gray-500">Published</span>
+                      <span class="font-mono text-[0.72rem] text-gray-500">${shortDate(rep.published_at)}</span>
+                  </div>
+                </div>
+              </div>`;
         })
         .join("");
     } catch {

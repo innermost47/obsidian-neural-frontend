@@ -167,13 +167,9 @@
         </div>
 
         <div class="text-center mt-8 gs-reveal opacity-0 translate-y-6">
-            <div
-                class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-primary/10 border border-primary/30 text-sm text-gray-300">
+            <div class="inline-flex flex-wrap justify-center items-center gap-2 px-5 py-3 rounded-xl bg-primary/10 border border-primary/30 text-sm text-gray-300">
                 <i class="fas fa-server text-primary"></i>
-                <strong>No GPU node available?</strong> The system automatically
-                falls back to
-                <strong class="text-white">Stable Audio Open</strong> via fal.ai —
-                you never get a blank response.
+                <span><strong>No GPU node available?</strong> The system automatically falls back to <strong class="text-white">Stable Audio Open</strong> via fal.ai — you never get a blank response.</span>
             </div>
         </div>
     </div>

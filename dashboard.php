@@ -77,7 +77,7 @@ include('partials/shared/head.php');
   };
 </script>
 
-<div class="flex min-h-screen bg-[#0a0a0c] overflow-x-hidden">
+<div class="flex min-h-screen bg-[#0a0a0c]">
   <div id="sidebar-overlay" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[1101] lg:hidden" onclick="toggleSidebar()"></div>
   <button onclick="toggleSidebar()" class="fixed top-4 right-4 z-[1102] lg:hidden w-12 h-12 bg-white/10 backdrop-blur-md border border-white/10 rounded-xl text-white flex items-center justify-center hover:scale-105 transition-transform">
     <i class="fas fa-bars"></i>
@@ -85,7 +85,7 @@ include('partials/shared/head.php');
 
   <?php include('partials/dashboard/sidebar.php'); ?>
 
-  <main id="main-content" class="lg:ml-[280px] flex-1 min-h-screen">
+  <main id="main-content" class="lg:ml-[280px] flex-1 min-h-screen overflow-x-auto">
     <?php include('partials/dashboard/section-overview.php'); ?>
     <?php include('partials/dashboard/section-subscription.php'); ?>
     <?php include('partials/dashboard/section-usage.php'); ?>
