@@ -35,6 +35,21 @@
         </div>
 
         <div class="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-5">
+            <div class="flex items-center justify-between mb-2">
+                <span class="text-sm font-bold text-white"><i class="fas fa-calendar-check mr-2 text-primary"></i>Presence days</span>
+                <span class="text-xs text-gray-500">Target: 80%</span>
+            </div>
+            <div class="flex items-baseline gap-1.5 mb-3">
+                <span class="text-2xl font-black text-white" id="stat-days-present">0</span>
+                <span class="text-sm text-gray-500">/ <span id="stat-total-days-month">0</span> days</span>
+                <span class="ml-auto text-lg font-black" id="stat-days-percent">0%</span>
+            </div>
+            <div class="h-2 rounded-full bg-white/5 overflow-hidden">
+                <div id="days-present-bar" class="h-full rounded-full transition-all duration-500" style="width:0%; background: #ef4444;"></div>
+            </div>
+        </div>
+
+        <div class="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-5">
             <div class="flex items-center justify-between mb-3">
                 <span class="text-sm font-bold text-white" id="period-label">—</span>
                 <span class="text-xs text-gray-500" id="month-progress-label">—</span>

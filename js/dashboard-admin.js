@@ -205,6 +205,27 @@ function renderProviderStats(data) {
       ? `${uptime.month_hours}h done — ${hoursRemaining}h remaining / ${uptime.month_required_hours}h goal`
       : `✓ ${uptime.month_hours}h — goal reached (${uptime.month_required_hours}h)`;
 
+  const daysPresent = uptime.days_present ?? 0;
+  const daysRequired = uptime.days_required ?? 1;
+  const daysPercent = Math.round((daysPresent / daysRequired) * 100);
+
+  document.getElementById("stat-days-present").textContent = daysPresent;
+  document.getElementById("stat-total-days-month").textContent = daysRequired;
+
+  const daysPercentEl = document.getElementById("stat-days-percent");
+  daysPercentEl.textContent = `${daysPercent}%`;
+
+  const daysBar = document.getElementById("days-present-bar");
+  daysBar.style.width = `${Math.min(daysPercent, 100)}%`;
+
+  if (daysPercent >= 80) {
+    daysBar.style.background = "#22c55e";
+    daysPercentEl.style.color = "#22c55e";
+  } else {
+    daysBar.style.background = "#ef4444";
+    daysPercentEl.style.color = "#ef4444";
+  }
+
   document.getElementById("stat-my-jobs-month").textContent = (
     provider.jobs_done_this_month ?? 0
   ).toLocaleString();
