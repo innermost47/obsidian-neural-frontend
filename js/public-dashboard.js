@@ -206,25 +206,25 @@
       });
       grid.innerHTML = sorted
         .map((p) => {
-          const borderTop = p.is_trusted
-            ? "bg-gradient-to-r from-primary to-[#a04840]"
-            : p.is_online
-              ? "bg-gradient-to-r from-success to-green-600"
-              : "bg-white/10";
-          const avatarColor = p.is_trusted
-            ? "border-primary text-primary"
-            : p.is_online
-              ? "border-success text-success"
-              : "border-white/10 text-gray-500";
+          const borderTop = p.is_online
+            ? "bg-gradient-to-r from-success to-green-600"
+            : "bg-white/10";
+          const avatarColor = p.is_online
+            ? "border-success text-success"
+            : "border-white/10 text-gray-500";
           const icon = p.is_trusted ? "fa-shield" : "fa-server";
           const statusBadge = p.is_online
             ? `<span class="inline-flex items-center gap-1 bg-success/10 text-success border border-success/25 rounded-full px-2 py-0.5 text-[0.65rem] font-bold uppercase tracking-wider"><span class="w-1.5 h-1.5 rounded-full bg-success" style="box-shadow:0 0 4px #28c840"></span>Online</span>`
             : `<span class="inline-flex items-center gap-1 bg-white/5 text-gray-500 border border-white/10 rounded-full px-2 py-0.5 text-[0.65rem] font-bold uppercase tracking-wider">Offline</span>`;
           const trustedBadge = p.is_trusted
-            ? `<span class="inline-flex items-center gap-1 bg-primary/10 text-primary border border-primary/30 rounded-full px-2 py-0.5 text-[0.65rem] font-bold uppercase tracking-wider"><i class="fas fa-shield"></i>Trusted</span>`
+            ? `<span class="inline-flex items-center gap-1 bg-success/10 text-success border border-success/25 rounded-full px-2 py-0.5 text-[0.65rem] font-bold uppercase tracking-wider"><i class="fas fa-shield"></i>Trusted</span>`
             : "";
+          const hoverClasses = p.is_online
+            ? "hover:border-success/40 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_#6bb38a26]"
+            : "hover:border-primary/40 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_#d9685026]";
+          console.log(hoverClasses);
           return `
-                <div class="relative bg-white/[0.03] border border-white/[0.06] rounded-2xl p-4 flex items-center gap-4 hover:border-primary/40 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(217,104,80,0.15)] transition-all duration-300 overflow-hidden">
+                <div class="relative bg-white/[0.03] border border-white/[0.06] rounded-2xl p-4 flex items-center gap-4 ${hoverClasses} transition-all duration-300 overflow-hidden">
                     <div class="absolute top-0 inset-x-0 h-[3px] ${borderTop}"></div>
                     <div class="w-11 h-11 rounded-full border-2 ${avatarColor} flex items-center justify-center text-lg shrink-0 transition-colors">
                         <i class="fas ${icon}"></i>
