@@ -212,7 +212,11 @@ window.loadAnalytics = async function (days = 30) {
   if (isLoading) return;
   isLoading = true;
   currentAnalyticsPeriod = days;
-
+  if (window.innerWidth < 768) {
+    document.getElementById("analytics-daily-chart").style.height = "300px";
+  } else {
+    document.getElementById("analytics-daily-chart").style.height = "350px";
+  }
   document
     .querySelectorAll("#section-analytics button[onclick^='loadAnalytics']")
     .forEach((btn) => {
