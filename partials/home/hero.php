@@ -31,8 +31,7 @@ background: linear-gradient(to right, #fff, #888);
             <strong class="text-primary">earn 85% of the network revenue</strong>.
         </p>
 
-        <div
-            class="flex flex-wrap justify-center gap-4 mb-10 gs-reveal opacity-0 translate-y-6">
+        <div class="flex flex-wrap justify-center gap-4 mb-10 gs-reveal opacity-0 translate-y-6">
             <div class="flex flex-col items-center gap-1">
                 <a
                     href="register.php"
@@ -41,25 +40,34 @@ background: linear-gradient(to right, #fff, #888);
                 </a>
                 <span class="text-xs text-gray-500"><i class="fas fa-cloud mr-1"></i>No GPU needed</span>
             </div>
-            <a
-                id="btn-download-plugin"
-                href="#"
-                target="_blank"
-                class="px-6 py-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors backdrop-blur-md font-bold">
-                <i class="fab fa-github mr-2"></i>Download Plugin
-            </a>
-            <a
-                id="btn-controller"
-                href="#"
-                target="_blank"
-                class="px-6 py-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors backdrop-blur-md font-bold">
-                <i class="fas fa-mobile-alt mr-2"></i>Mobile Controller
-            </a>
-            <a
-                href="#provider-network"
-                class="px-6 py-4 rounded-xl border border-primary/40 text-primary hover:bg-primary/10 transition-colors font-bold">
-                <i class="fas fa-server mr-2"></i>Earn with GPU
-            </a>
+            <div class="flex flex-col items-center gap-1">
+                <a
+                    id="btn-download-plugin"
+                    href="#"
+                    target="_blank"
+                    class="px-6 py-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors backdrop-blur-md font-bold">
+                    <i class="fab fa-github mr-2"></i>Download Plugin
+                </a>
+                <span class="text-xs text-gray-500">VST3 · AU · Free</span>
+            </div>
+            <div class="flex flex-col items-center gap-1">
+                <a
+                    id="btn-controller"
+                    href="#"
+                    target="_blank"
+                    class="px-6 py-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors backdrop-blur-md font-bold">
+                    <i class="fas fa-mobile-alt mr-2"></i>Mobile Controller
+                </a>
+                <span class="text-xs text-gray-500">Android · Free</span>
+            </div>
+            <div class="flex flex-col items-center gap-1">
+                <a
+                    href="#provider-network"
+                    class="px-6 py-4 rounded-xl border border-primary/40 text-primary hover:bg-primary/10 transition-colors font-bold">
+                    <i class="fas fa-server mr-2"></i>Earn with GPU
+                </a>
+                <span class="text-xs text-gray-500">85% revenue share</span>
+            </div>
         </div>
 
         <div
