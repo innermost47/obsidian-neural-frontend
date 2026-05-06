@@ -33,11 +33,14 @@ background: linear-gradient(to right, #fff, #888);
 
         <div
             class="flex flex-wrap justify-center gap-4 mb-10 gs-reveal opacity-0 translate-y-6">
-            <a
-                href="register.php"
-                class="px-8 py-4 rounded-xl bg-gradient-to-r from-primary to-[#a04840] text-white font-bold hover:scale-105 transition-transform shadow-[0_0_25px_rgba(217,104,80,0.4)]">
-                <i class="fas fa-rocket mr-2"></i>Start Free — 20 Credits · No GPU needed
-            </a>
+            <div class="flex flex-col items-center gap-1">
+                <a
+                    href="register.php"
+                    class="px-8 py-4 rounded-xl bg-gradient-to-r from-primary to-[#a04840] text-white font-bold hover:scale-105 transition-transform shadow-[0_0_25px_rgba(217,104,80,0.4)]">
+                    <i class="fas fa-rocket mr-2"></i>Start Free — 20 Credits
+                </a>
+                <span class="text-xs text-gray-500"><i class="fas fa-cloud mr-1"></i>No GPU needed</span>
+            </div>
             <a
                 id="btn-download-plugin"
                 href="#"
