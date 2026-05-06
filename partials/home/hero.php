@@ -77,7 +77,7 @@ background: linear-gradient(to right, #fff, #888);
             <span><i class="fas fa-star text-warning mr-2"></i><span id="github-stars">Loading...</span> Stars</span>
             <span><i class="fas fa-download text-primary mr-2"></i><span id="github-downloads">Loading...</span> Downloads</span>
             <span><i class="fas fa-bolt text-danger mr-2"></i>~30s Generation</span>
-            <span><i class="fas fa-microchip text-primary mr-2"></i>Foundation-1</span>
+            <<span><i class="fas fa-microchip text-primary mr-2"></i>8 AI Models</span>
         </div>
 
         <div
