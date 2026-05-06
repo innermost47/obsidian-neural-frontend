@@ -36,7 +36,7 @@ background: linear-gradient(to right, #fff, #888);
             <a
                 href="register.php"
                 class="px-8 py-4 rounded-xl bg-gradient-to-r from-primary to-[#a04840] text-white font-bold hover:scale-105 transition-transform shadow-[0_0_25px_rgba(217,104,80,0.4)]">
-                <i class="fas fa-rocket mr-2"></i>Start Free — 20 Credits
+                <i class="fas fa-rocket mr-2"></i>Start Free — 20 Credits · No GPU needed
             </a>
             <a
                 id="btn-download-plugin"
