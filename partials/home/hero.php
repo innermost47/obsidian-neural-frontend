@@ -18,8 +18,13 @@ background: linear-gradient(to right, #fff, #888);
             AI Music Generation VST<br />For Live Performance
         </h1>
 
-        <p
-            class="text-center max-w-2xl mx-auto mb-10 text-gray-400 text-lg leading-relaxed gs-reveal opacity-0 translate-y-6">
+        <p class="text-center max-w-2xl mx-auto mb-4 gs-reveal opacity-0 translate-y-6">
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-gray-400">
+                <i class="fas fa-cloud text-primary"></i>
+                No GPU required — AI runs in the cloud
+            </span>
+        </p>
+        <p class="text-center max-w-2xl mx-auto mb-10 text-gray-400 text-lg leading-relaxed gs-reveal opacity-0 translate-y-6">
             <strong class="text-white">The first VST that pays you back.</strong><br />
             Generate samples in ~30s, load them live in your 8-track sampler — and
             if you have a GPU,

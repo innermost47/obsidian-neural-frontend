@@ -5,6 +5,12 @@
         <h1 class="text-xl md:text-2xl font-extrabold text-white m-0"><i class="fas fa-th-large mr-3 text-primary"></i>Dashboard Overview</h1>
         <p class="text-sm text-gray-500 mt-1 mb-0">Welcome back! Here's your account summary.</p>
     </div>
+    <div class="px-6 lg:px-12 py-3 border-b border-white/[0.06]">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-sm text-gray-400">
+            <i class="fas fa-cloud text-primary"></i>
+            <span>No GPU required — AI generation runs in the cloud on our servers</span>
+        </div>
+    </div>
     <div class="p-6 lg:p-12">
 
         <div id="email-verification-card" class="hidden mb-6">
