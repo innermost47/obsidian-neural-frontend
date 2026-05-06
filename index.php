@@ -1,7 +1,6 @@
 <?php
-$page_title = "OBSIDIAN Neural: AI Generative Sampler | VST3 AU";
-$page_desc = "First VST3/AU plugin for AI stereo music generation designed for live performance. Generate 30-second samples in ~30 seconds, 8-track sampler, MIDI control, BPM sync. Featured at AES AIMLA 2025..";
-
+$page_title = "OBSIDIAN Neural: AI Audio Generation VST Plugin | VST3 AU";
+$page_desc = "Real-time AI audio generation VST plugin for live performance. Generate stereo samples in ~30s, 8-track sampler, MIDI control, BPM sync. Free & open source. Featured at AES AIMLA 2025.";
 include('partials/shared/head.php');
 ?>
 

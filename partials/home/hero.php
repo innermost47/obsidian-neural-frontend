@@ -15,7 +15,7 @@ background: linear-gradient(to right, #fff, #888);
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
 ">
-            AI Music Generation<br />For Live Performance
+            AI Music Generation VST<br />For Live Performance
         </h1>
 
         <p
