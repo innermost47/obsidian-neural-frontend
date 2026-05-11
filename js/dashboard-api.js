@@ -35,7 +35,7 @@ window.copyApiKey = function () {
 };
 
 window.copyServerUrl = function (event) {
-  const serverUrl = window.APP_CONFIG.API_URL;
+  const serverUrl = window.APP_CONFIG.VST_API_URL;
   navigator.clipboard.writeText(serverUrl);
 
   const btn = event.target.closest("button");
