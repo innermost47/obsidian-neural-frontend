@@ -94,9 +94,15 @@
             </button>
 
             <button type="button" id="google-login-btn" onclick="loginWithGoogle()"
-                class="w-full px-8 py-4 rounded-xl bg-white/5 border border-white/10 text-white font-bold hover:bg-white/10 transition-colors flex items-center justify-center gap-3">
-                <img src="assets/images/google-logo.png" alt="Google" class="w-5 h-5" />
-                <span>Continue with Google</span>
+                class="w-full px-8 py-4 rounded-xl bg-white/5 border border-white/10 text-white font-bold hover:bg-white/10 transition-colors flex items-center justify-center gap-3 disabled:opacity-60 disabled:cursor-not-allowed">
+                <span id="google-btn-content" class="flex items-center justify-center gap-3">
+                    <img src="assets/images/google-logo.png" alt="Google" class="w-5 h-5" />
+                    <span>Continue with Google</span>
+                </span>
+                <span id="google-btn-loader" class="hidden items-center justify-center gap-3">
+                    <i class="fas fa-circle-notch fa-spin"></i>
+                    <span>Connecting to Google...</span>
+                </span>
             </button>
         </form>
 

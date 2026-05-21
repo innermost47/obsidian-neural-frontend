@@ -31,6 +31,15 @@ function backToLogin() {
 }
 
 async function loginWithGoogle() {
+  const googleBtn = document.getElementById("google-login-btn");
+  const googleBtnContent = document.getElementById("google-btn-content");
+  const googleBtnLoader = document.getElementById("google-btn-loader");
+
+  googleBtn.disabled = true;
+  googleBtnContent.classList.add("hidden");
+  googleBtnLoader.classList.remove("hidden");
+  googleBtnLoader.classList.add("flex");
+
   try {
     const response = await API.googleLogin();
     if (response.authorization_url) {
@@ -39,7 +48,20 @@ async function loginWithGoogle() {
   } catch (error) {
     errorMessage.textContent = error.detail || "Google login failed";
     errorAlert.classList.remove("d-none");
+  } finally {
+    resetGoogleBtn();
   }
+}
+
+function resetGoogleBtn() {
+  const googleBtn = document.getElementById("google-login-btn");
+  const googleBtnContent = document.getElementById("google-btn-content");
+  const googleBtnLoader = document.getElementById("google-btn-loader");
+
+  googleBtn.disabled = false;
+  googleBtnContent.classList.remove("hidden");
+  googleBtnLoader.classList.remove("flex");
+  googleBtnLoader.classList.add("hidden");
 }
 
 function redirectAfterLogin() {

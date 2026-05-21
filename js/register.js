@@ -19,6 +19,14 @@ window.togglePassword = function () {
 };
 
 window.registerWithGoogle = async function () {
+  const googleBtn = document.getElementById("google-register-btn");
+  const googleBtnContent = document.getElementById("google-register-content");
+  const googleBtnLoader = document.getElementById("google-register-loader");
+
+  googleBtn.disabled = true;
+  googleBtnContent.classList.add("hidden");
+  googleBtnLoader.classList.remove("hidden");
+  googleBtnLoader.classList.add("flex");
   try {
     const response = await API.googleLogin();
     if (response.authorization_url)
@@ -26,8 +34,21 @@ window.registerWithGoogle = async function () {
   } catch (error) {
     errorMessage.textContent = error.detail || "Google registration failed";
     errorAlert.classList.remove("hidden");
+  } finally {
+    resetGoogleRegisterBtn();
   }
 };
+
+function resetGoogleRegisterBtn() {
+  const googleBtn = document.getElementById("google-register-btn");
+  const googleBtnContent = document.getElementById("google-register-content");
+  const googleBtnLoader = document.getElementById("google-register-loader");
+
+  googleBtn.disabled = false;
+  googleBtnContent.classList.remove("hidden");
+  googleBtnLoader.classList.remove("flex");
+  googleBtnLoader.classList.add("hidden");
+}
 
 function redirectAfterRegistration() {
   const pendingGiftCode = localStorage.getItem("pending_gift_code");
