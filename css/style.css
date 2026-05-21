@@ -133,3 +133,9 @@
   background: rgba(255, 255, 255, 0.05);
   color: #fff;
 }
+
+video,
+canvas {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}

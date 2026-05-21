@@ -22,7 +22,7 @@
                     <video autoplay loop muted playsinline id="vst-video"
                         class="hidden lg:block w-full opacity-95 object-cover"
                         poster="assets/images/screenshot.png">
-                        <source src="assets/videos/hero.mp4" type="video/mp4">
+                        <source src="assets/videos/hero_sharp.mp4" type="video/mp4">
                     </video>
 
                     <img src="assets/images/screenshot.png" alt="VST3 Interface" id="vst-mobile-img"

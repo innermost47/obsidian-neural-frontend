@@ -34,82 +34,64 @@ transparent 60%
                 </div>
             </div>
         </div>
-
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div
-                class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-all gs-reveal opacity-0 translate-y-8">
-                <div
-                    class="w-12 h-12 rounded-xl bg-track3/20 text-track3 flex items-center justify-center text-xl mb-4">
-                    <i class="fas fa-gamepad"></i>
-                </div>
-                <h3 class="font-bold text-white mb-2">
-                    MIDI Controller Integration
-                </h3>
-                <p class="text-sm text-gray-400">
-                    Launch AI samples from your controller or UI. All track pages are
-                    fully MIDI-learnable.
-                </p>
-            </div>
-            <div
-                class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-all gs-reveal opacity-0 translate-y-8">
-                <div
-                    class="w-12 h-12 rounded-xl bg-track2/20 text-track2 flex items-center justify-center text-xl mb-4">
+            <div class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-all gs-reveal opacity-0 translate-y-8">
+                <div class="w-12 h-12 rounded-xl bg-track2/20 text-track2 flex items-center justify-center text-xl mb-4">
                     <i class="fas fa-clock"></i>
                 </div>
                 <h3 class="font-bold text-white mb-2">Quantized Launch System</h3>
                 <p class="text-sm text-gray-400">
-                    Triggers wait for the current sequence to finish, then launch
-                    perfectly synced on the next bar.
+                    Triggers wait for the current sequence to finish, then launch perfectly synced on the next bar.
                 </p>
             </div>
-            <div
-                class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-all gs-reveal opacity-0 translate-y-8">
-                <div
-                    class="w-12 h-12 rounded-xl bg-primary/20 text-primary flex items-center justify-center text-xl mb-4">
+
+            <div class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-all gs-reveal opacity-0 translate-y-8">
+                <div class="w-12 h-12 rounded-xl bg-primary/20 text-primary flex items-center justify-center text-xl mb-4">
                     <i class="fas fa-bolt"></i>
                 </div>
                 <h3 class="font-bold text-white mb-2">Generate During Your Set</h3>
                 <p class="text-sm text-gray-400">
-                    Queue a generation, keep playing — it drops in when ready. ~30s
-                    non-blocking background processing.
+                    Queue a generation, keep playing — it drops in when ready. ~30s non-blocking background processing.
                 </p>
             </div>
-            <div
-                class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-all gs-reveal opacity-0 translate-y-8">
-                <div
-                    class="w-12 h-12 rounded-xl bg-track5/20 text-track5 flex items-center justify-center text-xl mb-4">
+
+            <div class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-all gs-reveal opacity-0 translate-y-8">
+                <div class="w-12 h-12 rounded-xl bg-track5/20 text-track5 flex items-center justify-center text-xl mb-4">
                     <i class="fas fa-sliders-h"></i>
                 </div>
-                <h3 class="font-bold text-white mb-2">
-                    8 Stereo Tracks + Multi-Output
-                </h3>
+                <h3 class="font-bold text-white mb-2">8 Stereo Tracks + Multi-Output</h3>
                 <p class="text-sm text-gray-400">
-                    Route each track to separate DAW channels for dedicated per-track
-                    effects chains.
+                    Route each track to separate DAW channels for dedicated per-track effects chains.
                 </p>
             </div>
-            <div
-                class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-all gs-reveal opacity-0 translate-y-8">
-                <div
-                    class="w-12 h-12 rounded-xl bg-track6/20 text-track6 flex items-center justify-center text-xl mb-4">
-                    <i class="fas fa-th"></i>
+
+            <div class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-all gs-reveal opacity-0 translate-y-8">
+                <div class="w-12 h-12 rounded-xl bg-track3/20 text-track3 flex items-center justify-center text-xl mb-4">
+                    <i class="fas fa-redo-alt"></i>
                 </div>
-                <h3 class="font-bold text-white mb-2">8 Sequences Per Page</h3>
+                <h3 class="font-bold text-white mb-2">Beat Repeat & Glitch</h3>
                 <p class="text-sm text-gray-400">
-                    8 sequences × 64 steps per page. Switch instantly via MIDI for
-                    dynamic pattern variations.
+                    Per-track beat repeat with random retrigger intervals. Create stutters, rolls and glitch effects on the fly.
                 </p>
             </div>
-            <div
-                class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-all gs-reveal opacity-0 translate-y-8">
-                <div
-                    class="w-12 h-12 rounded-xl bg-track4/20 text-track4 flex items-center justify-center text-xl mb-4">
-                    <i class="fas fa-music"></i>
+
+            <div class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-all gs-reveal opacity-0 translate-y-8">
+                <div class="w-12 h-12 rounded-xl bg-track6/20 text-track6 flex items-center justify-center text-xl mb-4">
+                    <i class="fas fa-layer-group"></i>
                 </div>
-                <h3 class="font-bold text-white mb-2">Automatic BPM Sync</h3>
+                <h3 class="font-bold text-white mb-2">Page Banking A/B/C/D</h3>
                 <p class="text-sm text-gray-400">
-                    Librosa time-stretching adapts all samples to your DAW's BPM.
-                    Change tempo mid-session without breaking flow.
+                    4 pages per track with independent sample, prompt and sequence. Switch variations instantly mid-performance, quantized to the next bar.
+                </p>
+            </div>
+
+            <div class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-all gs-reveal opacity-0 translate-y-8">
+                <div class="w-12 h-12 rounded-xl bg-track4/20 text-track4 flex items-center justify-center text-xl mb-4">
+                    <i class="fas fa-hand-rock"></i>
+                </div>
+                <h3 class="font-bold text-white mb-2">Drag Samples to Your DAW</h3>
+                <p class="text-sm text-gray-400">
+                    Ctrl+Drag any generated sample directly from OBSIDIAN into your DAW's timeline. Keep your favorites for future productions.
                 </p>
             </div>
         </div>

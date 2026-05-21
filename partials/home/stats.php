@@ -91,6 +91,53 @@ transparent 60%
                     Pro/GarageBand). Universal binary (Intel + Apple Silicon).
                 </p>
             </div>
+            <div
+                class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-all gs-reveal opacity-0 translate-y-8">
+                <div
+                    class="w-12 h-12 rounded-xl bg-success/20 text-success flex items-center justify-center text-xl mb-4">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h3 class="font-bold text-white mb-2">Standalone + Ableton Link</h3>
+                <p class="text-sm text-gray-400">
+                    Run without a DAW with built-in transport and tempo control. Sync tempo and start/stop with any Link-enabled app over your network.
+                </p>
+            </div>
+
+            <div
+                class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-all gs-reveal opacity-0 translate-y-8">
+                <div
+                    class="w-12 h-12 rounded-xl bg-track5/20 text-track5 flex items-center justify-center text-xl mb-4">
+                    <i class="fas fa-wave-square"></i>
+                </div>
+                <h3 class="font-bold text-white mb-2">Auto Tempo Sync</h3>
+                <p class="text-sm text-gray-400">
+                    BPM detection with MiniBPM + time-stretching via Signalsmith Stretch. Samples lock to your host tempo with zero pitch drift.
+                </p>
+            </div>
+
+            <div
+                class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-all gs-reveal opacity-0 translate-y-8">
+                <div
+                    class="w-12 h-12 rounded-xl bg-track4/20 text-track4 flex items-center justify-center text-xl mb-4">
+                    <i class="fas fa-sliders-h"></i>
+                </div>
+                <h3 class="font-bold text-white mb-2">4 Pair Crossfaders</h3>
+                <p class="text-sm text-gray-400">
+                    Blend each deck A/B pair independently with model-aware color morphing. DJ-style live mixing inside the plugin.
+                </p>
+            </div>
+
+            <div
+                class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-all gs-reveal opacity-0 translate-y-8">
+                <div
+                    class="w-12 h-12 rounded-xl bg-track6/20 text-track6 flex items-center justify-center text-xl mb-4">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3 class="font-bold text-white mb-2">MIDI Controller App</h3>
+                <p class="text-sm text-gray-400">
+                    Plug-and-play companion Android app with bidirectional feedback (LED states, knob positions). Auto-configured on first connection.
+                </p>
+            </div>
         </div>
     </div>
 </section>

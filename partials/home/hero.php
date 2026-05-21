@@ -13,12 +13,16 @@ background: linear-gradient(to right, #fff, #888);
             AI Music Generation VST<br />For Live Performance
         </h1>
 
-        <p class="text-center max-w-2xl mx-auto mb-4 gs-reveal opacity-0 translate-y-6">
+        <div class="flex flex-wrap justify-center gap-2 mb-10 gs-reveal opacity-0 translate-y-6">
             <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-gray-400">
                 <i class="fas fa-cloud text-primary"></i>
                 No GPU required — AI runs in the cloud
             </span>
-        </p>
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-gray-400">
+                <i class="fas fa-bolt text-success"></i>
+                Standalone or in your DAW (VST3 / AU)
+            </span>
+        </div>
         <p class="text-center max-w-2xl mx-auto mb-10 text-gray-400 text-lg leading-relaxed gs-reveal opacity-0 translate-y-6">
             <strong class="text-white">The first VST that pays you back.</strong><br />
             Generate samples in ~30s, load them live in your 8-track sampler — and
@@ -74,18 +78,5 @@ background: linear-gradient(to right, #fff, #888);
             <span><i class="fas fa-bolt text-danger mr-2"></i>~30s Generation</span>
             <span><i class="fas fa-microchip text-primary mr-2"></i>8 AI Models</span>
         </div>
-    </div>
-</section>
-<section class="relative z-20 px-4 py-12 md:py-20">
-    <div class="max-w-7xl mx-auto gs-reveal opacity-0 translate-y-6">
-        <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-white/10 shadow-[0_30px_80px_-10px_rgba(0,0,0,0.8)]">
-            <img
-                src="assets/images/screenshot.png"
-                alt="OBSIDIAN Neural"
-                class="w-full h-auto block" />
-        </div>
-        <p class="text-center text-sm md:text-base text-gray-400 mt-3">
-            Live AI music generation. Standalone or in your DAW (VST3 / AU).
-        </p>
     </div>
 </section>
