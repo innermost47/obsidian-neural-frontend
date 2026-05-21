@@ -46,6 +46,19 @@
   setHref("dl-macos-au", dlUrl("DOWNLOAD_MAC_AU", n + "-macOS-AU.zip"));
   setHref("dl-linux", dlUrl("DOWNLOAD_LINUX", n + "-Linux-VST3.tar.gz"));
 
+  setHref(
+    "dl-macos-stdln",
+    dlUrl("DOWNLOAD_MAC_STDLN", n + "-macOs-Standalone.zip"),
+  );
+  setHref(
+    "dl-win-stdln",
+    dlUrl("DOWNLOAD_WIN_STDLN", n + "-Windows-Standalone.zip"),
+  );
+  setHref(
+    "dl-linux-stdln",
+    dlUrl("DOWNLOAD_LINUX_STDLN", n + "-Linux-Standalone.tar.gz"),
+  );
+
   setHref("qa-docs", docsUrl);
   setHref("qa-support", githubIssues);
   setHref("qa-community", githubDiscuss);
