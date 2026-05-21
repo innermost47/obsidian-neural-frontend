@@ -5,11 +5,11 @@ include('partials/shared/head.php');
 ?>
 
 <?php include('partials/shared/nav.php'); ?>
-<?php include('partials/home/3D_VST.php'); ?>
+<!-- <?php include('partials/home/3D_VST.php'); ?> -->
 <?php include('partials/home/hero.php'); ?>
 <?php include('partials/home/testimonial.php'); ?>
 <?php include('partials/home/live_mixing.php'); ?>
-<?php include('partials/home/draw.php'); ?>
+<!-- <?php include('partials/home/draw.php'); ?> -->
 <?php include('partials/home/engines.php'); ?>
 <?php include('partials/home/mobile_controler.php'); ?>
 <?php include('partials/home/stats.php'); ?>

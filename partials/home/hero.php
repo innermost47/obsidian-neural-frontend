@@ -1,13 +1,8 @@
-<section class="relative z-20 py-20 px-4">
+<section class="relative z-20 py-20 mt-10 px-4">
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none -z-10">
+        <div class="w-[600px] h-[600px] md:w-[900px] md:h-[900px] rounded-full bg-primary/20 blur-[120px]"></div>
+    </div>
     <div class="max-w-4xl mx-auto text-center">
-        <div
-            class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full font-bold text-xs bg-primary/15 text-primary border border-primary/40 mb-8 uppercase tracking-widest backdrop-blur-md gs-reveal opacity-0 translate-y-6">
-            <div
-                class="w-2 h-2 rounded-full bg-primary"
-                style="animation: pulse-dot 1.8s ease-in-out infinite"></div>
-            <span>VST3 · AU · Open Source · 8 AI Models · Live Performance</span>
-        </div>
-
         <h1
             class="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6 tracking-tighter leading-[0.9] gs-reveal opacity-0 translate-y-6"
             style="
@@ -79,11 +74,18 @@ background: linear-gradient(to right, #fff, #888);
             <span><i class="fas fa-bolt text-danger mr-2"></i>~30s Generation</span>
             <span><i class="fas fa-microchip text-primary mr-2"></i>8 AI Models</span>
         </div>
-
-        <div
-            class="mt-6 inline-block bg-warning/90 text-black px-4 py-2 rounded-lg text-sm font-bold animate-pulse gs-reveal opacity-0 translate-y-6"
-            id="conference-badge">
-            <i class="fas fa-award mr-2"></i>
+    </div>
+</section>
+<section class="relative z-20 px-4 py-12 md:py-20">
+    <div class="max-w-7xl mx-auto gs-reveal opacity-0 translate-y-6">
+        <div class="relative rounded-xl md:rounded-2xl overflow-hidden border border-white/10 shadow-[0_30px_80px_-10px_rgba(0,0,0,0.8)]">
+            <img
+                src="assets/images/screenshot.png"
+                alt="OBSIDIAN Neural"
+                class="w-full h-auto block" />
         </div>
+        <p class="text-center text-sm md:text-base text-gray-400 mt-3">
+            Live AI music generation. Standalone or in your DAW (VST3 / AU).
+        </p>
     </div>
 </section>
