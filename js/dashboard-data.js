@@ -51,7 +51,7 @@
     dlUrl("DOWNLOAD_MAC_STDLN", n + "-macOs-Standalone.zip"),
   );
   setHref(
-    "dl-win-stdln",
+    "dl-windows-stdln",
     dlUrl("DOWNLOAD_WIN_STDLN", n + "-Windows-Standalone.zip"),
   );
   setHref(
