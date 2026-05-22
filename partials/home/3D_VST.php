@@ -21,11 +21,11 @@
 
                     <video autoplay loop muted playsinline id="vst-video"
                         class="hidden lg:block w-full opacity-95 object-cover"
-                        poster="assets/images/screenshot.png">
+                        poster="assets/images/screenshot-v2-5-1.png">
                         <source src="assets/videos/hero_sharp.mp4" type="video/mp4">
                     </video>
 
-                    <img src="assets/images/screenshot.png" alt="VST3 Interface" id="vst-mobile-img"
+                    <img src="assets/images/screenshot-v2-5-1.png" alt="VST3 Interface" id="vst-mobile-img"
                         class="block lg:hidden w-full h-auto opacity-95" />
 
                     <div class="glare absolute inset-0 z-10 pointer-events-none rounded-xl" id="vst-glare"

@@ -31,7 +31,7 @@
         content="First VST for AI music generation designed for live performance. 8-track sampler, LLM brain, draw-to-audio, 8 AI models. Presented at AES AIMLA 2025" />
     <meta
         property="og:image"
-        content="https://obsidian-neural.com/assets/images/screenshot.png" />
+        content="https://obsidian-neural.com/assets/images/screenshot-v2-5-1.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta
@@ -51,7 +51,7 @@
         content="First VST for AI music generation designed for live performance. 8 AI models, open source." />
     <meta
         name="twitter:image"
-        content="https://obsidian-neural.com/assets/images/screenshot.png" />
+        content="https://obsidian-neural.com/assets/images/screenshot-v2-5-1.png" />
     <meta
         name="twitter:image:alt"
         content="OBSIDIAN Neural VST plugin interface" />

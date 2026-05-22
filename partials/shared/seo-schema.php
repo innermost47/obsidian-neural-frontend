@@ -53,7 +53,7 @@
             ],
             "url": "https://obsidian-neural.com",
             "downloadUrl": "https://github.com/innermost47/ai-dj/releases/latest",
-            "screenshot": "https://obsidian-neural.com/assets/images/screenshot.png",
+            "screenshot": "https://obsidian-neural.com/assets/images/screenshot-v2-5-1.png",
             "review": [{
                     "@type": "Review",
                     "author": {
