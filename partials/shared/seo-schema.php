@@ -77,6 +77,7 @@
             ],
             "citation": [
                 "https://aes2.org/publications/elibrary-page/?id=22851",
+                "https://aeseurope2026.sched.com/event/2Lq3I",
                 "https://www.synthtopia.com/content/2025/12/22/obsidian-neural-brings-ai-generated-samples-to-your-daw/",
                 "https://fr.audiofanzine.com/sequenceur-divers/obsidian-neural/obsidian-neural/news/a.play,n.78783.html",
                 "https://bedroomproducersblog.com/2025/06/06/obsidian-neural-sound-engine/",
@@ -91,18 +92,25 @@
             ],
             "featureList": [
                 "AI stereo music generation for live performance (~30s per sample)",
-                "8 specialized AI models assignable per track",
+                "9 specialized AI models assignable per track (including Stable Audio 3 Medium)",
                 "8-track stereo sampler",
                 "64-step sequencer with 8 sequences per page",
+                "Standalone mode with built-in transport and tempo control",
+                "Ableton Link integration for network tempo and start/stop sync",
+                "Model-aware Prompt Builder with curated keywords (genres, instruments, moods, negatives)",
+                "4 pair crossfaders with model-aware color morphing for DJ-style live mixing",
+                "Optional LLM Brain for contextual prompt refinement (disabled by default)",
                 "MIDI controller integration and MIDI Learn",
-                "BPM auto-synchronization via Librosa",
-                "Draw-to-audio: sketch-to-sound via vision LLM",
-                "LLM Brain with contextual session memory",
+                "BPM auto-detection via MiniBPM with time-stretching via Signalsmith Stretch (zero pitch drift)",
                 "VST3 and AU (Logic Pro) formats",
                 "Multi-output DAW routing",
-                "Quantized sample launch system"
+                "Quantized sample launch system",
+                "Companion Android MIDI controller app with bidirectional feedback"
             ],
-            "award": "AES AIMLA 2025 Late Breaking Demo"
+            "award": [
+                "AES AIMLA 2025 Late Breaking Demo Paper — Queen Mary University London",
+                "AES 160th Convention 2026 Engineering Brief — Copenhagen"
+            ]
         },
         {
             "@context": "https://schema.org",
@@ -120,7 +128,7 @@
             "@context": "https://schema.org",
             "@type": "VideoObject",
             "name": "OBSIDIAN Neural — AES AIMLA 2025 Live Performance",
-            "description": "Excerpt from the AES AIMLA 2025 conference. Live AI music generation with hardware controllers in Bitwig Studio.",
+            "description": "Excerpt from the AES AIMLA 2025 conference at Queen Mary University London. Live AI music generation with hardware controllers in Bitwig Studio.",
             "thumbnailUrl": [
                 "https://img.youtube.com/vi/LqHTUhqYl3s/maxresdefault.jpg",
                 "https://img.youtube.com/vi/LqHTUhqYl3s/hqdefault.jpg"
@@ -130,90 +138,84 @@
         },
         {
             "@context": "https://schema.org",
-            "@type": "VideoObject",
-            "name": "OBSIDIAN Neural — Draw-to-Audio Live Demo",
-            "description": "Raw improvisation showcasing the draw-to-audio workflow: sketch patterns on canvas, AI vision model interprets visuals and generates matching audio loops on the fly.",
-            "thumbnailUrl": [
-                "https://img.youtube.com/vi/goI34nJUTgM/maxresdefault.jpg",
-                "https://img.youtube.com/vi/goI34nJUTgM/hqdefault.jpg"
-            ],
-            "uploadDate": "2025-01-01T12:00:00+01:00",
-            "embedUrl": "https://www.youtube.com/embed/goI34nJUTgM"
-        },
-        {
-            "@context": "https://schema.org",
             "@type": "ItemList",
             "name": "OBSIDIAN Neural - International Press & Academic Coverage",
-            "description": "Featured in leading music technology publications and academic conferences across 8 countries and 6 languages.",
+            "description": "Featured in leading music technology publications and presented at two AES conferences (London 2025, Copenhagen 2026), covered across 8 countries and 6 languages.",
             "itemListElement": [{
                     "@type": "ListItem",
                     "position": 1,
+                    "name": "AES 160th Convention 2026 - Copenhagen",
+                    "url": "https://aeseurope2026.sched.com/event/2Lq3I"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
                     "name": "AES AIMLA 2025 - Queen Mary University London",
                     "url": "https://aes2.org/publications/elibrary-page/?id=22851"
                 },
                 {
                     "@type": "ListItem",
-                    "position": 2,
+                    "position": 3,
                     "name": "Synthtopia (USA)",
                     "url": "https://www.synthtopia.com/content/2025/12/22/obsidian-neural-brings-ai-generated-samples-to-your-daw/"
                 },
                 {
                     "@type": "ListItem",
-                    "position": 3,
+                    "position": 4,
                     "name": "Audiofanzine (France)",
                     "url": "https://fr.audiofanzine.com/sequenceur-divers/obsidian-neural/obsidian-neural/news/a.play,n.78783.html"
                 },
                 {
                     "@type": "ListItem",
-                    "position": 4,
+                    "position": 5,
                     "name": "Bedroom Producers Blog (USA)",
                     "url": "https://bedroomproducersblog.com/2025/06/06/obsidian-neural-sound-engine/"
                 },
                 {
                     "@type": "ListItem",
-                    "position": 5,
+                    "position": 6,
                     "name": "MIDIFAN (China)",
                     "url": "https://www.midifan.com/modulenews-detailview-57259.htm"
                 },
                 {
                     "@type": "ListItem",
-                    "position": 6,
+                    "position": 7,
                     "name": "Rekkerd (Netherlands)",
                     "url": "https://rekkerd.org/obsidian-neural-real-time-ai-music-generation-vst3/"
                 },
                 {
                     "@type": "ListItem",
-                    "position": 7,
+                    "position": 8,
                     "name": "FutureMusic (Spain)",
                     "url": "https://www.futuremusic-es.com/obsidian-neural-vst3-ia-generativa/"
                 },
                 {
                     "@type": "ListItem",
-                    "position": 8,
+                    "position": 9,
                     "name": "S1 Forum (South Korea)",
                     "url": "https://s1forum.kr/news/innermost47%EC%97%90%EC%84%9C-obsidian-neural-%EA%B3%B5%EA%B0%9C/"
                 },
                 {
                     "@type": "ListItem",
-                    "position": 9,
+                    "position": 10,
                     "name": "DTM Plugin Sale (Japan)",
                     "url": "https://projectofnapskint.com/obsidian-2/"
                 },
                 {
                     "@type": "ListItem",
-                    "position": 10,
+                    "position": 11,
                     "name": "Audio Plugin Guy (USA)",
                     "url": "https://www.audiopluginguy.com/news-innermost47-launches-free-real-time-ai-music-generation-plugin-obsidian-neural-sound-engine/"
                 },
                 {
                     "@type": "ListItem",
-                    "position": 11,
+                    "position": 12,
                     "name": "Sohu (China)",
                     "url": "https://www.sohu.com/a/903075640_455142"
                 },
                 {
                     "@type": "ListItem",
-                    "position": 12,
+                    "position": 13,
                     "name": "Amner Hunter (YouTube)",
                     "url": "https://www.youtube.com/watch?v=40pkX_MkXjE"
                 }
@@ -227,15 +229,15 @@
                     "name": "What is OBSIDIAN Neural?",
                     "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "OBSIDIAN Neural is the first VST3/AU plugin for AI stereo music generation designed for live performance. It generates 30-second audio samples in approximately 30 seconds, directly inside your DAW, with 8-track stereo output, 8 specialized AI models, MIDI control, and BPM synchronization."
+                        "text": "OBSIDIAN Neural is the first VST3/AU plugin for AI stereo music generation designed for live performance. It generates 30-second audio samples in approximately 30 seconds, directly inside your DAW or in standalone mode with Ableton Link. Features include an 8-track stereo sampler, 9 specialized AI models assignable per track, model-aware Prompt Builder, 4 pair crossfaders for DJ-style live mixing, MIDI control, and automatic BPM synchronization."
                     }
                 },
                 {
                     "@type": "Question",
-                    "name": "Which AI model powers OBSIDIAN Neural?",
+                    "name": "Which AI models power OBSIDIAN Neural?",
                     "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "Provider nodes run Foundation-1 by RoyalCities, a specialized text-to-sample diffusion model built on Stable Audio Open. It generates tempo-synced, key-aware, bar-structured audio loops with precise control over instrumentation, timbre, FX, and musical phrasing. The fallback cloud service uses Stable Audio Open directly."
+                        "text": "Provider nodes run 9 specialized models, each assignable per track: Stable Audio 3 Medium (latest from Stability AI, FlowMatching architecture with world-class quality on world instruments and ambient textures), Stable Audio Open, Foundation-1, Audialab EDM Elements, RC Infinite Pianos, Vocal Textures, SAO Instrumental Finetune, StableBeaT, and Gluten v1. When no node is available, the system falls back to Stable Audio Open via fal.ai. An optional LLM Brain layer (disabled by default) can refine prompts based on session context and style."
                     }
                 },
                 {
@@ -251,15 +253,23 @@
                     "name": "Which DAWs and operating systems are supported?",
                     "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "Windows, macOS (Intel + Apple Silicon universal binary), and Linux. VST3 format for all major DAWs, and AU format for Logic Pro and GarageBand."
+                        "text": "Windows, macOS (Intel + Apple Silicon universal binary), and Linux. VST3 format for all major DAWs, and AU format for Logic Pro and GarageBand. A standalone mode with built-in transport and tempo control is also included, with Ableton Link support to sync tempo and start/stop with any Link-enabled app over your network."
                     }
                 },
                 {
                     "@type": "Question",
-                    "name": "What is the Draw-to-Audio feature?",
+                    "name": "How does the Prompt Builder work?",
                     "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "Draw-to-Audio lets you sketch visual patterns on a 512x512 canvas using various tools and colors. A vision LLM analyzes your drawing and translates it into a detailed musical prompt, which is then used to generate audio. Colors map to frequencies (black = bass, red = high energy) and patterns map to rhythms."
+                        "text": "The Prompt Builder is a model-aware editor with curated keywords organized by category (genres, instruments, moods, negatives). It builds clean prompts that match each engine's expected syntax — comma-separated tags for Foundation-1, pipe-separated fields for Gluten, descriptive prose for Stable Audio models. No guessing about how each model wants its prompt formatted."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Can I use OBSIDIAN Neural without a DAW?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Yes. OBSIDIAN Neural includes a standalone application with built-in transport controls and tempo management, so you can run it without any DAW. Ableton Link integration allows you to sync tempo and start/stop signals over your local network with any Link-enabled application, making it ideal for jam sessions, live performances, and collaborative setups."
                     }
                 },
                 {
@@ -267,7 +277,7 @@
                     "name": "How does OBSIDIAN Neural handle BPM synchronization?",
                     "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "All generated samples are automatically time-stretched to match your DAW's current BPM using the Librosa algorithm. You can change tempo mid-session without reloading samples or interrupting playback."
+                        "text": "Generated samples are automatically tempo-detected via MiniBPM and time-stretched to match your DAW's current BPM using Signalsmith Stretch with zero pitch drift. You can change tempo mid-session without reloading samples or interrupting playback. In standalone mode, you can also sync tempo across multiple apps via Ableton Link."
                     }
                 }
             ]
@@ -277,10 +287,10 @@
             "@type": "Service",
             "name": "OBSIDIAN Neural Network",
             "serviceType": "DePIN (Decentralized Physical Infrastructure Network)",
-            "description": "Distributed GPU provider network for AI music generation with automated monthly redistribution.",
+            "description": "Distributed GPU provider network for AI music generation with automated monthly redistribution via Stripe Connect. Providers verified through Mel Spectrogram Fingerprinting Proof-of-Work.",
             "offers": {
                 "@type": "Offer",
-                "description": "Provider Eligibility: Uptime > 60%, 1+ billable job/month. 85% net revenue share."
+                "description": "Provider Eligibility: Uptime > 80%, 1+ billable job/month. 85% net revenue share, equal distribution among eligible providers."
             }
         },
         {
