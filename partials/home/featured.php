@@ -10,7 +10,30 @@
             </p>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+            <a
+                href="https://aeseurope2026.sched.com/event/2Lq3I"
+                target="_blank"
+                class="gs-reveal opacity-0 translate-y-8 group">
+                <div
+                    class="bg-white/5 border border-primary/20 p-6 rounded-2xl text-center hover:bg-primary/10 transition-all h-full relative overflow-hidden">
+                    <div class="absolute top-3 right-3">
+                        <span class="text-[10px] uppercase font-bold text-primary bg-primary/15 border border-primary/40 px-2 py-0.5 rounded-full tracking-wider">
+                            <i class="fas fa-clock mr-1"></i>Latest
+                        </span>
+                    </div>
+                    <div
+                        class="w-14 h-14 rounded-full bg-primary/20 text-primary flex items-center justify-center text-2xl mx-auto mb-4 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3 class="font-bold text-white text-sm mb-1">
+                        AES 160th Convention 2026
+                    </h3>
+                    <p class="text-xs text-gray-500">
+                        Engineering Brief — Copenhagen
+                    </p>
+                </div>
+            </a>
             <a
                 id="card-paper-link"
                 href="#"
@@ -32,6 +55,9 @@
                     </p>
                 </div>
             </a>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-16">
             <a
                 id="card-kvr-link"
                 href="#"

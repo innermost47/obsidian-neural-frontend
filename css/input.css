@@ -1,8 +1,6 @@
 @import "tailwindcss";
-
 @source "./**/*.php";
 @source "./js/**/*.js";
-
 @theme {
   --color-primary: #d96850;
   --color-danger: #e07060;
@@ -19,6 +17,6 @@
   --color-track6: #5568a0;
   --color-track7: #cb7aa8;
   --color-track8: #6b8299;
-
+  --color-track9: #8bbf5a;
   --font-sans: "Inter", sans-serif;
 }

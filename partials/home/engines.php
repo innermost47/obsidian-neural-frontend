@@ -3,7 +3,7 @@
         <div class="text-center mb-12">
             <h2
                 class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-4 gs-reveal opacity-0 translate-y-6">
-                8 NEURAL ENGINES.
+                9 NEURAL ENGINES.
             </h2>
             <p
                 class="text-gray-400 max-w-2xl mx-auto gs-reveal opacity-0 translate-y-6">
@@ -13,7 +13,26 @@
             </p>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div
+                class="gs-card opacity-0 translate-y-16 bg-white/5 backdrop-blur-md border border-track9/30 p-5 rounded-2xl hover:bg-white/10 transition-all relative overflow-hidden group">
+                <div class="absolute top-0 left-0 w-full h-1 bg-track9"></div>
+                <div
+                    class="w-10 h-10 rounded-lg bg-track9/20 text-track9 flex items-center justify-center text-lg mb-3 group-hover:scale-110 transition-transform">
+                    <i class="fas fa-wand-magic-sparkles"></i>
+                </div>
+                <h3 class="font-bold text-sm mb-1">
+                    <a
+                        href="https://huggingface.co/stabilityai/stable-audio-3-medium"
+                        target="_blank"
+                        class="text-white hover:text-track9 transition-colors">Stable Audio 3 Medium</a>
+                </h3>
+                <p class="text-[11px] text-gray-500 mb-2">
+                    Latest gen — world &amp; ambient textures
+                </p>
+                <span
+                    class="text-[10px] uppercase font-bold text-track9 bg-track9/10 px-2 py-0.5 rounded">FlowMatching</span>
+            </div>
             <div
                 class="gs-card opacity-0 translate-y-16 bg-white/5 backdrop-blur-md border border-white/10 p-5 rounded-2xl hover:bg-white/10 transition-all relative overflow-hidden group">
                 <div class="absolute top-0 left-0 w-full h-1 bg-track8"></div>
