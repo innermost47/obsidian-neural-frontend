@@ -1,11 +1,11 @@
-# OBSIDIAN Neural — Frontend
+# OBSIDIAN Neural - Frontend
 
 ### Related Repositories
 
 | Repository                                                                                             | Description                                  |
 | ------------------------------------------------------------------------------------------------------ | -------------------------------------------- |
 | [obsidian-neural-central](https://github.com/innermost47/obsidian-neural-central)                      | Central inference server                     |
-| [obsidian-neural-provider](https://github.com/innermost47/obsidian-neural-provider)                    | Provider kit — run a GPU node on the network |
+| [obsidian-neural-provider](https://github.com/innermost47/obsidian-neural-provider)                    | Provider kit - run a GPU node on the network |
 | **[obsidian-neural-frontend](https://github.com/innermost47/obsidian-neural-frontend)** ← you are here | Storefront & dashboard                       |
 | [obsidian-neural-controller](https://github.com/innermost47/obsidian-neural-controller)                | Mobile MIDI controller app                   |
 | [ai-dj](https://github.com/innermost47/ai-dj)                                                          | VST3/AU plugin (client)                      |
@@ -16,18 +16,18 @@
 
 Marketing website and user dashboard for [OBSIDIAN Neural](https://obsidian-neural.com), the open-source VST3/AU plugin for AI music generation designed for live performance.
 
-Presented at **AES AIMLA 2025** — Queen Mary University London.
+Presented at **AES 160th Convention 2026** - Copenhagen - and **AES AIMLA 2025** - Queen Mary University London.
 
 ---
 
 ## What's in here
 
-- **Landing page** — features, demos, press coverage, pricing
-- **User dashboard** — API key, credits, subscription management, analytics
-- **Documentation** — setup guides for Windows, macOS, Bitwig, Ableton
-- **Legal pages** — privacy, terms, cookies
+- **Landing page** - features, demos, press coverage, pricing
+- **User dashboard** - API key, credits, subscription management, analytics
+- **Documentation** - setup guides for Windows, macOS, Bitwig, Ableton
+- **Legal pages** - privacy, terms, cookies
 
-All sensitive values (domain, API URLs, prices, GA IDs, GitHub repo...) are centralized in a single `js/config.js` file — never hardcoded.
+All sensitive values (domain, API URLs, prices, GA IDs, GitHub repo...) are centralized in a single `js/config.js` file - never hardcoded.
 
 ## Stack
 
