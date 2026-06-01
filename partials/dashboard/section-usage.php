@@ -38,12 +38,12 @@
             <h3 class="text-base font-bold text-white mb-4"><i class="fas fa-info-circle mr-2 text-primary"></i>How Credits Work</h3>
             <p class="text-sm text-gray-400 mb-5">Each generation uses credits regardless of the AI model selected. Simple pricing: 1 credit = 1 generation.</p>
             <div class="overflow-x-auto">
-                <table class="text-sm" style="min-width: 460px;">
+                <table class="text-sm w-full" style="min-width: 460px; table-layout: fixed;">
                     <thead>
                         <tr class="border-b border-white/[0.06]">
-                            <th class="text-left text-xs font-bold uppercase tracking-wider text-gray-500 pb-3 pr-4">Generation Type</th>
-                            <th class="text-left text-xs font-bold uppercase tracking-wider text-gray-500 pb-3 pr-4">AI Models Used</th>
-                            <th class="text-left text-xs font-bold uppercase tracking-wider text-gray-500 pb-3" style="min-width: 100px;">Credits</th>
+                            <th class="text-left text-xs font-bold uppercase tracking-wider text-gray-500 pb-3 pr-4" style="width: 35%;">Generation Type</th>
+                            <th class="text-left text-xs font-bold uppercase tracking-wider text-gray-500 pb-3 pr-4" style="width: 45%;">AI Models Used</th>
+                            <th class="text-left text-xs font-bold uppercase tracking-wider text-gray-500 pb-3" style="width: 20%;">Credits</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-white/[0.04]">
