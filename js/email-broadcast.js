@@ -135,12 +135,10 @@ window.previewEmail = function () {
 
 function setupBroadcastForm() {
   const form = document.getElementById("broadcast-form");
-  if (!form) return;
+  if (!form || form._listenerAttached) return;
+  form._listenerAttached = true;
 
-  const newForm = form.cloneNode(true);
-  form.parentNode.replaceChild(newForm, form);
-
-  newForm.addEventListener("submit", async (e) => {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const subject = document.getElementById("email-subject").value;
