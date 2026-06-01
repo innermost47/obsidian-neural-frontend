@@ -43,7 +43,7 @@
                         <tr class="border-b border-white/[0.06]">
                             <th class="text-left text-xs font-bold uppercase tracking-wider text-gray-500 pb-3 pr-4">Generation Type</th>
                             <th class="text-left text-xs font-bold uppercase tracking-wider text-gray-500 pb-3 pr-4">AI Models Used</th>
-                            <th class="text-left text-xs font-bold uppercase tracking-wider text-gray-500 pb-3">Credits</th>
+                            <th class="text-left text-xs font-bold uppercase tracking-wider text-gray-500 pb-3" style="min-width: 100px;">Credits</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-white/[0.04]">
