@@ -17,7 +17,10 @@ function initializeTinyMCE() {
   }
 
   function doInit() {
-    if (tinymce.get("email-body")) tinymce.get("email-body").remove();
+    if (tinymce.get("email-body")) {
+      tinyEditor = tinymce.get("email-body");
+      return;
+    }
     tinymce.init({
       selector: "#email-body",
       height: 400,
