@@ -59,7 +59,7 @@
                             </td>
                             <td class="py-4 pr-4">
                                 <div class="flex flex-wrap items-start gap-1.5">
-                                    <span class="inline-flex items-center gap-1 bg-white/5 text-gray-400 rounded-full px-2 py-0.5 text-[0.65rem] font-bold whitespace-nowrap"><i class="fas fa-brain text-primary"></i>Gemma 4</span>
+                                    <span class="inline-flex items-center gap-1 bg-white/5 text-gray-400 rounded-full px-2 py-0.5 text-[0.65rem] font-bold whitespace-nowrap"><i class="fas fa-brain text-primary"></i>Gemma 4 (optional)</span>
                                     <span class="inline-flex items-center gap-1 bg-primary/10 text-primary rounded-full px-2 py-0.5 text-[0.65rem] font-bold whitespace-nowrap"><i class="fas fa-music"></i>9 AI engines</span>
                                 </div>
                             </td>
