@@ -19,9 +19,6 @@ function initializeTinyMCE() {
   function doInit() {
     if (tinymce.get("email-body")) {
       tinyEditor = tinymce.get("email-body");
-      tinyEditor.dom.loadCSS(tinyEditor.settings.content_css_url);
-      tinyEditor.getBody().style.cssText =
-        'font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; font-size: 14px; background:#0a0a0c; color:#fff;';
       return;
     }
     tinymce.init({
