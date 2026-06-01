@@ -36,7 +36,7 @@
 
         <div class="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-6 mb-6">
             <h3 class="text-base font-bold text-white mb-4"><i class="fas fa-info-circle mr-2 text-primary"></i>How Credits Work</h3>
-            <p class="text-sm text-gray-400 mb-5">Each generation uses credits based on AI models. Simple pricing: 1 credit = 1 generation.</p>
+            <p class="text-sm text-gray-400 mb-5">Each generation uses credits regardless of the AI model selected. Simple pricing: 1 credit = 1 generation.</p>
             <div class="overflow-x-auto">
                 <table class="text-sm" style="min-width: 460px;">
                     <thead>
@@ -53,27 +53,15 @@
                                     <div class="w-8 h-8 rounded-lg bg-primary/20 text-primary flex items-center justify-center text-xs"><i class="fas fa-keyboard"></i></div>
                                     <div>
                                         <div class="font-bold text-white text-sm">Text Prompt</div>
-                                        <div class="text-xs text-gray-500">Type your prompt directly</div>
+                                        <div class="text-xs text-gray-500">Type your prompt or use the Prompt Builder</div>
                                     </div>
                                 </div>
                             </td>
                             <td class="py-4 pr-4">
-                                <div class="flex flex-col gap-1"><span class="inline-flex items-center gap-1 bg-white/5 text-gray-400 rounded-full px-2 py-0.5 text-[0.65rem] font-bold"><i class="fas fa-brain text-primary"></i>Gemini 2.5 Flash (LLM)</span><span class="inline-flex items-center gap-1 bg-primary/10 text-primary rounded-full px-2 py-0.5 text-[0.65rem] font-bold"><i class="fas fa-music"></i>Stable Audio</span></div>
-                            </td>
-                            <td class="py-4"><span class="bg-primary/10 text-primary border border-primary/30 rounded-full px-3 py-1 text-xs font-black">1 credit</span></td>
-                        </tr>
-                        <tr>
-                            <td class="py-4 pr-4">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-8 h-8 rounded-lg bg-primary/20 text-primary flex items-center justify-center text-xs"><i class="fas fa-paint-brush"></i></div>
-                                    <div>
-                                        <div class="font-bold text-white text-sm">Drawing to Audio</div>
-                                        <div class="text-xs text-gray-500">Paint musical ideas visually</div>
-                                    </div>
+                                <div class="flex flex-col gap-1">
+                                    <span class="inline-flex items-center gap-1 bg-white/5 text-gray-400 rounded-full px-2 py-0.5 text-[0.65rem] font-bold"><i class="fas fa-brain text-primary"></i>Gemma 4 (optional)</span>
+                                    <span class="inline-flex items-center gap-1 bg-primary/10 text-primary rounded-full px-2 py-0.5 text-[0.65rem] font-bold"><i class="fas fa-music"></i>9 specialized AI engines</span>
                                 </div>
-                            </td>
-                            <td class="py-4 pr-4">
-                                <div class="flex flex-col gap-1"><span class="inline-flex items-center gap-1 bg-white/5 text-gray-400 rounded-full px-2 py-0.5 text-[0.65rem] font-bold"><i class="fas fa-eye text-primary"></i>Gemini 2.5 Flash (Vision)</span><span class="inline-flex items-center gap-1 bg-primary/10 text-primary rounded-full px-2 py-0.5 text-[0.65rem] font-bold"><i class="fas fa-music"></i>Stable Audio</span></div>
                             </td>
                             <td class="py-4"><span class="bg-primary/10 text-primary border border-primary/30 rounded-full px-3 py-1 text-xs font-black">1 credit</span></td>
                         </tr>
@@ -84,18 +72,14 @@
 
         <div class="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-6">
             <h3 class="text-base font-bold text-white mb-4"><i class="fas fa-layer-group mr-2 text-primary"></i>AI Models Stack</h3>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="bg-white/[0.03] border border-white/[0.06] rounded-xl p-4">
-                    <h6 class="font-bold text-white mb-2 text-sm"><i class="fas fa-brain mr-2 text-primary"></i>LLM Brain</h6>
-                    <p class="text-xs text-gray-500 mb-0"><strong class="text-gray-300">Gemini 2.5 Flash</strong><br>Optimizes prompts, understands context, maintains conversation history</p>
+                    <h6 class="font-bold text-white mb-2 text-sm"><i class="fas fa-brain mr-2 text-primary"></i>LLM Brain <span class="ml-2 text-[0.6rem] uppercase font-bold text-gray-400 bg-white/10 border border-white/20 px-2 py-0.5 rounded-full tracking-wider align-middle">Optional</span></h6>
+                    <p class="text-xs text-gray-500 mb-0"><strong class="text-gray-300">Gemma 4 (via Ollama)</strong><br>Optional layer to refine prompts based on session context. Disabled by default.</p>
                 </div>
                 <div class="bg-white/[0.03] border border-white/[0.06] rounded-xl p-4">
-                    <h6 class="font-bold text-white mb-2 text-sm"><i class="fas fa-eye mr-2 text-primary"></i>Vision Model</h6>
-                    <p class="text-xs text-gray-500 mb-0"><strong class="text-gray-300">Gemini 2.5 Flash</strong><br>Analyzes drawings, translates visual patterns into sonic descriptions</p>
-                </div>
-                <div class="bg-white/[0.03] border border-white/[0.06] rounded-xl p-4">
-                    <h6 class="font-bold text-white mb-2 text-sm"><i class="fas fa-music mr-2 text-primary"></i>Audio Engine</h6>
-                    <p class="text-xs text-gray-500 mb-0"><strong class="text-gray-300">Stable Audio</strong><br>Generates high-quality 30-second audio samples in ~10 seconds</p>
+                    <h6 class="font-bold text-white mb-2 text-sm"><i class="fas fa-music mr-2 text-primary"></i>Audio Engines</h6>
+                    <p class="text-xs text-gray-500 mb-0"><strong class="text-gray-300">9 specialized models</strong><br>Stable Audio 3 Medium, Stable Audio Open 1.0, Foundation-1, Audialab EDM Elements, RC Infinite Pianos, Vocal Textures, SAO Instrumental, StableBeaT, Gluten-v1. ~5 to 30 seconds per generation depending on the model.</p>
                 </div>
             </div>
         </div>
