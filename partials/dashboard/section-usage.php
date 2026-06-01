@@ -41,8 +41,8 @@
                 <table class="text-sm w-full" style="min-width: 460px; table-layout: fixed;">
                     <thead>
                         <tr class="border-b border-white/[0.06]">
-                            <th class="text-left text-xs font-bold uppercase tracking-wider text-gray-500 pb-3 pr-4" style="width: 55%;">Generation Type</th>
-                            <th class="text-left text-xs font-bold uppercase tracking-wider text-gray-500 pb-3 pr-4" style="width: 25%;">AI Models Used</th>
+                            <th class="text-left text-xs font-bold uppercase tracking-wider text-gray-500 pb-3 pr-4" style="width: 45%;">Generation Type</th>
+                            <th class="text-left text-xs font-bold uppercase tracking-wider text-gray-500 pb-3 pr-4" style="width: 35%;">AI Models Used</th>
                             <th class="text-left text-xs font-bold uppercase tracking-wider text-gray-500 pb-3" style="width: 20%;">Credits</th>
                         </tr>
                     </thead>
