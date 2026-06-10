@@ -72,7 +72,7 @@
       container.innerHTML = `
         <div class="absolute inset-0 bg-black/70 flex flex-col items-center justify-center text-center p-6 z-10 rounded-3xl">
           <i class="fab fa-youtube text-6xl text-danger mb-4"></i>
-          <h4 class="font-bold text-xl mb-2">${title}</h4>
+          <p class="font-bold text-xl mb-2">${title}</p>
           <p class="text-sm text-gray-400 mb-4 max-w-sm">This video needs cookies to play.</p>
           <button type="button" class="accept-and-watch px-6 py-3 bg-primary text-white rounded-xl font-bold hover:bg-white hover:text-black transition-colors">
             <i class="fas fa-cookie-bite mr-2"></i>Accept cookies to watch
