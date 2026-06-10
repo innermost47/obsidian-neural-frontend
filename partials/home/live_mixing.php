@@ -23,15 +23,9 @@ transparent 60%
         </div>
 
         <div class="max-w-4xl mx-auto mb-16 gs-reveal opacity-0 scale-95">
-            <div class="aspect-video rounded-3xl border border-white/10 shadow-2xl relative overflow-hidden bg-black gs-reveal opacity-0 scale-95" id="yt-dnb" data-video-id="" data-title="Jungle Drum & Bass Live Mix">
-                <div class="absolute inset-0 bg-black/70 flex flex-col items-center justify-center text-center p-6 z-10">
-                    <i class="fab fa-youtube text-6xl text-danger mb-4"></i>
-                    <h4 class="font-bold text-xl mb-2">Jungle Drum &amp; Bass Live Mix</h4>
-                    <p class="text-sm text-gray-400 mb-4 max-w-sm">This YouTube video requires cookies to be displayed.</p>
-                    <button class="px-6 py-3 bg-primary text-white rounded-xl font-bold hover:bg-white hover:text-black transition-colors" onclick="localStorage.setItem('cookie_consent','accepted'); location.reload();">
-                        <i class="fas fa-cookie-bite mr-2"></i>Accept Cookies to Watch
-                    </button>
-                </div>
+            <div class="aspect-video rounded-3xl border border-white/10 shadow-2xl relative overflow-hidden bg-black gs-reveal opacity-0 scale-95"
+                id="yt-dnb"
+                data-title="Jungle Drum & Bass Live Mix">
             </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

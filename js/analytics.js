@@ -46,7 +46,7 @@ async function loadWorldMap(days) {
       maxZoom: 5,
       worldCopyJump: true,
     });
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.webp", {
       attribution: "© OpenStreetMap contributors",
       noWrap: false,
       maxZoom: 19,

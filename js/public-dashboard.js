@@ -366,7 +366,9 @@
                       <span class="font-mono text-[0.72rem] text-gray-500">${shortDate(rep.published_at)}</span>
                   </div>
                 </div>
-              </div>`;
+              </div>
+            </div>
+          </div>`;
         })
         .join("");
     } catch {

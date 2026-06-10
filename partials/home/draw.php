@@ -24,24 +24,7 @@ transparent 60%
             <div
                 class="aspect-video rounded-3xl border border-white/10 shadow-2xl relative overflow-hidden bg-black"
                 id="yt-draw"
-                data-video-id="">
-                <div
-                    class="absolute inset-0 bg-black/70 flex flex-col items-center justify-center text-center p-6 z-10">
-                    <i class="fab fa-youtube text-6xl text-danger mb-4"></i>
-                    <h4 class="font-bold text-xl mb-2">Draw-to-Audio Live Demo</h4>
-                    <p class="text-sm text-gray-400 mb-4 max-w-sm">
-                        Raw improvisation: sketch patterns → AI interprets visuals →
-                        generates matching loops.
-                    </p>
-                    <button
-                        class="px-6 py-3 bg-primary text-white rounded-xl font-bold hover:bg-white hover:text-black transition-colors"
-                        onclick="
-localStorage.setItem('cookie_consent', 'accepted');
-location.reload();
-">
-                        <i class="fas fa-cookie-bite mr-2"></i>Accept Cookies
-                    </button>
-                </div>
+                data-title="Draw-to-Audio Live Demo">
             </div>
         </div>
 

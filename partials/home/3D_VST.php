@@ -21,12 +21,13 @@
 
                     <video autoplay loop muted playsinline id="vst-video"
                         class="hidden lg:block w-full opacity-95 object-cover"
-                        poster="assets/images/screenshot-v2-5-1.png">
+                        poster="assets/images/screenshot-v2-5-1.webp">
                         <source src="assets/videos/hero_sharp.mp4" type="video/mp4">
                     </video>
 
-                    <img src="assets/images/screenshot-v2-5-1.png" alt="VST3 Interface" id="vst-mobile-img"
-                        class="block lg:hidden w-full h-auto opacity-95" />
+                    <img src="assets/images/screenshot-v2-5-1.webp" alt="OBSIDIAN Neural - interface VST mobile" id="vst-mobile-img"
+                        class="block lg:hidden w-full h-auto opacity-95" fetchpriority="high"
+                        width="609" height="308" />
 
                     <div class="glare absolute inset-0 z-10 pointer-events-none rounded-xl" id="vst-glare"
                         style="background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.15) 0%, transparent 60%);"></div>

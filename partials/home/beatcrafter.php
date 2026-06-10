@@ -55,7 +55,7 @@ transparent 60%
 );
 "></div>
                                 <img
-                                    src="assets/images/beatcrafter-screenshot.png"
+                                    src="assets/images/beatcrafter-screenshot.webp"
                                     alt="BeatCrafter VST3 — Live Drum Pattern Generator"
                                     class="w-full block rounded-xl opacity-90"
                                     onerror="

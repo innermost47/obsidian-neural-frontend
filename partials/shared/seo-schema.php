@@ -53,7 +53,7 @@
             ],
             "url": "https://obsidian-neural.com",
             "downloadUrl": "https://github.com/innermost47/ai-dj/releases/latest",
-            "screenshot": "https://obsidian-neural.com/assets/images/screenshot-v2-5-1.png",
+            "screenshot": "https://obsidian-neural.com/assets/images/screenshot-v2-5-1.webp",
             "review": [{
                     "@type": "Review",
                     "author": {
@@ -88,7 +88,7 @@
                 "https://projectofnapskint.com/obsidian-2/",
                 "https://www.audiopluginguy.com/news-innermost47-launches-free-real-time-ai-music-generation-plugin-obsidian-neural-sound-engine/",
                 "https://www.sohu.com/a/903075640_455142",
-                "https://www.youtube.com/watch?v=40pkX_MkXjE"
+                "https://www.youtube-nocookie.com/watch?v=40pkX_MkXjE"
             ],
             "featureList": [
                 "AI stereo music generation for live performance (~30s per sample)",
@@ -118,11 +118,11 @@
             "name": "OBSIDIAN Neural — Jungle Drum & Bass Live Mix",
             "description": "Live performance demo: AI-generated samples triggered via MIDI controller in a jungle drum & bass set",
             "thumbnailUrl": [
-                "https://img.youtube.com/vi/sihEcsG-W4s/maxresdefault.jpg",
-                "https://img.youtube.com/vi/sihEcsG-W4s/hqdefault.jpg"
+                "https://img.youtube-nocookie.com/vi/sihEcsG-W4s/maxresdefault.jpg",
+                "https://img.youtube-nocookie.com/vi/sihEcsG-W4s/hqdefault.jpg"
             ],
             "uploadDate": "2025-01-01T12:00:00+01:00",
-            "embedUrl": "https://www.youtube.com/embed/sihEcsG-W4s"
+            "embedUrl": "https://www.youtube-nocookie.com/embed/sihEcsG-W4s"
         },
         {
             "@context": "https://schema.org",
@@ -130,11 +130,11 @@
             "name": "OBSIDIAN Neural — AES AIMLA 2025 Live Performance",
             "description": "Excerpt from the AES AIMLA 2025 conference at Queen Mary University London. Live AI music generation with hardware controllers in Bitwig Studio.",
             "thumbnailUrl": [
-                "https://img.youtube.com/vi/LqHTUhqYl3s/maxresdefault.jpg",
-                "https://img.youtube.com/vi/LqHTUhqYl3s/hqdefault.jpg"
+                "https://img.youtube-nocookie.com/vi/LqHTUhqYl3s/maxresdefault.jpg",
+                "https://img.youtube-nocookie.com/vi/LqHTUhqYl3s/hqdefault.jpg"
             ],
             "uploadDate": "2025-09-01T14:30:00+01:00",
-            "embedUrl": "https://www.youtube.com/embed/LqHTUhqYl3s"
+            "embedUrl": "https://www.youtube-nocookie.com/embed/LqHTUhqYl3s"
         },
         {
             "@context": "https://schema.org",
@@ -217,7 +217,7 @@
                     "@type": "ListItem",
                     "position": 13,
                     "name": "Amner Hunter (YouTube)",
-                    "url": "https://www.youtube.com/watch?v=40pkX_MkXjE"
+                    "url": "https://www.youtube-nocookie.com/watch?v=40pkX_MkXjE"
                 }
             ]
         },

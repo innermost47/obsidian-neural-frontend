@@ -15,7 +15,7 @@
                             class="w-full h-full object-cover"
                             onerror="this.src = 'https://via.placeholder.com/120'" />
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-1">Moteka</h3>
+                    <p class="text-xl font-bold text-white mb-1">Moteka</p>
                     <p
                         class="text-primary font-bold text-sm uppercase tracking-wider mb-5">
                         Producer
@@ -24,10 +24,12 @@
                         <a
                             href="https://soundcloud.com/moteka"
                             target="_blank"
+                            aria-label="Moteka Soundcloud"
                             class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all"><i class="fab fa-soundcloud"></i></a>
                         <a
                             href="https://www.instagram.com/pmoteka/"
                             target="_blank"
+                            aria-label="Moteka Instagram"
                             class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>

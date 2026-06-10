@@ -48,13 +48,14 @@
         <span class="text-primary font-black tracking-widest text-sm" id="nav-site-name-mobile">OBSIDIAN NEURAL</span>
         <button
           onclick="toggleMobileMenu()"
+          aria-label="Toggle mobile menu"
           class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-white transition-colors">
           <i class="fas fa-times"></i>
         </button>
       </div>
 
-      <div class="space-y-1 mb-4">
-        <a href="index.php" class="mobile-link active"><i class="fas fa-home w-5 text-primary"></i>Home</a>
+      <div class="space-y-1 mb-1">
+        <a href="index.php" class="mobile-link"><i class="fas fa-home w-5 text-primary"></i>Home</a>
       </div>
 
       <div id="nav-extra-mobile" class="space-y-1 mb-4"></div>

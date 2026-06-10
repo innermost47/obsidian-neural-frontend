@@ -77,7 +77,7 @@ window.APP_CONFIG = {
   DOWNLOAD_LINUX: "",
 
   MEDIUM_URL: "https://medium.com/@your-handle",
-  YOUTUBE_URL: "https://www.youtube.com/watch?v=your-video",
+  YOUTUBE_URL: "https://www.youtube-nocookie.com/watch?v=your-video",
   AUTHOR_URL: "https://your-personal-site.fr/",
   GITHUB_USERNAME: "",
 

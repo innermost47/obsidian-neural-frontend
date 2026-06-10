@@ -61,7 +61,7 @@ transparent 60%
                             <div
                                 class="absolute inset-0 bg-gradient-to-b from-transparent via-primary/15 to-transparent h-12 animate-scanline mix-blend-screen pointer-events-none rounded-xl"></div>
                             <img
-                                src="assets/images/controller-screenshot.png"
+                                src="assets/images/controller-screenshot.webp"
                                 alt="Android MIDI Controller — 8 slots, pages, sequencer (landscape)"
                                 class="w-full block rounded-xl opacity-90"
                                 onerror="

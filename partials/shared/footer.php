@@ -23,32 +23,36 @@
             href="#"
             target="_blank"
             rel="noopener"
+            aria-label="Gihub"
             class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all"><i class="fab fa-github"></i></a>
           <a
             id="footer-medium"
             href="#"
             target="_blank"
             rel="noopener"
+            aria-label="Medium"
             class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all"><i class="fa-brands fa-medium"></i></a>
           <a
             id="footer-youtube"
             href="#"
             target="_blank"
             rel="noopener"
+            aria-label="Youtube"
             class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all"><i class="fab fa-youtube"></i></a>
           <a
             id="footer-kvr"
             href="#"
             target="_blank"
             rel="noopener"
+            aria-label="KVR Audio"
             class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all"><i class="fa-solid fa-music"></i></a>
         </div>
       </div>
       <div>
-        <h4
+        <p
           class="text-[11px] font-bold uppercase tracking-widest text-primary mb-4">
           Product
-        </h4>
+        </p>
         <ul class="space-y-2.5 text-sm text-gray-500">
           <li>
             <a
@@ -72,10 +76,10 @@
         </ul>
       </div>
       <div>
-        <h4
+        <p
           class="text-[11px] font-bold uppercase tracking-widest text-primary mb-4">
           Resources
-        </h4>
+        </p>
         <ul class="space-y-2.5 text-sm text-gray-500">
           <li>
             <a
@@ -116,10 +120,10 @@
       </div>
 
       <div>
-        <h4
+        <p
           class="text-[11px] font-bold uppercase tracking-widest text-primary mb-4">
           Company
-        </h4>
+        </p>
         <ul class="space-y-2.5 text-sm text-gray-500">
           <li>
             <a
@@ -149,10 +153,10 @@
       </div>
 
       <div>
-        <h4
+        <p
           class="text-[11px] font-bold uppercase tracking-widest text-primary mb-4">
           Legal
-        </h4>
+        </p>
         <ul class="space-y-2.5 text-sm text-gray-500">
           <li>
             <a

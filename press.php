@@ -148,7 +148,7 @@ include('partials/shared/head.php');
       ]); ?>
 
       <?php render_press_card([
-        'url' => 'https://www.youtube.com/watch?v=40pkX_MkXjE',
+        'url' => 'https://www.youtube-nocookie.com/watch?v=40pkX_MkXjE',
         'flag' => '📺',
         'country' => 'YouTube',
         'outlet' => 'Amner Hunter',
