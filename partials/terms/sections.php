@@ -76,7 +76,7 @@
             . usage_item('fas fa-key', 'text-danger', 'Your license key is personal — you may not share, resell, or distribute it')
             . usage_item('fas fa-server', 'text-warning', 'Switching to server mode for the other AI engines requires an active subscription or your own self-hosted server')
             . usage_item('fas fa-wifi', 'text-primary', 'Internet is required once, to activate the license and download the model; the plugin then runs fully offline')
-            . usage_item('fas fa-download', 'text-success', 'You are entitled to download builds for Windows, macOS and Linux under a single license')
+            . usage_item('fas fa-download', 'text-success', 'You are entitled to download builds for Windows, macOS (Apple Silicon only) and Linux under a single license')
             . '</div>'
     ); ?>
 

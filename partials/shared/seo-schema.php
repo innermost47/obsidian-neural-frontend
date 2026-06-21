@@ -253,7 +253,7 @@
                     "name": "Which DAWs and operating systems are supported?",
                     "acceptedAnswer": {
                         "@type": "Answer",
-                        "text": "Windows, macOS (Intel + Apple Silicon universal binary), and Linux. VST3 format for all major DAWs, and AU format for Logic Pro and GarageBand. A standalone mode with built-in transport and tempo control is also included, with Ableton Link support to sync tempo and start/stop with any Link-enabled app over your network."
+                        "text": "Windows, macOS, and Linux. The free/cloud plugin ships as a universal macOS binary (Intel + Apple Silicon). The one-time Local Edition is Apple Silicon only on macOS (M1 and later; Intel Macs not supported). VST3 format for all major DAWs, and AU format for Logic Pro and GarageBand. A standalone mode with built-in transport and tempo control is also included, with Ableton Link support to sync tempo and start/stop with any Link-enabled app over your network."
                     }
                 },
                 {
@@ -279,6 +279,13 @@
                         "@type": "Answer",
                         "text": "Generated samples are automatically tempo-detected via MiniBPM and time-stretched to match your DAW's current BPM using Signalsmith Stretch with zero pitch drift. You can change tempo mid-session without reloading samples or interrupting playback. In standalone mode, you can also sync tempo across multiple apps via Ableton Link."
                     }
+                }, {
+                    "@type": "Question",
+                    "name": "What is the OBSIDIAN Neural Local Edition?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "The Local Edition is a one-time purchase (€29) that runs Stable Audio 3 Medium directly on your CPU — no GPU, no cloud, no subscription, and no internet required after activation. A single payment grants a perpetual license activatable on up to 3 machines, with builds for Windows, macOS (Apple Silicon only) and Linux. It can optionally switch to server mode for the other AI engines if you have a subscription or your own self-hosted server."
+                    }
                 }
             ]
         },
@@ -300,6 +307,32 @@
             "description": "Public immutable logs of AI audio generations verified via Mel Spectrogram Fingerprinting Proof-of-Work.",
             "url": "https://github.com/innermost47/obsidian-neural-central",
             "license": "https://www.mozilla.org/en-US/MPL/2.0/"
+        }, {
+            "@context": "https://schema.org",
+            "@type": ["Product", "SoftwareApplication"],
+            "name": "OBSIDIAN Neural — Local Edition",
+            "description": "One-time purchase edition of OBSIDIAN Neural. Runs Stable Audio 3 Medium locally on your CPU — no GPU, no cloud, no subscription. Fully offline after activation. Can switch to server mode for the other engines with a subscription or self-hosted server.",
+            "operatingSystem": "Windows, macOS (Apple Silicon), Linux",
+            "applicationCategory": "MultimediaApplication",
+            "brand": {
+                "@type": "Brand",
+                "name": "OBSIDIAN Neural"
+            },
+            "creator": {
+                "@type": "Person",
+                "name": "Anthony Charretier",
+                "alternateName": "InnerMost47",
+                "url": "https://github.com/innermost47"
+            },
+            "offers": {
+                "@type": "Offer",
+                "name": "Local Edition",
+                "price": "29",
+                "priceCurrency": "EUR",
+                "description": "One-time payment. Perpetual license, activate on up to 3 machines, Stable Audio 3 Medium runs locally offline forever.",
+                "url": "https://obsidian-neural.com/local.php",
+                "availability": "https://schema.org/InStock"
+            }
         }
     ]
 </script>

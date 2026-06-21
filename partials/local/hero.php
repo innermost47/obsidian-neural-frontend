@@ -51,9 +51,12 @@
 
             <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 mt-2 text-sm text-gray-500">
                 <span class="mr-1"><i class="fas fa-check text-success mr-2"></i>VST3 · AU · Standalone</span>
-                <span class="mr-1"><i class="fas fa-check text-success mr-2"></i>Windows · macOS · Linux</span>
+                <span class="mr-1"><i class="fas fa-check text-success mr-2"></i>Windows · macOS (Apple Silicon) · Linux</span>
                 <span><i class="fas fa-check text-success mr-2"></i>3 machines</span>
             </div>
+            <p class="text-xs text-gray-600 mt-2">
+                <i class="fas fa-circle-info mr-1"></i>macOS: Apple Silicon (M1+) only — Intel Macs not supported.
+            </p>
             <p class="text-xs text-gray-600 mt-2">
                 By purchasing, you agree to our <a href="terms-of-service.php" class="text-gray-400 hover:text-white underline">Terms of Service</a>.
             </p>
