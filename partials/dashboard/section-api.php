@@ -19,6 +19,13 @@
                 <button onclick="copyServerUrl(event)" class="px-4 py-2 rounded-xl border border-white/20 text-white font-bold text-sm hover:bg-white/5 transition-colors"><i class="fas fa-copy mr-1"></i>Copy URL</button>
             </div>
         </div>
+        <div id="local-license-block" class="hidden bg-gradient-to-br from-track5/[0.08] to-transparent border border-track5/30 rounded-2xl p-6 mb-6">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-base font-bold text-white"><i class="fas fa-microchip mr-2 text-track5"></i>Local Edition License</h3>
+                <span class="text-[10px] uppercase font-bold text-track5 bg-track5/15 border border-track5/40 px-3 py-1 rounded-full tracking-wider">One-time</span>
+            </div>
+            <div id="local-license-list" class="flex flex-col gap-5"></div>
+        </div>
         <div class="bg-primary/10 border border-primary/30 rounded-2xl p-5">
             <h5 class="font-bold text-white mb-3"><i class="fas fa-info-circle mr-2 text-primary"></i>Configuration Instructions</h5>
             <ol class="text-sm text-gray-400 space-y-1 list-decimal list-inside">

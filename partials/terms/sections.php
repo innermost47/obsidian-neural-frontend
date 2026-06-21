@@ -67,8 +67,46 @@
     ); ?>
 
     <?php legal_section(
+        'fas fa-microchip',
+        '7. Local Edition License (One-Time Purchase)',
+        '<p class="text-sm text-gray-400 mb-5">The OBSIDIAN Neural Local Edition is sold as a one-time purchase, separate from the cloud subscription. The following terms apply specifically to it:</p>'
+            . '<div class="divide-y divide-white/[0.04]">'
+            . usage_item('fas fa-infinity', 'text-success', 'A single payment grants a perpetual license to run Stable Audio 3 Medium locally — no recurring fees')
+            . usage_item('fas fa-desktop', 'text-primary', 'The license may be activated on up to 3 machines simultaneously')
+            . usage_item('fas fa-key', 'text-danger', 'Your license key is personal — you may not share, resell, or distribute it')
+            . usage_item('fas fa-server', 'text-warning', 'Switching to server mode for the other AI engines requires an active subscription or your own self-hosted server')
+            . usage_item('fas fa-wifi', 'text-primary', 'Internet is required once, to activate the license and download the model; the plugin then runs fully offline')
+            . usage_item('fas fa-download', 'text-success', 'You are entitled to download builds for Windows, macOS and Linux under a single license')
+            . '</div>'
+    ); ?>
+
+    <?php legal_section(
+        'fas fa-undo',
+        '8. Local Edition Refunds & Right of Withdrawal',
+        alert_box('warning', 'fas fa-exclamation-triangle', '<strong>Please read carefully before purchasing.</strong>') .
+            '<p class="text-sm text-gray-400 my-4">The Local Edition is digital content delivered immediately upon purchase. Under EU and French consumer law, the 14-day right of withdrawal does not apply once you have started downloading the software and AI model, which you expressly acknowledge and accept at checkout.</p>'
+            . '<div class="divide-y divide-white/[0.04]">'
+            . usage_item('fas fa-check-circle', 'text-success', 'Before any download, you may request a full refund')
+            . usage_item('fas fa-times-circle', 'text-danger', 'Once the software or model has been downloaded, the purchase is final')
+            . usage_item('fas fa-life-ring', 'text-primary', 'Having a technical issue? Contact us first — we will always try to help before anything else')
+            . '</div>'
+    ); ?>
+
+    <?php legal_section(
+        'fas fa-shield-halved',
+        '9. Local Edition — Activation & Anti-Piracy',
+        '<p class="text-sm text-gray-400 mb-5">To protect against unauthorized use, the Local Edition includes a license verification system:</p>'
+            . '<div class="divide-y divide-white/[0.04]">'
+            . usage_item('fas fa-fingerprint', 'text-primary', 'Activation links your license to your machines via a device identifier')
+            . usage_item('fas fa-rotate', 'text-success', 'You may release a machine and activate a new one if you change hardware')
+            . usage_item('fas fa-ban', 'text-danger', 'Circumventing, tampering with, or attempting to bypass the license system is strictly prohibited')
+            . usage_item('fas fa-volume-xmark', 'text-warning', 'Unlicensed or tampered copies may produce degraded audio output')
+            . '</div>'
+    ); ?>
+
+    <?php legal_section(
         'fas fa-server',
-        '7. Service Availability',
+        '10. Service Availability',
         '<p class="text-sm text-gray-400 mb-5">We strive for 99% uptime but don\'t guarantee uninterrupted service. We\'re not liable for:</p>'
             . '<div class="divide-y divide-white/[0.04]">'
             . usage_item('fas fa-plug', 'text-gray-500', 'Temporary service interruptions')
@@ -80,7 +118,7 @@
 
     <?php legal_section(
         'fas fa-scale-balanced',
-        '8. Limitation of Liability',
+        '11. Limitation of Liability',
         alert_box('warning', 'fas fa-exclamation-triangle', '<strong>THE SERVICE IS PROVIDED "AS IS" WITHOUT WARRANTIES.</strong>') .
             '<p class="text-sm text-gray-400 my-4">To the maximum extent permitted by law:</p>'
             . '<div class="divide-y divide-white/[0.04]">'
@@ -92,7 +130,7 @@
 
     <?php legal_section(
         'fas fa-user-slash',
-        '9. Account Termination',
+        '12. Account Termination',
         alert_box('danger', 'fas fa-user-times', '<strong>We may suspend or terminate your account if you:</strong>') .
             '<div class="divide-y divide-white/[0.04] my-4">'
             . usage_item('fas fa-file-contract', 'text-danger', 'Violate these Terms')
@@ -102,11 +140,11 @@
             . '<p class="text-sm text-gray-400"><i class="fas fa-info-circle mr-2 text-primary"></i>You may delete your account anytime from your dashboard.</p>'
     ); ?>
 
-    <?php legal_section('fas fa-edit', '10. Changes to Terms', '
+    <?php legal_section('fas fa-edit', '13. Changes to Terms', '
         <p class="text-gray-400 leading-relaxed">We may modify these Terms. Continued use after changes constitutes acceptance. Material changes will be notified via email.</p>
     '); ?>
 
-    <?php legal_section('fas fa-landmark', '11. Governing Law', '
+    <?php legal_section('fas fa-landmark', '14. Governing Law', '
         <div class="bg-white/[0.03] border border-white/[0.06] rounded-xl p-5 text-center">
             <i class="fas fa-flag text-primary text-3xl mb-3 block"></i>
             <p class="text-gray-400 mb-0" id="tos-governing-law">These Terms are governed by <strong class="text-white">French law</strong>. Disputes will be resolved in French courts.</p>

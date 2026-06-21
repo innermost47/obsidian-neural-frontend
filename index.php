@@ -12,6 +12,7 @@ include('partials/shared/head.php');
     <?php include('partials/home/live_mixing.php'); ?>
     <!-- <?php include('partials/home/draw.php'); ?> -->
     <?php include('partials/home/engines.php'); ?>
+    <?php include('partials/home/local.php'); ?>
     <?php include('partials/home/mobile_controler.php'); ?>
     <?php include('partials/home/stats.php'); ?>
     <?php include('partials/home/featured.php'); ?>

@@ -51,13 +51,11 @@ background: linear-gradient(to right, #fff, #888);
             </div>
             <div class="flex flex-col items-center gap-1">
                 <a
-                    id="btn-controller"
-                    href="#"
-                    target="_blank"
-                    class="px-6 py-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors backdrop-blur-md font-bold">
-                    <i class="fas fa-mobile-alt mr-2"></i>Mobile Controller
+                    href="local.php"
+                    class="px-6 py-4 rounded-xl bg-track5 text-white font-bold hover:scale-105 transition-transform shadow-[0_0_25px_rgba(180,150,90,0.35)]">
+                    <i class="fas fa-microchip mr-2"></i>Local Version — €29
                 </a>
-                <span class="text-xs text-gray-500">Android · Free</span>
+                <span class="text-xs text-gray-500"><i class="fas fa-wifi-slash mr-1"></i>Runs offline · One-time</span>
             </div>
             <div class="flex flex-col items-center gap-1">
                 <a

@@ -15,6 +15,108 @@ window.toggleSidebar = function () {
   }
 };
 
+async function releaseMachine(key, machine, btn) {
+  if (
+    !confirm(
+      "Release this machine? You'll be able to activate a new one in its place.",
+    )
+  ) {
+    return;
+  }
+
+  const original = btn.innerHTML;
+  btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i>';
+  btn.disabled = true;
+
+  try {
+    await API.releaseLicenseMachine(key, machine);
+    const user = await API.getMe();
+    renderLocalLicenses(user);
+  } catch (e) {
+    btn.innerHTML = original;
+    btn.disabled = false;
+    alert(e.detail || "Could not release the machine. Please try again.");
+  }
+}
+
+function renderLocalLicenses(user) {
+  const block = document.getElementById("local-license-block");
+  const list = document.getElementById("local-license-list");
+  if (!block || !list) return;
+
+  const licenses = user.vst_licenses || [];
+  if (licenses.length === 0) {
+    block.classList.add("hidden");
+    return;
+  }
+
+  block.classList.remove("hidden");
+  list.innerHTML = "";
+
+  licenses.forEach((lic) => {
+    const used = lic.machines_used || 0;
+    const max = lic.max_activations || 3;
+
+    const machinesHtml = (lic.machines || [])
+      .map((m) => {
+        const shortId = m.machine_id ? m.machine_id.slice(0, 12) + "…" : "—";
+        const last = m.last_seen_at
+          ? new Date(m.last_seen_at).toLocaleDateString()
+          : "—";
+        return `
+          <div class="flex items-center justify-between bg-black/20 rounded-lg px-3 py-2 text-xs">
+            <span class="text-gray-400 font-mono">${shortId}</span>
+            <div class="flex items-center gap-3">
+              <span class="text-gray-600">last seen ${last}</span>
+              <button data-key="${lic.license_key}" data-machine="${m.machine_id}" class="release-machine-btn text-danger hover:text-white transition-colors" title="Release this machine">
+                <i class="fas fa-times-circle"></i>
+              </button>
+            </div>
+          </div>`;
+      })
+      .join("");
+
+    const card = document.createElement("div");
+    card.className =
+      "border-b border-white/[0.04] pb-5 last:border-0 last:pb-0";
+    card.innerHTML = `
+      <p class="text-xs uppercase tracking-wider text-gray-500 mb-2">License key</p>
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 mb-4">
+        <code class="flex-1 bg-black/30 border border-white/10 rounded-xl px-4 py-3 text-track5 font-mono text-sm break-all">${lic.license_key}</code>
+        <button data-copy="${lic.license_key}" class="copy-license-btn px-4 py-3 rounded-xl border border-white/20 text-white font-bold text-sm hover:bg-white/5 transition-colors whitespace-nowrap">
+          <i class="fas fa-copy mr-1"></i>Copy
+        </button>
+      </div>
+      <div class="flex items-center justify-between mb-3">
+        <span class="text-xs text-gray-500">Activated machines</span>
+        <span class="text-xs font-bold ${used >= max ? "text-danger" : "text-success"}">${used} / ${max}</span>
+      </div>
+      <div class="flex flex-col gap-2">${machinesHtml || '<p class="text-xs text-gray-600">No machines activated yet.</p>'}</div>
+    `;
+    list.appendChild(card);
+  });
+
+  list.querySelectorAll(".copy-license-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      navigator.clipboard.writeText(btn.dataset.copy).then(() => {
+        const original = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check mr-1"></i>Copied!';
+        setTimeout(() => {
+          btn.innerHTML = original;
+        }, 2000);
+      });
+    });
+  });
+
+  list.querySelectorAll(".release-machine-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const key = btn.dataset.key;
+      const machine = btn.dataset.machine;
+      releaseMachine(key, machine, btn);
+    });
+  });
+}
+
 function setNavActive(sectionId) {
   document.querySelectorAll(".nav-link[data-section]").forEach((l) => {
     const isActive = l.getAttribute("data-section") === sectionId;
@@ -195,5 +297,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         ? (userData.credits_remaining / userData.credits_total) * 100
         : 0;
     document.getElementById("credits-progress-usage").style.width = `${pct}%`;
+    renderLocalLicenses(userData);
   }
 });
