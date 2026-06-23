@@ -15,3 +15,4 @@ include('partials/shared/head.php');
 <script src="js/api.js"></script>
 <script src="js/cookie-consent.js"></script>
 <script src="js/local.js"></script>
+<script src="js/beta-mode.js"></script>

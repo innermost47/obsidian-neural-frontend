@@ -298,5 +298,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         : 0;
     document.getElementById("credits-progress-usage").style.width = `${pct}%`;
     renderLocalLicenses(userData);
+    if (userData.vst_licenses && userData.vst_licenses.length > 0) {
+      document.getElementById("local-edition-promo")?.classList.add("hidden");
+    }
   }
 });

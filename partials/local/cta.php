@@ -15,16 +15,35 @@
             Stable Audio 3 Medium on your own CPU. One payment, three machines, offline forever. No account, no subscription, no strings.
         </p>
         <div class="flex flex-col items-center gap-4">
-            <div class="flex items-baseline gap-2">
-                <span class="text-6xl font-extrabold text-white">€29</span>
-                <span class="text-sm text-gray-500 uppercase tracking-wider">one-time</span>
+
+            <div data-prod-buy class="hidden flex flex-col items-center gap-4">
+                <div class="flex items-baseline gap-2" data-local-price>
+                    <span class="text-6xl font-extrabold text-white">€29</span>
+                    <span class="text-sm text-gray-500 uppercase tracking-wider">one-time</span>
+                </div>
+                <button
+                    id="btn-buy-local-cta"
+                    class="px-6 py-6 rounded-xl bg-track5 text-white text-lg font-bold hover:scale-105 transition-transform shadow-[0_0_30px_rgba(180,150,90,0.4)] disabled:opacity-60 disabled:cursor-not-allowed">
+                    <i class="fas fa-microchip mr-3"></i>Get the Local Edition
+                </button>
             </div>
-            <button
-                id="btn-buy-local-cta"
-                class="px-6 py-6 rounded-xl bg-track5 text-white text-lg font-bold hover:scale-105 transition-transform shadow-[0_0_30px_rgba(180,150,90,0.4)] disabled:opacity-60 disabled:cursor-not-allowed">
-                <i class="fas fa-microchip mr-3"></i>Get the Local Edition
-            </button>
-            <span id="buy-error-cta" class="text-sm text-danger hidden"></span>
+
+            <div data-beta-block class="hidden flex flex-col items-center gap-4">
+                <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-track5/15 border border-track5/40 text-track5 text-xs font-bold uppercase tracking-wider">
+                    <i class="fas fa-flask"></i>Beta Access
+                </span>
+                <a href="contact.php?subject=beta"
+                    class="px-6 py-6 rounded-xl bg-track5 text-white text-lg font-bold hover:scale-105 transition-transform shadow-[0_0_30px_rgba(180,150,90,0.4)] whitespace-nowrap">
+                    <i class="fas fa-flask mr-3"></i>Become a Beta Tester
+                </a>
+                <button data-beta-checkout
+                    class="text-sm text-gray-400 hover:text-white transition-colors underline">
+                    Already have a beta code? Enter it →
+                </button>
+            </div>
+
+            <span id="buy-error" class="text-sm text-danger hidden"></span>
+
             <p class="text-xs text-gray-500 mt-3">
                 <i class="fas fa-lock mr-1"></i>Secure checkout via Stripe · Key delivered instantly by email
             </p>

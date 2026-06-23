@@ -50,12 +50,15 @@ background: linear-gradient(to right, #fff, #888);
                 <span class="text-xs text-gray-500">VST3 · AU · Free</span>
             </div>
             <div class="flex flex-col items-center gap-1">
-                <a
-                    href="local.php"
-                    class="px-6 py-4 rounded-xl bg-track5 text-white font-bold hover:scale-105 transition-transform shadow-[0_0_25px_rgba(180,150,90,0.35)]">
+                <a href="local.php" data-prod-buy
+                    class="hidden px-6 py-4 rounded-xl bg-track5 text-white font-bold hover:scale-105 transition-transform shadow-[0_0_25px_rgba(180,150,90,0.35)]">
                     <i class="fas fa-microchip mr-2"></i>Local Version — €29
                 </a>
-                <span class="text-xs text-gray-500"><i class="fas fa-wifi-slash mr-1"></i>Runs offline · One-time</span>
+                <a href="local.php" data-beta-block
+                    class="hidden px-6 py-4 rounded-xl bg-track5 text-white font-bold hover:scale-105 transition-transform shadow-[0_0_25px_rgba(180,150,90,0.35)]">
+                    <i class="fas fa-flask mr-2"></i>Local Version — Beta
+                </a>
+                <span class="text-xs text-gray-500"><i class="fas fa-laptop mr-1"></i>Runs offline</span>
             </div>
             <div class="flex flex-col items-center gap-1">
                 <a

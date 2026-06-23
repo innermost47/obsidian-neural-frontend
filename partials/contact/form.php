@@ -28,6 +28,7 @@
                 <select id="subject" name="subject" required
                     class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white focus:border-primary focus:outline-none transition-colors">
                     <option value="" class="bg-black">Select a subject...</option>
+                    <option value="beta" class="bg-black">Be a Beta Tester</option>
                     <option value="support" class="bg-black">Technical Support</option>
                     <option value="billing" class="bg-black">Billing / Subscription</option>
                     <option value="feature" class="bg-black">Feature Request</option>

@@ -106,6 +106,7 @@ include('partials/shared/head.php');
 
 <script src="js/config.js"></script>
 <script src="js/api.js"></script>
+<script src="js/beta-mode.js"></script>
 <script src="js/dashboard-notifications.js"></script>
 <script src="js/dashboard-subscription.js"></script>
 <script src="js/dashboard-api.js"></script>

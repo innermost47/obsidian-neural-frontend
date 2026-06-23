@@ -57,8 +57,8 @@
                         The full plugin with Stable Audio 3 Medium running on your own hardware. One payment, activate on up to 3 machines, play offline forever.
                     </p>
                     <div class="flex flex-wrap justify-center md:justify-start gap-x-6 gap-y-2 mt-4 text-sm text-gray-500">
-                        <span><i class="fas fa-check text-success mr-2"></i>VST3 · AU · Standalone</span>
-                        <span><i class="fas fa-check text-success mr-2"></i>Windows · macOS (Apple Silicon) · Linux</span>
+                        <span class="mr-1"><i class="fas fa-check text-success mr-2"></i>VST3 · AU · Standalone</span>
+                        <span class="mr-1"><i class="fas fa-check text-success mr-2"></i>Windows · macOS (Apple Silicon) · Linux</span>
                         <span><i class="fas fa-check text-success mr-2"></i>3 machines</span>
                     </div>
                     <p class="text-xs text-gray-600 mt-2">
@@ -66,15 +66,32 @@
                     </p>
                 </div>
                 <div class="flex flex-col items-center gap-3 shrink-0">
-                    <div class="text-center">
-                        <span class="text-5xl font-extrabold text-white">€29</span>
-                        <span class="block text-xs text-gray-500 uppercase tracking-wider mt-1">One-time payment</span>
+
+                    <div data-prod-buy class="hidden flex flex-col items-center gap-3">
+                        <div class="text-center" data-local-price>
+                            <span class="text-5xl font-extrabold text-white">€29</span>
+                            <span class="block text-xs text-gray-500 uppercase tracking-wider mt-1">One-time payment</span>
+                        </div>
+                        <a href="local.php"
+                            class="px-8 py-4 rounded-xl bg-track5 text-white font-bold hover:scale-105 transition-transform shadow-[0_0_25px_rgba(180,150,90,0.35)] whitespace-nowrap">
+                            <i class="fas fa-microchip mr-2"></i>Get the Local Edition
+                        </a>
                     </div>
-                    <a
-                        href="local.php"
-                        class="px-8 py-4 rounded-xl bg-track5 text-white font-bold hover:scale-105 transition-transform shadow-[0_0_25px_rgba(180,150,90,0.35)] whitespace-nowrap">
-                        <i class="fas fa-microchip mr-2"></i>Get the Local Edition
-                    </a>
+
+                    <div data-beta-block class="hidden flex flex-col items-center gap-3">
+                        <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-track5/15 border border-track5/40 text-track5 text-xs font-bold uppercase tracking-wider">
+                            <i class="fas fa-flask"></i>Beta Access
+                        </span>
+                        <a href="contact.php?subject=beta"
+                            class="px-8 py-4 rounded-xl bg-track5 text-white font-bold hover:scale-105 transition-transform shadow-[0_0_25px_rgba(180,150,90,0.35)] whitespace-nowrap text-center">
+                            <i class="fas fa-flask mr-2"></i>Become a Beta Tester
+                        </a>
+                        <button data-beta-checkout
+                            class="text-sm text-gray-400 hover:text-white transition-colors underline">
+                            Already have a beta code? Enter it →
+                        </button>
+                    </div>
+
                 </div>
             </div>
         </div>

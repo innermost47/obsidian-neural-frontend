@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const buttons = document.querySelectorAll(
-    "#btn-buy-local, #btn-buy-local-cta",
+    "#btn-buy-local, #btn-buy-local-cta, [data-beta-checkout]",
   );
   const errorEl = document.getElementById("buy-error");
 
@@ -31,6 +31,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   buttons.forEach((btn) => {
-    btn.addEventListener("click", () => startCheckout(btn));
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      startCheckout(btn);
+    });
   });
 });

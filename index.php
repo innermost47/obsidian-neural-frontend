@@ -21,6 +21,9 @@ include('partials/shared/head.php');
     <?php include('partials/home/cta.php'); ?>
     <?php include('partials/shared/footer.php'); ?>
 </main>
+<script src="js/api.js"></script>
 <script src="js/github-stats.js"></script>
 <script src="js/cookie-consent.js"></script>
 <script src="js/home.js"></script>
+<script src="js/beta-mode.js"></script>
+<script src="js/local.js"></script>

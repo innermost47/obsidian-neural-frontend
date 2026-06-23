@@ -6,7 +6,7 @@
         <p class="text-sm text-gray-500 mt-1 mb-0">Manage your subscription and upgrade your plan.</p>
     </div>
     <div class="p-6 lg:p-12">
-
+        <?php include('partials/dashboard/local-edition.php'); ?>
         <div id="pricing-section" class="hidden">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
                 <?php render_pricing_card([

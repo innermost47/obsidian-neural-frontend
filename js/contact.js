@@ -1,6 +1,17 @@
 document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("timestamp").value = Date.now();
 
+  const urlSubject = new URLSearchParams(window.location.search).get("subject");
+  if (urlSubject) {
+    const subjectSelect = document.getElementById("subject");
+    if (
+      subjectSelect &&
+      [...subjectSelect.options].some((o) => o.value === urlSubject)
+    ) {
+      subjectSelect.value = urlSubject;
+    }
+  }
+
   const messageField = document.getElementById("message");
   const charCount = document.getElementById("charCount");
 
