@@ -80,7 +80,10 @@
                         <i class="fas fa-eye" id="password-icon"></i>
                     </button>
                 </div>
-                <div class="text-right mt-2">
+                <div class="flex flex-col sm:flex-row sm:justify-between gap-1 mt-2">
+                    <a href="forgot-password.php" class="text-xs text-track5 hover:text-white transition-colors">
+                        <i class="fas fa-microchip mr-1"></i>Bought the Local Edition? Set up access
+                    </a>
                     <a href="forgot-password.php" class="text-xs text-gray-500 hover:text-white transition-colors">
                         <i class="fas fa-question-circle mr-1"></i>Forgot password?
                     </a>

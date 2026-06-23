@@ -22,9 +22,9 @@
     </p>
 
     <div class="flex flex-wrap items-center gap-x-5 gap-y-2 mb-6 text-xs text-gray-500">
-        <span><i class="fas fa-check text-success mr-2"></i>Runs on your CPU</span>
-        <span><i class="fas fa-check text-success mr-2"></i>3 machines</span>
-        <span><i class="fas fa-check text-success mr-2"></i>Offline forever</span>
+        <span class="mr-2"><i class="fas fa-check text-success mr-1"></i>Runs on your CPU</span>
+        <span class="mr-2"><i class="fas fa-check text-success mr-1"></i>3 machines</span>
+        <span><i class="fas fa-check text-success mr-1"></i>Offline forever</span>
     </div>
 
     <div data-prod-buy class="hidden flex flex-wrap items-center gap-4">
@@ -38,7 +38,7 @@
     </div>
 
     <div data-beta-block class="hidden flex flex-wrap items-center gap-4">
-        <a href="local.php" class="px-6 py-3 rounded-xl bg-track5 text-white font-bold text-sm hover:scale-105 transition-transform shadow-[0_0_20px_rgba(180,150,90,0.3)] whitespace-nowrap">
+        <a href="contact.php?subject=beta" class="px-6 py-3 rounded-xl bg-track5 text-white font-bold text-sm hover:scale-105 transition-transform shadow-[0_0_20px_rgba(180,150,90,0.3)] whitespace-nowrap">
             <i class="fas fa-flask mr-2"></i>Get Beta Access
         </a>
         <span class="text-xs text-gray-500">Free during beta</span>

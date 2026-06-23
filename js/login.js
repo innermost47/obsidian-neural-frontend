@@ -25,8 +25,8 @@ function togglePassword() {
 }
 
 function backToLogin() {
-  form.classList.remove("d-none");
-  twoFAContainer.classList.add("d-none");
+  form.classList.remove("hidden");
+  twoFAContainer.classList.add("hidden");
   tempToken = null;
 }
 
@@ -47,7 +47,7 @@ async function loginWithGoogle() {
     }
   } catch (error) {
     errorMessage.textContent = error.detail || "Google login failed";
-    errorAlert.classList.remove("d-none");
+    errorAlert.classList.remove("hidden");
   } finally {
     resetGoogleBtn();
   }
@@ -82,22 +82,21 @@ form.addEventListener("submit", async (e) => {
 
   submitBtn.disabled = true;
   submitText.innerHTML = "Logging in...";
-  errorAlert.classList.add("d-none");
+  errorAlert.classList.add("hidden");
 
   try {
     const data = await API.login(email, password);
 
     if (data.requires_2fa) {
       tempToken = data.access_token;
-      form.classList.add("d-none");
-      twoFAContainer.classList.remove("d-none");
+      form.classList.add("hidden");
+      twoFAContainer.classList.remove("hidden");
       submitBtn.disabled = false;
       submitText.innerHTML = "Log In";
       return;
     }
 
     localStorage.setItem("token", data.access_token);
-    submitBtn.classList.add("btn-success");
 
     setTimeout(() => {
       redirectAfterLogin();
@@ -105,11 +104,9 @@ form.addEventListener("submit", async (e) => {
   } catch (error) {
     errorMessage.textContent =
       error.detail || "Login failed. Please check your credentials.";
-    errorAlert.classList.remove("d-none");
+    errorAlert.classList.remove("hidden");
     submitBtn.disabled = false;
     submitText.innerHTML = "Log In";
-    errorAlert.classList.add("shake");
-    setTimeout(() => errorAlert.classList.remove("shake"), 500);
   }
 });
 
