@@ -301,5 +301,18 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (userData.vst_licenses && userData.vst_licenses.length > 0) {
       document.getElementById("local-edition-promo")?.classList.add("hidden");
     }
+    if (userData.vst_licenses && userData.vst_licenses.length > 0) {
+      const link = document.getElementById("overview-license-link");
+      link?.classList.remove("hidden");
+      link?.classList.add("flex");
+
+      document.getElementById("download-opensource")?.classList.add("hidden");
+      const localDl = document.getElementById("download-local");
+      localDl?.classList.remove("hidden");
+
+      document.querySelectorAll("[data-local-dl]").forEach((a) => {
+        a.href = API.getLicenseDownloadUrl(a.dataset.localDl);
+      });
+    }
   }
 });

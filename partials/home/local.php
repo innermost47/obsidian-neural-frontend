@@ -47,7 +47,7 @@
             </div>
         </div>
 
-        <div class="bg-gradient-to-br from-track5/10 to-transparent border border-track5/20 rounded-3xl p-8 md:p-10 gs-reveal opacity-0 translate-y-8">
+        <div class="bg-gradient-to-br from-track5/10 to-transparent border border-track5/30 rounded-3xl p-8 md:p-10 gs-reveal opacity-0 translate-y-8">
             <div class="flex flex-col md:flex-row items-center justify-between gap-6">
                 <div class="text-center md:text-left">
                     <h3 class="text-2xl md:text-3xl font-extrabold tracking-tight mb-2">

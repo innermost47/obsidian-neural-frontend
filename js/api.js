@@ -1112,4 +1112,9 @@ const API = {
       sessionId,
     )}&platform=${encodeURIComponent(platform)}`;
   },
+
+  getLicenseDownloadUrl(platform) {
+    const token = localStorage.getItem("token");
+    return `${API_URL}/license/download?platform=${encodeURIComponent(platform)}&token=${encodeURIComponent(token)}`;
+  },
 };
