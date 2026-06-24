@@ -201,7 +201,7 @@ function setupBroadcastForm() {
             `Email sent successfully to ${result.sent_count} recipient(s)!`,
             "success",
           );
-          newForm.reset();
+          form.reset();
           tinymce.get("email-body").setContent("");
           await loadEmailHistory();
         } catch (error) {
