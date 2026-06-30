@@ -204,7 +204,7 @@
           class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-success/10 border border-success/30 text-success text-[10px] font-bold uppercase tracking-wider">
           <span class="w-1.5 h-1.5 rounded-full bg-success animate-pulse"></span>API Status: Operational
         </span>
-        <span class="text-xs text-gray-600">Made with <i class="fas fa-heart text-primary"></i> in France</span>
+        <span class="text-xs text-gray-600">Hallucinated <i class="fas fa-heart text-primary"></i> in France</span>
       </div>
     </div>
   </div>
