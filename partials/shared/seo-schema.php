@@ -91,7 +91,7 @@
                 "https://www.youtube-nocookie.com/watch?v=40pkX_MkXjE"
             ],
             "featureList": [
-                "AI stereo music generation for live performance (~30s per sample)",
+                "AI stereo music generation for live performance (~10s per sample)",
                 "9 specialized AI models assignable per track (including Stable Audio 3 Medium)",
                 "8-track stereo sampler",
                 "64-step sequencer with 8 sequences per page",

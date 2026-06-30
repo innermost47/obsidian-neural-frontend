@@ -7,7 +7,7 @@
             VST3 · AI Music · Stage Ready
         </h1>
         <p class="text-sm text-gray-500 max-w-sm mx-auto">
-            The first VST that pays you back. Generate samples in ~30s.
+            The first VST that pays you back. Generate samples in ~10s.
         </p>
     </div>
 

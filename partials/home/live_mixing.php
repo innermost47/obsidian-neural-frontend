@@ -48,7 +48,7 @@ transparent 60%
                 </div>
                 <h3 class="font-bold text-white mb-2">Generate During Your Set</h3>
                 <p class="text-sm text-gray-400">
-                    Queue a generation, keep playing — it drops in when ready. ~30s non-blocking background processing.
+                    Queue a generation, keep playing — it drops in when ready. ~10s non-blocking background processing.
                 </p>
             </div>
 

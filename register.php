@@ -12,7 +12,7 @@ include('partials/shared/head.php');
       <div
         class="bg-white/[0.03] border border-white/[0.06] rounded-xl px-3 py-3 flex items-center gap-2">
         <i class="fas fa-gift text-warning text-sm"></i>
-        <span class="text-xs text-gray-400">20 Trips</span>
+        <span class="text-xs text-gray-400">20 Rounds</span>
       </div>
       <div
         class="bg-white/[0.03] border border-white/[0.06] rounded-xl px-3 py-3 flex items-center gap-2">

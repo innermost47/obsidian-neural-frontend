@@ -9,7 +9,7 @@
                     Try It Free
                 </h2>
                 <p class="text-base font-medium text-primary mb-2">
-                    Your first trip is on us.
+                    First one's on the house.
                 </p>
                 <p class="text-gray-400 text-lg mb-8">
                     20 credits to test the plugin. No credit card required.

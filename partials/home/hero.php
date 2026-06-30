@@ -30,7 +30,7 @@ background: linear-gradient(to right, #fff, #888);
             <strong class="text-white">Your trip. Your machine. Your call.</strong><br />
             Generate samples in ~10s — on your own CPU, fully offline, or in the cloud
             if you'd rather skip the wait. Got a spare GPU?
-            <strong class="text-primary">Let it trip for someone else and earn 85% of the network revenue.</strong>
+            <strong class="text-primary">Let it go wild for someone else and earn 85% of the network revenue.</strong>
         </p>
 
         <div class="flex flex-wrap justify-center gap-4 mb-10 gs-reveal opacity-0 translate-y-6">
@@ -79,7 +79,7 @@ background: linear-gradient(to right, #fff, #888);
                 (AGPL-3.0)</span>
             <span><i class="fas fa-star text-warning mr-2"></i><span id="github-stars">Loading...</span> Stars</span>
             <span><i class="fas fa-download text-primary mr-2"></i><span id="github-downloads">Loading...</span> Downloads</span>
-            <span><i class="fas fa-bolt text-danger mr-2"></i>~30s Generation</span>
+            <span><i class="fas fa-bolt text-danger mr-2"></i>~10s Generation</span>
             <span><i class="fas fa-microchip text-primary mr-2"></i>9 AI Models</span>
         </div>
     </div>

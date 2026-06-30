@@ -7,7 +7,7 @@
             <i class="fas fa-bolt"></i>
         </div>
         <h3 class="text-lg font-bold text-white mb-2">Performance-Ready</h3>
-        <p class="text-sm text-gray-500 mb-0">Generate AI samples in ~30s, non-blocking — keep playing while it renders</p>
+        <p class="text-sm text-gray-500 mb-0">Generate AI samples in ~10s, non-blocking — keep playing while it renders</p>
     </div>
     <div class="bg-white/[0.03] backdrop-blur-md border border-white/[0.06] rounded-2xl p-6 text-center hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-300 group">
         <div class="w-14 h-14 rounded-2xl bg-track2/20 text-track2 flex items-center justify-center text-2xl mx-auto mb-4 group-hover:scale-110 transition-transform">

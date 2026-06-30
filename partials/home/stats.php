@@ -23,7 +23,7 @@ transparent 60%
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
             <div
                 class="text-center p-6 bg-white/5 border border-white/10 rounded-2xl gs-reveal opacity-0 translate-y-6">
-                <div class="text-4xl font-black text-danger mb-2">~30s</div>
+                <div class="text-4xl font-black text-danger mb-2">~10s</div>
                 <div class="text-sm text-gray-500">Generation Time</div>
             </div>
             <div
