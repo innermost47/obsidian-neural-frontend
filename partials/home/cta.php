@@ -5,10 +5,12 @@
             <div
                 class="absolute inset-0 bg-white/5 blur-[100px] rounded-full pointer-events-none"></div>
             <div class="relative">
-                <h2
-                    class="text-4xl md:text-5xl font-extrabold tracking-tighter mb-4">
+                <h2 class="text-4xl md:text-5xl font-extrabold tracking-tighter mb-3">
                     Try It Free
                 </h2>
+                <p class="text-base font-medium text-primary mb-2">
+                    Your first trip is on us.
+                </p>
                 <p class="text-gray-400 text-lg mb-8">
                     20 credits to test the plugin. No credit card required.
                 </p>

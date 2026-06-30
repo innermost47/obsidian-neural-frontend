@@ -11,10 +11,13 @@ transparent 60%
     <div class="max-w-6xl mx-auto">
         <div class="text-center mb-12">
             <h2
-                class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-4 gs-reveal opacity-0 translate-y-6">
+                class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-3 gs-reveal opacity-0 translate-y-6">
                 <i class="fas fa-play-circle text-danger mr-3"></i>Mix AI Samples
                 Live
             </h2>
+            <p class="text-base font-medium text-primary mb-2 gs-reveal opacity-0 translate-y-6">
+                Watch the fever dream unfold, screen-side.
+            </p>
             <p
                 class="text-gray-400 text-lg max-w-xl mx-auto gs-reveal opacity-0 translate-y-6">
                 Jungle drum &amp; bass performance with AI-generated samples

@@ -8,9 +8,8 @@
                 <i class="fas fa-sign-in-alt"></i>
             </div>
             <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight text-white mb-1">Welcome Back</h1>
-            <p class="text-sm text-gray-500">Sign in to access your dashboard</p>
+            <p class="text-sm text-gray-500">Sign in — <strong class="text-white">your crew's already in.</strong></p>
         </div>
-
         <div id="error-alert" class="hidden mb-6 p-4 rounded-2xl bg-danger/10 border border-danger/30 text-danger text-sm font-medium">
             <i class="fas fa-exclamation-circle mr-2"></i>
             <span id="error-message"></span>

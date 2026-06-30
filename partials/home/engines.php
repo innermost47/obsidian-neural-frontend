@@ -2,9 +2,12 @@
     <div class="max-w-6xl mx-auto">
         <div class="text-center mb-12">
             <h2
-                class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-4 gs-reveal opacity-0 translate-y-6">
+                class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-3 gs-reveal opacity-0 translate-y-6">
                 9 NEURAL ENGINES.
             </h2>
+            <p class="text-base font-medium text-primary mb-2 gs-reveal opacity-0 translate-y-6">
+                9 different flavors of delirium.
+            </p>
             <p
                 class="text-gray-400 max-w-2xl mx-auto gs-reveal opacity-0 translate-y-6">
                 Assign a different model to each of your 8 tracks. Optimized for

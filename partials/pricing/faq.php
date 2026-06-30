@@ -4,7 +4,7 @@
             <i class="fas fa-circle text-[6px]"></i> Frequently Asked Questions
         </div>
         <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-2">Got questions?</h2>
-        <p class="text-gray-500 text-sm">Everything you need to know before getting started</p>
+        <p class="text-gray-500 text-sm mb-1 text-success">Set and setting matter. Read up before you trip.</p>
     </div>
 
     <div class="max-w-3xl mx-auto space-y-3">

@@ -10,13 +10,16 @@ background: linear-gradient(to right, #fff, #888);
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
 ">
-            AI Music Generation VST<br />For Live Performance
+            The first VST<br />that hallucinates live
         </h1>
+        <h2 class="text-base md:text-lg font-medium text-gray-500 mb-10 gs-reveal opacity-0 translate-y-6">
+            Finally, a VST that justifies your impostor syndrome.
+        </h2>
 
         <div class="flex flex-wrap justify-center gap-2 mb-10 gs-reveal opacity-0 translate-y-6">
             <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-gray-400">
                 <i class="fas fa-cloud text-primary"></i>
-                No GPU required — AI runs in the cloud
+                No GPU required — cloud or local CPU
             </span>
             <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-gray-400">
                 <i class="fas fa-bolt text-success"></i>
@@ -24,10 +27,10 @@ background: linear-gradient(to right, #fff, #888);
             </span>
         </div>
         <p class="text-center max-w-2xl mx-auto mb-10 text-gray-400 text-lg leading-relaxed gs-reveal opacity-0 translate-y-6">
-            <strong class="text-white">The first VST that pays you back.</strong><br />
-            Generate samples in ~30s, load them live in your 8-track sampler — and
-            if you have a GPU,
-            <strong class="text-primary">earn 85% of the network revenue</strong>.
+            <strong class="text-white">Your trip. Your machine. Your call.</strong><br />
+            Generate samples in ~10s — on your own CPU, fully offline, or in the cloud
+            if you'd rather skip the wait. Got a spare GPU?
+            <strong class="text-primary">Let it trip for someone else and earn 85% of the network revenue.</strong>
         </p>
 
         <div class="flex flex-wrap justify-center gap-4 mb-10 gs-reveal opacity-0 translate-y-6">
@@ -52,11 +55,11 @@ background: linear-gradient(to right, #fff, #888);
             <div class="flex flex-col items-center gap-1">
                 <a href="local.php" data-prod-buy
                     class="hidden px-6 py-4 rounded-xl bg-track5 text-white font-bold hover:scale-105 transition-transform shadow-[0_0_25px_rgba(180,150,90,0.35)]">
-                    <i class="fas fa-microchip mr-2"></i>Local Version — €29
+                    <i class="fas fa-microchip mr-2"></i>CPU Version — €29
                 </a>
                 <a href="local.php" data-beta-block
                     class="hidden px-6 py-4 rounded-xl bg-track5 text-white font-bold hover:scale-105 transition-transform shadow-[0_0_25px_rgba(180,150,90,0.35)]">
-                    <i class="fas fa-flask mr-2"></i>Local Version — Beta
+                    <i class="fas fa-microchip mr-2"></i>CPU Version — Beta
                 </a>
                 <span class="text-xs text-gray-500"><i class="fas fa-laptop mr-1"></i>Runs offline</span>
             </div>

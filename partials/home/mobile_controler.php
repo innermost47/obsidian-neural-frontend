@@ -11,9 +11,12 @@ transparent 60%
     <div class="max-w-6xl mx-auto">
         <div class="text-center mb-16">
             <h2
-                class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-4 gs-reveal opacity-0 translate-y-6">
+                class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-3 gs-reveal opacity-0 translate-y-6">
                 <i class="fas fa-mobile-alt text-primary mr-3"></i>MIDI Controller
             </h2>
+            <p class="text-base font-medium text-primary mb-2 gs-reveal opacity-0 translate-y-6">
+                Free to control. Free to fork.
+            </p>
             <p
                 class="text-gray-400 text-lg max-w-xl mx-auto gs-reveal opacity-0 translate-y-6">
                 Control the plugin from your mobile device via USB MIDI

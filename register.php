@@ -12,7 +12,7 @@ include('partials/shared/head.php');
       <div
         class="bg-white/[0.03] border border-white/[0.06] rounded-xl px-3 py-3 flex items-center gap-2">
         <i class="fas fa-gift text-warning text-sm"></i>
-        <span class="text-xs text-gray-400">20 Credits</span>
+        <span class="text-xs text-gray-400">20 Trips</span>
       </div>
       <div
         class="bg-white/[0.03] border border-white/[0.06] rounded-xl px-3 py-3 flex items-center gap-2">
@@ -25,12 +25,11 @@ include('partials/shared/head.php');
         <span class="text-xs text-gray-400">Instant Access</span>
       </div>
     </div>
-
     <div
       class="mt-4 bg-white/[0.03] border border-white/[0.06] rounded-2xl p-5">
       <h3 class="text-sm font-bold text-white text-center mb-4">
         <i class="fas fa-check-circle text-warning mr-2"></i>What you get with
-        free credits
+        your free trips
       </h3>
       <ul class="space-y-3">
         <li class="flex items-center gap-3 text-sm text-gray-400">

@@ -9,10 +9,12 @@ transparent 60%
 ">
     <div class="max-w-6xl mx-auto">
         <div class="text-center mb-12">
-            <h2
-                class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-4 gs-reveal opacity-0 translate-y-6">
-                What Makes It Unique
+            <h2 class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-3 gs-reveal opacity-0 translate-y-6">
+                What Makes It Hallucinate
             </h2>
+            <p class="text-base md:text-lg font-medium text-primary mb-2 gs-reveal opacity-0 translate-y-6">
+                Just like every other pioneer using it.
+            </p>
             <p class="text-gray-400 text-lg gs-reveal opacity-0 translate-y-6">
                 Built for live performance, not just production
             </p>

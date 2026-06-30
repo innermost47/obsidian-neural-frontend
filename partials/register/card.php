@@ -9,7 +9,7 @@
             </div>
             <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight text-white mb-1">Create Your Account</h1>
             <p class="text-sm text-gray-500">
-                <i class="fas fa-gift mr-2 text-gray-600"></i>Start with <strong class="text-white">20 free credits</strong>
+                <i class="fas fa-gift mr-2 text-gray-600"></i>Join the crew — <strong class="text-white">20 trips on the house</strong>
             </p>
         </div>
 

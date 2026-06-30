@@ -10,9 +10,12 @@
                     <i class="fas fa-network-wired"></i> Phase 1 Active — 10 spots
                 </div>
                 <h2
-                    class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-4 leading-none">
+                    class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-3 leading-none">
                     OWN THE<br /><span class="text-danger">COMPUTE.</span>
                 </h2>
+                <p class="text-base font-medium text-danger mb-4">
+                    Stop tripping. Start supplying.
+                </p>
                 <p class="text-gray-300 text-sm mb-8 max-w-xl mx-auto">
                     <span id="provider-section-plugin-name">OBSIDIAN Neural</span>
                     runs on a

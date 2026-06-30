@@ -6,7 +6,7 @@
                 Featured &amp; Recognized
             </h2>
             <p class="text-gray-400 text-lg gs-reveal opacity-0 translate-y-6">
-                First plugin of its kind — covered across 8 countries
+                A new kind of plugin — covered across 8 countries
             </p>
         </div>
 

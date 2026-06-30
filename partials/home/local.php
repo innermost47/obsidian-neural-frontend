@@ -6,9 +6,12 @@
                 <i class="fas fa-microchip"></i>
                 New — Local Edition
             </span>
-            <h2 class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-4 gs-reveal opacity-0 translate-y-6">
+            <h2 class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-3 gs-reveal opacity-0 translate-y-6">
                 YOUR MACHINE.<br />YOUR RULES.
             </h2>
+            <p class="text-base md:text-lg font-medium text-track5 mb-6 gs-reveal opacity-0 translate-y-6">
+                Welcome to the off-grid crew.
+            </p>
             <p class="text-gray-400 text-lg max-w-2xl mx-auto gs-reveal opacity-0 translate-y-6">
                 Stable Audio 3 Medium runs straight on your CPU — no GPU required. No cloud, no account, no subscription.
                 No internet? <strong class="text-white">It still runs.</strong>
