@@ -14,8 +14,8 @@
         <p
           class="text-sm text-gray-500 leading-relaxed mb-5"
           id="footer-tagline">
-          AI music generation designed for live performance. Transform your
-          creative workflow with cutting-edge neural audio technology.
+          AI music generation designed for live performance. Built for the ones
+          who hallucinate on purpose.
         </p>
         <div class="flex gap-3">
           <a
