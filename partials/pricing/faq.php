@@ -52,6 +52,13 @@
         ]); ?>
 
         <?php render_faq_item([
+            'icon' => 'fas fa-plug',
+            'icon_color' => 'text-warning',
+            'question' => 'Which DAWs are supported?',
+            'answer' => 'OBSIDIAN Neural ships as a VST3 plugin, an Audio Unit (AU) build and a standalone app, for Windows, macOS (Apple Silicon) and Linux — all included in the installer. It is officially tested and supported in <strong>Ableton Live</strong> and <strong>Bitwig Studio</strong>. Because each DAW handles plugin transport and playback differently, other hosts — including <strong>FL Studio</strong> — are not officially supported, and features such as sequencer playback may not work as intended. Using a different DAW? Reach out before buying and I\'ll tell you what to expect.'
+        ]); ?>
+
+        <?php render_faq_item([
             'icon' => 'fab fa-github',
             'icon_color' => 'text-gray-400',
             'question' => 'Support?',

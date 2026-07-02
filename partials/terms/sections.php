@@ -105,8 +105,21 @@
     ); ?>
 
     <?php legal_section(
+        'fas fa-plug',
+        '10. Local Edition — Formats & DAW Compatibility',
+        '<p class="text-sm text-gray-400 mb-5">The Local Edition ships as a VST3 plugin, an Audio Unit (AU) plugin, and a standalone application, for Windows, macOS (Apple Silicon) and Linux. All formats are included in the installer. Because each host application implements plugin transport and playback differently, full functionality is only guaranteed in the DAWs we officially test.</p>'
+            . '<div class="divide-y divide-white/[0.04]">'
+            . usage_item('fas fa-check-circle', 'text-success', 'Officially tested and supported: Ableton Live and Bitwig Studio')
+            . usage_item('fas fa-box', 'text-primary', 'Provided as VST3, Audio Unit (AU) and standalone, all included in the installer')
+            . usage_item('fas fa-laptop-code', 'text-primary', 'The standalone application runs independently, without a DAW')
+            . usage_item('fas fa-exclamation-triangle', 'text-warning', 'Other DAWs (including FL Studio) are not officially tested; some features such as sequencer playback may not work as intended')
+            . usage_item('fas fa-life-ring', 'text-primary', 'If you are unsure whether your DAW is supported, contact us before purchasing and we will tell you what to expect')
+            . '</div>'
+    ); ?>
+
+    <?php legal_section(
         'fas fa-server',
-        '10. Service Availability',
+        '11. Service Availability',
         '<p class="text-sm text-gray-400 mb-5">We strive for 99% uptime but don\'t guarantee uninterrupted service. We\'re not liable for:</p>'
             . '<div class="divide-y divide-white/[0.04]">'
             . usage_item('fas fa-plug', 'text-gray-500', 'Temporary service interruptions')
@@ -118,7 +131,7 @@
 
     <?php legal_section(
         'fas fa-scale-balanced',
-        '11. Limitation of Liability',
+        '12. Limitation of Liability',
         alert_box('warning', 'fas fa-exclamation-triangle', '<strong>THE SERVICE IS PROVIDED "AS IS" WITHOUT WARRANTIES.</strong>') .
             '<p class="text-sm text-gray-400 my-4">To the maximum extent permitted by law:</p>'
             . '<div class="divide-y divide-white/[0.04]">'
@@ -130,7 +143,7 @@
 
     <?php legal_section(
         'fas fa-user-slash',
-        '12. Account Termination',
+        '13. Account Termination',
         alert_box('danger', 'fas fa-user-times', '<strong>We may suspend or terminate your account if you:</strong>') .
             '<div class="divide-y divide-white/[0.04] my-4">'
             . usage_item('fas fa-file-contract', 'text-danger', 'Violate these Terms')

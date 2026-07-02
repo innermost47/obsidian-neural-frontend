@@ -76,7 +76,17 @@
                     <i class="fas fa-chevron-down text-track5 transition-transform group-open:rotate-180"></i>
                 </summary>
                 <div class="px-6 pb-6 text-sm text-gray-400 leading-relaxed">
-                    VST3, AU, and Standalone — on Windows, macOS and Linux. Use it inside your DAW or as its own app with Ableton Link for live sets.
+                    VST3, AU, and Standalone — on Windows, macOS (Apple Silicon only, M1+) and Linux. Use it inside your DAW or as its own app with Ableton Link for live sets.
+                </div>
+            </details>
+
+            <details class="group bg-white/5 border border-white/10 rounded-2xl overflow-hidden">
+                <summary class="flex items-center justify-between cursor-pointer p-6 list-none">
+                    <span class="font-bold text-white pr-4">Which DAWs is it tested with?</span>
+                    <i class="fas fa-chevron-down text-track5 transition-transform group-open:rotate-180"></i>
+                </summary>
+                <div class="px-6 pb-6 text-sm text-gray-400 leading-relaxed">
+                    It's officially tested and supported in Ableton Live and Bitwig Studio. Every DAW handles plugin transport and playback a little differently, so other hosts — including FL Studio — aren't officially supported, and some features like sequencer playback may not behave as expected. Using a different DAW? Reach out before buying and I'll tell you what to expect.
                 </div>
             </details>
 
