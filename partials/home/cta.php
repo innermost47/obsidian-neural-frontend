@@ -8,22 +8,27 @@
                 <h2 class="text-4xl md:text-5xl font-extrabold tracking-tighter mb-3">
                     Try It Free
                 </h2>
-                <p class="text-base font-medium text-primary mb-2">
-                    First one's on the house.
+                <p class="text-base font-medium text-track5 mb-2">
+                    Free during beta. Yours to keep after.
                 </p>
                 <p class="text-gray-400 text-lg mb-8">
-                    20 credits to test the plugin. No credit card required.
+                    Runs entirely on your CPU, fully offline. No credit card required.
                 </p>
-                <div class="flex flex-wrap justify-center gap-4">
-                    <a
-                        href="register.php"
-                        class="px-8 py-4 rounded-xl bg-white text-black font-extrabold hover:bg-gray-200 transition-colors shadow-[0_0_25px_rgba(255,255,255,0.15)]"><i class="fas fa-rocket mr-2"></i>Get Free Credits</a>
-                    <a
-                        id="btn-cta-github"
-                        href="#"
-                        target="_blank"
-                        class="px-8 py-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 font-bold transition-colors"><i class="fab fa-github mr-2"></i>View on GitHub</a>
+                <div class="flex flex-wrap justify-center gap-4 mb-6">
+                    <a href="local.php" data-prod-buy
+                        class="hidden px-8 py-4 rounded-xl bg-track5 text-white font-extrabold hover:scale-105 transition-transform shadow-[0_0_25px_rgba(180,150,90,0.35)]">
+                        <i class="fas fa-microchip mr-2"></i>Get the Local Edition
+                    </a>
+                    <button data-beta-block data-beta-checkout type="button"
+                        class="hidden px-8 py-4 rounded-xl bg-track5 text-white font-extrabold hover:scale-105 transition-transform shadow-[0_0_25px_rgba(180,150,90,0.35)] disabled:opacity-60 disabled:cursor-not-allowed">
+                        <i class="fas fa-flask mr-2"></i>Get Free Beta Access
+                    </button>
                 </div>
+                <p class="text-sm text-gray-600">
+                    Prefer the cloud version?
+                    <a href="register.php" class="text-gray-500 hover:text-gray-400 underline underline-offset-2">Try it with 20 free credits</a>
+                    — or <a id="btn-cta-github" href="#" target="_blank" class="text-gray-500 hover:text-gray-400 underline underline-offset-2">view on GitHub</a>.
+                </p>
             </div>
         </div>
     </div>

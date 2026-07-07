@@ -1,16 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
   const buttons = document.querySelectorAll(
-    "#btn-buy-local, #btn-buy-local-cta, [data-beta-checkout]",
+    "#btn-buy-local, #btn-buy-local-cta",
   );
   const errorEl = document.getElementById("buy-error");
-
   async function startCheckout(btn) {
     const original = btn.innerHTML;
     btn.disabled = true;
     btn.innerHTML =
       '<i class="fas fa-circle-notch fa-spin mr-2"></i>Redirecting...';
     if (errorEl) errorEl.classList.add("hidden");
-
     try {
       const data = await API.createLocalCheckout();
       if (data.checkout_url) {
@@ -29,7 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("Local checkout failed:", error);
     }
   }
-
   buttons.forEach((btn) => {
     btn.addEventListener("click", (e) => {
       e.preventDefault();

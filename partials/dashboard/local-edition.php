@@ -37,10 +37,5 @@
         </a>
     </div>
 
-    <div data-beta-block class="hidden flex flex-wrap items-center gap-4">
-        <a href="contact.php?subject=beta" class="px-6 py-3 rounded-xl bg-track5 text-white font-bold text-sm hover:scale-105 transition-transform shadow-[0_0_20px_rgba(180,150,90,0.3)] whitespace-nowrap">
-            <i class="fas fa-flask mr-2"></i>Get Beta Access
-        </a>
-        <span class="text-xs text-gray-500">Free during beta</span>
-    </div>
+    <?php include __DIR__ . '/beta.php'; ?>
 </div>

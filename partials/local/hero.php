@@ -45,19 +45,7 @@
                 </button>
             </div>
 
-            <div data-beta-block class="hidden flex flex-col items-center gap-4">
-                <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-track5/15 border border-track5/40 text-track5 text-xs font-bold uppercase tracking-wider">
-                    <i class="fas fa-flask"></i>Beta Access
-                </span>
-                <a href="contact.php?subject=beta"
-                    class="px-6 py-6 rounded-xl bg-track5 text-white text-lg font-bold hover:scale-105 transition-transform shadow-[0_0_30px_rgba(180,150,90,0.4)] whitespace-nowrap">
-                    <i class="fas fa-flask mr-2"></i>Become a Beta Tester
-                </a>
-                <button data-beta-checkout
-                    class="text-sm text-gray-400 hover:text-white transition-colors underline">
-                    Already have a beta code? Enter it →
-                </button>
-            </div>
+            <?php include __DIR__ . '/beta.php'; ?>
 
             <span id="buy-error" class="text-sm text-danger hidden"></span>
 

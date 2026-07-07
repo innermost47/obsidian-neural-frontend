@@ -18,8 +18,8 @@ background: linear-gradient(to right, #fff, #888);
 
         <div class="flex flex-wrap justify-center gap-2 mb-10 gs-reveal opacity-0 translate-y-6">
             <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-gray-400">
-                <i class="fas fa-cloud text-primary"></i>
-                No GPU required — cloud or local CPU
+                <i class="fas fa-laptop text-track5"></i>
+                Runs 100% offline on your CPU
             </span>
             <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-gray-400">
                 <i class="fas fa-bolt text-success"></i>
@@ -28,50 +28,32 @@ background: linear-gradient(to right, #fff, #888);
         </div>
         <p class="text-center max-w-2xl mx-auto mb-10 text-gray-400 text-lg leading-relaxed gs-reveal opacity-0 translate-y-6">
             <strong class="text-white">Your trip. Your machine. Your call.</strong><br />
-            Generate samples in ~10s — on your own CPU, fully offline, or in the cloud
-            if you'd rather skip the wait. Got a spare GPU?
-            <strong class="text-primary">Let it go wild for someone else and earn 85% of the network revenue.</strong>
+            Generate samples in ~10s — entirely on your own CPU, fully offline, no account needed.
         </p>
 
-        <div class="flex flex-wrap justify-center gap-4 mb-10 gs-reveal opacity-0 translate-y-6">
-            <div class="flex flex-col items-center gap-1">
-                <a
-                    href="register.php"
-                    class="px-8 py-4 rounded-xl bg-gradient-to-r from-primary to-[#a04840] text-white font-bold hover:scale-105 transition-transform shadow-[0_0_25px_rgba(217,104,80,0.4)]">
-                    <i class="fas fa-rocket mr-2"></i>Start Free — 20 Credits
-                </a>
-                <span class="text-xs text-gray-500"><i class="fas fa-cloud mr-1"></i>No GPU needed</span>
-            </div>
-            <div class="flex flex-col items-center gap-1">
-                <a
-                    id="btn-download-plugin"
-                    href="#"
-                    target="_blank"
-                    class="px-6 py-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors backdrop-blur-md font-bold">
-                    <i class="fab fa-github mr-2"></i>Download Plugin
-                </a>
-                <span class="text-xs text-gray-500">VST3 · AU · Free</span>
-            </div>
+        <div class="flex flex-wrap justify-center gap-4 mb-6 gs-reveal opacity-0 translate-y-6">
             <div class="flex flex-col items-center gap-1">
                 <a href="local.php" data-prod-buy
-                    class="hidden px-6 py-4 rounded-xl bg-track5 text-white font-bold hover:scale-105 transition-transform shadow-[0_0_25px_rgba(180,150,90,0.35)]">
+                    class="hidden px-8 py-4 rounded-xl bg-track5 text-white font-bold hover:scale-105 transition-transform shadow-[0_0_25px_rgba(180,150,90,0.35)]">
                     <i class="fas fa-microchip mr-2"></i>CPU Version — €29
                 </a>
-                <a href="local.php" data-beta-block
-                    class="hidden px-6 py-4 rounded-xl bg-track5 text-white font-bold hover:scale-105 transition-transform shadow-[0_0_25px_rgba(180,150,90,0.35)]">
-                    <i class="fas fa-microchip mr-2"></i>CPU Version — Beta
-                </a>
-                <span class="text-xs text-gray-500"><i class="fas fa-laptop mr-1"></i>Runs offline</span>
-            </div>
-            <div class="flex flex-col items-center gap-1">
-                <a
-                    href="#provider-network"
-                    class="px-6 py-4 rounded-xl border border-primary/40 text-primary hover:bg-primary/10 transition-colors font-bold">
-                    <i class="fas fa-server mr-2"></i>Earn with GPU
-                </a>
-                <span class="text-xs text-gray-500">85% revenue share</span>
+                <button data-beta-block data-beta-checkout type="button"
+                    class="hidden px-8 py-4 rounded-xl bg-track5 text-white font-bold hover:scale-105 transition-transform shadow-[0_0_25px_rgba(180,150,90,0.35)] disabled:opacity-60 disabled:cursor-not-allowed">
+                    <i class="fas fa-flask mr-2"></i>Get Free Beta Access
+                </button>
+                <span data-prod-buy class="hidden text-xs text-gray-500"><i class="fas fa-laptop mr-1"></i>Runs offline · one-time payment</span>
+                <span data-beta-block class="hidden text-xs text-gray-500">
+                    <i class="fas fa-laptop mr-1"></i>Runs offline · no card needed ·
+                    <a href="local.php" class="underline hover:text-gray-300">learn more</a>
+                </span>
             </div>
         </div>
+
+        <p class="text-sm text-gray-600 mb-10 gs-reveal opacity-0 translate-y-6">
+            Prefer the cloud version instead?
+            <a href="register.php" class="text-gray-500 hover:text-gray-400 underline underline-offset-2">Try it with 20 free credits</a>
+            — or <a href="#provider-network" class="text-gray-500 hover:text-gray-400 underline underline-offset-2">earn with your GPU</a>.
+        </p>
 
         <div
             class="flex flex-wrap justify-center gap-6 text-sm text-gray-500 gs-reveal opacity-0 translate-y-6">

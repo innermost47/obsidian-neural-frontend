@@ -9,10 +9,14 @@
                 9 different flavors of delirium.
             </p>
             <p
-                class="text-gray-400 max-w-2xl mx-auto gs-reveal opacity-0 translate-y-6">
+                class="text-gray-400 max-w-2xl mx-auto mb-4 gs-reveal opacity-0 translate-y-6">
                 Assign a different model to each of your 8 tracks. Optimized for
                 specific styles and tempos. Fallback to cloud if no GPU node is
                 available.
+            </p>
+            <p class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-track5/10 border border-track5/30 text-xs text-track5 font-medium gs-reveal opacity-0 translate-y-6">
+                <i class="fas fa-microchip"></i>
+                The Local Edition runs Stable Audio 3 Medium only. The other 8 engines need server mode with a cloud subscription.
             </p>
         </div>
 
@@ -33,8 +37,12 @@
                 <p class="text-[11px] text-gray-500 mb-2">
                     Latest gen — world &amp; ambient textures
                 </p>
-                <span
-                    class="text-[10px] uppercase font-bold text-track9 bg-track9/10 px-2 py-0.5 rounded">FlowMatching</span>
+                <div class="flex flex-wrap gap-1.5">
+                    <span
+                        class="text-[10px] uppercase font-bold text-track9 bg-track9/10 px-2 py-0.5 rounded">FlowMatching</span>
+                    <span
+                        class="text-[10px] uppercase font-bold text-track5 bg-track5/15 border border-track5/30 px-2 py-0.5 rounded"><i class="fas fa-check mr-0.5"></i>Local Edition</span>
+                </div>
             </div>
             <div
                 class="gs-card opacity-0 translate-y-16 bg-white/5 backdrop-blur-md border border-white/10 p-5 rounded-2xl hover:bg-white/10 transition-all relative overflow-hidden group">
@@ -52,8 +60,12 @@
                 <p class="text-[11px] text-gray-500 mb-2">
                     Versatile full-mix &amp; drums
                 </p>
-                <span
-                    class="text-[10px] uppercase font-bold text-track8 bg-track8/10 px-2 py-0.5 rounded">80–160 BPM</span>
+                <div class="flex flex-wrap gap-1.5">
+                    <span
+                        class="text-[10px] uppercase font-bold text-track8 bg-track8/10 px-2 py-0.5 rounded">80–160 BPM</span>
+                    <span
+                        class="text-[10px] uppercase font-bold text-gray-400 bg-white/5 border border-white/10 px-2 py-0.5 rounded">Subscription</span>
+                </div>
             </div>
             <div
                 class="gs-card opacity-0 translate-y-16 bg-white/5 backdrop-blur-md border border-white/10 p-5 rounded-2xl hover:bg-white/10 transition-all relative overflow-hidden group">
@@ -71,8 +83,12 @@
                 <p class="text-[11px] text-gray-500 mb-2">
                     Melodic &amp; harmonic phrasing
                 </p>
-                <span
-                    class="text-[10px] uppercase font-bold text-track1 bg-track1/10 px-2 py-0.5 rounded">100–150 BPM</span>
+                <div class="flex flex-wrap gap-1.5">
+                    <span
+                        class="text-[10px] uppercase font-bold text-track1 bg-track1/10 px-2 py-0.5 rounded">100–150 BPM</span>
+                    <span
+                        class="text-[10px] uppercase font-bold text-gray-400 bg-white/5 border border-white/10 px-2 py-0.5 rounded">Subscription</span>
+                </div>
             </div>
             <div
                 class="gs-card opacity-0 translate-y-16 bg-white/5 backdrop-blur-md border border-white/10 p-5 rounded-2xl hover:bg-white/10 transition-all relative overflow-hidden group">
@@ -90,8 +106,12 @@
                 <p class="text-[11px] text-gray-500 mb-2">
                     High-energy leads &amp; plucks
                 </p>
-                <span
-                    class="text-[10px] uppercase font-bold text-track2 bg-track2/10 px-2 py-0.5 rounded">128 BPM Ideal</span>
+                <div class="flex flex-wrap gap-1.5">
+                    <span
+                        class="text-[10px] uppercase font-bold text-track2 bg-track2/10 px-2 py-0.5 rounded">128 BPM Ideal</span>
+                    <span
+                        class="text-[10px] uppercase font-bold text-gray-400 bg-white/5 border border-white/10 px-2 py-0.5 rounded">Subscription</span>
+                </div>
             </div>
             <div
                 class="gs-card opacity-0 translate-y-16 bg-white/5 backdrop-blur-md border border-white/10 p-5 rounded-2xl hover:bg-white/10 transition-all relative overflow-hidden group">
@@ -109,8 +129,12 @@
                 <p class="text-[11px] text-gray-500 mb-2">
                     Grand &amp; electric pianos
                 </p>
-                <span
-                    class="text-[10px] uppercase font-bold text-track4 bg-track4/10 px-2 py-0.5 rounded">120 BPM Optimal</span>
+                <div class="flex flex-wrap gap-1.5">
+                    <span
+                        class="text-[10px] uppercase font-bold text-track4 bg-track4/10 px-2 py-0.5 rounded">120 BPM Optimal</span>
+                    <span
+                        class="text-[10px] uppercase font-bold text-gray-400 bg-white/5 border border-white/10 px-2 py-0.5 rounded">Subscription</span>
+                </div>
             </div>
             <div
                 class="gs-card opacity-0 translate-y-16 bg-white/5 backdrop-blur-md border border-white/10 p-5 rounded-2xl hover:bg-white/10 transition-all relative overflow-hidden group">
@@ -128,8 +152,12 @@
                 <p class="text-[11px] text-gray-500 mb-2">
                     Choral &amp; operatic pads
                 </p>
-                <span
-                    class="text-[10px] uppercase font-bold text-track3 bg-track3/10 px-2 py-0.5 rounded">100–150 BPM</span>
+                <div class="flex flex-wrap gap-1.5">
+                    <span
+                        class="text-[10px] uppercase font-bold text-track3 bg-track3/10 px-2 py-0.5 rounded">100–150 BPM</span>
+                    <span
+                        class="text-[10px] uppercase font-bold text-gray-400 bg-white/5 border border-white/10 px-2 py-0.5 rounded">Subscription</span>
+                </div>
             </div>
             <div
                 class="gs-card opacity-0 translate-y-16 bg-white/5 backdrop-blur-md border border-white/10 p-5 rounded-2xl hover:bg-white/10 transition-all relative overflow-hidden group">
@@ -147,8 +175,12 @@
                 <p class="text-[11px] text-gray-500 mb-2">
                     Trap, lofi jazz, indie stems
                 </p>
-                <span
-                    class="text-[10px] uppercase font-bold text-track5 bg-track5/10 px-2 py-0.5 rounded">75–160 BPM</span>
+                <div class="flex flex-wrap gap-1.5">
+                    <span
+                        class="text-[10px] uppercase font-bold text-track5 bg-track5/10 px-2 py-0.5 rounded">75–160 BPM</span>
+                    <span
+                        class="text-[10px] uppercase font-bold text-gray-400 bg-white/5 border border-white/10 px-2 py-0.5 rounded">Subscription</span>
+                </div>
             </div>
             <div
                 class="gs-card opacity-0 translate-y-16 bg-white/5 backdrop-blur-md border border-white/10 p-5 rounded-2xl hover:bg-white/10 transition-all relative overflow-hidden group">
@@ -166,8 +198,12 @@
                 <p class="text-[11px] text-gray-500 mb-2">
                     Trap beats &amp; 808 grooves
                 </p>
-                <span
-                    class="text-[10px] uppercase font-bold text-track6 bg-track6/10 px-2 py-0.5 rounded">140 BPM Tight</span>
+                <div class="flex flex-wrap gap-1.5">
+                    <span
+                        class="text-[10px] uppercase font-bold text-track6 bg-track6/10 px-2 py-0.5 rounded">140 BPM Tight</span>
+                    <span
+                        class="text-[10px] uppercase font-bold text-gray-400 bg-white/5 border border-white/10 px-2 py-0.5 rounded">Subscription</span>
+                </div>
             </div>
             <div
                 class="gs-card opacity-0 translate-y-16 bg-white/5 backdrop-blur-md border border-white/10 p-5 rounded-2xl hover:bg-white/10 transition-all relative overflow-hidden group">
@@ -183,8 +219,12 @@
                         class="text-white hover:text-track7 transition-colors">Gluten v1</a>
                 </h3>
                 <p class="text-[11px] text-gray-500 mb-2">Loopable melodic trap</p>
-                <span
-                    class="text-[10px] uppercase font-bold text-track7 bg-track7/10 px-2 py-0.5 rounded">135 BPM Optimal</span>
+                <div class="flex flex-wrap gap-1.5">
+                    <span
+                        class="text-[10px] uppercase font-bold text-track7 bg-track7/10 px-2 py-0.5 rounded">135 BPM Optimal</span>
+                    <span
+                        class="text-[10px] uppercase font-bold text-gray-400 bg-white/5 border border-white/10 px-2 py-0.5 rounded">Subscription</span>
+                </div>
             </div>
         </div>
 

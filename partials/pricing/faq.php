@@ -48,7 +48,7 @@
             'icon' => 'fas fa-microchip',
             'icon_color' => 'text-primary',
             'question' => 'What AI models power the audio generation?',
-            'answer' => 'Provider nodes run <strong>9 specialized models</strong>, each assignable per track: <strong>Stable Audio 3 Medium</strong> (latest from Stability AI — FlowMatching, world-class quality on world instruments and long-form generation up to 120s), Stable Audio Open, Foundation-1, Audialab EDM Elements, RC Infinite Pianos, Vocal Textures, SAO Finetune, StableBeaT, Gluten v1. When no node is available, the system falls back to <strong>Stable Audio Open</strong> via fal.ai. The LLM layer uses <strong>Gemini 2.5 Flash</strong>.'
+            'answer' => 'Provider nodes run <strong>9 specialized models</strong>, each assignable per track: <strong>Stable Audio 3 Medium</strong> (latest from Stability AI — FlowMatching, world-class quality on world instruments and long-form generation up to 120s), Stable Audio Open, Foundation-1, Audialab EDM Elements, RC Infinite Pianos, Vocal Textures, SAO Finetune, StableBeaT, Gluten v1. When no node is available, the system falls back to <strong>Stable Audio Open</strong> via fal.ai. The LLM layer uses <strong>Gemini 2.5 Flash</strong>. <em>Note: the Local Edition below only runs Stable Audio 3 Medium, directly on your CPU — the other engines require server mode with a subscription.</em>'
         ]); ?>
 
         <?php render_faq_item([

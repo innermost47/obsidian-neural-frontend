@@ -26,7 +26,7 @@
                     <i class="fas fa-chevron-down text-track5 transition-transform group-open:rotate-180"></i>
                 </summary>
                 <div class="px-6 pb-6 text-sm text-gray-400 leading-relaxed">
-                    The free plugin (open source) runs in server mode only — the AI runs on a server, not your machine, and generating needs a subscription after your 20 free credits. The Local Edition runs Stable Audio 3 Medium directly on your CPU, offline, for a one-time payment. It can also switch to server mode for the other engines, but that part still needs a subscription or your own server.
+                    The free plugin (open source) runs in server mode only — the AI runs on a server, not your machine, and generating needs a subscription after your 20 free credits. The Local Edition runs Stable Audio 3 Medium directly on your CPU, offline. It can also switch to server mode for the other engines, but that part still needs a subscription or your own server.
                 </div>
             </details>
 
@@ -36,7 +36,7 @@
                     <i class="fas fa-chevron-down text-track5 transition-transform group-open:rotate-180"></i>
                 </summary>
                 <div class="px-6 pb-6 text-sm text-gray-400 leading-relaxed">
-                    Stable Audio 3 Medium (ONNX) is the only engine that runs on your machine — that's what your one-time payment unlocks. The other 9 engines exist in server mode, but generating with them needs a subscription (or your own self-hosted server). Your €29 covers the offline local model, nothing recurring.
+                    Stable Audio 3 Medium (ONNX) is the only engine that runs on your machine — that's what unlocking the Local Edition gives you. The other 9 engines exist in server mode, but generating with them needs a subscription (or your own self-hosted server). The Local Edition itself covers the offline local model only, nothing recurring.
                 </div>
             </details>
 

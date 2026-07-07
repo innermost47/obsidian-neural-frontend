@@ -1107,6 +1107,49 @@ const API = {
     }
   },
 
+  async checkLicenseCountUnder500() {
+    try {
+      const response = await fetch(`${API_URL}/license/count/under-500`, {
+        method: "GET",
+        credentials: "omit",
+      });
+      if (!response.ok) {
+        const error = await response.json();
+        throw error;
+      }
+      return await response.json();
+    } catch (error) {
+      if (error instanceof TypeError) {
+        throw { detail: "Network error. Please check your connection." };
+      }
+      throw error;
+    }
+  },
+
+  async createLocalCheckout(email = null, promoCode = null) {
+    try {
+      const body = {};
+      if (email) body.email = email;
+      if (promoCode) body.promo_code = promoCode;
+      const response = await fetch(`${API_URL}/license/checkout`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+        credentials: "omit",
+      });
+      if (!response.ok) {
+        const error = await response.json();
+        throw error;
+      }
+      return await response.json();
+    } catch (error) {
+      if (error instanceof TypeError) {
+        throw { detail: "Network error. Please check your connection." };
+      }
+      throw error;
+    }
+  },
+
   getLocalDownloadUrl(sessionId, platform) {
     return `${API_URL}/license/download?session_id=${encodeURIComponent(
       sessionId,
