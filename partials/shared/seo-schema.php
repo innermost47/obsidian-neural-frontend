@@ -89,7 +89,6 @@ $press_coverage_description = "Featured in leading music technology publications
             'url' => 'https://obsidian-neural.com',
             'downloadUrl' => 'https://github.com/innermost47/ai-dj/releases/latest',
             'screenshot' => 'https://obsidian-neural.com/assets/images/screenshot-v2-5-1.webp',
-            'review' => $reviews,
             'citation' => $citation,
             'featureList' => [
                 'AI stereo music generation for live performance (~10s per sample)',
