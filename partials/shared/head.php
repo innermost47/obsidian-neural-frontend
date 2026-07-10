@@ -65,7 +65,9 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"
         media="print" onload="this.media='all'">
     <link rel="stylesheet" href="/css/tailwind.min.css" />
-    <?php require_once "partials/shared/seo-schema.php" ?>
+    <?php
+    require_once "partials/press/items.php";
+    require_once "partials/shared/seo-schema.php"; ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js" defer></script>

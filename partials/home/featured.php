@@ -6,7 +6,7 @@
                 Featured &amp; Recognized
             </h2>
             <p class="text-gray-400 text-lg gs-reveal opacity-0 translate-y-6">
-                A new kind of plugin — covered across 8 countries
+                A new kind of plugin — covered across <?= $country_count ?> countries
             </p>
         </div>
 
@@ -118,24 +118,19 @@
                 Coverage
             </h3>
             <div class="flex flex-wrap justify-center gap-2 mb-8">
-                <span
-                    class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-xs text-gray-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer">🇰🇷 S1 Forum</span>
-                <span
-                    class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-xs text-gray-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer">🇫🇷 Audiofanzine</span>
-                <span
-                    class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-xs text-gray-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer">🇺🇸 Bedroom Producers Blog</span>
-                <span
-                    class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-xs text-gray-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer">🇺🇸 Synthtopia</span>
-                <span
-                    class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-xs text-gray-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer">🇳🇱 Rekkerd</span>
-                <span
-                    class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-xs text-gray-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer">🇪🇸 FutureMusic España</span>
-                <span
-                    class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-xs text-gray-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer">🇨🇳 Sohu.com &amp; MIDIFAN</span>
-                <span
-                    class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-xs text-gray-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer">🇯🇵 DTM Plugin Sale</span>
-                <span
-                    class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-xs text-gray-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer">🇺🇸 Audio Plugin Guy</span>
+                <?php
+                $seen_outlets = [];
+                foreach ($press_items as $item):
+                    if (in_array($item['outlet'], $seen_outlets, true)) continue;
+                    if (empty($item['country'])) continue;
+                    $seen_outlets[] = $item['outlet'];
+                ?>
+                    <a
+                        href="<?= htmlspecialchars($item['url']) ?>"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-xs text-gray-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"><?= $item['flag'] ?> <?= htmlspecialchars($item['outlet']) ?></a>
+                <?php endforeach; ?>
             </div>
             <a
                 href="press.php"
