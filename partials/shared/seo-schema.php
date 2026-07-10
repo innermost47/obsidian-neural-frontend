@@ -75,13 +75,6 @@ $press_coverage_description = "Featured in leading music technology publications
             'operatingSystem' => 'Windows, macOS, Linux',
             'softwareVersion' => 'latest',
             'license' => 'https://www.mozilla.org/en-US/MPL/2.0/',
-            'aggregateRating' => [
-                '@type' => 'AggregateRating',
-                'ratingValue' => '4.8',
-                'reviewCount' => '191',
-                'bestRating' => '5',
-                'worstRating' => '1',
-            ],
             'creator' => [
                 '@type' => 'Person',
                 'name' => 'Anthony Charretier',
@@ -183,12 +176,19 @@ $press_coverage_description = "Featured in leading music technology publications
             'description' => 'Public immutable logs of AI audio generations verified via Mel Spectrogram Fingerprinting Proof-of-Work.',
             'url' => 'https://github.com/innermost47/obsidian-neural-central',
             'license' => 'https://www.mozilla.org/en-US/MPL/2.0/',
+            'creator' => [
+                '@type' => 'Person',
+                'name' => 'Anthony Charretier',
+                'alternateName' => 'InnerMost47',
+                'url' => 'https://github.com/innermost47',
+            ],
         ],
         [
             '@context' => 'https://schema.org',
             '@type' => ['Product', 'SoftwareApplication'],
             'name' => 'OBSIDIAN Neural — Local Edition',
             'description' => 'One-time purchase edition of OBSIDIAN Neural. Runs Stable Audio 3 Medium locally on your CPU — no GPU, no cloud, no subscription. Fully offline after activation. Can switch to server mode for the other engines with a subscription or self-hosted server.',
+            'image' => 'https://obsidian-neural.com/assets/images/screenshot-v2-5-1.webp',
             'operatingSystem' => 'Windows, macOS (Apple Silicon), Linux',
             'applicationCategory' => 'MultimediaApplication',
             'brand' => ['@type' => 'Brand', 'name' => 'OBSIDIAN Neural'],
