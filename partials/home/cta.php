@@ -31,5 +31,8 @@
                 </p>
             </div>
         </div>
+        <h2 class="text-base md:text-lg font-medium text-gray-500 mb-10 gs-reveal opacity-0 translate-y-6 mt-6">
+            Still searching for an <a href="https://suno.com" target="_blank" class="text-gray-500 hover:text-gray-400 underline underline-offset-2">industrial generator</a>?
+        </h2>
     </div>
 </section>
