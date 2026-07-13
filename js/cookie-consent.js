@@ -7,6 +7,7 @@
     "yt-aimla": cfg.VIDEO_ID_AIMLA || "",
     "yt-draw": cfg.VIDEO_ID_DRAW || "",
     "yt-beatcrafter": cfg.VIDEO_ID_BEATCRAFTER || "",
+    "yt-tuto": cfg.VIDEO_ID_TUTO || "",
   };
 
   const YT_ALLOW =

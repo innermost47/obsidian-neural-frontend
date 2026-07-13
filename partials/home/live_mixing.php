@@ -9,28 +9,46 @@ transparent 60%
 "
     id="demo">
     <div class="max-w-6xl mx-auto">
-        <div class="text-center mb-12">
-            <h2
-                class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-3 gs-reveal opacity-0 translate-y-6">
-                <i class="fas fa-play-circle text-danger mr-3"></i>Mix AI Samples
-                Live
-            </h2>
-            <p class="text-base font-medium text-primary mb-2 gs-reveal opacity-0 translate-y-6">
-                Watch the fever dream unfold, screen-side.
+        <div class="max-w-3xl mx-auto text-center mb-20">
+            <p class="text-xs font-bold uppercase tracking-[0.3em] text-danger mb-4 gs-reveal opacity-0 translate-y-6">
+                Read this first
             </p>
-            <p
-                class="text-gray-400 text-lg max-w-xl mx-auto gs-reveal opacity-0 translate-y-6">
-                Jungle drum &amp; bass performance with AI-generated samples
-                triggered via MIDI controller
+            <h2 class="text-4xl md:text-6xl font-extrabold tracking-tighter mb-6 gs-reveal opacity-0 translate-y-6">
+                NOT another<br class="hidden md:block" />
+                song generator.
+            </h2>
+            <p class="text-xl md:text-2xl text-white font-medium leading-relaxed mb-4 gs-reveal opacity-0 translate-y-6">
+                OBSIDIAN Neural doesn't write songs for you. It's a
+                <span class="text-primary font-bold">performance instrument</span>:
+                you build your track loop by loop, live.
+            </p>
+            <p class="text-lg text-gray-400 max-w-xl mx-auto gs-reveal opacity-0 translate-y-6">
+                Forget Suno. Forget Udio.
+                <span class="text-white font-semibold">You're the composer — the AI is your loop generator.</span>
             </p>
         </div>
 
-        <div class="max-w-4xl mx-auto mb-16 gs-reveal opacity-0 scale-95">
-            <div class="aspect-video rounded-3xl border border-white/10 shadow-2xl relative overflow-hidden bg-black gs-reveal opacity-0 scale-95"
-                id="yt-dnb"
-                data-title="Jungle Drum & Bass Live Mix">
+        <div class="max-w-4xl mx-auto mb-16 gs-reveal opacity-0 translate-y-6 mt-10">
+            <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                <div class="text-center md:text-left">
+                    <p class="text-xs font-bold uppercase tracking-[0.3em] text-gray-500 mb-3">
+                        Live demo
+                    </p>
+                    <h3 class="text-xl md:text-2xl font-extrabold tracking-tighter text-white mb-2">
+                        Mix AI Samples Live
+                    </h3>
+                    <p class="text-sm text-gray-400">
+                        Jungle drum &amp; bass performance with AI-generated
+                        samples triggered via MIDI controller.
+                    </p>
+                </div>
+                <div class="aspect-video rounded-xl border border-white/10 relative overflow-hidden bg-black"
+                    id="yt-dnb"
+                    data-title="Jungle Drum & Bass Live Mix">
+                </div>
             </div>
         </div>
+
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-all gs-reveal opacity-0 translate-y-8">
                 <div class="w-12 h-12 rounded-xl bg-track2/20 text-track2 flex items-center justify-center text-xl mb-4">

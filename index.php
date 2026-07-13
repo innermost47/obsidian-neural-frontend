@@ -7,13 +7,14 @@ echo ("<main>");
 
 include('partials/home/3D_VST.php');
 include('partials/home/hero.php');
-include('partials/home/testimonial.php');
 include('partials/home/live_mixing.php');
+include('partials/home/tutorial.php');
 include('partials/home/engines.php');
 include('partials/home/local.php');
 include('partials/home/mobile_controler.php');
 include('partials/home/stats.php');
 include('partials/home/featured.php');
+include('partials/home/testimonial.php');
 include('partials/home/beatcrafter.php');
 include('partials/home/provider.php');
 include('partials/home/cta.php');

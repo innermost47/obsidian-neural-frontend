@@ -49,6 +49,7 @@
 
   setVideoId("yt-dnb", cfg.VIDEO_ID_DNB || "");
   setVideoId("yt-aimla", cfg.VIDEO_ID_AIMLA || "");
+  setVideoId("yt-tuto", cfg.VIDEO_ID_TUTO || "");
   setVideoId("yt-draw", cfg.VIDEO_ID_DRAW || "");
 })();
 
