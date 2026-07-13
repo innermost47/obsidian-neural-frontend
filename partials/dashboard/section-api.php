@@ -1,7 +1,7 @@
 <div id="section-api" class="section-content">
     <div class="sticky top-0 z-10 bg-[#0a0a0c]/95 backdrop-blur-md border-b border-white/[0.06] px-6 lg:px-12 py-5">
-        <h1 class="text-xl md:text-2xl font-extrabold text-white m-0"><i class="fas fa-key mr-3 text-primary"></i>API Configuration</h1>
-        <p class="text-sm text-gray-500 mt-1 mb-0">Manage your API key and server settings.</p>
+        <h1 class="text-xl md:text-2xl font-extrabold text-white m-0"><i class="fas fa-key mr-3 text-primary"></i>Credentials</h1>
+        <p class="text-sm text-gray-500 mt-1 mb-0">Manage what connects the plugin to your account.</p>
     </div>
     <div class="p-6 lg:p-12">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-6">
@@ -28,12 +28,26 @@
         </div>
         <div class="bg-primary/10 border border-primary/30 rounded-2xl p-5">
             <h5 class="font-bold text-white mb-3"><i class="fas fa-info-circle mr-2 text-primary"></i>Configuration Instructions</h5>
-            <ol class="text-sm text-gray-400 space-y-1 list-decimal list-inside">
-                <li>Copy your API key and Server URL</li>
-                <li>Open your VST plugin in your DAW</li>
-                <li>Navigate to the settings panel</li>
-                <li>Paste the API key and Server URL in the appropriate fields</li>
-            </ol>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div>
+                    <p class="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">Cloud / Server mode</p>
+                    <ol class="text-sm text-gray-400 space-y-1 list-decimal list-inside">
+                        <li>Copy your API key and Server URL</li>
+                        <li>Open your VST plugin in your DAW</li>
+                        <li>Navigate to the settings panel</li>
+                        <li>Paste the API key and Server URL in the appropriate fields</li>
+                    </ol>
+                </div>
+                <div>
+                    <p class="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">Local Edition</p>
+                    <ol class="text-sm text-gray-400 space-y-1 list-decimal list-inside">
+                        <li>Copy your license key above</li>
+                        <li>Open your VST plugin in your DAW</li>
+                        <li>Navigate to the configuration panel</li>
+                        <li>Paste the license key to activate offline mode</li>
+                    </ol>
+                </div>
+            </div>
         </div>
     </div>
 </div>

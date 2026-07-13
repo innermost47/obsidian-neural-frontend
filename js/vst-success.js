@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(window.location.search);
   const sessionId = params.get("session_id");
 
+  const headerEl = document.getElementById("success-header");
   const loadingEl = document.getElementById("license-loading");
   const boxEl = document.getElementById("license-box");
   const errorEl = document.getElementById("license-error");
@@ -11,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const copyBtn = document.getElementById("copy-key");
 
   if (!sessionId) {
+    headerEl.classList.add("hidden");
     loadingEl.classList.add("hidden");
     errorEl.classList.remove("hidden");
     return;
@@ -34,12 +36,19 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     } catch (e) {
       console.error("License fetch error:", e);
+
+      if (e.status === 410) {
+        headerEl.classList.add("hidden");
+        loadingEl.classList.add("hidden");
+        errorEl.classList.remove("hidden");
+        return;
+      }
     }
 
     if (attempts >= maxAttempts) {
+      headerEl.classList.add("hidden");
       loadingEl.classList.add("hidden");
       errorEl.classList.remove("hidden");
-      nextStepsEl.classList.remove("hidden");
       return;
     }
 
@@ -75,7 +84,18 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     Object.entries(map).forEach(([platform, el]) => {
-      if (el) el.href = API.getLocalDownloadUrl(sessionId, platform);
+      if (!el) return;
+      el.href = API.getLocalDownloadUrl(sessionId, platform);
+      el.addEventListener("click", async (e) => {
+        e.preventDefault();
+        hideDownloadError("download-error");
+        try {
+          const { url } = await API.checkLocalDownload(platform, sessionId);
+          window.location.href = url;
+        } catch (err) {
+          showDownloadError(err, "download-error");
+        }
+      });
     });
 
     const detected = detectOS();

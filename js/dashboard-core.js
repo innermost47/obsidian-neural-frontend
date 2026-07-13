@@ -311,7 +311,18 @@ document.addEventListener("DOMContentLoaded", async () => {
       localDl?.classList.remove("hidden");
 
       document.querySelectorAll("[data-local-dl]").forEach((a) => {
-        a.href = API.getLicenseDownloadUrl(a.dataset.localDl);
+        const platform = a.dataset.localDl;
+        a.href = API.getLicenseDownloadUrl(platform);
+        a.addEventListener("click", async (e) => {
+          e.preventDefault();
+          hideDownloadError("download-local-error");
+          try {
+            const { url } = await API.checkLocalDownload(platform);
+            window.location.href = url;
+          } catch (err) {
+            showDownloadError(err, "download-local-error");
+          }
+        });
       });
     }
   }

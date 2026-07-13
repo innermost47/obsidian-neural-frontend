@@ -1072,12 +1072,15 @@ const API = {
       );
       if (!response.ok) {
         const error = await response.json();
-        throw error;
+        throw { ...error, status: response.status };
       }
       return await response.json();
     } catch (error) {
       if (error instanceof TypeError) {
-        throw { detail: "Network error. Please check your connection." };
+        throw {
+          detail: "Network error. Please check your connection.",
+          status: 0,
+        };
       }
       throw error;
     }
@@ -1150,6 +1153,35 @@ const API = {
     }
   },
 
+  async checkLocalDownload(platform, sessionId = null) {
+    const token = localStorage.getItem("token");
+    const params = new URLSearchParams({ platform });
+    if (sessionId) params.append("session_id", sessionId);
+
+    const headers = {};
+    if (!sessionId && token) headers.Authorization = `Bearer ${token}`;
+
+    try {
+      const response = await fetch(
+        `${API_URL}/license/download/check?${params}`,
+        { method: "GET", headers, credentials: "omit" },
+      );
+      if (!response.ok) {
+        const error = await response.json().catch(() => ({}));
+        throw { ...error, status: response.status };
+      }
+      return await response.json();
+    } catch (error) {
+      if (error instanceof TypeError) {
+        throw {
+          detail: "Network error. Please check your connection.",
+          status: 0,
+        };
+      }
+      throw error;
+    }
+  },
+
   getLocalDownloadUrl(sessionId, platform) {
     return `${API_URL}/license/download?session_id=${encodeURIComponent(
       sessionId,
@@ -1161,3 +1193,25 @@ const API = {
     return `${API_URL}/license/download?platform=${encodeURIComponent(platform)}&token=${encodeURIComponent(token)}`;
   },
 };
+
+function showDownloadError(err, elementId) {
+  const el = document.getElementById(elementId);
+  if (!el) return;
+  let message;
+  if (err.status === 429) {
+    message = "Too many attempts — please wait a minute and try again.";
+  } else if (err.status === 403) {
+    message = "We couldn't verify your license. Please contact support.";
+  } else if (err.status === 404) {
+    message = "This build isn't available right now. Please contact support.";
+  } else {
+    message = err.detail || "Something went wrong. Please try again.";
+  }
+  el.textContent = message;
+  el.classList.remove("hidden");
+}
+
+function hideDownloadError(elementId) {
+  const el = document.getElementById(elementId);
+  if (el) el.classList.add("hidden");
+}

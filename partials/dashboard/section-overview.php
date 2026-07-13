@@ -106,6 +106,7 @@
                     <a data-local-dl="macos" href="#" class="flex items-center gap-2 w-full px-4 py-2.5 rounded-xl bg-track5 text-white font-bold text-sm hover:scale-[1.02] transition-transform"><i class="fab fa-apple"></i>macOS installer (.pkg)</a>
                     <a data-local-dl="linux" href="#" class="flex items-center gap-2 w-full px-4 py-2.5 rounded-xl bg-track5 text-white font-bold text-sm hover:scale-[1.02] transition-transform"><i class="fab fa-linux"></i>Linux installer (.tar.gz)</a>
                 </div>
+                <p id="download-local-error" class="hidden text-xs text-danger mt-2"></p>
             </div>
         </div>
 

@@ -24,7 +24,7 @@
         <div class="mb-6">
             <p class="px-6 mb-3 text-[0.7rem] font-bold uppercase tracking-[0.1em] text-white/40">Settings</p>
             <div class="space-y-1 px-4">
-                <a href="#" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-white/70 font-medium hover:bg-primary/10 hover:text-white hover:translate-x-1 transition-all" data-section="api"><i class="fas fa-key w-6 text-center"></i><span>API Configuration</span></a>
+                <a href="#" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-white/70 font-medium hover:bg-primary/10 hover:text-white hover:translate-x-1 transition-all" data-section="api"><i class="fas fa-key w-6 text-center"></i><span>Credentials </span></a>
                 <a href="#" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-white/70 font-medium hover:bg-primary/10 hover:text-white hover:translate-x-1 transition-all" data-section="security"><i class="fas fa-shield-alt w-6 text-center"></i><span>Security</span></a>
                 <a href="#" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-white/70 font-medium hover:bg-primary/10 hover:text-white hover:translate-x-1 transition-all" data-section="preferences"><i class="fas fa-cog w-6 text-center"></i><span>Preferences</span></a>
             </div>

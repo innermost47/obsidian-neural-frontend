@@ -7,7 +7,7 @@ include('partials/shared/head.php');
 <main class="relative z-20 pt-32 pb-24 px-4 min-h-screen">
     <div class="max-w-2xl mx-auto">
 
-        <div class="text-center mb-10">
+        <div id="success-header" class="text-center mb-10">
             <div class="w-16 h-16 rounded-full bg-success/20 text-success flex items-center justify-center text-3xl mb-6 mx-auto">
                 <i class="fas fa-check"></i>
             </div>
@@ -39,8 +39,8 @@ include('partials/shared/head.php');
 
         <div id="license-error" class="hidden bg-white/5 border border-danger/30 rounded-2xl p-8 text-center mb-8">
             <i class="fas fa-circle-exclamation text-danger text-2xl mb-3"></i>
-            <p class="text-gray-300 text-sm mb-1">Your payment went through, but the key is taking a moment to generate.</p>
-            <p class="text-gray-500 text-sm">Check your email in a minute — it'll be there. Still nothing? Just reply to the email or contact us.</p>
+            <p class="text-gray-300 text-sm mb-1">We couldn't retrieve your key on this page.</p>
+            <p class="text-gray-500 text-sm">Check your email — it's there, or was sent when your purchase completed. Still nothing? Just reply to that email or <a href="contact.php" class="text-gray-500 hover:text-gray-400 underline underline-offset-2">contact us</a>.</p>
         </div>
 
         <div id="next-steps" class="hidden">
@@ -65,6 +65,7 @@ include('partials/shared/head.php');
                             <i class="fab fa-linux"></i>Linux
                         </a>
                     </div>
+                    <p id="download-error" class="hidden text-sm text-danger mt-3 text-center"></p>
                 </div>
                 <div class="bg-white/5 border border-white/10 rounded-2xl p-6 flex items-start gap-4">
                     <span class="w-9 h-9 shrink-0 rounded-full bg-track5/20 text-track5 flex items-center justify-center font-extrabold text-sm">2</span>
