@@ -14,7 +14,7 @@ background: linear-gradient(to right, #fff, #888);
         </h1>
         <h2 class="text-base md:text-lg font-medium text-gray-500 mb-10 gs-reveal opacity-0 translate-y-6">
             If you're searching for an industrial AI full-song generator, <a href="https://suno.com" target="_blank" class="text-gray-500 hover:text-gray-400 underline underline-offset-2">here it is</a></br>
-            Here is the place for <strong>borderlines</strong> who wanna traumatize AI-generated sounds, <strong>step by step</strong>.
+            Here is the place for <strong>outlaws</strong> who wanna subvert AI-generated sounds, <strong>step by step</strong>.
         </h2>
 
         <div class="flex flex-wrap justify-center gap-2 mb-10 gs-reveal opacity-0 translate-y-6">
