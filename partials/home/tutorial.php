@@ -189,6 +189,19 @@ transparent 60%
             btn.style.backgroundImage =
                 "url('https://i.ytimg.com/vi/" + vid + "/hqdefault.jpg')";
 
+            var thumb = new Image();
+            thumb.onload = function() {
+                var url = thumb.naturalWidth > 120 ?
+                    thumb.src :
+                    "https://i.ytimg.com/vi/" + vid + "/hqdefault.jpg";
+                btn.style.backgroundImage = "url('" + url + "')";
+            };
+            thumb.onerror = function() {
+                btn.style.backgroundImage =
+                    "url('https://i.ytimg.com/vi/" + vid + "/hqdefault.jpg')";
+            };
+            thumb.src = "https://i.ytimg.com/vi/" + vid + "/maxresdefault.jpg";
+
             btn.addEventListener("click", function() {
                 var iframe = document.createElement("iframe");
                 iframe.src = "https://www.youtube-nocookie.com/embed/" + vid +
