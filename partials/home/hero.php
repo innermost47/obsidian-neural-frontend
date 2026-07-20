@@ -56,6 +56,12 @@ background: linear-gradient(to right, #fff, #888);
             — or <a href="#provider-network" class="text-gray-500 hover:text-gray-400 underline underline-offset-2">earn with your GPU</a>.
         </p>
 
+        <p class="text-sm text-gray-600 mb-10 gs-reveal opacity-0 translate-y-6 -mt-6">
+            <i class="fas fa-headphones text-primary mr-1"></i>
+            Curious what it sounds like in the wild?
+            <a href="community.php" class="text-gray-500 hover:text-gray-400 underline underline-offset-2">Hear tracks made with it</a>
+        </p>
+
         <div
             class="flex flex-wrap justify-center gap-6 text-sm text-gray-500 gs-reveal opacity-0 translate-y-6">
             <span><i class="fas fa-code text-success mr-2"></i>Open Source

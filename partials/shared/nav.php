@@ -83,6 +83,7 @@
       if (extraDesktop) {
         extraDesktop.innerHTML =
           '<a href="pricing.php" class="nav-link-pill">Pricing</a>' +
+          '<a href="community.php" class="nav-link-pill">Community</a>' +
           '<a href="press.php" class="nav-link-pill">Press</a>' +
           '<a href="contact.php" class="nav-link-pill">Contact</a>';
       }
@@ -91,6 +92,7 @@
       if (extraMobile) {
         extraMobile.innerHTML =
           '<a href="pricing.php" class="mobile-link" onclick="toggleMobileMenu()"><i class="fas fa-tags w-5 text-track4"></i>Pricing</a>' +
+          '<a href="community.php" class="mobile-link"><i class="fas fa-headphones w-5 text-track2"></i>Community</a>' +
           '<a href="press.php" class="mobile-link"><i class="fas fa-newspaper w-5 text-gray-400"></i>Press</a>' +
           '<a href="contact.php" class="mobile-link"><i class="fas fa-envelope w-5 text-gray-400"></i>Contact</a>';
       }
