@@ -30,6 +30,20 @@ $testimonials = [
             ['icon' => 'fas fa-link', 'url' => 'https://www.rethinkstudios.tv/', 'label' => 'Rethink Studios Website'],
         ],
     ],
+
+    [
+        'name'   => 'Yevgeni "Jeff" Birkhoff',
+        'role'   => 'Composer & Sound Designer @JBF Productions',
+        'avatar' => 'assets/images/jbf.jpg',
+        'quote'  => [
+            '"I think the concept of running AI music generation locally on your own machine is incredibly promising. What excites me most about Obsidian is its ability to perform inference on the <span class="text-primary font-semibold">CPU</span>, making generative audio accessible without requiring high-end hardware."',
+        ],
+        'links'  => [
+            ['icon' => 'fab fa-soundcloud', 'url' => 'https://soundcloud.com/sonic-universe', 'label' => 'Jeff Birkhoff SoundCloud'],
+            ['icon' => 'fab fa-linkedin', 'url' => 'https://www.linkedin.com/in/jewgeni-jeff-birkhoff/', 'label' => 'Jeff Birkhoff LinkedIn'],
+            ['icon' => 'fas fa-link', 'url' => 'https://www.jbf.productions', 'label' => 'JBF Productions Website'],
+        ],
+    ],
 ];
 
 $autoplay = 6000;
