@@ -100,9 +100,6 @@
                     <a id="dl-macos-stdln" href="#" target="_blank" rel="noopener" class="flex items-center gap-2 w-full px-4 py-2.5 rounded-xl bg-gradient-to-r from-primary to-[#a04840] text-white font-bold text-sm hover:scale-[1.02] transition-transform"><i class="fab fa-apple"></i>macOS — Standalone</a>
                     <a id="dl-linux" href="#" target="_blank" rel="noopener" class="flex items-center gap-2 w-full px-4 py-2.5 rounded-xl bg-gradient-to-r from-primary to-[#a04840] text-white font-bold text-sm hover:scale-[1.02] transition-transform"><i class="fab fa-linux"></i>Linux — VST3</a>
                     <a id="dl-linux-stdln" href="#" target="_blank" rel="noopener" class="flex items-center gap-2 w-full px-4 py-2.5 rounded-xl bg-gradient-to-r from-primary to-[#a04840] text-white font-bold text-sm hover:scale-[1.02] transition-transform"><i class="fab fa-linux"></i>Linux — Standalone</a>
-                    <button id="open-versions-modal" type="button" class="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-xl border border-white/20 text-white/80 font-bold text-sm hover:bg-white/5 transition-colors">
-                        <i class="fas fa-clock-rotate-left"></i>Previous versions
-                    </button>
                 </div>
 
                 <div id="download-local" class="hidden space-y-2">
@@ -110,6 +107,9 @@
                     <a data-local-dl="windows" href="#" class="flex items-center gap-2 w-full px-4 py-2.5 rounded-xl bg-track5 text-white font-bold text-sm hover:scale-[1.02] transition-transform"><i class="fab fa-windows"></i>Windows installer (.exe)</a>
                     <a data-local-dl="macos" href="#" class="flex items-center gap-2 w-full px-4 py-2.5 rounded-xl bg-track5 text-white font-bold text-sm hover:scale-[1.02] transition-transform"><i class="fab fa-apple"></i>macOS installer (.pkg)</a>
                     <a data-local-dl="linux" href="#" class="flex items-center gap-2 w-full px-4 py-2.5 rounded-xl bg-track5 text-white font-bold text-sm hover:scale-[1.02] transition-transform"><i class="fab fa-linux"></i>Linux installer (.tar.gz)</a>
+                    <button id="open-versions-modal" type="button" class="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-xl border border-white/20 text-white/80 font-bold text-sm hover:bg-white/5 transition-colors">
+                        <i class="fas fa-clock-rotate-left"></i>Previous versions
+                    </button>
                 </div>
                 <p id="download-local-error" class="hidden text-xs text-danger mt-2"></p>
             </div>
