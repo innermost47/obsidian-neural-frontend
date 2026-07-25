@@ -1,5 +1,37 @@
 <?php include_once('partials/dashboard/helpers.php'); ?>
 
+<style>
+    #versions-modal {
+        margin: auto;
+        padding: 0;
+        border: none;
+        background: transparent;
+        max-width: 42rem;
+        width: calc(100% - 2rem);
+        overflow: visible;
+    }
+
+    #versions-modal::backdrop {
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(4px);
+    }
+
+    #versions-modal .modal-shell {
+        display: flex;
+        flex-direction: column;
+        max-height: 80vh;
+        background: #0a0a0c;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 1rem;
+        overflow: hidden;
+    }
+
+    #versions-modal-body {
+        overflow-y: auto;
+        min-height: 0;
+    }
+</style>
+
 <div id="section-overview" class="section-content active">
     <div class="sticky top-0 z-10 bg-[#0a0a0c]/95 backdrop-blur-md border-b border-white/[0.06] px-6 lg:px-12 py-5">
         <h1 class="text-xl md:text-2xl font-extrabold text-white m-0"><i class="fas fa-th-large mr-3 text-primary"></i>Dashboard Overview</h1>
@@ -137,8 +169,8 @@
         </div>
 
     </div>
-    <dialog id="versions-modal" class="m-auto p-0 bg-transparent rounded-2xl backdrop:bg-black/70 backdrop:backdrop-blur-sm max-w-2xl w-[calc(100%-2rem)]">
-        <div class="flex flex-col max-h-[80vh] bg-[#0a0a0c] border border-white/[0.08] rounded-2xl shadow-2xl overflow-hidden">
+    <dialog id="versions-modal">
+        <div class="modal-shell">
             <div class="flex items-center justify-between px-6 py-5 border-b border-white/[0.06] shrink-0">
                 <div>
                     <h3 class="text-lg font-bold text-white m-0"><i class="fas fa-clock-rotate-left mr-2 text-track5"></i>Previous versions</h3>
@@ -148,7 +180,7 @@
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-            <div id="versions-modal-body" class="overflow-y-auto px-6 py-5 space-y-3"></div>
+            <div id="versions-modal-body" class="px-6 py-5 space-y-3"></div>
             <p id="versions-modal-error" class="hidden px-6 pb-5 text-xs text-danger shrink-0"></p>
         </div>
     </dialog>
