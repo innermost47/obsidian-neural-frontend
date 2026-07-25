@@ -137,7 +137,7 @@
         </div>
 
     </div>
-    <dialog id="versions-modal" class="p-0 bg-transparent backdrop:bg-black/70 backdrop:backdrop-blur-sm max-w-2xl w-[calc(100%-2rem)]">
+    <dialog id="versions-modal" class="m-auto p-0 bg-transparent rounded-2xl backdrop:bg-black/70 backdrop:backdrop-blur-sm max-w-2xl w-[calc(100%-2rem)]">
         <div class="flex flex-col max-h-[80vh] bg-[#0a0a0c] border border-white/[0.08] rounded-2xl shadow-2xl overflow-hidden">
             <div class="flex items-center justify-between px-6 py-5 border-b border-white/[0.06] shrink-0">
                 <div>
