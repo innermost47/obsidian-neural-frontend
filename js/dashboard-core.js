@@ -127,12 +127,11 @@ function openVersionsModal() {
   const body = document.getElementById("versions-modal-body");
   if (!modal || !body) return;
 
-  modal.classList.remove("hidden");
-  modal.classList.add("flex");
-  document.body.style.overflow = "hidden";
   hideDownloadError("versions-modal-error");
   body.innerHTML =
     '<p class="text-sm text-gray-500"><i class="fas fa-circle-notch fa-spin mr-2"></i>Loading versions…</p>';
+
+  modal.showModal();
 
   loadVersionsData()
     .then(renderVersionsList)
@@ -143,18 +142,12 @@ function openVersionsModal() {
 }
 
 function closeVersionsModal() {
-  const modal = document.getElementById("versions-modal");
-  if (!modal) return;
-  modal.classList.add("hidden");
-  modal.classList.remove("flex");
-  document.body.style.overflow = "";
+  document.getElementById("versions-modal")?.close();
 }
 
 function initVersionsModal() {
   const modal = document.getElementById("versions-modal");
-  if (modal && modal.parentElement !== document.body) {
-    document.body.appendChild(modal);
-  }
+  if (!modal) return;
 
   document
     .getElementById("open-versions-modal")
@@ -162,12 +155,9 @@ function initVersionsModal() {
   document
     .getElementById("close-versions-modal")
     ?.addEventListener("click", closeVersionsModal);
-  document
-    .getElementById("versions-modal-backdrop")
-    ?.addEventListener("click", closeVersionsModal);
 
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeVersionsModal();
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) modal.close();
   });
 }
 

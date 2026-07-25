@@ -137,20 +137,19 @@
         </div>
 
     </div>
-    <div id="versions-modal" class="hidden fixed inset-0 z-50 items-center justify-center p-4">
-        <div id="versions-modal-backdrop" class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
-        <div class="relative w-full max-w-2xl max-h-[85vh] flex flex-col bg-[#0a0a0c] border border-white/[0.08] rounded-2xl shadow-2xl">
-            <div class="flex items-center justify-between px-6 py-5 border-b border-white/[0.06]">
+    <dialog id="versions-modal" class="p-0 bg-transparent backdrop:bg-black/70 backdrop:backdrop-blur-sm max-w-2xl w-[calc(100%-2rem)]">
+        <div class="flex flex-col max-h-[80vh] bg-[#0a0a0c] border border-white/[0.08] rounded-2xl shadow-2xl overflow-hidden">
+            <div class="flex items-center justify-between px-6 py-5 border-b border-white/[0.06] shrink-0">
                 <div>
                     <h3 class="text-lg font-bold text-white m-0"><i class="fas fa-clock-rotate-left mr-2 text-track5"></i>Previous versions</h3>
                     <p class="text-xs text-gray-500 mt-1 mb-0">Download an earlier build of the Local Edition.</p>
                 </div>
-                <button id="close-versions-modal" type="button" class="w-9 h-9 rounded-xl border border-white/10 text-gray-400 hover:text-white hover:bg-white/5 transition-colors">
+                <button id="close-versions-modal" type="button" class="w-9 h-9 rounded-xl border border-white/10 text-gray-400 hover:text-white hover:bg-white/5 transition-colors shrink-0">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-            <div id="versions-modal-body" class="flex-1 min-h-0 overflow-y-auto px-6 py-5 space-y-3"></div>
-            <p id="versions-modal-error" class="hidden px-6 pb-5 text-xs text-danger"></p>
+            <div id="versions-modal-body" class="overflow-y-auto px-6 py-5 space-y-3"></div>
+            <p id="versions-modal-error" class="hidden px-6 pb-5 text-xs text-danger shrink-0"></p>
         </div>
-    </div>
+    </dialog>
 </div>
