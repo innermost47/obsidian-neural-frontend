@@ -149,7 +149,7 @@
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-            <div id="versions-modal-body" class="flex-1 overflow-y-auto px-6 py-5 space-y-3"></div>
+            <div id="versions-modal-body" class="flex-1 min-h-0 overflow-y-auto px-6 py-5 space-y-3"></div>
             <p id="versions-modal-error" class="hidden px-6 pb-5 text-xs text-danger"></p>
         </div>
     </div>

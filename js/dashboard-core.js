@@ -129,6 +129,7 @@ function openVersionsModal() {
 
   modal.classList.remove("hidden");
   modal.classList.add("flex");
+  document.body.style.overflow = "hidden";
   hideDownloadError("versions-modal-error");
   body.innerHTML =
     '<p class="text-sm text-gray-500"><i class="fas fa-circle-notch fa-spin mr-2"></i>Loading versions…</p>';
@@ -146,9 +147,15 @@ function closeVersionsModal() {
   if (!modal) return;
   modal.classList.add("hidden");
   modal.classList.remove("flex");
+  document.body.style.overflow = "";
 }
 
 function initVersionsModal() {
+  const modal = document.getElementById("versions-modal");
+  if (modal && modal.parentElement !== document.body) {
+    document.body.appendChild(modal);
+  }
+
   document
     .getElementById("open-versions-modal")
     ?.addEventListener("click", openVersionsModal);
