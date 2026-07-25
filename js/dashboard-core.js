@@ -1,6 +1,13 @@
 let userData = null;
 let currentUserEmail = "";
 let isOAuthUser = false;
+let versionsCache = null;
+
+const PLATFORM_META = {
+  windows: { label: "Windows", icon: "fab fa-windows" },
+  macos: { label: "macOS", icon: "fab fa-apple" },
+  linux: { label: "Linux", icon: "fab fa-linux" },
+};
 
 window.toggleSidebar = function () {
   const sidebar = document.getElementById("sidebar");
@@ -14,6 +21,23 @@ window.toggleSidebar = function () {
     overlay.classList.remove("hidden");
   }
 };
+
+async function loadVersionsData() {
+  if (!versionsCache) versionsCache = await API.getVersions();
+  return versionsCache;
+}
+
+async function initCurrentBuildLabel() {
+  const el = document.getElementById("local-build-current");
+  if (!el) return;
+
+  try {
+    const data = await loadVersionsData();
+    if (!data.current) return;
+    el.textContent = ` (build ${data.current.build_number ?? data.current.version})`;
+    el.classList.remove("hidden");
+  } catch {}
+}
 
 async function releaseMachine(key, machine, btn) {
   if (
@@ -37,6 +61,107 @@ async function releaseMachine(key, machine, btn) {
     btn.disabled = false;
     alert(e.detail || "Could not release the machine. Please try again.");
   }
+}
+
+function renderVersionsList(data) {
+  const body = document.getElementById("versions-modal-body");
+  const older = (data.versions || []).filter((v) => !v.is_current);
+
+  if (older.length === 0) {
+    body.innerHTML =
+      '<p class="text-sm text-gray-500">No earlier builds available.</p>';
+    return;
+  }
+
+  body.innerHTML = older
+    .map((v) => {
+      const build = v.build_number ?? v.version;
+      const date = v.released_at
+        ? new Date(v.released_at).toLocaleDateString()
+        : "—";
+
+      const buttons = v.platforms
+        .map((p) => {
+          const meta = PLATFORM_META[p];
+          if (!meta) return "";
+          return `<button type="button" data-version="${v.version}" data-platform="${p}" class="version-dl-btn flex items-center gap-2 px-3 py-2 rounded-xl bg-white/[0.06] border border-white/10 text-white text-xs font-bold hover:bg-track5 hover:border-track5 transition-colors"><i class="${meta.icon}"></i>${meta.label}</button>`;
+        })
+        .join("");
+
+      return `
+        <div class="bg-white/[0.03] border border-white/[0.06] rounded-xl p-4">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-sm font-bold text-white">Build ${build}</span>
+            <span class="text-xs text-gray-600">${date}</span>
+          </div>
+          <div class="flex flex-wrap gap-2">${buttons}</div>
+        </div>`;
+    })
+    .join("");
+
+  body.querySelectorAll(".version-dl-btn").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const original = btn.innerHTML;
+      btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i>';
+      btn.disabled = true;
+      hideDownloadError("versions-modal-error");
+
+      try {
+        const { url } = await API.checkLocalDownloadVersion(
+          btn.dataset.platform,
+          btn.dataset.version,
+        );
+        window.location.href = url;
+      } catch (err) {
+        showDownloadError(err, "versions-modal-error");
+      } finally {
+        btn.innerHTML = original;
+        btn.disabled = false;
+      }
+    });
+  });
+}
+
+function openVersionsModal() {
+  const modal = document.getElementById("versions-modal");
+  const body = document.getElementById("versions-modal-body");
+  if (!modal || !body) return;
+
+  modal.classList.remove("hidden");
+  modal.classList.add("flex");
+  hideDownloadError("versions-modal-error");
+  body.innerHTML =
+    '<p class="text-sm text-gray-500"><i class="fas fa-circle-notch fa-spin mr-2"></i>Loading versions…</p>';
+
+  loadVersionsData()
+    .then(renderVersionsList)
+    .catch((err) => {
+      body.innerHTML = "";
+      showDownloadError(err, "versions-modal-error");
+    });
+}
+
+function closeVersionsModal() {
+  const modal = document.getElementById("versions-modal");
+  if (!modal) return;
+  modal.classList.add("hidden");
+  modal.classList.remove("flex");
+}
+
+function initVersionsModal() {
+  document
+    .getElementById("open-versions-modal")
+    ?.addEventListener("click", openVersionsModal);
+  document
+    .getElementById("close-versions-modal")
+    ?.addEventListener("click", closeVersionsModal);
+  document
+    .getElementById("versions-modal-backdrop")
+    ?.addEventListener("click", closeVersionsModal);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeVersionsModal();
+  });
 }
 
 function renderLocalLicenses(user) {
@@ -300,8 +425,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     renderLocalLicenses(userData);
     if (userData.vst_licenses && userData.vst_licenses.length > 0) {
       document.getElementById("local-edition-promo")?.classList.add("hidden");
-    }
-    if (userData.vst_licenses && userData.vst_licenses.length > 0) {
       const link = document.getElementById("overview-license-link");
       link?.classList.remove("hidden");
       link?.classList.add("flex");
@@ -324,6 +447,8 @@ document.addEventListener("DOMContentLoaded", async () => {
           }
         });
       });
+      initVersionsModal();
+      initCurrentBuildLabel();
     }
   }
 });

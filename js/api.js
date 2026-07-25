@@ -1182,6 +1182,60 @@ const API = {
     }
   },
 
+  async getVersions(platform = null, includePrereleases = false) {
+    const params = new URLSearchParams();
+    if (platform) params.append("platform", platform);
+    if (includePrereleases) params.append("include_prereleases", "true");
+
+    try {
+      const response = await fetch(`${API_URL}/license/versions?${params}`, {
+        method: "GET",
+        credentials: "omit",
+      });
+      if (!response.ok) {
+        const error = await response.json().catch(() => ({}));
+        throw { ...error, status: response.status };
+      }
+      return await response.json();
+    } catch (error) {
+      if (error instanceof TypeError) {
+        throw {
+          detail: "Network error. Please check your connection.",
+          status: 0,
+        };
+      }
+      throw error;
+    }
+  },
+
+  async checkLocalDownloadVersion(platform, version) {
+    const token = localStorage.getItem("token");
+    const params = new URLSearchParams({ platform, version });
+
+    const headers = {};
+    if (token) headers.Authorization = `Bearer ${token}`;
+
+    try {
+      const response = await fetch(
+        `${API_URL}/license/download/check?${params}`,
+        { method: "GET", headers, credentials: "omit" },
+      );
+      if (!response.ok) {
+        const error = await response.json().catch(() => ({}));
+        throw { ...error, status: response.status };
+      }
+      return await response.json();
+    } catch (error) {
+      if (error instanceof TypeError) {
+        throw {
+          detail: "Network error. Please check your connection.",
+          status: 0,
+        };
+      }
+      throw error;
+    }
+  },
+
   getLocalDownloadUrl(sessionId, platform) {
     return `${API_URL}/license/download?session_id=${encodeURIComponent(
       sessionId,

@@ -88,7 +88,9 @@
                     <div class="w-10 h-10 rounded-xl bg-primary/20 text-primary flex items-center justify-center"><i class="fas fa-download"></i></div>
                     <h6 class="text-xs font-bold uppercase tracking-wider text-gray-500 m-0">Plugin</h6>
                 </div>
-                <p class="text-sm text-gray-400 mb-4">Download the latest version</p>
+                <p class="text-sm text-gray-400 mb-4">
+                    Download the latest version<span id="local-build-current" class="hidden text-track5 font-bold"></span>
+                </p>
 
                 <div id="download-opensource" class="space-y-2">
                     <a id="dl-windows" href="#" target="_blank" rel="noopener" class="flex items-center gap-2 w-full px-4 py-2.5 rounded-xl bg-gradient-to-r from-primary to-[#a04840] text-white font-bold text-sm hover:scale-[1.02] transition-transform"><i class="fab fa-windows"></i>Windows — VST3</a>
@@ -98,6 +100,9 @@
                     <a id="dl-macos-stdln" href="#" target="_blank" rel="noopener" class="flex items-center gap-2 w-full px-4 py-2.5 rounded-xl bg-gradient-to-r from-primary to-[#a04840] text-white font-bold text-sm hover:scale-[1.02] transition-transform"><i class="fab fa-apple"></i>macOS — Standalone</a>
                     <a id="dl-linux" href="#" target="_blank" rel="noopener" class="flex items-center gap-2 w-full px-4 py-2.5 rounded-xl bg-gradient-to-r from-primary to-[#a04840] text-white font-bold text-sm hover:scale-[1.02] transition-transform"><i class="fab fa-linux"></i>Linux — VST3</a>
                     <a id="dl-linux-stdln" href="#" target="_blank" rel="noopener" class="flex items-center gap-2 w-full px-4 py-2.5 rounded-xl bg-gradient-to-r from-primary to-[#a04840] text-white font-bold text-sm hover:scale-[1.02] transition-transform"><i class="fab fa-linux"></i>Linux — Standalone</a>
+                    <button id="open-versions-modal" type="button" class="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-xl border border-white/20 text-white/80 font-bold text-sm hover:bg-white/5 transition-colors">
+                        <i class="fas fa-clock-rotate-left"></i>Previous versions
+                    </button>
                 </div>
 
                 <div id="download-local" class="hidden space-y-2">
@@ -131,5 +136,21 @@
             </div>
         </div>
 
+    </div>
+    <div id="versions-modal" class="hidden fixed inset-0 z-50 items-center justify-center p-4">
+        <div id="versions-modal-backdrop" class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+        <div class="relative w-full max-w-2xl max-h-[85vh] flex flex-col bg-[#0a0a0c] border border-white/[0.08] rounded-2xl shadow-2xl">
+            <div class="flex items-center justify-between px-6 py-5 border-b border-white/[0.06]">
+                <div>
+                    <h3 class="text-lg font-bold text-white m-0"><i class="fas fa-clock-rotate-left mr-2 text-track5"></i>Previous versions</h3>
+                    <p class="text-xs text-gray-500 mt-1 mb-0">Download an earlier build of the Local Edition.</p>
+                </div>
+                <button id="close-versions-modal" type="button" class="w-9 h-9 rounded-xl border border-white/10 text-gray-400 hover:text-white hover:bg-white/5 transition-colors">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="versions-modal-body" class="flex-1 overflow-y-auto px-6 py-5 space-y-3"></div>
+            <p id="versions-modal-error" class="hidden px-6 pb-5 text-xs text-danger"></p>
+        </div>
     </div>
 </div>
