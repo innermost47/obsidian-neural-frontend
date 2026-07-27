@@ -27,7 +27,7 @@ background: linear-gradient(to right, #fff, #888);
                 Standalone or in your DAW (VST3 / AU)
             </span>
         </div>
-        <p class="text-center max-w-2xl mx-auto mb-10 text-gray-400 text-lg leading-relaxed gs-reveal opacity-0 translate-y-6">
+        <p class="text-center max-w-2xl mx-auto mb-4 text-gray-400 text-lg leading-relaxed gs-reveal opacity-0 translate-y-6">
             <strong class="text-white">Your trip. Your machine. Your call.</strong><br />
             Generate samples in ~10s — entirely on your own CPU, fully offline, no account needed.
         </p>
@@ -38,6 +38,10 @@ background: linear-gradient(to right, #fff, #888);
                     class="hidden px-8 py-4 rounded-xl bg-track5 text-white font-bold hover:scale-105 transition-transform shadow-[0_0_25px_rgba(180,150,90,0.35)]">
                     <i class="fas fa-microchip mr-2"></i>CPU Version — €29
                 </a>
+                <p data-beta-slots-wrapper class="hidden text-sm text-gray-400 mt-1">
+                    <span data-beta-slots class="text-track5 font-bold">—</span>
+                    <span class="text-gray-500">/ 500 beta slots left</span>
+                </p>
                 <button data-beta-block data-beta-checkout type="button"
                     class="hidden px-8 py-4 rounded-xl bg-track5 text-white font-bold hover:scale-105 transition-transform shadow-[0_0_25px_rgba(180,150,90,0.35)] disabled:opacity-60 disabled:cursor-not-allowed">
                     <i class="fas fa-flask mr-2"></i>Get Free Beta Access

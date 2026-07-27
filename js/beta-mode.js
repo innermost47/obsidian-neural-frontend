@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", async () => {
+  const BETA_SLOT_LIMIT = 500;
   const priceTags = document.querySelectorAll("[data-local-price]");
   const betaBlocks = document.querySelectorAll("[data-beta-block]");
   const prodButtons = document.querySelectorAll("[data-prod-buy]");
@@ -7,12 +8,16 @@ document.addEventListener("DOMContentLoaded", async () => {
   const betaCodeCopyBtns = document.querySelectorAll("[data-beta-code-copy]");
   const betaCodeShareBtns = document.querySelectorAll("[data-beta-code-share]");
   const betaCheckoutBtns = document.querySelectorAll("[data-beta-checkout]");
+  const slotWrappers = document.querySelectorAll("[data-beta-slots-wrapper]");
+  const slotTags = document.querySelectorAll("[data-beta-slots]");
 
   let isBeta = window.APP_CONFIG && window.APP_CONFIG.BETA_MODE === true;
+  let remainingSlots = null;
 
   try {
-    const { under_500 } = await API.checkLicenseCountUnder500();
-    isBeta = isBeta || under_500;
+    const { total } = await API.getLicenseCountTotal();
+    remainingSlots = Math.max(0, BETA_SLOT_LIMIT - total);
+    isBeta = isBeta || remainingSlots > 0;
   } catch (error) {
     console.error("Failed to check license count:", error);
   }
@@ -24,10 +29,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     priceTags.forEach((tag) => tag.classList.add("hidden"));
     prodButtons.forEach((btn) => btn.classList.add("hidden"));
     betaBlocks.forEach((block) => block.classList.remove("hidden"));
+
+    if (remainingSlots !== null) {
+      slotTags.forEach((tag) => (tag.textContent = remainingSlots));
+      slotWrappers.forEach((w) => w.classList.remove("hidden"));
+    }
   } else {
     priceTags.forEach((tag) => tag.classList.remove("hidden"));
     prodButtons.forEach((btn) => btn.classList.remove("hidden"));
     betaBlocks.forEach((block) => block.classList.add("hidden"));
+    slotWrappers.forEach((w) => w.classList.add("hidden"));
   }
 
   if (showBetaPromo) {

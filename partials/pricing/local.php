@@ -12,10 +12,6 @@
         align-items: center;
     }
 
-    .local-features li i {
-        margin-right: 0.75rem;
-    }
-
     @media (min-width: 768px) {
         .local-features {
             align-items: flex-start;
@@ -49,9 +45,9 @@
                         Stable Audio 3 Medium runs on your own CPU. No subscription, no credits, no internet required. Pay once, play offline forever.
                     </p>
                     <ul class="local-features text-sm text-gray-500">
-                        <li><i class="fas fa-check text-success"></i>Runs on your CPU</li>
-                        <li><i class="fas fa-check text-success"></i>3 machines</li>
-                        <li><i class="fas fa-check text-success"></i>Win · macOS · Linux</li>
+                        <li><i class="fas fa-check text-success mr-1"></i>Runs on your CPU</li>
+                        <li><i class="fas fa-check text-success mr-1"></i>3 machines</li>
+                        <li><i class="fas fa-check text-success mr-1"></i>Win · macOS · Linux</li>
                     </ul>
                 </div>
                 <div class="flex flex-col items-center gap-3 shrink-0">
@@ -69,9 +65,10 @@
                     </div>
 
                     <div data-beta-block class="hidden flex flex-col items-center gap-3">
-                        <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-track5/15 border border-track5/40 text-track5 text-xs font-bold uppercase tracking-wider">
-                            <i class="fas fa-flask"></i>Beta Access
-                        </span>
+                        <p data-beta-slots-wrapper class="hidden text-sm text-gray-400 whitespace-nowrap">
+                            <span data-beta-slots class="text-track5 font-bold">—</span>
+                            <span class="text-gray-500">/ 500 slots left</span>
+                        </p>
                         <a
                             href="local.php"
                             class="px-8 py-4 rounded-xl bg-track5 text-white font-bold hover:scale-105 transition-transform shadow-[0_0_25px_rgba(180,150,90,0.35)] whitespace-nowrap">

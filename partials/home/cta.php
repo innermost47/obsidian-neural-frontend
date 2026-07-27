@@ -24,6 +24,10 @@
                         <i class="fas fa-flask mr-2"></i>Get Free Beta Access
                     </button>
                 </div>
+                <p data-beta-slots-wrapper class="hidden text-sm text-gray-400 mb-6 -mt-2">
+                    <span data-beta-slots class="text-track5 font-bold">—</span>
+                    <span class="text-gray-500">/ 500 beta slots left</span>
+                </p>
                 <p class="text-sm text-gray-600">
                     Prefer the cloud version?
                     <a href="register.php" class="text-gray-500 hover:text-gray-400 underline underline-offset-2">Try it with 20 free credits</a>

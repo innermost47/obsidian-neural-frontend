@@ -59,12 +59,12 @@
                     <p class="text-gray-400 text-sm max-w-md">
                         The full plugin with Stable Audio 3 Medium running on your own hardware. One payment, activate on up to 3 machines, play offline forever.
                     </p>
-                    <div class="flex flex-wrap justify-center md:justify-start gap-x-6 gap-y-2 mt-4 text-sm text-gray-500">
-                        <span class="mr-2"><i class="fas fa-check text-success mr-1"></i>VST3 · AU · Standalone</span>
-                        <span class="mr-2"><i class="fas fa-check text-success mr-1"></i>Windows · macOS (Apple Silicon) · Linux</span>
-                        <span><i class="fas fa-check text-success mr-1"></i>3 machines</span>
-                    </div>
-                    <p class="text-xs text-gray-600 mt-2">
+                    <ul class="local-features text-sm text-gray-500 mt-3">
+                        <li><i class="fas fa-check text-success mr-1"></i>Runs on your CPU</li>
+                        <li><i class="fas fa-check text-success mr-1"></i>3 machines</li>
+                        <li><i class="fas fa-check text-success mr-1"></i>Win · macOS · Linux</li>
+                    </ul>
+                    <p class="text-xs text-gray-600 mt-3">
                         <i class="fas fa-circle-info mr-1"></i>macOS: Apple Silicon (M1+) only — Intel Macs not supported.
                     </p>
                 </div>

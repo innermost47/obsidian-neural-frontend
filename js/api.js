@@ -1040,27 +1040,6 @@ const API = {
     return await response.json();
   },
 
-  async createLocalCheckout(email = null) {
-    try {
-      const response = await fetch(`${API_URL}/license/checkout`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(email ? { email } : {}),
-        credentials: "omit",
-      });
-      if (!response.ok) {
-        const error = await response.json();
-        throw error;
-      }
-      return await response.json();
-    } catch (error) {
-      if (error instanceof TypeError) {
-        throw { detail: "Network error. Please check your connection." };
-      }
-      throw error;
-    }
-  },
-
   async getLicenseBySession(sessionId) {
     try {
       const response = await fetch(
@@ -1231,6 +1210,25 @@ const API = {
           detail: "Network error. Please check your connection.",
           status: 0,
         };
+      }
+      throw error;
+    }
+  },
+
+  async getLicenseCountTotal() {
+    try {
+      const response = await fetch(`${API_URL}/license/count/total`, {
+        method: "GET",
+        credentials: "omit",
+      });
+      if (!response.ok) {
+        const error = await response.json();
+        throw error;
+      }
+      return await response.json();
+    } catch (error) {
+      if (error instanceof TypeError) {
+        throw { detail: "Network error. Please check your connection." };
       }
       throw error;
     }
