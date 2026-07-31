@@ -37,8 +37,8 @@ include('partials/shared/head.php');
           generations
         </li>
         <li class="flex items-center gap-3 text-sm text-gray-400">
-          <i class="fas fa-brain text-warning text-xs w-4"></i>LLM prompt
-          optimization
+          <i class="fas fa-layer-group text-success text-xs w-4"></i>Access to 9
+          specialized AI models
         </li>
         <li class="flex items-center gap-3 text-sm text-gray-400">
           <i class="fas fa-download text-danger text-xs w-4"></i>Full VST3

@@ -95,27 +95,6 @@
             <div class="flex-1 h-px bg-white/[0.06] ml-2"></div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-
-            <div class="flex items-start gap-3 p-4 rounded-xl bg-black/20 border border-white/[0.04]">
-                <div class="w-8 h-8 rounded-lg bg-primary/10 border border-primary/15 text-primary flex items-center justify-center shrink-0 text-xs mt-0.5">
-                    <i class="fas fa-brain"></i>
-                </div>
-                <div>
-                    <p class="text-xs font-bold text-gray-300 mb-1">LLM Brain</p>
-                    <p class="text-[11px] text-gray-500 leading-relaxed">Gemini 2.5 Flash — optimizes prompts, maintains context</p>
-                </div>
-            </div>
-
-            <div class="flex items-start gap-3 p-4 rounded-xl bg-black/20 border border-white/[0.04]">
-                <div class="w-8 h-8 rounded-lg bg-primary/10 border border-primary/15 text-primary flex items-center justify-center shrink-0 text-xs mt-0.5">
-                    <i class="fas fa-eye"></i>
-                </div>
-                <div>
-                    <p class="text-xs font-bold text-gray-300 mb-1">Vision Model</p>
-                    <p class="text-[11px] text-gray-500 leading-relaxed">Gemini 2.5 Flash — analyzes drawings into sonic descriptions</p>
-                </div>
-            </div>
-
             <div class="flex items-start gap-3 p-4 rounded-xl bg-black/20 border border-white/[0.04]">
                 <div class="w-8 h-8 rounded-lg bg-primary/10 border border-primary/15 text-primary flex items-center justify-center shrink-0 text-xs mt-0.5">
                     <i class="fas fa-music"></i>

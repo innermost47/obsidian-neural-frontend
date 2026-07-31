@@ -58,20 +58,6 @@ transparent 60%
             <div
                 class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-all gs-reveal opacity-0 translate-y-8">
                 <div
-                    class="w-12 h-12 rounded-xl bg-primary/20 text-primary flex items-center justify-center text-xl mb-4">
-                    <i class="fas fa-brain"></i>
-                </div>
-                <h3 class="font-bold text-white mb-2">
-                    LLM Brain
-                    <span class="ml-2 text-[10px] uppercase font-bold text-gray-400 bg-white/10 border border-white/20 px-2 py-0.5 rounded-full tracking-wider align-middle">Optional</span>
-                </h3>
-                <p class="text-sm text-gray-400">
-                    Disabled by default. Enable to let a local LLM refine prompts, learn from your sessions, and adapt to your style and DAW tempo.
-                </p>
-            </div>
-            <div
-                class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-all gs-reveal opacity-0 translate-y-8">
-                <div
                     class="w-12 h-12 rounded-xl bg-track2/20 text-track2 flex items-center justify-center text-xl mb-4">
                     <i class="fas fa-grip-horizontal"></i>
                 </div>
@@ -102,18 +88,6 @@ transparent 60%
                 <h3 class="font-bold text-white mb-2">Standalone + Ableton Link</h3>
                 <p class="text-sm text-gray-400">
                     Run without a DAW with built-in transport and tempo control. Sync tempo and start/stop with any Link-enabled app over your network.
-                </p>
-            </div>
-
-            <div
-                class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl hover:bg-white/10 transition-all gs-reveal opacity-0 translate-y-8">
-                <div
-                    class="w-12 h-12 rounded-xl bg-track5/20 text-track5 flex items-center justify-center text-xl mb-4">
-                    <i class="fas fa-wave-square"></i>
-                </div>
-                <h3 class="font-bold text-white mb-2">Auto Tempo Sync</h3>
-                <p class="text-sm text-gray-400">
-                    BPM detection with MiniBPM + time-stretching via Signalsmith Stretch. Samples lock to your host tempo with zero pitch drift.
                 </p>
             </div>
 

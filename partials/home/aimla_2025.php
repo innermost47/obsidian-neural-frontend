@@ -65,16 +65,6 @@
                         flow — proving stability in professional settings.
                     </p>
                 </div>
-                <div
-                    class="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-2xl gs-reveal opacity-0 translate-x-8">
-                    <h3 class="text-track5 font-bold mb-2">
-                        <i class="fas fa-brain mr-2"></i>LLM Brain
-                    </h3>
-                    <p class="text-sm text-gray-400">
-                        Contextual memory learns from your sessions. Optimizes prompts
-                        based on your style and DAW tempo.
-                    </p>
-                </div>
                 <div class="flex flex-wrap gap-4 gs-reveal opacity-0 translate-x-8">
                     <a
                         id="btn-paper"

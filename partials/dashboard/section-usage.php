@@ -74,10 +74,6 @@
             <h3 class="text-base font-bold text-white mb-4"><i class="fas fa-layer-group mr-2 text-primary"></i>AI Models Stack</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div class="bg-white/[0.03] border border-white/[0.06] rounded-xl p-4">
-                    <h6 class="font-bold text-white mb-2 text-sm"><i class="fas fa-brain mr-2 text-primary"></i>LLM Brain <span class="ml-2 text-[0.6rem] uppercase font-bold text-gray-400 bg-white/10 border border-white/20 px-2 py-0.5 rounded-full tracking-wider align-middle">Optional</span></h6>
-                    <p class="text-xs text-gray-500 mb-0"><strong class="text-gray-300">Gemma 4 (via Ollama)</strong><br>Optional layer to refine prompts based on session context. Disabled by default.</p>
-                </div>
-                <div class="bg-white/[0.03] border border-white/[0.06] rounded-xl p-4">
                     <h6 class="font-bold text-white mb-2 text-sm"><i class="fas fa-music mr-2 text-primary"></i>Audio Engines</h6>
                     <p class="text-xs text-gray-500 mb-0"><strong class="text-gray-300">9 specialized models</strong><br>Stable Audio 3 Medium, Stable Audio Open 1.0, Foundation-1, Audialab EDM Elements, RC Infinite Pianos, Vocal Textures, SAO Instrumental, StableBeaT, Gluten-v1. ~5 to 30 seconds per generation depending on the model.</p>
                 </div>
