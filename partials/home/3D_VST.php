@@ -21,11 +21,11 @@
 
                     <video autoplay loop muted playsinline id="vst-video"
                         class="hidden lg:block w-full opacity-95 object-cover"
-                        poster="assets/images/screenshot-v2-5-1.webp">
+                        poster="assets/images/screenshot-mobile.png">
                         <source src="assets/videos/hero_sharp.mp4" type="video/mp4">
                     </video>
 
-                    <img src="assets/images/screenshot-v2-5-1.webp" alt="OBSIDIAN Neural - interface VST mobile" id="vst-mobile-img"
+                    <img src="assets/images/screenshot-mobile.png" alt="OBSIDIAN Neural - interface VST" id="vst-mobile-img"
                         class="block lg:hidden w-full h-auto opacity-95" fetchpriority="high"
                         width="609" height="308" />
 
