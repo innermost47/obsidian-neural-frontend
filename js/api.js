@@ -1234,6 +1234,25 @@ const API = {
     }
   },
 
+  async getPublicGrowth() {
+    try {
+      const response = await fetch(`${API_URL}/public/growth`, {
+        method: "GET",
+        credentials: "omit",
+      });
+      if (!response.ok) {
+        const error = await response.json();
+        throw error;
+      }
+      return await response.json();
+    } catch (error) {
+      if (error instanceof TypeError) {
+        throw { detail: "Network error. Please check your connection." };
+      }
+      throw error;
+    }
+  },
+
   getLocalDownloadUrl(sessionId, platform) {
     return `${API_URL}/license/download?session_id=${encodeURIComponent(
       sessionId,

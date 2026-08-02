@@ -13,4 +13,10 @@ return [
         'title'      => 'Generate Your First Loops and Mix with OBSIDIAN Neural',
         'caption'    => 'Quick start — generate your first loops and mix.',
     ],
+    [
+        'slug'       => 'v310-update',
+        'youtube_id' => '5OydQZlbjGs',
+        'title'      => "What's New in v3.1.0 — Effects, FX Sequencer & Streamlined Workflow",
+        'caption'    => 'New effects, glitch sequencer, and a simpler prompt workflow.',
+    ],
 ];

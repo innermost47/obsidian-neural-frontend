@@ -17,6 +17,10 @@ background: linear-gradient(to right, #fff, #888);
             Here is the place for <strong>outlaws</strong> who wanna subvert AI-generated sounds, <strong>step by step</strong>.
         </h2>
 
+        <p class="text-sm text-gray-600 mb-8 gs-reveal opacity-0 translate-y-6">
+            An indie project developed by <a href="https://github.com/innermost47" target="_blank" class="text-gray-500 hover:text-gray-400 underline underline-offset-2">innermost47</a>.
+        </p>
+
         <div class="flex flex-wrap justify-center gap-2 mb-10 gs-reveal opacity-0 translate-y-6">
             <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-gray-400">
                 <i class="fas fa-laptop text-track5"></i>

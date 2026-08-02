@@ -19,7 +19,7 @@ transparent 60%
             </h2>
             <p class="text-xl md:text-2xl text-white font-medium leading-relaxed mb-4 gs-reveal opacity-0 translate-y-6">
                 OBSIDIAN Neural doesn't write songs for you. It's a
-                <span class="text-primary font-bold">performance instrument</span>:
+                <span class="text-primary font-bold">performance instrument:</span>
                 you build your track loop by loop, live.
             </p>
             <p class="text-lg text-gray-400 max-w-xl mx-auto gs-reveal opacity-0 translate-y-6">
