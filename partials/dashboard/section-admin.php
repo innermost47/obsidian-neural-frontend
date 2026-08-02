@@ -1,5 +1,5 @@
 <style>
-    #growth-range option {
+    #growth-range {
         background-color: #111115 !important;
         color: #ffffff !important;
     }
