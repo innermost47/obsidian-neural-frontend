@@ -139,8 +139,3 @@ canvas {
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
 }
-
-#growth-range option {
-  background-color: #111115 !important;
-  color: #ffffff !important;
-}

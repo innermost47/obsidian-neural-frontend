@@ -1,3 +1,9 @@
+<style>
+    #growth-range option {
+        background-color: #111115 !important;
+        color: #ffffff !important;
+    }
+</style>
 <div id="section-admin" class="section-content">
     <div class="sticky top-0 z-10 bg-[#0a0a0c]/95 backdrop-blur-md border-b border-white/[0.06] px-6 lg:px-12 py-5">
         <h1 class="text-xl md:text-2xl font-extrabold text-white m-0"><i class="fas fa-shield-alt mr-3 text-primary"></i>Admin Dashboard</h1>
