@@ -141,6 +141,6 @@ canvas {
 }
 
 #growth-range option {
-  background-color: #111115;
-  color: #ffffff;
+  background-color: #111115 !important;
+  color: #ffffff !important;
 }
