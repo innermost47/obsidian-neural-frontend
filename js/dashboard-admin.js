@@ -1,4 +1,5 @@
 let allUsers = [];
+let growthChartInstance = null;
 
 function tierBadge(tier) {
   const map = {
@@ -9,6 +10,7 @@ function tierBadge(tier) {
   };
   return `<span class="inline-block px-2 py-0.5 rounded-full text-[0.65rem] font-bold border border-white/10 ${map[tier] || map.free}">${tier || "free"}</span>`;
 }
+
 function subStatusBadge(status) {
   const map = {
     active: "bg-success/10 text-success",
@@ -17,11 +19,34 @@ function subStatusBadge(status) {
   };
   return `<span class="inline-block px-2 py-0.5 rounded-full text-[0.65rem] font-bold border border-white/10 ${map[status] || "bg-white/10 text-gray-400"}">${status || "inactive"}</span>`;
 }
+
 function yesNoBadge(v) {
   return v
     ? `<span class="inline-block px-2 py-0.5 rounded-full text-[0.65rem] font-bold bg-success/10 text-success border border-white/10">Yes</span>`
     : `<span class="inline-block px-2 py-0.5 rounded-full text-[0.65rem] font-bold bg-white/10 text-gray-400 border border-white/10">No</span>`;
 }
+
+function licensesBadge(u) {
+  const total = u.total_licenses || 0;
+  if (total === 0) {
+    return `<span class="text-gray-600 text-[0.65rem]">—</span>`;
+  }
+  const beta = u.beta_licenses || 0;
+  const paid = u.paid_licenses || 0;
+  const parts = [];
+  if (beta > 0) {
+    parts.push(
+      `<span class="inline-block px-2 py-0.5 rounded-full text-[0.65rem] font-bold bg-track5/10 text-track5 border border-white/10">${beta} beta</span>`,
+    );
+  }
+  if (paid > 0) {
+    parts.push(
+      `<span class="inline-block px-2 py-0.5 rounded-full text-[0.65rem] font-bold bg-success/10 text-success border border-white/10">${paid} paid</span>`,
+    );
+  }
+  return `<div class="flex gap-1 flex-wrap">${parts.join("")}</div>`;
+}
+
 function formatDate(d) {
   if (!d) return "—";
   return new Date(d).toLocaleDateString("en-US", {
@@ -30,6 +55,8 @@ function formatDate(d) {
     day: "numeric",
   });
 }
+
+let growthChartInstance = null;
 
 window.loadAdminData = async function () {
   try {
@@ -43,13 +70,140 @@ window.loadAdminData = async function () {
     document.getElementById("stat-paid").textContent = stats.paid_users;
     document.getElementById("stat-generations").textContent =
       stats.total_generations;
+
     allUsers = usersData.users;
     displayUsers(allUsers);
     document.getElementById("user-count").textContent = allUsers.length;
+
+    const totalBeta = allUsers.reduce(
+      (sum, u) => sum + (u.beta_licenses || 0),
+      0,
+    );
+    const totalPaid = allUsers.reduce(
+      (sum, u) => sum + (u.paid_licenses || 0),
+      0,
+    );
+    document.getElementById("stat-beta-licenses").textContent = totalBeta;
+    document.getElementById("stat-paid-licenses").textContent = totalPaid;
+    document.getElementById("stat-beta-slots").textContent = Math.max(
+      0,
+      500 - totalBeta,
+    );
+
+    renderGrowthChart();
   } catch (error) {
     console.error("Error loading admin data:", error);
     showNotification("Error loading admin data", "danger");
   }
+};
+
+window.renderGrowthChart = function () {
+  if (!allUsers.length) return;
+
+  const range = document.getElementById("growth-range")?.value || "90";
+  const now = new Date();
+  const cutoff =
+    range === "all"
+      ? null
+      : new Date(now.getTime() - parseInt(range) * 24 * 60 * 60 * 1000);
+
+  const filtered = cutoff
+    ? allUsers.filter((u) => u.created_at && new Date(u.created_at) >= cutoff)
+    : allUsers.filter((u) => u.created_at);
+
+  const dailyCounts = {};
+  filtered.forEach((u) => {
+    const day = u.created_at.slice(0, 10); // YYYY-MM-DD
+    dailyCounts[day] = (dailyCounts[day] || 0) + 1;
+  });
+
+  const sortedDays = Object.keys(dailyCounts).sort();
+  const labels = sortedDays.map((d) =>
+    new Date(d).toLocaleDateString("en-US", { month: "short", day: "numeric" }),
+  );
+
+  let cumulative = 0;
+  const cumulativeData = sortedDays.map((d) => {
+    cumulative += dailyCounts[d];
+    return cumulative;
+  });
+  const dailyData = sortedDays.map((d) => dailyCounts[d]);
+
+  const ctx = document.getElementById("growthChart");
+  if (!ctx) return;
+
+  if (growthChartInstance) growthChartInstance.destroy();
+
+  growthChartInstance = new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels,
+      datasets: [
+        {
+          type: "line",
+          label: "Cumulative users",
+          data: cumulativeData,
+          borderColor: "#d96850",
+          backgroundColor: "rgba(217, 104, 80, 0.1)",
+          borderWidth: 2,
+          tension: 0.3,
+          yAxisID: "y1",
+          pointRadius: 0,
+        },
+        {
+          type: "bar",
+          label: "New signups",
+          data: dailyData,
+          backgroundColor: "rgba(107, 179, 138, 0.6)",
+          borderRadius: 3,
+          yAxisID: "y",
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: "index", intersect: false },
+      plugins: {
+        legend: {
+          labels: { color: "#9ba1ac", font: { size: 11 } },
+        },
+      },
+      scales: {
+        x: {
+          ticks: {
+            color: "#6b7280",
+            maxRotation: 0,
+            autoSkip: true,
+            maxTicksLimit: 12,
+          },
+          grid: { color: "rgba(255,255,255,0.03)" },
+        },
+        y: {
+          position: "left",
+          ticks: { color: "#6b7280" },
+          grid: { color: "rgba(255,255,255,0.03)" },
+          title: {
+            display: true,
+            text: "New signups",
+            color: "#6b7280",
+            font: { size: 10 },
+          },
+        },
+        y1: {
+          position: "right",
+          ticks: { color: "#6b7280" },
+          grid: { drawOnChartArea: false },
+          title: {
+            display: true,
+            text: "Cumulative",
+            color: "#6b7280",
+            font: { size: 10 },
+          },
+        },
+      },
+    },
+  });
 };
 
 window.displayUsers = function (users) {
@@ -57,7 +211,7 @@ window.displayUsers = function (users) {
   if (!tbody) return;
   if (!users.length) {
     tbody.innerHTML =
-      '<tr><td colspan="9" class="text-center py-8 text-gray-600">No users found</td></tr>';
+      '<tr><td colspan="10" class="text-center py-8 text-gray-600">No users found</td></tr>';
     return;
   }
   tbody.innerHTML = users
@@ -76,6 +230,7 @@ window.displayUsers = function (users) {
             <td class="px-3 py-2.5 border-b border-white/[0.04]">${subStatusBadge(u.subscription_status)}</td>
             <td class="px-3 py-2.5 border-b border-white/[0.04] text-gray-400 font-mono">${u.credits_remaining}/${u.credits_total} <span class="text-gray-600 text-[0.6rem]">(${u.credits_used} used)</span></td>
             <td class="px-3 py-2.5 border-b border-white/[0.04] text-gray-400">${u.total_generations}</td>
+            <td class="px-3 py-2.5 border-b border-white/[0.04]">${licensesBadge(u)}</td>
             <td class="px-3 py-2.5 border-b border-white/[0.04]">${yesNoBadge(u.accept_news_updates)}</td>
             <td class="px-3 py-2.5 border-b border-white/[0.04] text-gray-500 text-[0.7rem]">${formatDate(u.created_at)}</td>
             <td class="px-3 py-2.5 border-b border-white/[0.04]">
@@ -119,6 +274,29 @@ window.viewUserDetail = async function (userId) {
                 <strong class="text-white">Credits:</strong> <span class="text-primary font-bold">${u.credits_remaining} / ${u.credits_total}</span> <span class="text-gray-500">(${u.credits_used} used)</span><br>
                 <strong class="text-white">Total Generations:</strong> <span class="text-gray-300">${data.total_generations}</span>
             </div>
+            ${
+              u.total_licenses
+                ? `
+                <h6 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3">Licenses (${u.total_licenses})</h6>
+                <div class="overflow-x-auto mb-5">
+                    <table class="w-full text-xs border-separate border-spacing-0">
+                        <thead><tr>${["Key", "Tier", "Status", "Type", "Activations", "Created"].map((h) => `<th class="px-3 py-2 text-left text-[0.65rem] font-bold uppercase tracking-wider text-gray-500 bg-white/[0.02] border-b border-white/[0.06]">${h}</th>`).join("")}</tr></thead>
+                        <tbody>${(u.licenses || [])
+                          .map(
+                            (l) => `<tr class="hover:bg-white/[0.02]">
+                            <td class="px-3 py-2 border-b border-white/[0.04] text-gray-400 font-mono">${l.license_key}</td>
+                            <td class="px-3 py-2 border-b border-white/[0.04]">${tierBadge(l.tier)}</td>
+                            <td class="px-3 py-2 border-b border-white/[0.04]">${subStatusBadge(l.status)}</td>
+                            <td class="px-3 py-2 border-b border-white/[0.04]">${l.is_beta ? `<span class="text-track5 font-bold">Beta</span>` : `<span class="text-success font-bold">Paid (€${((l.amount_paid || 0) / 100).toFixed(2)})</span>`}</td>
+                            <td class="px-3 py-2 border-b border-white/[0.04] text-gray-400">${l.max_activations}</td>
+                            <td class="px-3 py-2 border-b border-white/[0.04] text-gray-500">${formatDate(l.created_at)}</td>
+                        </tr>`,
+                          )
+                          .join("")}</tbody>
+                    </table>
+                </div>`
+                : ""
+            }
             ${
               data.recent_generations?.length
                 ? `

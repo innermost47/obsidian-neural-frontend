@@ -46,11 +46,15 @@ async function loadWorldMap(days) {
       maxZoom: 5,
       worldCopyJump: true,
     });
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.webp", {
-      attribution: "© OpenStreetMap contributors",
-      noWrap: false,
-      maxZoom: 19,
-    }).addTo(worldMap);
+    L.tileLayer(
+      "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+      {
+        attribution:
+          '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors © <a href="https://carto.com/attributions">CARTO</a>',
+        noWrap: false,
+        maxZoom: 19,
+      },
+    ).addTo(worldMap);
 
     const countryCoords = {
       Italy: [41.9, 12.5],
