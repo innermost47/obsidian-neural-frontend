@@ -56,8 +56,6 @@ function formatDate(d) {
   });
 }
 
-let growthChartInstance = null;
-
 window.loadAdminData = async function () {
   try {
     if (!userData?.is_admin) return;
