@@ -1,3 +1,12 @@
+<style>
+    #growth-total-users {
+        transition: color 0.3s ease;
+    }
+
+    #growth-total-users.growth-bump {
+        color: #6bb38a;
+    }
+</style>
 <section
     class="relative z-20 py-24 px-4"
     style="

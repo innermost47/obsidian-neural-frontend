@@ -1,13 +1,41 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const totalEl = document.getElementById("growth-total-users");
   const canvas = document.getElementById("growth-chart");
-  if (!totalEl || !canvas) return;
+  const section = canvas?.closest("section");
+  if (!totalEl || !canvas || !section) return;
 
-  try {
-    const data = await API.getPublicGrowth();
+  let currentTotal = 0;
+  let chartInstance = null;
+  let hasAnimatedIn = false;
+  let latestData = null;
 
-    totalEl.textContent = data.total_users.toLocaleString();
+  function animateCountTo(target, duration = 1500) {
+    const start = currentTotal;
+    const startTime = performance.now();
 
+    function tick(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+      const value = Math.round(start + (target - start) * eased);
+      totalEl.textContent = value.toLocaleString();
+      if (progress < 1) {
+        requestAnimationFrame(tick);
+      } else {
+        currentTotal = target;
+      }
+    }
+    requestAnimationFrame(tick);
+  }
+
+  function bumpTotal(newTotal) {
+    if (newTotal === currentTotal) return;
+    totalEl.classList.add("growth-bump");
+    animateCountTo(newTotal, newTotal > currentTotal ? 800 : 1500);
+    setTimeout(() => totalEl.classList.remove("growth-bump"), 600);
+  }
+
+  function buildChart(data) {
     const daily = data.daily_signups || [];
     const labels = daily.map((d) =>
       new Date(d.date).toLocaleDateString("en-US", {
@@ -23,7 +51,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
     const dailyData = daily.map((d) => d.count);
 
-    new Chart(canvas, {
+    if (chartInstance) chartInstance.destroy();
+
+    chartInstance = new Chart(canvas, {
       data: {
         labels,
         datasets: [
@@ -92,8 +122,40 @@ document.addEventListener("DOMContentLoaded", async () => {
         },
       },
     });
-  } catch (error) {
-    console.error("Error loading growth data:", error);
-    totalEl.textContent = "—";
   }
+
+  async function fetchData() {
+    try {
+      const data = await API.getPublicGrowth();
+      latestData = data;
+      return data;
+    } catch (error) {
+      console.error("Error loading growth data:", error);
+      return null;
+    }
+  }
+
+  await fetchData();
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !hasAnimatedIn && latestData) {
+          hasAnimatedIn = true;
+          currentTotal = 0;
+          animateCountTo(latestData.total_users, 1500);
+          buildChart(latestData);
+          observer.unobserve(section);
+        }
+      });
+    },
+    { threshold: 0.3 },
+  );
+  observer.observe(section);
+
+  setInterval(async () => {
+    if (!hasAnimatedIn) return;
+    const data = await fetchData();
+    if (data) bumpTotal(data.total_users);
+  }, 30000);
 });
