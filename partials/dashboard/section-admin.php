@@ -41,7 +41,7 @@
                     <h6 class="text-xs font-bold uppercase tracking-wider text-gray-500 m-0">Generations</h6>
                 </div>
                 <div class="text-2xl font-black text-white" id="stat-generations">—</div>
-                <p class="text-xs text-gray-600 mt-1">Total audio generated</p>
+                <p class="text-xs text-gray-600 mt-1">Network only — local (CPU) generations not tracked</p>
             </div>
         </div>
 
