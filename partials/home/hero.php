@@ -4,13 +4,13 @@
     </div>
     <div class="max-w-4xl mx-auto text-center">
         <h1
-            class="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6 tracking-tighter leading-[0.9] gs-reveal opacity-0 translate-y-6"
+            class="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6 tracking-tighter leading-[1.2] gs-reveal opacity-0 translate-y-6"
             style="
 background: linear-gradient(to right, #fff, #888);
 -webkit-background-clip: text;
 -webkit-text-fill-color: transparent;
 ">
-            The first VST<br />that hallucinates live
+            Your AI jam partner<br>built into your DAW
         </h1>
         <h2 class="text-base md:text-lg font-medium text-gray-500 mb-10 gs-reveal opacity-0 translate-y-6">
             If you're searching for an industrial AI full-song generator, <a href="https://suno.com" target="_blank" class="text-gray-500 hover:text-gray-400 underline underline-offset-2">here it is</a></br>
