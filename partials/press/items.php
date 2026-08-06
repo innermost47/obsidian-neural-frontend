@@ -3,6 +3,19 @@
 $press_items = [
 
     [
+        'url' => 'https://www.wildcodeschool.com/blog/temoignage-reconversion-developpeur-ia-anthony-obsidian-neutral',
+        'flag' => '🇫🇷',
+        'country' => 'France',
+        'language' => 'French',
+        'outlet' => 'Wild Code School',
+        'date' => 'Aug 5, 2026',
+        'icon' => 'fas fa-graduation-cap',
+        'icon_color' => 'text-track1',
+        'title' => "Musique, développement web et IA : le parcours d'Anthony, alumni de la Wild Code School",
+        'excerpt' => "Portrait d'Anthony, musicien reconverti en développeur après une formation Java/Angular à la Wild Code School, qui présente son projet open source OBSIDIAN-Neural.",
+    ],
+
+    [
         'url' => 'https://musicircuit.com/local-ai-music-generation/',
         'flag' => '🌐',
         'country' => 'Online',
@@ -26,7 +39,7 @@ $press_items = [
         'icon_color' => 'text-success',
         'title' => 'Obsidian Neural Brings AI-Generated Samples To Your DAW',
         'excerpt' => 'All drum loops, basslines, and atmospheric elements were generated using AI text-to-audio prompts, then arranged and performed live. No pre-recorded traditional samples used.',
-        'is_review' => true, // appears in schema.php's review[] without a numeric rating
+        'is_review' => true,
     ],
 
     [
@@ -92,7 +105,7 @@ $press_items = [
         'icon_color' => 'text-track3',
         'title' => 'OBSIDIAN Neural Sound Engine, a FREE AI-powered jam partner',
         'excerpt' => 'Too many AI projects focus on the things AI can save you from doing rather than how AI can help you get better at what you do. — James Nugent',
-        'rating' => 5, // appears in schema.php's review[] with a 5-star rating
+        'rating' => 5,
     ],
 
     [
